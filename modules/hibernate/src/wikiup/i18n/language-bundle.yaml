@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    hibernate:
+      title: Hibernate ORM System
+      brief: Hibernate is a powerful, high performance object/relational persistence and query service
+      description:
+zh-cn:
+  modules:
+    hibernate:
+      title: Hibernate 对象关系映射系统
+      brief: Hibernate 是一款强大且高效的对象/关系持久化以及查询映射系统
+      description: 

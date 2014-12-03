@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resources>
+		<handler class="org.wikiup.modules.hibernate.HibernatePropertiesResourceHandler">
+			<filter class="filter:equal" value="/wikiup/hibernate.properties"/>
+		</handler>
+		<handler class="org.wikiup.modules.hibernate.HibernateEntityResourceHandler">
+			<filter class="filter:regexp" regexp="/wikiup/hibernate/entities/.*"/>
+		</handler>
+	</resources>
+</root>

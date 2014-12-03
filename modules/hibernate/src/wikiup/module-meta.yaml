@@ -1,0 +1,4 @@
+name: wikiup-module-hibernate
+title: ${modules.hibernate.title}
+brief: ${modules.hibernate.brief}
+description: ${modules.hibernate.description}
