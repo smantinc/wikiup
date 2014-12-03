@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bean>
+	<factory name="processor-context" interface="org.wikiup.servlet.inf.ProcessorContext">
+		<item name="account" class="org.wikiup.modules.authorization.context.AccountProcessorContext"/>
+	</factory>
+	<factory name="authorization-context">
+		<item name="http-session" class="org.wikiup.modules.authorization.imp.ac.HttpSessionAuthorizationContext"/>
+	</factory>
+</bean>

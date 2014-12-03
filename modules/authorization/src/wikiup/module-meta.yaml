@@ -1,0 +1,4 @@
+name: wikiup-module-authorization
+title: ${modules.authorization.title}
+brief: ${modules.authorization.brief}
+description: ${modules.authorization.description}

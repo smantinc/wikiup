@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    authorization:
+      title: Wikiup Authorization Layer
+      brief: Common login services about user session context and http authorization protocol
+      description:
+zh-cn:
+  modules:
+    authorization:
+      title: Wikiup基本用户验证模块
+      brief: 用户验证信息和HTTP登录的一些基本功能
+      description:

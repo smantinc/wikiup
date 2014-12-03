@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans class="org.wikiup.modules.authorization.AuthorizationManager">
+	<authorization class="org.wikiup.modules.authorization.imp.authorization.BasicHttpAuthorization">
+		<property name="id" value="$name"/>
+		<property name="password" value="$password"/>
+	</authorization>
+	<authorization-context class="org.wikiup.modules.authorization.imp.ac.HttpSessionAuthorizationContext"/>
+	<principal class="org.wikiup.modules.authorization.imp.principal.Anonymous"/>
+</beans>
