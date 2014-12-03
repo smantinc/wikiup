@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    javascript:
+      title: Javascript Language Support
+      brief: Server Side Javascript programming language support
+      description:
+zh-cn:
+  modules:
+    javascript:
+      title: Javascript语言支持
+      brief: 服务器端Javascript动态脚本支持
+      description:

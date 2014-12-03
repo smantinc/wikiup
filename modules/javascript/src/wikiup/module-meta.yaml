@@ -1,0 +1,4 @@
+name: wikiup-module-javascript
+title: ${modules.javascript.title}
+brief: ${modules.javascript.brief}
+description: ${modules.javascript.description}
