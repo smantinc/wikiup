@@ -1,0 +1,5 @@
+name: wikiup-plugin-wordpress
+title: ${plugins.wordpress.title}
+brief: ${plugins.wordpress.brief}
+description: ${plugins.wordpress.description}
+index: /

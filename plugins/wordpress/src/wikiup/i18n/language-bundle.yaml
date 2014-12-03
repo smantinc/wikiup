@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  plugins:
+    wordpress:
+      title: WordPress
+      brief: WordPress is a state-of-the-art publishing platform with a focus on aesthetics, web standards, and usability.
+      description:
+zh-cn:
+  plugins:
+    wordpress:
+      title: WordPress
+      brief: WordPress 是一个注重美学、易用性和网络标准的个人信息发布平台
+      description: 
