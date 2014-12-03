@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans>
+	<factory name="file-system">
+		<item name="native" class="org.wikiup.modules.webdav.imp.fs.NativeFileSystem"/>
+		<item name="merage" class="org.wikiup.modules.webdav.imp.fs.MergeFileSystem"/>
+	</factory>
+	<factory name="webdav-method">
+		<item name="options" class="org.wikiup.modules.webdav.method.OptionsRequestMethod"/>
+		<item name="propfind" class="org.wikiup.modules.webdav.method.PropFindRequestMethod"/>
+		<item name="get" class="org.wikiup.modules.webdav.method.GetRequestMethod"/>
+		<item name="lock" class="org.wikiup.modules.webdav.method.LockRequestMethod"/>
+		<item name="unlock" class="org.wikiup.modules.webdav.method.UnlockRequestMethod"/>
+		<item name="put" class="org.wikiup.modules.webdav.method.PutRequestMethod"/>
+		<item name="head" class="org.wikiup.modules.webdav.method.HeadRequestMethod"/>
+		<item name="delete" class="org.wikiup.modules.webdav.method.DeleteRequestMethod"/>
+		<item name="mkcol" class="org.wikiup.modules.webdav.method.MakeCollectionRequestMethod"/>
+		<item name="move" class="org.wikiup.modules.webdav.method.MoveRequestMethod"/>
+		<item name="copy" class="org.wikiup.modules.webdav.method.CopyRequestMethod"/>
+	</factory>
+	<factory name="authorization">
+		<item name="basic" class="org.wikiup.modules.webdav.imp.authorization.BasicHttpAuthorization"/>
+	</factory>
+</beans>

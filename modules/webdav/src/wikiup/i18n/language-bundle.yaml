@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    webdav:
+      title: WebDAV Protocol Support
+      brief: Extension to the HTTP/1.1 protocol that allows clients to perform remote web content authoring operations
+      description:
+zh-cn:
+  modules:
+    webdav:
+      title: WebDAV协议支持
+      brief: HTTP/1.1 协议的扩展，让客户端的认证用户能够获得更丰富的操作（例如增、删、改）
+      description: 

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans>
+	<file-system name="default" class="org.wikiup.modules.webdav.imp.fs.NativeFileSystem">
+		<permission method="PROPFIND|GET|COPY|HEAD|select" access="select"/>
+		<permission method="LOCK|MOVE|UNLOCK|update" access="update"/>
+		<permission method="PUT|MKCOL|insert" access="insert"/>
+		<permission method="DELETE|delete" access="delete"/>
+		<dest-permission method="MOVE|COPY" access="update"/>
+	</file-system>
+</beans>
+      

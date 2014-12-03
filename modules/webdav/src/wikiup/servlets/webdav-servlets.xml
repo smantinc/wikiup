@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<servlet name="webdav" uri-pattern="/webdav/*">
+		<processor class=":chain">
+			<module class="org.wikiup.modules.webdav.imp.processor.WebdavServletProcessor">
+				<authorization class="org.wikiup.modules.webdav.imp.authorization.BasicHttpAuthorization"/>
+				<method-handlers>
+					<options class="webdav-method:options"/>
+					<propfind>
+						<interceptor class="org.wikiup.modules.webdav.imp.interceptor.XMLRequestServletInterceptor"/>
+						<action class="webdav-method:propfind"/>
+					</propfind>
+					<get class="webdav-method:get"/>
+					<lock>
+						<interceptor class="org.wikiup.modules.webdav.imp.interceptor.XMLRequestServletInterceptor"/>
+						<action class="webdav-method:lock"/>
+					</lock>
+					<unlock class="webdav-method:unlock"/>
+					<put class="webdav-method:put"/>
+					<head class="webdav-method:head"/>
+					<delete class="webdav-method:delete"/>
+					<mkcol class="webdav-method:mkcol"/>
+					<move class="webdav-method:move"/>
+					<copy class="webdav-method:copy"/>
+				</method-handlers>
+			</module>
+			<module class=":xml" auto-create="false"/>
+		</processor>
+		<context name="param" class=":namespace"/>
+	</servlet>
+</root>

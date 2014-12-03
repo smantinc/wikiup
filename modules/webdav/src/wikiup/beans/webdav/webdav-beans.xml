@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans>
+	<bean name="file-system" class="org.wikiup.modules.webdav.imp.WebdavFileSystem"/>
+</beans>

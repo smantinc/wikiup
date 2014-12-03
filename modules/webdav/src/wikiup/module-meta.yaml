@@ -1,0 +1,5 @@
+name: wikiup-module-webdav
+title: ${modules.webdav.title}
+brief: ${modules.webdav.brief}
+description: ${modules.webdav.description}
+required-plugin: wikiup-module-authorization
