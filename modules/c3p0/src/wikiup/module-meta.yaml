@@ -1,0 +1,4 @@
+name: wikiup-module-c3p0
+title: ${modules.c3p0.title}
+brief: ${modules.c3p0.brief}
+description: ${modules.c3p0.description}

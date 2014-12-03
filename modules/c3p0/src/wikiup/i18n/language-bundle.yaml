@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    c3p0:
+      title: C3p0 Connection Pool Datasource Provider
+      brief: DataSources which implement connection and statement pooling
+      description:
+zh-cn:
+  modules:
+    c3p0:
+      title: C3p0数据源
+      brief: 包装其他数据源，提供连接池查询缓存等功能
+      description:
