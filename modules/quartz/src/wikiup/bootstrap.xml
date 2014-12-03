@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resources>
+		<handler class="org.wikiup.modules.quartz.QuartzScheduleHandler">
+			<filter class="filter:regexp" regexp="/wikiup/quartz/schedules?/.*"/>
+		</handler>
+	</resources>
+</root>

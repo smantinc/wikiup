@@ -1,0 +1,4 @@
+name: wikiup-module-quartz
+title: ${modules.quartz.title}
+brief: ${modules.quartz.brief}
+description: ${modules.quartz.description} 

@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    quartz:
+      title: Quartz Enterprise Job Scheduler
+      brief: Full-featured, open source job scheduling service for J2EE and J2SE
+      description:
+zh-cn:
+  modules:
+    quartz:
+      title: Quartz 企业级任务调度系统
+      brief: 为企业级的Java应用提供功能强大的任务调度基础服务
+      description:
