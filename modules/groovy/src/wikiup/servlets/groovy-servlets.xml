@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<servlets>
+	<servlet name="groovy-shell" uri-pattern="*.groovy" extends="do">
+		<action class=":groovy-shell">
+			<property name="wkContext" value="${org.wikiup.servlet.ServletProcessorContext}"/>
+			<property name="response" value="${javax.servlet.http.HttpServletResponse}"/>
+			<property name="request" value="${javax.servlet.http.HttpServletRequest}"/>
+			<property name="stream" value="${java.io.ByteArrayOutputStream}"/>
+			<property name="out" value="${java.io.StringWriter}"/>
+			<script src="${env.path}"/>
+		</action>
+	</servlet>
+</servlets>

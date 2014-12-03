@@ -1,0 +1,4 @@
+name: wikiup-module-groovy
+title: ${modules.groovy.title}
+brief: ${modules.groovy.brief}
+description: ${modules.groovy.description}

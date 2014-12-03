@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bean>
+	<factory name="servlet-action" interface="org.wikiup.servlet.inf.ServletAction">
+		<item name="groovy-shell" class="org.wikiup.modules.groovy.action.GroovyShellServletAction"/>
+		<item name="groovy-class" class="org.wikiup.modules.groovy.action.GroovyClassServletAction"/>
+	</factory>
+</bean>

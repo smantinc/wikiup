@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    groovy:
+      title: Groovy Language Support
+      brief: Groovy is a dynamic language inherits from Java
+      description:
+zh-cn:
+  modules:
+    groovy:
+      title: Groovy语言支持
+      brief: Groovy是一门继承至Java的动态语言
+      description:
