@@ -1,0 +1,4 @@
+name: wikiup-module-sqlserver
+title: ${modules.sqlserver.title}
+brief: ${modules.sqlserver.brief}
+description: ${modules.sqlserver.description}
