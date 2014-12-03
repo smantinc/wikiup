@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bean name="wk:factory">
+	<factory name="processor-context">
+		<item name="upload" class="org.wikiup.modules.fileupload.context.UploadProcessorContext"/>
+	</factory>
+	<factory name="upload-action" interface="org.wikiup.modules.fileupload.inf.UploadAction">
+		<item name="file" class="org.wikiup.modules.fileupload.impl.FileUploadAction"/>
+	</factory>
+</bean>
