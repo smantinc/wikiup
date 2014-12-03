@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    velocity:
+      title: Velocity View Layer
+      brief: Velocity permits you to use a simple yet powerful template language to reference objects defined in Java code
+      description:
+zh-cn:
+  modules:
+    velocity:
+      title: Velocity页面渲染层
+      brief: Velocity让您在页面中用一种简单但强大的模板语言来引用Java模型中的对象
+      description: 

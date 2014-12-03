@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<servlet name="vm" uri-pattern="*.vm" extends="wiki">
+	</servlet>
+</root>

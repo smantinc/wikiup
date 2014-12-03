@@ -1,0 +1,4 @@
+name: wikiup-module-velocity
+title: ${modules.velocity.title}
+brief: ${modules.velocity.brief}
+description: ${modules.velocity.description}
