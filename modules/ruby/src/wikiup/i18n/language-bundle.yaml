@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    ruby:
+      title: Java powered Ruby implementation
+      brief: JRuby provides a complete set of core "builtin" classes and syntax for the Ruby language, as well as most of the Ruby Standard Libraries
+      description:
+zh-cn:
+  modules:
+    ruby:
+      title: 采用Java实现的Ruby语言解决方案
+      brief: JRuby提供了一系列的“内置”类和语法，当然，还有Ruby的标准库
+      description:

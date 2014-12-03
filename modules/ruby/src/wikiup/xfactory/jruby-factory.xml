@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bean>
+	<factory name="servlet-action" interface="org.wikiup.servlet.inf.ServletAction">
+		<item name="ruby" class="org.wikiup.modules.ruby.action.RubyScriptServletAction"/>
+	</factory>
+</bean>

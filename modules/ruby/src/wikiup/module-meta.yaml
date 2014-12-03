@@ -1,0 +1,4 @@
+name: wikiup-module-ruby
+title: ${modules.ruby.title}
+brief: ${modules.ruby.brief}
+description: ${modules.ruby.description}
