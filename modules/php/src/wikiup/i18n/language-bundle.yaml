@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    php:
+      title: PHP Hypertext Preprocessor
+      brief: PHP is a widely-used general-purpose scripting language that is especially suited for Web development and can be embedded into HTML.
+      description:
+zh-cn:
+  modules:
+    php:
+      title: PHP 超文本处理器
+      brief: PHP 是一种多功能的脚本语言，尤其在网站设计开发上有着极其广泛的应用
+      description: 

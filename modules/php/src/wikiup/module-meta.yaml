@@ -1,0 +1,4 @@
+name: wikiup-module-php
+title: ${modules.php.title}
+brief: ${modules.php.brief}
+description: ${modules.php.description}

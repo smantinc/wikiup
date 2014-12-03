@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans class="org.wikiup.modules.php.PhpServletContainer">
+	<bean name="servletConfig" class="org.wikiup.modules.php.PhpServletConfig">
+		<property name="license-directory" value="WEB-INF/licenses"/>
+	</bean>
+</beans>
+
