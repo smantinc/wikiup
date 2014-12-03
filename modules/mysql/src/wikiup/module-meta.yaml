@@ -1,0 +1,4 @@
+name: wikiup-module-mysql
+title: ${modules.mysql.title}
+brief: ${modules.mysql.brief}
+description: ${modules.mysql.description}

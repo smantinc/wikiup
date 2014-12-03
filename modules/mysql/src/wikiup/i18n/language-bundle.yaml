@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    mysql:
+      title: MySQL Datasource Provider
+      brief: Provide datasource accessing ability for MySQL databases
+      description:
+zh-cn:
+  modules:
+    mysql:
+      title: MySQL数据库支持
+      brief: 为系统提供连接访问MySQL数据库的能力
+      description: 
