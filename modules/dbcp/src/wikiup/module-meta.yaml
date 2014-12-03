@@ -1,0 +1,4 @@
+name: wikiup-module-dbcp
+title: ${modules.dbcp.title}
+brief: ${modules.dbcp.brief}
+description: ${modules.dbcp.description}
