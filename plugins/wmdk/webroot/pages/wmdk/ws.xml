@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <action class="org.wikiup.plugins.wmdk.action.WebResourceServletAction">
+    <template name="html" suffix="html|htm" uri="template/new-page/html.html"/>
+    <template suffix="xml" uri="template/new-page/xml.html"/>
+    <template suffix="vm" uri="template/new-page/vm.html"/>
+    <template suffix="xsl" uri="template/new-page/xsl.html"/>
+    <template suffix="js" uri="template/new-page/js.html"/>
+    <template suffix="py" uri="template/new-page/py.html"/>
+    <template suffix="groovy" uri="template/new-page/groovy.html"/>
+    <template suffix="jsp" uri="template/new-page/jsp.html"/>
+    <template suffix="css" uri="template/new-page/css.html"/>
+    <template name="blank" suffix=".*" uri="template/new-page/blank.html"/>
+    <template suffix="rb"/>
+    <export>
+      <entry dir="src"/>
+      <entry uri="template/export/ivy.xml" file="ivy.xml"/>
+      <entry uri="template/export/build.properties" file="build.properties"/>
+      <entry uri="template/export/jetty.properties" file="jetty.properties"/>
+      <entry uri="template/build/build.xml" file="build/build.xml"/>
+      <entry uri="template/build/ivysettings.xml" file="build/ivysettings.xml"/>
+      <entry path="${sc:real-path:/}" file="webroot">
+        <exclude regexp="[\._].+|.+\.(jar|class)|lib|classes|.+\.cache|raw|wmdk"/>
+      </entry>
+    </export>
+  </action>
+</root>

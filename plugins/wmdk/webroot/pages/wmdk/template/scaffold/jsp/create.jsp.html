@@ -1,0 +1,29 @@
+<%@ page contentType="text/html; charset=utf-8" language="java" %>
+<%@ taglib prefix="wk" uri="/WEB-INF/wikiup/jsp-taglib.tld" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Create $domain.name</title>
+</head>
+<body>
+<div class="wk-client">
+  <h1>${i18n:wmdk.ui.text.create} $domain.name</h1>
+  <form action="" method="post">
+    <table class="wk-domain-list">
+      <wk:foreach in="domain:fields">
+        <tr>
+          <th>$name</th>
+          <td><input name="$name" value=""/></td>
+        </tr>
+      </wk:foreach>
+    </table>
+    <div>
+      <input type="submit"/>
+      <input type="reset"/>
+    </div>
+  </form>
+</div>
+<body>
+</body>
+</html>

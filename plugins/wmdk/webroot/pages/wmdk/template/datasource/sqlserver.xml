@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans>
+  <bean name="sqlserver" class="data-source:driver-manager">
+    <database-driver class="org.wikiup.modules.sqlserver.driver.SQLServerDatabaseDriver">
+      <url><wk:out with="util.encode.xml" name="${param.connection-url}"/></url>
+    </database-driver>
+    <user><wk:out with="util.encode.xml" name="$param.user"/></user>
+    <password><wk:out with="util.encode.xml" name="$param.password"/></password>
+  </bean>
+  <bean name="sqlserver-pooled" class="org.wikiup.database.impl.datasource.PooledDataSource">
+    <data-source>wk:database:provider:sqlserver</data-source>
+    <connection-pool class="org.wikiup.database.impl.cp.DefaultConnectionPool"/>
+  </bean>
+</beans>

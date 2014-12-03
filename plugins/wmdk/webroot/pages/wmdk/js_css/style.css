@@ -1,0 +1,315 @@
+@charset "utf-8";
+html {
+}
+body {
+	background-color: #f8f8f8;
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	border-top-style: none;
+	margin: 0 auto;
+}
+pre {
+	word-wrap: break-word;       /* Internet Explorer 5.5+ */
+	word-break: break-all;       /* Internet Explorer 5.5+ */
+	white-space: pre;
+	overflow: hidden;
+}
+select {
+}
+ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+a {
+	cursor: pointer;
+	text-decoration: none;
+	color: #24519a;
+}
+a:hover {
+	color: #3562ab;
+	text-decoration: underline;
+}
+.wk-highlight {
+	background-color: highlight;
+	color: highlighttext;
+}
+.wk-highlight *{
+	background-color: highlight;
+	color: highlighttext;
+}
+.wk-block-a a {
+	display: block;
+	width: 100%;
+	height: 100%;
+}
+.wk-float-clear {
+	clear: both;
+}
+.wk-hidden {
+	display: none;
+}
+.wk-center {
+	margin-left: auto;
+	margin-right: auto;
+}
+ul.wk-hbox li {
+	float: left;
+}
+.wmdk-tb-add {
+	background-image: url(../images/add.gif) !important;
+}
+.wmdk-tb-delete {
+	background-image: url(../images/delete.gif) !important;
+}
+.wmdk-tb-domain-add {
+	background-image: url(../images/domain-add.gif) !important;
+}
+.wmdk-tb-domain-edit {
+	background-image: url(../images/domain-edit.gif) !important;
+}
+.wmdk-tb-page-add {
+	background-image: url(../images/page-add.gif) !important;
+}
+.wmdk-tb-page-edit {
+	background-image: url(../images/page-edit.gif) !important;
+}
+.wmdk-tb-field-add {
+	background-image: url(../images/field-add.gif) !important;
+}
+.wmdk-tb-field-delete {
+	background-image: url(../images/field-delete.gif) !important;
+}
+.wmdk-tb-rename {
+	background-image: url(../images/rename.gif) !important;
+}
+.wmdk-tb-save {
+	background-image: url(../images/save.gif) !important;
+}
+.wmdk-tb-plugin {
+	background-image: url(../images/plugin.gif) !important;
+}
+.wmdk-tb-export {
+	background-image: url(../images/export.gif) !important;
+}
+.wmdk-tb-bug {
+	background-image: url(../images/bug.gif) !important;
+}
+.wmdk-tb-entity-manager {
+	background-image: url(../images/entity-manager.gif) !important;
+}
+.wmdk-tb-datasource {
+	background-image: url(../images/datasource.gif) !important;
+}
+.wmdk-tb-app {
+	background-image: url(../images/app.gif) !important;
+}
+.wmdk-tb-tips {
+	background-image: url(../images/tips.gif) !important;
+}
+.wmdk-tb-console {
+	background-image: url(../images/console.gif) !important;
+}
+.wmdk-tb-open-in-new {
+	background-image: url(../images/open-in-new.gif) !important;
+}
+.wmdk-tb-update {
+	background-image: url(../images/lightning.gif) !important;
+}
+.wmdk-tb-previous {
+	background-image: url(../images/previous.gif) !important;
+}
+.wmdk-tb-next {
+	background-image: url(../images/next.gif) !important;
+}
+.wmdk-icon-caution {
+	background-image: url(../images/caution.gif);
+	background-repeat: no-repeat;
+}
+.wmdk-domain-preview ul li {
+	line-height: 22px;
+	clear: both;
+}
+.wmdk-domain-preview ul li .wmdk-icon-caution {
+	height: 22px;
+	float: right;
+	margin-right: 10px;
+	background-position: left center;
+	padding-left: 20px;
+	cursor: pointer;
+}
+.wmdk-domain-preview ul li .wk-text {
+	float: left;
+	width: 150px;
+	font-weight: bold;
+	color: #666666;
+}
+.wmdk-domain-preview ul li .wk-value {
+}
+.wmdk-domain-preview {
+	margin: 10px;
+}
+#wmdk-hidden-target {
+	display: block;
+	position: absolute;
+	left: -1000px;
+	top: -1000px;
+	width: 0px;
+	height: 0px;
+}
+#wmdk-dynamic-context-reference ul{
+	margin: 10px;
+	font-size: 14px;
+	line-height: 24px;
+}
+#wmdk-dynamic-context-reference ul, #wmdk-dynamic-context-reference .wmdk-shortcuts-prospective li {
+	display: none;
+}
+#wmdk-dynamic-context-reference hr {
+	width: 90%;
+}
+.wmdk-export-preview ul li {
+	line-height: 22px;
+}
+.wmdk-export-preview ul li .wk-label {
+	float: left;
+	clear: left;
+	width: 120px;
+	font-weight: bold;
+	color: #666666;
+}
+.wmdk-export-preview ul li .wk-value {
+	float: left;
+}
+.wmdk-export-preview {
+	margin: 10px;
+}
+#wmdk-header .wmdk-logo {
+	background: url(../images/wmdk-logo.gif) center center no-repeat;
+	width: 400px;
+	height: 26px;
+	float: left;
+}
+.wmdk-module-manager .wmdk-item {
+	height: 48px;
+	margin: 5px;
+	padding: 0 5px;
+	border-bottom: 1px dashed #999;
+	cursor: default;
+	overflow: hidden;
+}
+.wmdk-module-manager .wmdk-item .wmdk-description {
+}
+.wmdk-module-manager .wmdk-item .wmdk-description .wmdk-org {
+	float: right;
+	margin-right: 15px;
+	display: none;
+}
+.wmdk-module-manager .wmdk-item .wmdk-description .wmdk-rev {
+	display: none;
+}
+.wmdk-module-manager .wmdk-item .wmdk-description .wmdk-brief {
+	margin-left: 15px;
+}
+.wmdk-module-manager .wmdk-tools-box {
+	position: absolute;
+	right: 10px;
+	margin-top: 20px;
+}
+.wmdk-module-manager .wmdk-name {
+	display: none;
+}
+.wmdk-module-manager .wmdk-tools-box button {
+	cursor: pointer;
+	margin-right: 10px;
+	float: right;
+	width: 60px;
+}
+.wmdk-module-manager .u-hidden, .wmdk-module-manager .u-required, .wmdk-module-manager .u-removed {
+	display: none;
+}
+.wmdk-module-manager .u-disabled {
+	color: #999;
+}
+.wmdk-module-manager .u-disabled .wmdk-disable {
+	display: none;
+}
+.wmdk-module-manager .wmdk-activate {
+	display: none;
+}
+.wmdk-module-manager .wmdk-unmount {
+	display: none;
+}
+.wmdk-module-manager .u-disabled .wmdk-activate {
+	display: block;
+}
+.wmdk-module-manager .u-mounting {
+	background-color: #bef;
+}
+.wmdk-module-manager .u-incompatible {
+	background-color: #eee;
+	text-decoration: line-through;
+}
+.wmdk-module-manager .u-mounting .wmdk-unmount {
+	display: block;
+}
+.wmdk-module-manager .u-mounting .wmdk-mount {
+	display: none;
+}
+.wmdk-module-manager .wmdk-tools-box {
+	display: none;
+}
+.wmdk-module-manager .u-selected {
+	color: highlighttext;
+	background-color: highlight;
+}
+.wmdk-module-manager .u-selected .wmdk-tools-box {
+	display: block;
+}
+.wmdk-module-manager .wmdk-item .wmdk-description .wmdk-title {
+	font-weight: bold;
+}
+.wmdk-explorer-panel iframe, .wmdk-explorer-panel textarea {
+	height: 100%;
+	width: 100%;
+}
+.wmdk-explorer-panel textarea {
+	border: 0 none;
+	font-size: 14px;
+}
+.wmdk-browsing textarea, .wmdk-editing iframe {
+	display: none;
+}
+#wmdk-explorer-browsing {
+	height: 100%;
+}
+#wmdk-explorer-browsing #wmdk-explorer-browsing-frame {
+	height: 100%;
+	width: 100%;
+}
+.wmdk-module-manager .wmdk-module-search-box {
+	border-bottom: 1px solid #CCC;
+	padding-bottom: 5px;
+}
+.wmdk-module-search-box .wmdk-module-navtool {
+	float: right;
+}
+.wmdk-module-search-box .wmdk-module-navtool ul li {
+	margin-right: 10px;
+}
+#wmdk-about-panel .wmdk-donate {
+	float: right;
+	margin: 10px 20px 0 0;
+}
+#wmdk-about-panel .wmdk-donate a {
+	background-image: url(../images/x-click-donate.gif);
+	background-repeat: no-repeat;
+	width: 62px;
+	height: 37px;
+}
+#wmdk-about-panel .wmdk-donate .wmdk-lang-en {
+	background-position: 0 0;
+}
+#wmdk-about-panel .wmdk-donate .wmdk-lang-zh {
+	background-position: -62px 0;
+}

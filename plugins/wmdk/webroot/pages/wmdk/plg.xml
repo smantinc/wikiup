@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <action class="org.wikiup.plugins.wmdk.action.PluginServletAction">
+    <mount>
+      <repository>http://wikiup.org/repo!download.do?name=${name}&amp;rev=${rev}&amp;org=${org}</repository>
+      <dependencies>http://wikiup.org/repo!dependencies.x?name=${name}&amp;rev=${rev}&amp;org=${org}</dependencies>
+	  <file-name>${name}-${rev}.$+{ext}{jar}</file-name>
+      <lib for="jasper.*|servlet-api.*">/WEB-INF/lib/wk.lib</lib>
+      <lib>/WEB-INF/lib</lib>
+    </mount>
+  </action>
+</root>

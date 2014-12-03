@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <action class="org.wikiup.plugins.wmdk.action.DatasourceServletAction">
+    <configure bean-location="WEB-INF/wikiup/beans/wk/database/provider">
+      <entry driver=".*oracle.*">
+	    <bean-file>oracle-datasource.xml</bean-file>
+        <template uri="template/datasource/oracle.xml"/>
+      </entry>
+      <entry driver=".*mysql.*">
+	    <bean-file>mysql-datasource.xml</bean-file>
+        <template uri="template/datasource/mysql.xml"/>
+      </entry>
+      <entry driver=".*hsqldb.*">
+	    <bean-file>hsqldb-datasource.xml</bean-file>
+        <template uri="template/datasource/hsqldb.xml"/>
+      </entry>
+      <entry driver=".*sqlite.*">
+	    <bean-file>sqlite-datasource.xml</bean-file>
+        <template uri="template/datasource/hsqldb.xml"/>
+      </entry>
+      <entry driver=".*sqlserver.*">
+	    <bean-file>sqlserver-datasource.xml</bean-file>
+        <template uri="template/datasource/sqlserver.xml"/>
+      </entry>
+    </configure>
+  </action>
+</root>

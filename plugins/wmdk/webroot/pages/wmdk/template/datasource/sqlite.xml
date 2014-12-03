@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans>
+  <bean name="sqlite-standalone" class="data-source:driver-manager">
+    <database-driver class="org.wikiup.modules.sqlite.driver.SqliteDatabaseDriver">
+      <url><wk:out with="util.encode.xml" name="${param.connection-url}"/></url>
+    </database-driver>
+    <user><wk:out with="util.encode.xml" name="$param.user"/></user>
+    <password><wk:out with="util.encode.xml" name="$param.password"/></password>
+  </bean>
+  <bean name="threadlocal-sqlite-standalone" class="org.wikiup.database.impl.datasource.PooledDataSource">
+    <data-source>wk:database:provider:sqlite-standalone</data-source>
+    <connection-pool class="org.wikiup.database.impl.cp.ThreadLocalConnectionPool"/>
+  </bean>
+</beans>

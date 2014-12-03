@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Wikiup Workspace</title>
+<link rel="stylesheet" type="text/css" href="js_css/thirdparty/ext/resources/css/ext-all.css" />
+<link rel="stylesheet" type="text/css" href="js_css/style.css" />
+<script type="text/javascript" src="js_css/thirdparty/jquery/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="js_css/thirdparty/ext/adapter/jquery/ext-jquery-adapter.js"></script>
+<script type="text/javascript" src="js_css/thirdparty/ext/ext-all.js"></script>
+<script language="javascript">
+Ext.BLANK_IMAGE_URL = Ext.isIE6 || Ext.isIE7 ? "${env:uri:/pages/wmdk/images/s.gif}" : "data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==";
+var contextPath = '${env:uri:/}';
+</script>
+<!--#include file="js_css/js-i18n.html" -->
+<script type="text/javascript" src="js_css/core.js"></script>
+<script type="text/javascript" src="js_css/init.js"></script>
+<script type="text/javascript" src="js_css/handler.js"></script>
+<script type="text/javascript" src="js_css/ui.js"></script>
+</head>
+<body>
+<div id="wmdk-explorer-browsing" class="x-hide-display">
+  <iframe id="wmdk-explorer-browsing-frame" src="about:blank" frameborder="0"></iframe>
+</div>
+<div id="wmdk-explorer-panel" class="x-hide-display wmdk-explorer-panel wmdk-browsing" style="height: 100%">
+  <iframe src="about:blank" frameborder="0"></iframe>
+  <textarea></textarea>
+</div>
+<div id="wmdk-header">
+  <div class="wmdk-logo"></div>
+  <div id="wmdk-system-menu"></div>
+</div>
+<div id="wmdk-dynamic-context-reference" class="x-hide-display">
+  <ul class="wmdk-resource-explorer-prospective">
+    <li><a href="#" onclick="return hNewPage()">${i18n:wmdk.ui.context-operation.create-page}</a></li>
+    <li><a href="#" onclick="return hEditPage()">${i18n:wmdk.ui.context-operation.edit-page}</a></li>
+  </ul>
+  <ul class="wmdk-datasource-explorer-prospective">
+    <li><a href="#" onclick="return hImportDomain()">${i18n:wmdk.ui.context-operation.import-domain}</a></li>
+    <li><a href="#" onclick="return hDefineDomain(true)">${i18n:wmdk.ui.context-operation.define-domain}</a></li>
+  </ul>
+  <hr style="display: none"/>
+  <ul class="wmdk-shortcuts-prospective" style="display: block">
+    <li class="wmdk-datasource-explorer"><a href="#" onclick="return uProspective('resource-explorer')">${i18n:wmdk.ui.context-operation.active-web-resource-explorer}</a></li>
+    <li class="wmdk-resource-explorer"><a href="#" onclick="return uProspective('datasource-explorer')">${i18n:wmdk.ui.context-operation.active-datasource-explorer}</a></li>
+    <li class="wmdk-recent-domain"><a href="#" onclick="return hRecentDomain()">${i18n:wmdk.ui.context-operation.recent-domain-explore}</a></li>
+  </ul>
+</div>
+<ul id="wmdk-module-installed" class="wmdk-module-manager x-hide-display">
+  <li id="wmdk-installed-item" class="wmdk-item u-default x-hide-display" onmouseover="uHover(this, 'u-default')" onclick="hPluginsItemClicked(this)">
+    <div class="wmdk-tools-box">
+      <button class="wmdk-disable" onclick="hPluginsItemStatusToggle(this, 'u-disabled')">${i18n:wmdk.ui.text.disable}</button>
+      <button class="wmdk-activate" onclick="hPluginsItemStatusToggle(this, 'u-disabled')">${i18n:wmdk.ui.text.activate}</button>
+      <button onclick="hPluginsItemStatusToggle(this, 'u-removed')">${i18n:wmdk.ui.text.remove}</button>
+    </div>
+    <div class="wmdk-description">
+      <div class="wmdk-name"></div>
+      <div class="wmdk-title"></div>
+      <div class="wmdk-brief"></div>
+    </div>
+  </li>
+</ul>
+<div id="wmdk-module-available" class="wmdk-module-manager x-hide-display" style="padding: 5px">
+  <ul class="x-hide-display">
+    <li id="wmdk-available-item" class="wmdk-item u-default" onmouseover="uHover(this, 'u-default')" onclick="hPluginsItemClicked(this)">
+      <div class="wmdk-tools-box">
+        <button class="wmdk-unmount" onclick="hPluginsItemStatusToggle(this, 'u-mounting')">${i18n:wmdk.ui.text.remove}</button>
+        <button class="wmdk-mount" onclick="hPluginsItemStatusToggle(this, 'u-mounting')">${i18n:wmdk.ui.text.install}</button>
+      </div>
+      <div class="wmdk-description">
+        <div class="wmdk-name"></div>
+        <div class="wmdk-org"></div>
+        <div class="wmdk-title"></div>
+        <div class="wmdk-brief"></div>
+        <div class="wmdk-rev"></div>
+      </div>
+    </li>
+  </ul>
+  <ul class="wmdk-module-manager">
+  </ul>
+</div>
+<div id="wmdk-about-panel" class="x-hide-display">
+  <h2>WMDK v<span id="wmdk-revision"></span> &copy; 2006 - ${util:datetime:yyyy} <a href="http://wikiup.org" target="_blank">Wikiup.org</a></h2>
+  <div style="margin-top: 8px">System Information:</div>
+  <ul style="margin: 2px 0 15px 10px">
+    <li>
+      <div>${env.request.headers.user-agent}</div>
+    </li>
+  </ul>
+  <div class="wmdk-donate wk-block-a"><a class="wmdk-lang-${i18n:wmdk.ui.lang}" href="http://sourceforge.net/donate/index.php?group_id=241260" title="${i18n:wmdk.ui.label.donate}" target="_blank"></a></div>
+  <div style="margin-top: 3px">Many thanks go to:</div>
+  <ul style="margin: 2px 0 15px 10px">
+    <li>Javascript Library: <a href="http://extjs.com/" target="_blank" style="margin-right: 15px">Ext JS</a> <a href="http://jquery.com/" target="_blank">jQuery</a></li>
+    <li>Icon Provider: <a href="http://famfamfam.com/" target="_blank">FamFamFam Silk Icons</a></li>
+  </ul>
+  <div style="margin-top: 3px">Any question please send to:</div>
+  <ul style="margin: 2px 0 15px 10px">
+    <li><a id="wmdk-mailbox" href="#" style="margin-right: 15px"></a></li>
+  </ul>
+</div>
+<wk:foreach in="ui-extension:index"> $html </wk:foreach>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans>
+  <bean name="oracle" class="data-source:driver-manager">
+    <database-driver class="org.wikiup.modules.oracle.driver.OracleDatabaseDriver">
+      <url><wk:out with="util.encode.xml" name="${param.connection-url}"/></url>
+    </database-driver>
+    <user><wk:out with="util.encode.xml" name="$param.user"/></user>
+    <password><wk:out with="util.encode.xml" name="$param.password"/></password>
+  </bean>
+  <bean name="oracle-pooled" class="org.wikiup.database.impl.datasource.PooledDataSource">
+    <data-source>wk:database:provider:oracle</data-source>
+    <connection-pool class="org.wikiup.database.impl.cp.DefaultConnectionPool" max-connection="30"/>
+  </bean>
+</beans>

@@ -1,0 +1,46 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>$domain.name List</title>
+<style>
+table.wk-domain-list {
+	table-layout: fixed;
+	width: 100%;
+}
+table.wk-domain-list th {
+	min-width: 80px;
+	width: auto !important;
+	width: 80px;
+	background-color: buttonface;
+}
+</style>
+</head>
+<body>
+<div class="wk-client">
+  <h1>$domain.name ${i18n:wmdk.ui.text.list}</h1>
+  <h3><a href="create.html">${i18n:wmdk.ui.text.create} $domain.name</a></h3>
+  <table class="wk-domain-list">
+    <tr>
+      <wk:foreach in="domain:fields">
+        <th>$name</th>
+      </wk:foreach>
+      <th>Operation</th>
+    </tr>
+    <wk:pre>
+      <wk:foreach in="entity:domain-all">
+    </wk:pre>
+    <tr>
+      <wk:foreach in="domain:fields">
+        <td>\$$name</td>
+      </wk:foreach>
+      <td><a href="update.html?<wk:foreach in='domain:primary-keys'>$name=\$$name&</wk:foreach>">[${i18n:wmdk.ui.text.update}]</a> <a href="delete.do?<wk:foreach in='domain:primary-keys'>$name=\$$name&</wk:foreach>">[${i18n:wmdk.ui.text.delete}]</a></td>
+    </tr>
+    <wk:pre>
+      </wk:foreach>
+    </wk:pre>
+  </table>
+  <div style="margin: 10px"><a href="?offset=0">${i18n:wmdk.ui.text.first-page}</a> | <a href="?offset=\${expr:eval:max(0, \$+{param:offset}{15} - 15)}">${i18n:wmdk.ui.text.previous-page}</a> | <a href="?offset=\${expr:eval:min(\${var:last-page-offset}, \$+{param:offset}{0} + 15)}">${i18n:wmdk.ui.text.next-page}</a> | <a href="?offset=\${var:last-page-offset}">${i18n:wmdk.ui.text.last-page}</a></div>
+</div>
+</body>
+</html>

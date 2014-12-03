@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+</head>
+<body>
+<h1>${i18n:wmdk.ui.text.update} $domain.name</h1>
+<div class="wk-client">
+  <form action="" method="post">
+    <wk:pre>
+      <entity:domain>
+    </wk:pre>
+    <table class="wk-domain-list">
+      <wk:foreach in="domain:fields">
+        <tr>
+          <th>$name</th>
+          <td><input name="$name" value="\$$name"/></td>
+        </tr>
+      </wk:foreach>
+    </table>
+    <div>
+      <input type="submit"/>
+      <input type="reset"/>
+    </div>
+    <wk:pre>
+      </entity:domain>
+    </wk:pre>
+  </form>
+</div>
+<body>
+</body>
+</html>

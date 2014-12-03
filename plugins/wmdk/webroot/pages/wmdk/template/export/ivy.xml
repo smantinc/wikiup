@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ivy-module version="1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+  <info organisation="$+{param.org}{unnamed}" module="$+{param.module-name}{unnamed}" revision="$+{param.rev}{SNAPSHOT}" status="milestone">
+    <description>$!param.description</description>
+  </info>
+  <configurations>
+    <conf name="release" />
+    <conf name="runtime" />
+  </configurations>
+  <publications>
+    <artifact type="jar" conf="release "/>
+  </publications>
+  <dependencies>
+    <dependency name="wikiup-module-jetty" org="wikiup" rev="1.0.17"/>
+    <wk:foreach in="export:plugins">
+      <wk:if test="!$disabled">
+        <dependency name="$name" org="$org" rev="$rev"$?force{ force="true"}{}/>
+      </wk:if>
+    </wk:foreach>
+  </dependencies>
+</ivy-module>

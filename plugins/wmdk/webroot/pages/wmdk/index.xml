@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <context name="ui-extension" class="org.wikiup.plugins.wmdk.context.UIExtensionProcessorContext"/>
+  <context name="ps" class="org.wikiup.plugins.wmdk.context.PluginStatusProcessorContext"/>
+</root>

@@ -1,0 +1,205 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="${env:uri:/pages/wmdk/js_css/thirdparty/ext/resources/css/ext-all.css}"/>
+<script type="text/javascript" src="${env:uri:/pages/wmdk/js_css/thirdparty/ext/adapter/ext/ext-base.js}"></script>
+<script type="text/javascript" src="${env:uri:/pages/wmdk/js_css/thirdparty/ext/ext-all.js}"></script>
+<script language="javascript">
+var fields = [];
+//	<wk:foreach in="domain.fields">
+fields.push({primaryKey: $primaryKey, name: "$name", displayName: '$name'});//	</wk:foreach>
+Ext.onReady(function(){
+	var store;
+	var columns = [];
+	var mapping = [];
+	for(var i = 0; i < fields.length; i ++)
+	{
+		var field = fields[i];
+		columns.push({header: field.displayName, dataIndex: field.name});
+		mapping.push(field.name);
+	}
+    
+	var store = new Ext.data.Store({
+			url: 'op.json?op=list',
+			autoLoad: true,
+			reader: new Ext.data.JsonReader({
+				totalProperty:'size',
+				root: 'relative',
+				id: 'ID' }, mapping)
+		});
+
+    var grid = new Ext.grid.GridPanel({
+		height: 450,
+		width: document.body.offsetWidth,
+		store: store,
+		layout: 'fit',
+		id: 'domain-grid',
+		sm: new Ext.grid.RowSelectionModel({singleSelect:true}),
+		cm: new Ext.grid.ColumnModel({
+			columns: columns,
+			defaults: {
+				sortable: false,
+				menuDisabled: true
+			}
+		}),
+		view: new Ext.grid.GridView({
+			forceFit: true
+		}),
+		tbar: ['<b>$domain.name List Page</b>',
+			   '->',
+		{text: '${i18n:wmdk.ui.text.create}', handler: hCreate},
+		'-',
+		{text: '${i18n:wmdk.ui.text.update}', handler: hUpdate},
+		'-',
+		{text: '${i18n:wmdk.ui.text.delete}', handler: hDelete}
+		], 
+
+		bbar: new Ext.PagingToolbar({
+			pageSize: 15,
+			store: store,
+			displayInfo: true,
+			displayMsg: 'Displaying topics {0} - {1} of {2}',
+			emptyMsg: 'No topics to display'
+		})
+    });
+
+    grid.render('wmdk-client');
+});
+function hDelete()
+{
+	var grid = Ext.getCmp('domain-grid');
+	if(grid.getSelectionModel().getCount() > 0)
+	{
+		var sel = grid.getSelectionModel().getSelected();
+		var i, params = {op:'delete'};
+		var lastOne = grid.getStore().getCount() == 1;
+//		<wk:foreach in="domain.primary-keys">
+		params['$name'] = sel.get('$name');
+//		</wk:foreach>
+		Ext.Ajax.request({
+			url: 'op.json',
+			params: params,
+			success: function(){
+				if(lastOne)
+					window.location.reload();
+				else
+					grid.getStore().reload();
+			}
+		});
+	}
+}
+function hCreate()
+{
+	var items = [];
+	for(var i = 0; i < fields.length; i ++)
+	{
+		var field = fields[i];
+		if(!field.primaryKey)
+			items.push({fieldLabel: field.displayName, name: field.name});
+	}
+    var formPanel = new Ext.FormPanel({
+        labelWidth: 105,
+        url:'op.x',
+		params: {
+			op: 'create'
+		},
+        frame: true,
+		autoScroll: true,
+        bodyStyle: 'padding:5px 5px 0',
+        width: 350,
+        defaults: {anchor: '95%'},
+        defaultType: 'textfield',
+        items: items
+    });
+	win = new Ext.Window({
+        title: '${i18n:wmdk.ui.text.create} $domain.name',
+		layout: 'fit',
+		width: 400,
+		height: 500,
+		plain: true,
+		items: formPanel,
+        buttons: [{
+			text: '${i18n:wmdk.ui.text.save}', handler: function() {
+				formPanel.getForm().submit({
+					url: 'op.json',
+					params: {
+						op: 'create'
+					},
+					success: function() {
+						Ext.getCmp('domain-grid').getStore().reload();
+						win.close();
+					}
+				});
+			}
+        },{
+			text: '${i18n:wmdk.ui.text.cancel}', handler: function() {
+				win.close();
+			}
+        }]
+	});
+	win.show();
+}
+
+function hUpdate()
+{
+	var grid = Ext.getCmp('domain-grid');
+	if(grid.getSelectionModel().getCount() > 0)
+	{
+		var sel = grid.getSelectionModel().getSelected();
+		var items = [];
+		for(var i = 0; i < fields.length; i ++)
+		{
+			var field = fields[i];
+			items.push({fieldLabel: field.displayName, name: field.name, value: sel.get(field.name)});
+		}		
+		var formPanel = new Ext.FormPanel({
+			labelWidth: 105,
+			url:'op.x',
+			params: {
+				op: 'update'
+			},
+			frame: true,
+			autoScroll: true,
+			bodyStyle: 'padding:5px 5px 0',
+			width: 350,
+			defaults: {anchor: '95%'},
+			defaultType: 'textfield',
+			items: items
+		});
+		win = new Ext.Window({
+			title: '${i18n:wmdk.ui.text.edit} $domain.name',
+			layout: 'fit',
+			width: 400,
+			height: 500,
+			plain: true,
+			items: formPanel,
+			buttons: [{
+				text: '${i18n:wmdk.ui.text.save}', handler: function(){
+					formPanel.getForm().submit({
+						url: 'op.json',
+						params: {
+							op: 'update'
+						},
+						success: function() {
+							grid.getStore().reload();
+							win.close();
+						}
+					});
+				}
+			},{
+				text: '${i18n:wmdk.ui.text.cancel}', handler: function() {
+					win.close();
+				}
+			}]
+		});
+		win.show();
+	}
+}
+</script>
+</head>
+<body>
+<div id="wmdk-client"></div>
+</body>
+</html>

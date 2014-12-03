@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <action entry="${param:!}">
+    <update class="org.wikiup.modules.updater.UpdaterServletAction">
+      <repository>
+        <list url="http://wikiup.org/repo!all.x"/>
+        <download>http://wikiup.org/repo!download.do?name=${name}&amp;rev=${rev}&amp;org=${org}</download>
+        <target>${name}-${rev}.jar</target>
+      </repository>
+    </update>
+  </action>
+</root>

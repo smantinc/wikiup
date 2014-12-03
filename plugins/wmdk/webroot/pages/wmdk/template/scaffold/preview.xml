@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <headers>
+    <property name="Content-Type" value="text/html;${env:prop:wikiup.charset}"/>
+  </headers>
+</root>

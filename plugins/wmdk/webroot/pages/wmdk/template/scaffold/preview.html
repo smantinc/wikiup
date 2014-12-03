@@ -1,0 +1,55 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../js_css/style.css" />
+</head>
+<body>
+<div class="wmdk-domain-preview">
+  <h3>Creating $param:manager Entity</h3>
+  <ul>
+    <li>
+      <div class="wk-text">${i18n:wmdk.ui.label.db-catalog}: </div>
+      <div class="wk-value">$domain:catalog</div>
+    </li>
+    <li>
+      <div class="wk-text">${i18n:wmdk.ui.label.db-schema}: </div>
+      <div class="wk-value">$domain:schema</div>
+    </li>
+    <li>
+      <div class="wk-text">${i18n:wmdk.ui.label.db-table}: </div>
+      <div class="wk-value">$domain:table</div>
+    </li>
+    <li>
+      <div class="wk-text">${i18n:wmdk.ui.label.domain-name}: </div>
+      <div class="wk-value">$domain:name</div>
+    </li>
+  </ul>
+  <h3>${i18n:wmdk.ui.title.domain-to-generate}</h3>
+  <ul id="wmdk-domain">
+    <domain:domain-template>
+      <li id="wmdk-template-li">
+        <div class="wk-text">${domain-name}:</div>
+        <a href="${env:uri:/pages/wmdk/scaffold!domain.do}?l=${param.l}&table=${param.table}&manager=${param.manager}" target="_blank">${uri}</a>
+        <wk:if test="$exists">
+          <div class="wmdk-icon-caution" title="${i18n:wmdk.ui.title.already-exists}"></div>
+        </wk:if>
+      </li>
+    </domain:domain-template>
+  </ul>
+  <h3>${i18n:wmdk.ui.title.page-to-generate}</h3>
+  <ul id="wmdk-templates">
+    <wk:foreach in="domain:preview-templates">
+      <li id="wmdk-template-li">
+        <div class="wk-text">$name</div>
+        <a href="${href}?l=${param.l}&table=${param.table}&manager=${param.manager}" target="_blank">$uri</a>
+        <wk:if test="$exists">
+          <div class="wmdk-icon-caution" title="${i18n:wmdk.ui.title.already-exists}"></div>
+        </wk:if>
+      </li>
+    </wk:foreach>
+  </ul>
+</div>
+</body>
+</html>

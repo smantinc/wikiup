@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <action entry="\$param.op">
+    <list ignore-exceptions="true">
+	  <action class=":entity" entity-path="${param:manager}:${domain.name}-all" node-name="relative">
+        <property name="limit" value="\$+param.limit{15}"/>
+        <property name="offset" value="\$+param.start{0}"/>
+      </action>
+	  <action class=":set" target="response-xml">
+        <property name="@size" value="\${entity.${param:manager}:${domain.name}-size[@size]}"/>
+        <property name="@success" value="true"/>
+      </action>
+	</list>
+    <create>
+	  <action class=":insert" entity-name="${param:manager}:${domain.name}">
+      <wk:foreach in="domain:fields">
+	    <wk:if test="!$primaryKey">
+        <property name="$name" value="\$param:$name"/></wk:if></wk:foreach>
+      </action>
+	  <action class=":set" target="response-xml">
+        <property name="@success" value="true"/>
+      </action>
+	</create>
+    <update>
+	  <action class=":update" entity-name="${param:manager}:${domain.name}">
+      <wk:foreach in="domain:fields">
+        <property name="$name" value="\$param:$name"/>
+      </wk:foreach>
+      </action>
+	  <action class=":set" target="response-xml">
+        <property name="@success" value="true"/>
+      </action>
+	</update>
+    <delete>
+	  <action class=":delete" entity-name="${param:manager}:${domain.name}">
+      <wk:foreach in="domain:primary-keys">
+        <property name="$name" value="\$param:$name"/>
+      </wk:foreach>
+      </action>
+	  <action class=":set" target="response-xml">
+        <property name="@success" value="true"/>
+      </action>
+	</delete>
+  </action>
+  <context name="entity" class=":entity"/>
+</root>

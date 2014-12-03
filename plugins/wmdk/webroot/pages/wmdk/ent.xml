@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <action class="org.wikiup.plugins.wmdk.action.EntityManagerServletAction">
+    <fieldset>
+      <field-type name="string" sql-type="12"/>
+      <field-type name="blob" sql-type="2004"/>
+      <field-type name="timestamp" sql-type="93"/>
+      <field-type name="datetime" sql-type="93"/>
+      <field-type name="date" sql-type="91"/>
+      <field-type name="time" sql-type="92"/>
+      <field-type name="integer" sql-type="4"/>
+      <field-type name="numeric" sql-type="2"/>
+      <field-type name="boolean" sql-type="16"/>
+    </fieldset>
+  </action>
+</root>

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title></title>
+<link rel="stylesheet" type="text/css" href="../../js_css/style.css" />
+</head>
+<body>
+<div class="wmdk-export-preview">
+  <h3>${i18n:wmdk.ui.title.application-export}</h3>
+  <ul>
+    <li>
+      <div class="wk-label">${i18n:wmdk.ui.label.module-name}: </div>
+      <div class="wk-value">$!{param:name}</div>
+    </li>
+    <li>
+      <div class="wk-label">${i18n:wmdk.ui.label.organisation-name}: </div>
+      <div class="wk-value">$!{param:org}</div>
+    </li>
+    <li>
+      <div class="wk-label">${i18n:wmdk.ui.label.revision}: </div>
+      <div class="wk-value">$!{param:rev}</div>
+    </li>
+    <li>
+      <div class="wk-label">${i18n:wmdk.ui.label.description}: </div>
+      <div class="wk-value">$!{param:description}</div>
+    </li>
+    <li class="wk-float-clear"></li>
+  </ul>
+  <h3>${i18n:wmdk.ui.title.plugins-to-export}</h3>
+  <ul id="wmdk-templates">
+    <wk:foreach in="export:plugins">
+      <wk:if test="!$disabled">
+        <li>
+          <div class="wk-label">$org</div>
+          <div class="wk-value"><a href="#">$name</a></div>
+        </li>
+      </wk:if>
+    </wk:foreach>
+  </ul>
+</div>
+</body>
+</html>
