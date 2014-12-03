@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    crypt:
+      title: Crypt and Decrypt Algorithm Library
+      brief: Symmetric, asymmetric, hash encryption function library(AES DES RSA MD5)
+      description:
+zh-cn:
+  modules:
+    crypt:
+      title: 基础加密解密算法函数库
+      brief: 包括 AES DES RSA MD5 等对称，非对称，哈希基础函数库
+      description:

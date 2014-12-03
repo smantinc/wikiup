@@ -1,0 +1,4 @@
+name: wikiup-module-crypt
+title: ${modules.crypt.title}
+brief: ${modules.crypt.brief}
+description: ${modules.crypt.description}
