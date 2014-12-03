@@ -1,0 +1,99 @@
+Build Date: 2010-01-26 20:22
+Build Number: 1730
+
+------------------------------
+Next Version
+
+------------------------------
+ 1.0.32 - Nov 20, 2009
+------------------------------
+ $ [Add] C3p0 module.
+ $ [Add] Dbcp module.
+ $ [Add] Ruby module.
+ $ [Add] Jsp module.
+ $ [Add] Quartz module.
+ $ [Add] Leprechaun WMDK extension.
+ $ [Add] Aquacure WMDK extension.
+ $ [Add] WikiupModuleManager.
+ $ [Change] Move I18n module to the core framework.
+ $ [Deprecated] SingletonClassFactory, use SingletonModelFactory instead.
+ $ [Change] Changing some of the Util classes' names
+ $ [Add] Yaml support.
+
+------------------------------
+ 1.0.23 - Nov 20, 2009
+------------------------------
+ $ [Add] Override doGet method in ServletDispatcher.
+
+------------------------------
+ 1.0.19 - Sep 6, 2009
+------------------------------
+ $ [Change] Move JSON module to the core framework.
+ $ [Change] Interface names changed.
+ $ [Fix] Fix tons of bugs.
+ $ [Add] Groovy module.
+ $ [Add] Velocity module.
+ $ [Add] Hiberante module.
+ $ [Add] iBatis module.
+ $ [Add] Webdav module.
+ $ [Add] Oracle module.
+ $ [Add] HSqldb module.
+ $ [Add] WMDK plugin.
+ $ [Add] Fluyt plugin.
+
+------------------------------
+ 0.9.1279 RC 2 - May 26, 2009
+------------------------------
+ $ [Fix] Fix a bug of loading templates without decoding the path url. 
+
+------------------------------
+ 0.9.1279 RC 1 - Mar 6, 2009
+------------------------------
+
+ $ [Deprecated] Session & Cookie ProcessorContext are deprecated, use the Variable Processor Context with 'session' or 'cookie' scope instead.
+ $ [Fix] Fix a bug that might generatl abnormal data structure when children were removed from their parents.
+
+------------------------------
+ 0.9.948 Alpha 2 - Nov 4, 2008
+------------------------------
+
+ $ [Add] TagProcessorInf, another easy interface to output html.
+ $ [Add] XSLT plugin module.
+ $ [Add] Jython plugin module.
+ $ [Change] Most of the interfaces are not longer declared to throw Exception.
+ $ [Remove] getAttributes(String name) is not longer in the ElementInf
+ $ [Deprecated] ContextMethodInf & ContextMethodResponseInf, using ModelContainerInf instead.
+ $ [Deprecated] LoadableDocument & SavableDocument & SerializableInf, using ModelContainerInf instead.
+ $ [Add] ModelContainerInf, the new interface that takes a foundation role of MDA.
+ $ [Change] WikiupNamingDirectory, another name for the global namespace root document, a container of beans and WikiupDynamicSingleton
+ $ [Add] WikiupDynamicSingleton, it works as a singleton, but can also be created by the new keyword. Previous singleton instance is released and copied to the new one. It's useful when you need to configure a singleton several times using wikiup factory or springframework.
+
+------------------------------
+ 0.9.932 Alpha 2 - ????
+------------------------------
+ $ [Add] Servlet Mapping configures are now followed by an extendable algorithm, that it is, you can now write extends="xx" in the configure, standing for that the node is extending from another.
+ $ [Deprecated] ProcessorIterator, use Iterator instead.
+ $ [Add] LogicFilterInf interface.
+ $ [Add] Wikiup Expression Languague concept.
+ $ [Change] FactoryInf interface.
+ $ [Change] FilterInf interface.
+ $ [Remove] RedirectProcessor & ActionProcessor & RouterProcessor are not longer exists.
+ $ [Change] WikiupServerletProcessor redesigned, you can write <xxx:yyy> tags instead of <?xxx:yyy?> tags.
+ $ [Change] Whole new change in the request servlet mapping system, you can put request servlet mapping configure in a directory now.
+ $ [Add] You can now choose a assertion level for determining which exceptions are thrown at runtime.
+ $ [Add] Interceptor has come on the stage named ServletInterceptor.
+ $ [Change] Global namespace: It's a root document that most of the application scope accessible objects are kept in a Document so it can be get easily by providing its namespace or xpath, so when it's completed, the UtilManager and some other global instance manager are not longer exists.
+ $ [Fix] Not well configured Global Manager will throw NullPointer exception. And the global namespace getter loading procedure has been changed.
+ $ [Change] It's ambiguous that ProcessorAction are invoked by ServletProcessor, since they are playing the role of controllers, so i decided to rename them into ServeltAction, for which can be invoked directly by put <context-action></context-action> node in the local action context. The local servlet node is renamed into <context-processor></context-processor> in the meanwhile.
+ $ [Change] Move the bouncycastle utils and processor context out as a wikiup module plugin.
+ $ [Change] Move the file upload package out as a wikiup module plugin.
+ $ [Add] Add an escape character '\' to display open bracket in expressions.
+ $ [ibatis-module] [Add] Connect VelocityContext with ProcessorContext Gettable.
+ $ [Change] Move the database driver package out as a wikiup module plugin
+ $ [Change] Move the naive orm package out as a wikiup module plugin
+
+------------------------------
+ 0.9.918 Alpha 1 - Oct 4, 2008
+------------------------------
+
+ $ [Optimize] Complete rewrite the database package
