@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans>
+	<bean name="jsp" class="org.wikiup.modules.jsp.JspServletProcessor"/>
+</beans>

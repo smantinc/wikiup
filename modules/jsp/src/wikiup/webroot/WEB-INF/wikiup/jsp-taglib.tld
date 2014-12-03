@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE taglib PUBLIC "-//Sun Microsystems, Inc.//DTD JSP Tag Library 1.2//EN"
+		"http://java.sun.com/dtd/web-jsptaglibrary_1_2.dtd">
+<taglib>
+	<tlib-version>1.0</tlib-version>
+	<jsp-version>1.2</jsp-version>
+	<short-name>wikiup jsp tags</short-name>
+	<tag>
+		<name>if</name>
+		<tag-class>org.wikiup.modules.jsp.tag.IfTag</tag-class>
+		<body-content>jsp</body-content>
+		<attribute>
+			<name>test</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>foreach</name>
+		<tag-class>org.wikiup.modules.jsp.tag.ForeachTag</tag-class>
+		<body-content>jsp</body-content>
+		<attribute>
+			<name>in</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+	<tag>
+		<name>for-each</name>
+		<tag-class>org.wikiup.modules.jsp.tag.ForeachTag</tag-class>
+		<body-content>jsp</body-content>
+		<attribute>
+			<name>in</name>
+			<required>true</required>
+			<rtexprvalue>false</rtexprvalue>
+		</attribute>
+	</tag>
+</taglib>

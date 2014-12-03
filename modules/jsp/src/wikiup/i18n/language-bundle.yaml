@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    jsp:
+      title: JSP View Layer
+      brief: JSP is a technology that lets you mix regular, static HTML with dynamically-generated HTML
+      description:
+zh-cn:
+  modules:
+    jsp:
+      title: JSP表现层
+      brief: JSP技术让您可以在页面中编写静态和动态的HTML标记
+      description: 

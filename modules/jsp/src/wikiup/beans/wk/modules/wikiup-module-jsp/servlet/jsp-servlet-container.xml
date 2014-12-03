@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans class="org.wikiup.modules.jsp.JspServletContainer">
+	<bean name="el" class="org.wikiup.core.impl.el.TemplateExpressionLanguage" variable-pattern="#{}"/>
+	<bean name="servletConfig" class="org.wikiup.modules.jsp.JspServletConfig">
+		<property name="javaEncoding" value="utf-8"/>
+		<property name="compilerTargetVM" value="1.5"/>
+		<property name="compilerSourceVM" value="1.5"/>
+	</bean>
+	<bean name="jspServlet" class="org.wikiup.modules.jsp.JspServlet"/>
+</beans>

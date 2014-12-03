@@ -1,0 +1,4 @@
+name: wikiup-module-jsp
+title: ${modules.jsp.title}
+brief: ${modules.jsp.brief}
+description: ${modules.jsp.description}
