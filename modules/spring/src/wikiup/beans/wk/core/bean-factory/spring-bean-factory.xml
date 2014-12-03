@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans>
+	<bean name="spring" class="org.wikiup.modules.spring.beans.SpringBeanFactory"/>
+</beans>

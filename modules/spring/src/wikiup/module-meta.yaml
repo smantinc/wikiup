@@ -1,0 +1,4 @@
+name: wikiup-module-spring
+title: ${modules.spring.title}
+brief: ${modules.spring.brief}
+description: ${modules.spring.description}

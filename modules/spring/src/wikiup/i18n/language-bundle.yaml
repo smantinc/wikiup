@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    spring:
+      title: Spring Framework
+      brief: The leading platform to build and run enterprise Java applications
+      description:
+zh-cn:
+  modules:
+    spring:
+      title: Spring框架
+      brief: Spring是构建企业级应用的首选框架
+      description: 

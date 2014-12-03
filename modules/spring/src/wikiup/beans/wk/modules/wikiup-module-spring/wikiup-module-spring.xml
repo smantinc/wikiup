@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans>
+	<bean name="spring-dynamic-singleton" class="org.wikiup.modules.spring.WikiupSpringDynamicSingleton">
+		<bean name="application-context" class="org.wikiup.modules.spring.beans.WikiupSpringApplicationContext">
+			<configure-location>/wikiup/spring/beans/.*</configure-location>
+		</bean>
+		<bean name="web-context" class="org.wikiup.modules.spring.beans.WikiupSpringWebApplicationContext"/>
+	</bean>
+</beans>
