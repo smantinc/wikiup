@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    restful:
+      title: RESTful Web Services
+      brief: Provide RESTful exposed service adapters to your web applications 
+      description:
+zh-cn:
+  modules:
+    restful:
+      title: REST 服务接口
+      brief: 让系统支持以 REST 的形式提供功能服务
+      description:

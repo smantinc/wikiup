@@ -1,0 +1,4 @@
+name: wikiup-module-restful
+title: ${modules.restful.title}
+brief: ${modules.restful.brief}
+description: ${modules.restful.description} 

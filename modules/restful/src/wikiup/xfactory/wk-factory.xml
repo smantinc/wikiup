@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bean>
+	<factory name="servlet-processor" interface="org.wikiup.servlet.inf.ServletProcessor">
+		<item name="url-mapping" class="org.wikiup.modules.restful.processor.URLMappingServletProcessor"/>
+		<item name="url-mapping-replace"
+			  class="org.wikiup.modules.restful.processor.URLMappingReplaceServletProcessor"/>
+	</factory>
+</bean>
