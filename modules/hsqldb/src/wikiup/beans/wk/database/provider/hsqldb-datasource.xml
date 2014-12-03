@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans>
+	<bean name="hsqldb-standalone" class="data-source:driver-manager">
+		<database-driver class="org.wikiup.modules.hsqldb.driver.HSQLDatabaseDriver">
+			<url>jdbc:hsqldb:file:${sc:real-path:WEB-INF/hsqldb/db-file}</url>
+		</database-driver>
+		<user>sa</user>
+		<password/>
+	</bean>
+	<bean name="threadlocal-hsqldb-standalone" class="org.wikiup.database.impl.datasource.PooledDataSource">
+		<data-source>wk:database:data-source:hsqldb-standalone</data-source>
+		<connection-pool class="org.wikiup.database.impl.cp.ThreadLocalConnectionPool"/>
+	</bean>
+</beans>

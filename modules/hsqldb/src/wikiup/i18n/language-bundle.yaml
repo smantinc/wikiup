@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    hsqldb:
+      title: HSQLDB Datasource Provider
+      brief: Provide datasource accessing ability for HSQLDB databases
+      description:
+zh-cn:
+  modules:
+    hsqldb:
+      title: HSQLDB数据库支持
+      brief: 为系统提供连接访问HSQLDB数据库的能力
+      description: 

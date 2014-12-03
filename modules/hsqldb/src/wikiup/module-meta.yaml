@@ -1,0 +1,4 @@
+name: wikiup-module-hsqldb
+title: ${modules.hsqldb.title}
+brief: ${modules.hsqldb.brief}
+description: ${modules.hsqldb.description}
