@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    xslt:
+      title: Wikiup Mantenance & Develop Kit
+      brief: Combining Everything
+      description:
+zh-cn:
+  modules:
+    xslt:
+      title: Wikiup 开发维护工具
+      brief: 优势的组合
+      description: 

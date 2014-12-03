@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root source="/pages/wmdk/template/scaffold" target="/domain/">
+	<jsp module="wikiup-module-jsp"/>
+	<php module="wikiup-module-php"/>
+	<velocity module="wikiup-module-velocity"/>
+</root>

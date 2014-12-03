@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<repository url="http://wikiup.org/repo!all.x">
+		<dependency name="wikiup-framework" org="wikiup" required="true" force="true"/>
+		<dependency name="wikiup-plugin-wmdk" org="wikiup" required="true"/>
+	</repository>
+	<repository-snapshot>
+		<dependency name="wikiup-framework" org="wikiup" rev="1.0.77" digest="d8aff1e1816a75c010b9bfefb3d1ec16"/>
+		<dependency name="wikiup-module-authorization" org="wikiup" rev="1.0.33"
+					digest="5236a40c4c0404bc355f439a314658e1"/>
+		<dependency name="wikiup-module-c3p0" org="wikiup" rev="1.0.19" digest="07e6ddbc902e15143bde50cb5f12a501"/>
+		<dependency name="wikiup-module-dbcp" org="wikiup" rev="1.0.15" digest="4d439ce1567eaf3c38e3e6fd59897ede"/>
+		<dependency name="wikiup-module-groovy" org="wikiup" rev="1.0.23" digest="1894a48d6e4e8442931154e891ef7088"/>
+		<dependency name="wikiup-module-hibernate" org="wikiup" rev="0.9.28" digest="df304a22de38843480df15e86240a67b"/>
+		<dependency name="wikiup-module-hsqldb" org="wikiup" rev="1.0.28" digest="07ced3e224b6307debe9e4b8b17595b8"/>
+		<dependency name="wikiup-module-ibatis" org="wikiup" rev="1.0.25" digest="a4117539c525a439575fcf8199ade932"/>
+		<dependency name="wikiup-module-javascript" org="wikiup" rev="1.0.5" digest="fd1fd2337f7bde3f767cebb700469553"/>
+		<dependency name="wikiup-module-jetty" org="wikiup" rev="1.0.17" digest="994858b195e66d39051f96767e383591"/>
+		<dependency name="wikiup-module-jsp" org="wikiup" rev="1.0.15" digest="d41d53d194c1e468ee4025049f66b41c"/>
+		<dependency name="wikiup-module-jython" org="wikiup" rev="1.0.38" digest="5b6a4fe6141cea1f58bfd025f3a6956b"/>
+		<dependency name="wikiup-module-mysql" org="wikiup" rev="1.0.40" digest="8b7857712cadea0e0a15c07c4e55a044"/>
+		<dependency name="wikiup-module-oracle" org="wikiup" rev="1.0.19" digest="acb5fde2fcf7d996c9b7bf62fdf1871e"/>
+		<dependency name="wikiup-module-quartz" org="wikiup" rev="1.0.17" digest="3b2c573997bacfbc50bea81896c2e7c3"/>
+		<dependency name="wikiup-module-restful" org="wikiup" rev="1.0.28" digest="952aa47af40eb08f0ecb4a455a0cc103"/>
+		<dependency name="wikiup-module-ruby" org="wikiup" rev="0.9.17" digest="acd159b3fe5bc65836afa3f53530078a"/>
+		<dependency name="wikiup-module-spring" org="wikiup" rev="1.0.18" digest="cd016b37800de4289d47c191a3f3f220"/>
+		<dependency name="wikiup-module-sqlserver" org="wikiup" rev="1.0.1" digest="a52d12a28153558f9dacfbbd8f6dda73"/>
+		<dependency name="wikiup-module-testcase" org="wikiup" rev="0.9.85" digest="efdaff9e01aef9ce3c88c2e652579358"/>
+		<dependency name="wikiup-module-updater" org="wikiup" rev="1.0.8" digest="90fc5744338da682553f6783ef7d1ee9"/>
+		<dependency name="wikiup-module-velocity" org="wikiup" rev="1.0.26" digest="8fe9aa0fd8b7a3723db0e152df6b321c"/>
+		<dependency name="wikiup-module-webdav" org="wikiup" rev="1.0.34" digest="a0c56a671756327c1c3027269ebe10bb"/>
+		<dependency name="wikiup-module-worms" org="wikiup" rev="1.0.48" digest="59369c911f65f83d2f4266aeecb0e6f1"/>
+		<dependency name="wikiup-module-xslt" org="wikiup" rev="1.0.31" digest="34b15b0d9c649521e0b0f5de15f00f00"/>
+		<dependency name="wikiup-plugin-dev-guide" org="wikiup" rev="0.9.8" digest="fc6beccf59f389ede6259fe63122abe0"/>
+		<dependency name="wikiup-plugin-fluyt" org="wikiup" rev="0.9.26" digest="ba0741c06cea83253fc337865f24785d"/>
+		<dependency name="wikiup-plugin-wmdk" org="wikiup" rev="0.9.47" digest="eed55cdd90e9f3d1036e131d5e6a3eff"/>
+		<dependency name="wikiup-extension-fluyt-squad" org="wikiup" rev="1.0.6"
+					digest="76936aedb969bfa3b6894dfc95aa4f53"/>
+		<dependency name="wikiup-extension-wmdk-aquacure" org="wikiup" rev="1.0.21"
+					digest="c2dca4d85176b9894a6d68767270e8fe"/>
+		<dependency name="wikiup-extension-wmdk-leprechaun" org="wikiup" rev="1.0.27"
+					digest="f65163017c7a22421a390a460c6b2f38"/>
+	</repository-snapshot>
+</root>

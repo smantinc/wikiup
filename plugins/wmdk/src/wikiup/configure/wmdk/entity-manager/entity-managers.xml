@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<entity-managers>
+	<decorations>
+		<decoration manager="worms">
+			<entity>
+				<property name="limit"/>
+				<property name="offset"/>
+			</entity>
+			<relatives>
+				<relation name="all" type="one-to-many" limit="\$limit" offset="\$offset"/>
+				<relation name="size" type="raw">
+					<field name="size" field-sql="count(1)"/>
+				</relation>
+			</relatives>
+		</decoration>
+		<decoration manager="ibatis" merge-configure="false">
+			<select id="${name}.size" parameterClass="hashmap" resultClass="hashmap">
+				SELECT COUNT(1) AS "size" FROM $location
+			</select>
+		</decoration>
+	</decorations>
+	<configurations>
+		<configuration name="hibernate">
+			<target>/WEB-INF/wikiup/hibernate/entities</target>
+			<doc-type>
+				<![CDATA[<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">]]>
+			</doc-type>
+		</configuration>
+		<configuration name="ibatis">
+			<target>/WEB-INF/wikiup/ibatis/sql-maps</target>
+			<doc-type>
+				<![CDATA[<!DOCTYPE sqlMap PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN" "http://ibatis.apache.org/dtd/sql-map-2.dtd">]]>
+			</doc-type>
+		</configuration>
+		<configuration name="worms">
+			<target>/WEB-INF/wikiup/worms/entities</target>
+		</configuration>
+	</configurations>
+</entity-managers>

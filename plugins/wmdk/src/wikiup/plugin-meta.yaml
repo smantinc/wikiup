@@ -1,0 +1,5 @@
+name: wikiup-plugin-wmdk
+title: ${plugins.wmdk.title}
+brief: ${plugins.wmdk.brief}
+description: ${plugins.wmdk.description}
+index: /pages/wmdk/index.html

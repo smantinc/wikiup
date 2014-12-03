@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<lang>en</lang>
+	<text>
+		<ok>Ok</ok>
+		<cancel>Cancel</cancel>
+		<close>Close</close>
+		<rename>Rename</rename>
+		<export>Export</export>
+		<edit>Edit</edit>
+		<create>Create</create>
+		<list>List</list>
+		<update>Update</update>
+		<add>Add</add>
+		<delete>Delete</delete>
+		<save>Save</save>
+		<save-and-close>Save &amp; Close</save-and-close>
+		<plugins>Plugins</plugins>
+		<import-domain>Import Domains</import-domain>
+		<new-domain>Create Domain</new-domain>
+		<page-scaffold>Page Scaffold</page-scaffold>
+		<bug-report>Bug Report</bug-report>
+		<about-wmdk>About WMDK</about-wmdk>
+		<first-page>First Page</first-page>
+		<previous-page>Previous Page</previous-page>
+		<next-page>Next Page</next-page>
+		<last-page>Last Page</last-page>
+		<open-in-new-browser>Open in New Browser</open-in-new-browser>
+		<install>Install</install>
+		<disable>Disable</disable>
+		<remove>Remove</remove>
+		<activate>Activate</activate>
+		<installed>Installed</installed>
+		<available>Available</available>
+		<downloading>Downloading</downloading>
+	</text>
+	<label>
+		<connection-url>Connection URL</connection-url>
+		<user>User</user>
+		<password>Password</password>
+		<db-catalog>Catalog</db-catalog>
+		<db-schema>Schema</db-schema>
+		<db-table>Table</db-table>
+		<domain-name>Domain Name</domain-name>
+		<entity-manager>Entity Manager</entity-manager>
+		<templates>Templates</templates>
+		<name>Name</name>
+		<field-name>Field Name</field-name>
+		<type>Type</type>
+		<path>Path</path>
+		<description>Description</description>
+		<module-name>Module Name</module-name>
+		<organisation-name>Organisation</organisation-name>
+		<revision>Revision</revision>
+		<title>Title</title>
+		<category>Category</category>
+		<donate>Support This Project</donate>
+		<switch-to-gv>Switch to Grid View</switch-to-gv>
+		<switch-to-lv>Switch to List View</switch-to-lv>
+	</label>
+	<context-operation>
+		<create-page>Create Page</create-page>
+		<edit-page>Edit Page</edit-page>
+		<active-datasource-explorer>Switch to Datasource Explorer</active-datasource-explorer>
+		<active-web-resource-explorer>Switch to Web Resource Explorer</active-web-resource-explorer>
+		<import-domain>Import Domain from Table</import-domain>
+		<define-domain>Create New Domain</define-domain>
+		<recent-domain-explore>Explore to Domain Modified Recently</recent-domain-explore>
+	</context-operation>
+	<title>
+		<dynamic-context>What should I do now?</dynamic-context>
+		<file-explorer>File Explorer</file-explorer>
+		<datasource-explorer>Datasource Explorer</datasource-explorer>
+		<web-browser>Web Browser</web-browser>
+		<processor-context>Processor Context</processor-context>
+		<servlet-action>Servlet Action</servlet-action>
+		<new-page>New Page</new-page>
+		<create-domain>Create Domain</create-domain>
+		<import-domain>Import Domain from Database Table</import-domain>
+		<export-application>Export Application</export-application>
+		<available-plugins>Available Plugins</available-plugins>
+		<datasource-configure>Configure Datasource</datasource-configure>
+		<confirm>Confirm</confirm>
+		<domain-fields>Domain Fields</domain-fields>
+		<stand-by>Please Stand by...</stand-by>
+		<domain-to-generate>Domains to be Generated</domain-to-generate>
+		<page-to-generate>Pages to be Generated</page-to-generate>
+		<already-exists>File Already Exists</already-exists>
+		<operation-preview>Operation Preview</operation-preview>
+		<application-export>Export Application</application-export>
+		<plugins-to-export>Plugins to be Exported</plugins-to-export>
+		<entity-manager>Entity Manager</entity-manager>
+	</title>
+	<tool-tip>
+		<export>
+			<brief>Export Application</brief>
+			<content>Export the application as a zip archive which can be easily deployed on your own machine</content>
+		</export>
+		<entity-manager>
+			<brief>Entity Manager</brief>
+			<content>Please select the entity manager of current workspace</content>
+		</entity-manager>
+		<datasource-manager>
+			<brief>Datasource Connections</brief>
+			<content>Here are the datasource connections between your workspace and differents databases</content>
+		</datasource-manager>
+		<plugins>
+			<brief>Configuration Plugins</brief>
+			<content>Activate more plugins to meet the needs of your applications</content>
+		</plugins>
+		<bug-report>
+			<brief>Submit bugs and ideas</brief>
+			<content>You can report bugs or send a feature requirements here</content>
+		</bug-report>
+		<plugin-status>
+			<mounted>
+				<title>Installed</title>
+				<content>This plugin has been installed</content>
+			</mounted>
+			<disabled>
+				<title>Disabled</title>
+				<content>This plugin has been disabled, click on "Activate" button to enable it</content>
+			</disabled>
+			<incompatible>
+				<title>Incompatible</title>
+				<content>This plugin is incompatible with current system core, try to update it to a new version or
+					disable it to prevent system crash.
+				</content>
+			</incompatible>
+		</plugin-status>
+	</tool-tip>
+	<prompt>
+		<delete-confirm>Are you sure to delete "{0}" ?</delete-confirm>
+		<drop-table-confirm>Please enter the table name to continue</drop-table-confirm>
+		<generating-domain>Generating domains...</generating-domain>
+		<generating-page>Generating pages...</generating-page>
+		<creating-table>Creating tables...</creating-table>
+		<bug-submitted>Your request was posted successfully, thanks for your time</bug-submitted>
+		<plugin-installed>Plugin installed successfully! You might have to restart your HTTP server before it taking
+			effect
+		</plugin-installed>
+	</prompt>
+</root>
