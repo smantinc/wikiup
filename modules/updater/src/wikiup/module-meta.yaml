@@ -1,0 +1,4 @@
+name: wikiup-module-updater
+title: ${modules.updater.title}
+brief: ${modules.updater.brief}
+description: ${modules.updater.description}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bootstrap>
+	<action class="org.wikiup.modules.updater.UpdaterBootstrapAction" disabled="true">
+		<repository>
+			<list url="http://wikiup.org/repo!all.x"/>
+			<download>http://wikiup.org/repo!download.do?name=${name}&amp;rev=${rev}&amp;org=${org}</download>
+			<target>${name}-${rev}.jar</target>
+		</repository>
+	</action>
+</bootstrap>

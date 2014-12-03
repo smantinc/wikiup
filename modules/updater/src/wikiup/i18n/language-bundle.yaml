@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    updater:
+      title: Wikiup Module Updater
+      brief: Wikiup Module Updater keeps your installed wikiup plugins up to date
+      description:
+zh-cn:
+  modules:
+    updater:
+      title: Wikiup 模块自动升级
+      brief: Wikiup 自动升级让您安装的模块插件保持在最新的版本
+      description: 
