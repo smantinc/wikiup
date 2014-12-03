@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    oracle:
+      title: Oracle Datasource Provider
+      brief: Provide datasource accessing ability for Oracle databases
+      description:
+zh-cn:
+  modules:
+    oracle:
+      title: Oracle数据库支持
+      brief: 为系统提供连接访问Oracle数据库的能力
+      description:

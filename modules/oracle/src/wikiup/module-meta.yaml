@@ -1,0 +1,4 @@
+name: wikiup-module-oracle
+title: ${modules.oracle.title}
+brief: ${modules.oracle.brief}
+description: ${modules.oracle.description} 
