@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+		"http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+<sqlMapConfig>
+	<settings lazyLoadingEnabled="true"/>
+	<transactionManager type="JDBC">
+		<dataSource type="JNDI">
+			<property name="context.java.naming.factory.initial"
+					  value="org.wikiup.servlet.impl.jndi.WikiupNamingDirectoryContextFactory"/>
+			<property name="DataSource" value="wk/database/data-source"/>
+		</dataSource>
+	</transactionManager>
+</sqlMapConfig>

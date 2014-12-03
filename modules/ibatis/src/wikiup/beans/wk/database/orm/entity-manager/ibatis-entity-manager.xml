@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans>
+	<bean name="ibatis" class="org.wikiup.modules.ibatis.IbatisEntityManager">
+		<config-location>wikiup/ibatis/sqlmap-config.xml</config-location>
+	</bean>
+</beans>

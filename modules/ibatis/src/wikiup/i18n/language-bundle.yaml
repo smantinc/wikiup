@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    ibatis:
+      title: IBATIS ORM Framework
+      brief: XML-based Object/Relational mapping and persistence framework as well as a data access abstraction layer
+      description:
+zh-cn:
+  modules:
+    ibatis:
+      title: IBATIS ORM 框架
+      brief: IBATIS是一个基于XML配置的数据库对象映射存储协议层框架
+      description: 

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resources>
+		<handler class="wndi:wk/database/orm/entity-manager/ibatis">
+			<filter class="filter:regexp" regexp="/wikiup/ibatis/sql-maps/.*"/>
+		</handler>
+	</resources>
+</root>

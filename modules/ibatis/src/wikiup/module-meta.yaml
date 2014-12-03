@@ -1,0 +1,4 @@
+name: wikiup-module-ibatis
+title: ${modules.ibatis.title}
+brief: ${modules.ibatis.brief}
+description: ${modules.ibatis.description}
