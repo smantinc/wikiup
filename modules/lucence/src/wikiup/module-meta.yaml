@@ -1,0 +1,4 @@
+name: wikiup-module-lucene
+title: ${modules.lucene.title}
+brief: ${modules.lucene.brief}
+description: ${modules.lucene.description}
