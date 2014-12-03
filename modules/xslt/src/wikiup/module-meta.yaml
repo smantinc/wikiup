@@ -1,0 +1,4 @@
+name: wikiup-module-xslt
+title: ${modules.xslt.title}
+brief: ${modules.xslt.brief}
+description: ${modules.xslt.description}

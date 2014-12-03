@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    xslt:
+      title: XSL Transform Support
+      brief: Transforming a XML source into a document consisting of XSL formatting objects
+      description:
+zh-cn:
+  modules:
+    xslt:
+      title: 基于 XSL 的页面渲染支持
+      brief: 让使用者通过编写XSL文件来动态渲染页面片段，或者整张页面
+      description: 
