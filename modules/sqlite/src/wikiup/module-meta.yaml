@@ -1,0 +1,4 @@
+name: wikiup-module-sqlite
+title: ${modules.sqlite.title}
+brief: ${modules.sqlite.brief}
+description: ${modules.sqlite.description}
