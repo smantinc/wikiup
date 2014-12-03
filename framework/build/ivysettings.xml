@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ivysettings>
+	<settings defaultResolver="chained"/>
+	<resolvers>
+		<chain name="chained" returnFirst="true">
+			<filesystem name="libraries">
+				<artifact pattern="${ivy.conf.dir}/repository/[artifact]-[revision].[type]"/>
+			</filesystem>
+			<url name="wikiup-framework">
+				<artifact
+						pattern="http://wikiup.org/repo/ivy/[organisation]/[module]/[revision]/[artifact]-[revision].[ext]"/>
+				<ivy pattern="http://wikiup.org/repo/ivy/[organisation]/[module]/[revision]/ivy.xml"/>
+			</url>
+		</chain>
+	</resolvers>
+</ivysettings>

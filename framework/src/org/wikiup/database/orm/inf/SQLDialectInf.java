@@ -6,8 +6,6 @@ import org.wikiup.database.orm.FieldMetadata;
 public interface SQLDialectInf {
     public enum QuoteType {field, table, schema, catalog, string}
 
-    ;
-
     public DialectInterpretActionInf getInterpretor(String name);
 
     public Filter<Object, Object> getFieldFilter(String name);
