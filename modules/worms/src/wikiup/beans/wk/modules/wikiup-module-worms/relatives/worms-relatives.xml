@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root class="org.wikiup.modules.worms.WormsEntityRelativesFactory">
+	<item name="one-to-many" class="org.wikiup.modules.worms.imp.relatives.OneToManyRelatives"/>
+	<item name="one-to-one" class="org.wikiup.modules.worms.imp.relatives.OneToOneRelatives"/>
+	<item name="join" class="org.wikiup.modules.worms.imp.relatives.JoinRelatives"/>
+	<item name="raw" class="org.wikiup.modules.worms.imp.relatives.RawRelatives"/>
+</root>

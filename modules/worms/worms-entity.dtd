@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+		<!ELEMENT relatives ( relation+ ) >
+
+		<!ELEMENT main ( entity, relatives* ) >
+		<!ATTLIST main name NMTOKEN #REQUIRED >
+
+		<!ELEMENT entity ( field+, property* ) >
+		<!ATTLIST entity catalog CDATA #IMPLIED >
+		<!ATTLIST entity schema CDATA #IMPLIED >
+		<!ATTLIST entity table CDATA #IMPLIED >
+		<!ATTLIST entity dirty CDATA #IMPLIED >
+		<!ATTLIST entity order-by CDATA #IMPLIED >
+
+		<!ELEMENT relation ( field*, fields*, condition*, union*, relation*) >
+		<!ATTLIST relation name NMTOKEN #REQUIRED >
+		<!ATTLIST relation type NMTOKEN #REQUIRED >
+		<!ATTLIST relation entity-name CDATA #IMPLIED >
+		<!ATTLIST relation order-by CDATA #IMPLIED >
+		<!ATTLIST relation limit CDATA #IMPLIED >
+		<!ATTLIST relation table-name CDATA #IMPLIED >
+		<!ATTLIST relation unlimited CDATA #IMPLIED >
+
+		<!ELEMENT union ( condition+ ) >
+		<!ATTLIST union name NMTOKEN #REQUIRED >
+
+		<!ELEMENT property EMPTY >
+		<!ATTLIST property name NMTOKEN #REQUIRED >
+		<!ATTLIST property class NMTOKEN #IMPLIED >
+		<!ATTLIST property def-value CDATA #IMPLIED >
+
+		<!ELEMENT fields (field+) >
+
+		<!ELEMENT field EMPTY >
+		<!ATTLIST field name NMTOKEN #REQUIRED >
+		<!ATTLIST field distinct NMTOKEN #IMPLIED >
+		<!ATTLIST field foreign-key NMTOKEN #IMPLIED >
+		<!ATTLIST field field-name NMTOKEN #IMPLIED >
+		<!ATTLIST field primary-key NMTOKEN #IMPLIED >
+		<!ATTLIST field value CDATA #IMPLIED >
+		<!ATTLIST field field-type NMTOKEN #IMPLIED >
+		<!ATTLIST field property-name CDATA #IMPLIED >
+		<!ATTLIST field entity-name CDATA #IMPLIED >
+		<!ATTLIST field select CDATA #IMPLIED >
+		<!ATTLIST field field-sql CDATA #IMPLIED >
+		<!ATTLIST field condition CDATA #IMPLIED >
+		<!ATTLIST field index-key CDATA #IMPLIED >
+
+		<!ELEMENT condition EMPTY >
+		<!ATTLIST condition l-name CDATA #REQUIRED >
+		<!ATTLIST condition trigger CDATA #IMPLIED >
+		<!ATTLIST condition r-property CDATA #IMPLIED >
+		<!ATTLIST condition r-name CDATA #IMPLIED >
+		<!ATTLIST condition r-condition CDATA #IMPLIED >
+		<!ATTLIST condition r-value CDATA #IMPLIED >
+		<!ATTLIST condition l-property NMTOKEN #REQUIRED >

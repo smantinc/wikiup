@@ -1,0 +1,4 @@
+name: wikiup-module-worms
+title: ${modules.worms.title}
+brief: ${modules.worms.brief}
+description: ${modules.worms.description} 

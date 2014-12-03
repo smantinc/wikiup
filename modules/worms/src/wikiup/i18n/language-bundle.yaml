@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    worms:
+      title: Wikiup ORM Support
+      brief: A simple Object/Relational mapping and persistence framework for dynamic domains and Pojos
+      description:
+zh-cn:
+  modules:
+    worms:
+      title: Wikiup ORM 支持
+      brief: Wikiup ORM 实现了通过领域模型的方式操作关系型数据库的系统框架
+      description: 

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans>
+	<bean name="worms" class="org.wikiup.modules.worms.WormsEntityManager">
+		<describe>
+			<field-type id="5|-6" type="Short"/>
+			<field-type id="4" type="Integer"/>
+			<field-type id="-5" type="Long"/>
+			<field-type id="91" type="Date"/>
+			<field-type id="2004|-3|-4" type="Blob"/>
+			<field-type id="93" type="DateTime"/>
+			<field-type id="2|6|7|8|3" type="Numeric"/>
+			<field-type id="16" type="Boolean"/>
+		</describe>
+	</bean>
+</beans>
