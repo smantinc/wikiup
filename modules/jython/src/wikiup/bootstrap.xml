@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resources>
+		<handler class="org.wikiup.modules.jython.JythonPropertiesHandler">
+			<filter class="filter:regexp" regexp="/wikiup/[jp]ython.properties"/>
+		</handler>
+	</resources>
+</root>

@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    jython:
+      title: Python Language Support
+      brief: Python v2.x dynamic language programming support
+      description:
+zh-cn:
+  modules:
+    jython:
+      title: Python语言支持
+      brief: Python v2.x 动态脚本语言支持
+      description:

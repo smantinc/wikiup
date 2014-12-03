@@ -1,0 +1,4 @@
+name: wikiup-module-jython
+title: ${modules.jython.title}
+brief: ${modules.jython.brief}
+description: ${modules.jython.description}

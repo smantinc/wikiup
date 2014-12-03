@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bean>
+	<factory name="servlet-action" interface="org.wikiup.servlet.inf.ServletAction">
+		<item name="python" class="org.wikiup.modules.jython.action.PythonServletAction"/>
+	</factory>
+	<factory name="processor-context">
+		<item name="python" class="org.wikiup.modules.jython.context.PythonProcessorContext"/>
+	</factory>
+</bean>
