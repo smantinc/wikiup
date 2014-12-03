@@ -37,7 +37,11 @@ public class DataSourceWrapper implements DataSourceInf, ModelProvider {
     }
 
     public Logger getParentLogger() throws SQLFeatureNotSupportedException {
-        return getDataSource().getParentLogger();
+        try {
+            return (Logger) Interfaces.invoke(getDataSource(), "getParentLogger");
+        } catch(NoSuchMethodException e) {
+            throw new SQLFeatureNotSupportedException();
+        }
     }
 
     public void setLogWriter(PrintWriter out) throws SQLException {

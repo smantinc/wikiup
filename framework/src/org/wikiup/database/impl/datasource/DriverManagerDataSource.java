@@ -59,7 +59,6 @@ public class DriverManagerDataSource implements DataSourceInf, DocumentAware {
         return timeout;
     }
 
-    @Override
     public Logger getParentLogger() throws SQLFeatureNotSupportedException {
         return null;
     }

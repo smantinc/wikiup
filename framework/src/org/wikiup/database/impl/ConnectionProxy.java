@@ -249,24 +249,40 @@ public class ConnectionProxy implements PooledConnection, Releasable {
     }
 
     public void setSchema(String schema) throws SQLException {
-        conn.setSchema(schema);
+        try {
+            Interfaces.invoke(conn, "setSchema", schema);
+        } catch(NoSuchMethodException e) {
+        }
     }
 
     public String getSchema() throws SQLException {
-        return conn.getSchema();
+        try {
+            return (String) Interfaces.invoke(conn, "getSchema");
+        } catch(NoSuchMethodException e) {
+            return null;
+        }
     }
 
     public void abort(Executor executor) throws SQLException {
-        conn.abort(executor);
+        try {
+            Interfaces.invoke(conn, "abort", executor);
+        } catch(NoSuchMethodException e) {
+        }
     }
 
     public void setNetworkTimeout(Executor executor, int milliseconds) throws SQLException {
-        conn.setNetworkTimeout(executor, milliseconds);
+        try {
+            Interfaces.invoke(conn, "setNetworkTimeout", executor, milliseconds);
+        } catch(NoSuchMethodException e) {
+        }
     }
 
-    @Override
     public int getNetworkTimeout() throws SQLException {
-        return conn.getNetworkTimeout();
+        try {
+            return (Integer) Interfaces.invoke(conn, "getNetworkTimeout");
+        } catch(NoSuchMethodException e) {
+            return 0;
+        }
     }
 
     public <T> T unwrap(Class<T> iface) throws SQLException {
