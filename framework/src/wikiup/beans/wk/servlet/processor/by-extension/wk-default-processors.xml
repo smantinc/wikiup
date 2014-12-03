@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans class="wnd-container:threadlocal">
+	<bean name="html" class="org.wikiup.servlet.impl.processor.text.TemplateServletProcessor"/>
+	<bean name="htm" class="org.wikiup.servlet.impl.processor.text.TemplateServletProcessor"/>
+</beans>

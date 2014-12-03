@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans>
+	<bean name="configure" class="org.wikiup.core.bean.WikiupConfigure"/>
+	<bean name="bean-factory" class="org.wikiup.core.bean.WikiupBeanFactory"/>
+	<bean name="model-container" class="org.wikiup.core.bean.WikiupModelProvider">
+		<bean name="singletons" class="org.wikiup.core.bean.WikiupDynamicSingletons"/>
+	</bean>
+	<bean name="filters" class="org.wikiup.core.impl.filter.TypeCastFilter">
+		<filter name="string" from-class="java.lang.String">
+			<filter class="filter:value-of" to-class="java.lang.Integer"/>
+			<filter class="filter:value-of" to-class="java.lang.Long"/>
+			<filter class="filter:value-of" to-class="java.lang.Double"/>
+			<filter class="filter:value-of" to-class="java.lang.Boolean"/>
+			<filter class="filter:value-of" to-class="java.sql.Date"/>
+			<filter class="filter:value-of" to-class="java.sql.Timestamp"/>
+		</filter>
+		<filter name="integer" from-class="java.lang.Integer">
+			<filter class="filter:to-string" to-class="java.lang.String"/>
+		</filter>
+		<filter name="long" from-class="java.lang.Long">
+			<filter class="filter:to-string" to-class="java.lang.String"/>
+		</filter>
+		<filter name="double" from-class="java.lang.Double">
+			<filter class="filter:to-string" to-class="java.lang.String"/>
+		</filter>
+		<filter name="boolean" from-class="java.lang.Boolean">
+			<filter class="filter:to-string" to-class="java.lang.String"/>
+		</filter>
+	</bean>
+</beans>

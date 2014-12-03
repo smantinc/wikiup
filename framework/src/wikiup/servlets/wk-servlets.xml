@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<servlet name="wiki" uri-pattern="*.htm|*.html">
+		<headers>
+			<property name="Content-Type" value="text/html;${env:prop:wikiup.charset}"/>
+		</headers>
+		<processor class=":chain">
+			<module name="file-resource" class=":file-resource"/>
+			<module name="ssi" class=":ssi"/>
+			<module name="wikiup" class=":wikiup"/>
+		</processor>
+		<context name="param" class=":parameter"/>
+		<context name="i18n" class=":i18n" locale="$param.locale"/>
+	</servlet>
+	<servlet name="do" uri-pattern="*.do">
+		<context name="param" class=":parameter"/>
+	</servlet>
+	<servlet name="x" uri-pattern="*.x" extends="do">
+		<headers>
+			<property name="Content-Type" value="text/xml;${env:prop:wikiup.charset}"/>
+		</headers>
+		<processor class=":xml"/>
+	</servlet>
+	<servlet name="json" uri-pattern="*.json" extends="do">
+		<headers>
+			<property name="Content-Type" value="text/javascript;${env:prop:wikiup.charset}"/>
+		</headers>
+		<processor class=":json"/>
+	</servlet>
+</root>

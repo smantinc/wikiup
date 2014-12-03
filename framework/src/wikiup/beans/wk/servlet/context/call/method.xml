@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans>
+	<bean name="seq" class="org.wikiup.servlet.impl.context.method.Sequence"/>
+	<bean name="set" class="org.wikiup.servlet.impl.context.method.Assign"/>
+	<bean name="cut" class="org.wikiup.servlet.impl.context.method.Cut"/>
+</beans>

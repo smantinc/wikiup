@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<resources>
+		<handler class="org.wikiup.core.bean.WikiupPluginManager">
+			<filter class="filter:regexp" regexp="/wikiup/(core|module|plugin|extension)-meta\.(xml|yaml)"/>
+		</handler>
+		<handler class="org.wikiup.core.bootstrap.impl.handler.WikiupConfigureResourceHandler" base="wikiup/configure/">
+			<filter class="filter:regexp" regexp="/wikiup/configure/.*"/>
+		</handler>
+		<handler class="org.wikiup.core.bootstrap.impl.handler.BeanFactoryResourceHandler" base="wikiup/xfactory/">
+			<filter class="filter:regexp" regexp="/wikiup/xfactory/.*"/>
+		</handler>
+		<handler class="org.wikiup.core.bootstrap.impl.handler.WikiupNamingDirectoryResourceHandler"
+				 base="wikiup/beans/">
+			<filter class="filter:regexp" regexp="/wikiup/beans/.*"/>
+		</handler>
+		<handler class="resource-loader:extendable-document" base="wikiup/servlets/">
+			<filter class="filter:regexp" regexp="/wikiup/servlets/.*"/>
+			<extendable-document class="wk:servlet:mapping:servlet"/>
+			<extendable-document class="wk:servlet:mapping:default-servlet"/>
+		</handler>
+		<handler class="org.wikiup.servlet.impl.rl.WebArchiveResourceHandler" base="wikiup/webroot/">
+			<filter class="filter:regexp" regexp="/wikiup/webroot/.*"/>
+		</handler>
+	</resources>
+</root>

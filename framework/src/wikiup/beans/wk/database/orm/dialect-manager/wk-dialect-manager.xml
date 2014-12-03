@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans class="org.wikiup.database.orm.DefaultSQLDialect">
+	<field-types default="string">
+		<field-type name="string" class="org.wikiup.core.impl.filter.ToStringFilter"/>
+		<field-type name="blob" class="org.wikiup.database.orm.imp.dialect.filter.BlobFieldFilter"/>
+		<field-type name="timestamp" class="org.wikiup.database.orm.imp.dialect.filter.TimestampFieldFilter"/>
+		<field-type name="datetime" class="org.wikiup.database.orm.imp.dialect.filter.DateTimeFieldFilter"/>
+
+		<field-type name="date" class="org.wikiup.core.impl.filter.ValueOfFilter" to-class="java.sql.Date"/>
+		<field-type name="integer" class="org.wikiup.core.impl.filter.ValueOfFilter" to-class="java.lang.Long"/>
+		<field-type name="numeric" class="org.wikiup.core.impl.filter.ValueOfFilter" to-class="java.lang.Double"/>
+		<field-type name="boolean" class="org.wikiup.core.impl.filter.ValueOfFilter" to-class="java.lang.Boolean"/>
+	</field-types>
+	<sql-types>
+		<sql-type id="5|-6" type="INTEGER"/>
+		<sql-type id="4" type="INTEGER"/>
+		<sql-type id="-5" type="INTEGER"/>
+		<sql-type id="91" type="DATE"/>
+		<sql-type id="2004|-3|-4" type="BLOB"/>
+		<sql-type id="93" type="DATETIME"/>
+		<sql-type id="2|6|7|8|3" type="NUMERIC"/>
+		<sql-type id="16" type="BOOLEAN"/>
+	</sql-types>
+	<interpretors>
+		<interpretor name="group-by" phrase="GROUP BY ${group-by}"/>
+		<interpretor name="order-by" phrase="ORDER BY ${order-by}"/>
+		<interpretor name="limit" phrase="LIMIT $limit"/>
+		<interpretor name="offset" phrase="OFFSET $offset"/>
+	</interpretors>
+</beans>

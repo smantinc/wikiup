@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans>
+	<bean name="pre" class="org.wikiup.servlet.impl.tp.PreTagProcessor"/>
+	<bean name="foreach" class="org.wikiup.servlet.impl.tp.ForEachTagProcessor"/>
+	<bean name="for-each" class="org.wikiup.servlet.impl.tp.ForEachTagProcessor"/>
+	<bean name="if" class="org.wikiup.servlet.impl.tp.IfTagProcessor"/>
+	<bean name="out" class="org.wikiup.servlet.impl.tp.OutputTagProcessor"/>
+</beans>

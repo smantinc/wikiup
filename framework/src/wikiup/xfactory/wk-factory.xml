@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans>
+	<factory class="org.wikiup.core.impl.mf.ClassFactory"/>
+	<factory name="wndi" class="org.wikiup.core.impl.mf.WndiFactory"/>
+	<factory name="bindable" interface="org.wikiup.core.inf.Bindable">
+		<item name="by-name" class="org.wikiup.core.impl.bindable.ByPropertyNames"/>
+		<item name="by-type" class="org.wikiup.core.impl.bindable.ByPropertyTypes"/>
+		<item name="manual" class="org.wikiup.core.impl.bindable.ByPropertyManually"/>
+		<item name="auto" class="org.wikiup.core.impl.bindable.ByPropertyAutomatically"/>
+	</factory>
+	<factory name="filter" interface="org.wikiup.core.inf.Filter">
+		<item name="regexp" class="org.wikiup.core.impl.filter.lf.RegexpMatchLogicalFilter"/>
+		<item name="equal" class="org.wikiup.core.impl.filter.lf.EqualMatchLogicalFilter"/>
+		<item name="compare" class="org.wikiup.core.impl.filter.lf.CompareLogicalFilter"/>
+		<item name="value-of" class="org.wikiup.core.impl.filter.ValueOfFilter"/>
+		<item name="to-string" class="org.wikiup.core.impl.filter.ToStringFilter"/>
+	</factory>
+	<factory name="connection-pool">
+		<item name="infinite" class="org.wikiup.database.impl.cp.InfiniteConnectionPool"/>
+		<item name="default" class="org.wikiup.database.impl.cp.DefaultConnectionPool"/>
+	</factory>
+	<factory name="data-source">
+		<item name="driver-manager" class="org.wikiup.database.impl.datasource.DriverManagerDataSource"/>
+		<item name="jndi" class="org.wikiup.database.impl.datasource.JndiDataSource"/>
+		<item name="wndi" class="org.wikiup.database.impl.datasource.WndiDataSource"/>
+	</factory>
+	<factory name="wnd-container">
+		<item name="threadlocal" class="org.wikiup.core.impl.wndi.ThreadLocalWikiupNamingDirectory"/>
+		<item name="transient" class="org.wikiup.core.impl.wndi.TransientWikiupNamingDirectory"/>
+		<item name="default" class="org.wikiup.core.impl.wndi.DefaultWikiupNamingDirectory"/>
+	</factory>
+	<factory name="servlet-action" interface="org.wikiup.servlet.inf.ServletAction">
+		<item name="set" class="org.wikiup.servlet.impl.action.SetServletAction"/>
+		<item name="persist" class="org.wikiup.servlet.impl.action.PersistServletAction"/>
+		<item name="update" class="org.wikiup.servlet.impl.action.UpdateServletAction"/>
+		<item name="insert" class="org.wikiup.servlet.impl.action.InsertServletAction"/>
+		<item name="select" class="org.wikiup.servlet.impl.action.SelectServletAction"/>
+		<item name="delete" class="org.wikiup.servlet.impl.action.DeleteServletAction"/>
+		<item name="entity" class="org.wikiup.servlet.impl.action.EntityServletAction"/>
+		<item name="redirect" class="org.wikiup.servlet.impl.action.RedirectServletAction"/>
+	</factory>
+	<factory name="exception-handler" interface="org.wikiup.core.inf.ExceptionHandler">
+		<item name="ignore" class="org.wikiup.servlet.impl.eh.IgnoreExceptionHandler"/>
+		<item name="redirect" class="org.wikiup.servlet.impl.eh.RedirectExceptionHandler"/>
+		<item name="http-error" class="org.wikiup.servlet.impl.eh.HTTPErrorExceptionHandler"/>
+	</factory>
+	<factory name="servlet-processor" interface="org.wikiup.servlet.inf.ServletProcessor">
+		<item name="chain" class="org.wikiup.servlet.impl.processor.ChainServletProcessor"/>
+		<item name="file-resource" class="org.wikiup.servlet.impl.processor.text.ResourceServletProcessor"/>
+		<item name="ssi" class="org.wikiup.servlet.impl.processor.text.SsiServletProcessor"/>
+		<item name="deny" class="org.wikiup.servlet.impl.processor.DenyServletProcessor"/>
+		<item name="xml" class="org.wikiup.servlet.impl.processor.xml.XMLServletProcessor"/>
+		<item name="json" class="org.wikiup.servlet.impl.processor.text.JsonProcessor"/>
+		<item name="template" class="org.wikiup.servlet.impl.processor.text.TemplateServletProcessor"/>
+		<item name="gzip" class="org.wikiup.servlet.impl.processor.binary.GZipServletCompressProcessor"/>
+		<item name="wikiup" class="org.wikiup.servlet.impl.processor.WikiupServletProcessor"/>
+		<item name="get" class="org.wikiup.servlet.impl.processor.GetServletProcessor"/>
+		<item name="default" class="org.wikiup.servlet.impl.processor.DefaultServletProcessor"/>
+	</factory>
+	<factory name="processor-context" interface="org.wikiup.servlet.inf.ProcessorContext">
+		<item name="namespace" class="org.wikiup.servlet.impl.context.NamespaceProcessorContext"/>
+		<item name="entity" class="org.wikiup.servlet.impl.context.EntityProcessorContext"/>
+		<item name="cookie" class="org.wikiup.servlet.impl.context.VariableProcessorContext" scope="cookie"/>
+		<item name="parameter" class="org.wikiup.servlet.impl.context.ParameterProcessorContext"/>
+		<item name="session" class="org.wikiup.servlet.impl.context.VariableProcessorContext" scope="session"/>
+		<item name="variable" class="org.wikiup.servlet.impl.context.VariableProcessorContext"/>
+		<item name="wikiup-naming" class="org.wikiup.servlet.impl.context.WikiupNamingDirectoryProcessorContext"/>
+		<item name="i18n" class="org.wikiup.servlet.impl.context.I18nProcessorContext"/>
+	</factory>
+	<factory name="data-source">
+		<item name="default" class="org.wikiup.database.impl.datasource.DataSourceWrapper"/>
+		<item name="driver-manager" class="org.wikiup.database.impl.datasource.DriverManagerDataSource"/>
+		<item name="jndi" class="org.wikiup.database.impl.datasource.JndiDataSource"/>
+		<item name="wndi" class="org.wikiup.database.impl.datasource.WndiDataSource"/>
+		<item name="pool" class="org.wikiup.database.impl.datasource.PooledDataSource"/>
+	</factory>
+	<factory name="servlet-interceptor" interface="org.wikiup.servlet.inf.ServletInterceptor">
+		<item name="parameter" class="org.wikiup.servlet.impl.interceptor.ParameterServletInterceptor"/>
+		<item name="request-method" class="org.wikiup.servlet.impl.interceptor.RequestMethodServletInterceptor"/>
+		<item name="parse-query-string" class="org.wikiup.servlet.impl.interceptor.ParseQueryStringServletInterceptor"/>
+	</factory>
+</beans>
