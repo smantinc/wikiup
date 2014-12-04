@@ -16,6 +16,7 @@ import org.wikiup.database.orm.inf.SQLDialectInf;
 import org.wikiup.plugins.wmdk.metadata.DatabaseEntityMetadata;
 import org.wikiup.plugins.wmdk.util.WMDKUtil;
 import org.wikiup.servlet.ServletProcessorContext;
+import org.wikiup.servlet.beans.ServletContextContainer;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -91,11 +92,11 @@ public class EntityManagerServletAction {
             String table = context.getParameter("table", null);
             String def = context.getParameter("definition");
             String[] fields = def.split("\\|");
-            StringBuffer buf = new StringBuffer();
+            StringBuilder buf = new StringBuilder();
             int i;
             table = StringUtil.isEmpty(table) ? domainName : table;
             Assert.isTrue(!StringUtil.isEmpty(table));
-            buf.append("CREATE TABLE " + dialect.getLocation(l[0], l[1], table));
+            buf.append("CREATE TABLE ").append(dialect.getLocation(l[0], l[1], table));
             buf.append(" (");
             for(i = 0; i < fields.length; i++) {
                 String[] f = fields[i].split(",");
@@ -132,7 +133,7 @@ public class EntityManagerServletAction {
         String name = context.getParameter("name");
         String manager = context.getParameter("manager", null);
         String uri = WMDKUtil.getDomainScaffoldWelcomePage(context, name);
-        if(uri != null && FileUtil.isExists(context.getRealPath(uri)))
+        if(uri != null && FileUtil.isExists(ServletContextContainer.getInstance().getRealPath(uri)))
             resp.sendRedirect(context.getContextURI(uri));
         else
             meta(context, manager != null ? domainManager.getEntityManager(manager) : domainManager);
