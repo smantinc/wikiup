@@ -285,6 +285,12 @@ public class Documents {
         return target;
     }
 
+    public static String ensureAttributeValue(Document desc, String name) {
+        String value = getAttributeValue(desc, name, null);
+        Assert.notNull(value, IllegalArgumentException.class);
+        return value;
+    }
+
     private static class NamedDocument extends DocumentWrapper {
         private String name;
 
