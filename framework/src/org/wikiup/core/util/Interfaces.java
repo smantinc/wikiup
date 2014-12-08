@@ -6,6 +6,7 @@ import org.wikiup.core.exception.WikiupRuntimeException;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.filter.TypeCastFilter;
 import org.wikiup.core.impl.mp.GenericModelProvider;
+import org.wikiup.core.inf.Builder;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.ExceptionHandler;
@@ -20,6 +21,10 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 
 public class Interfaces {
+    public static <E> E cast(Object obj) {
+        return (E) obj;
+    }
+
     public static <E> E cast(Class<E> clazz, Object object) {
         return object != null && clazz.isInstance(object) ? clazz.cast(object) : null;
     }
