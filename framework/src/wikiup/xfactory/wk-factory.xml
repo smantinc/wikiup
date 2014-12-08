@@ -8,7 +8,7 @@
 		<item name="manual" class="org.wikiup.core.impl.bindable.ByPropertyManually"/>
 		<item name="auto" class="org.wikiup.core.impl.bindable.ByPropertyAutomatically"/>
 	</factory>
-	<factory name="filter" interface="org.wikiup.core.inf.Filter">
+	<factory name="filter" interface="org.wikiup.core.inf.Translator">
 		<item name="regexp" class="org.wikiup.core.impl.filter.lf.RegexpMatchLogicalFilter"/>
 		<item name="equal" class="org.wikiup.core.impl.filter.lf.EqualMatchLogicalFilter"/>
 		<item name="compare" class="org.wikiup.core.impl.filter.lf.CompareLogicalFilter"/>
