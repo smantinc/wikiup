@@ -138,8 +138,9 @@ public class Documents {
     }
 
     static public String getChildValue(Document doc, String name, String def) {
-        String value = ValueUtil.toString(doc.getChild(name));
-        return value != null ? value : def;
+        Document child = doc.getChild(name);
+        String value = ValueUtil.toString(child);
+        return value != null ? value : (child != null ? "" : def);
     }
 
     static public Attribute getAttributeByXPath(Document doc, String xpath) {
