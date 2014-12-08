@@ -82,7 +82,7 @@ public class SQLStatement extends SQLPhrase {
     }
 
     public String getPlainSQL() {
-        StringBuffer buf = new StringBuffer(SQL.toString());
+        StringBuilder buf = new StringBuilder(SQL.toString());
         if(phrases != null)
             for(SQLPhrase phrase : phrases)
                 StringUtil.connect(buf, phrase.toString(), ' ');

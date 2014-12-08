@@ -44,12 +44,12 @@ public abstract class AbstractSQLBuilder implements SQLBuilderInf {
         return StringUtil.evaluateEL(dialect.getLocation(catalog, schema != null ? schema : entity.getSchema(), table != null ? table : entity.getTable()), parameters);
     }
 
-    protected void connectPhrase(StringBuffer clause, String phrase, String connector) {
+    protected void connectPhrase(StringBuilder clause, String phrase, String connector) {
         clause.append(clause.length() == 0 ? phrase : connector + phrase);
     }
 
     protected String buildSelectClause() {
-        StringBuffer clause = new StringBuffer();
+        StringBuilder clause = new StringBuilder();
         entity.getKeySet().clear();
         for(Property attr : entity.getProperties()) {
             FieldProperty field = getFieldProperty(attr);
@@ -63,7 +63,7 @@ public abstract class AbstractSQLBuilder implements SQLBuilderInf {
         return item instanceof FieldProperty ? (FieldProperty) item : null;
     }
 
-    protected void buildSelectPhrase(StringBuffer clause, FieldProperty field) {
+    protected void buildSelectPhrase(StringBuilder clause, FieldProperty field) {
         String name = dialect.quote(field.getName(), SQLDialectInf.QuoteType.string);
         String fieldSQL = field.getFieldSQL();
         connectPhrase(clause, (fieldSQL != null ? StringUtil.evaluateEL(fieldSQL, parameters) : dialect.quote(field.getFieldName(), SQLDialectInf.QuoteType.field)) + " " + name, ",");
@@ -105,8 +105,8 @@ public abstract class AbstractSQLBuilder implements SQLBuilderInf {
 
     public SQLStatement buildInsertSQL() {
         SQLStatement stmt = new SQLStatement("INSERT INTO " + getLocationName());
-        StringBuffer fieldsBuffer = new StringBuffer();
-        StringBuffer valuesBuffer = new StringBuffer();
+        StringBuilder fieldsBuffer = new StringBuilder();
+        StringBuilder valuesBuffer = new StringBuilder();
         for(Property property : entity.getProperties()) {
             FieldProperty field = getFieldProperty(property);
             if(field != null) {
@@ -131,7 +131,7 @@ public abstract class AbstractSQLBuilder implements SQLBuilderInf {
 
     public SQLStatement buildUpdateSQL() {
         SQLStatement stmt = new SQLStatement("UPDATE " + getLocationName() + " SET ");
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         for(Property property : entity.getProperties()) {
             FieldProperty field = getFieldProperty(property);
             if(field != null && field.isDirty() && !isKeyProperty(field)) {

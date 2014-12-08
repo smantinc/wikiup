@@ -1,7 +1,7 @@
 package org.wikiup.database.orm.util;
 
 public class SQLPhrase {
-    protected StringBuffer SQL = new StringBuffer();
+    protected StringBuilder SQL = new StringBuilder();
 
     public SQLPhrase() {
     }
@@ -10,7 +10,7 @@ public class SQLPhrase {
         SQL.append(sql);
     }
 
-    public StringBuffer getSQL() {
+    public StringBuilder getSQL() {
         return SQL;
     }
 

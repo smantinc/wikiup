@@ -37,7 +37,7 @@ public class BasicHttpAuthorization implements AuthorizationInf, DocumentAware, 
     }
 
     public void unauthorized() {
-        StringBuffer buf = new StringBuffer("Basic realm=\"");
+        StringBuilder buf = new StringBuilder("Basic realm=\"");
         buf.append(context.getServletRequest().getServerName());
         buf.append("\", domain=\"");
         buf.append(domain);

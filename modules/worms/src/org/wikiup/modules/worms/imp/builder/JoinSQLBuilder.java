@@ -29,11 +29,13 @@ public class JoinSQLBuilder extends AbstractSQLBuilder {
     private Map<String, String> aliasNames = new HashMap<String, String>();
 
     private Map<String, SQLJoinEntity> joinedEntities = new LinkedHashMap<String, SQLJoinEntity>();
-    private StringBuffer whereClause = new StringBuffer();
+    private StringBuilder whereClause = new StringBuilder();
+    private String fieldConnector;
 
     public JoinSQLBuilder(Document configure, WormsEntity origin, Getter<?> getter) {
         super(configure, origin, getter);
         this.configure = configure;
+        this.fieldConnector = Documents.getAttributeValue(configure, "field-connector", ".");
     }
 
     public SQLStatement buildSelectSQL() {
@@ -60,7 +62,7 @@ public class JoinSQLBuilder extends AbstractSQLBuilder {
     }
 
     private String bulidJoinClause(List<SQLJoinCriteria> condition) {
-        StringBuffer joinClause = new StringBuffer();
+        StringBuilder joinClause = new StringBuilder();
         Set<String> tables = new HashSet<String>();
         Assert.isTrue(joinedEntities.size() > 1, IllegalStateException.class);
         for(String objectName : joinedEntities.keySet()) {
@@ -79,7 +81,7 @@ public class JoinSQLBuilder extends AbstractSQLBuilder {
     }
 
     private String buildTableSetCondition(Set<String> objects, String objectName, List<SQLJoinCriteria> condition) {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         objects.add(getEntityName(objectName));
         if(objects.size() > 1) {
             Iterator<SQLJoinCriteria> iterator = condition.iterator();
@@ -94,7 +96,7 @@ public class JoinSQLBuilder extends AbstractSQLBuilder {
         return buf.length() == 0 ? null : buf.toString();
     }
 
-    private void appendDelimiter(StringBuffer buffer, String delimiter) {
+    private void appendDelimiter(StringBuilder buffer, String delimiter) {
         if(buffer.length() != 0)
             buffer.append(delimiter);
     }
@@ -116,7 +118,7 @@ public class JoinSQLBuilder extends AbstractSQLBuilder {
     }
 
     private void buildComboConditionPhrase(SQLJoinCriteria condition, Document node) {
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
         appendDelimiter(condition.phrase, " AND ");
         condition.phrase.append('(');
         for(Document doc : node.getChildren())
@@ -125,7 +127,7 @@ public class JoinSQLBuilder extends AbstractSQLBuilder {
         condition.phrase.append(')');
     }
 
-    private void buildConditionPhrase(StringBuffer clause, Set<String> tables, Document desc, String delimiter) {
+    private void buildConditionPhrase(StringBuilder clause, Set<String> tables, Document desc, String delimiter) {
         String rValue = Documents.getAttributeValue(desc, "r-value", null);
         String rCondition = Documents.getAttributeValue(desc, "condition", null);
 
@@ -157,14 +159,14 @@ public class JoinSQLBuilder extends AbstractSQLBuilder {
         return StringUtil.evaluateEL(name, getParameters());
     }
 
-    private void buildFieldName(StringBuffer buffer, String objectName, Set<String> objects, String propertyName) {
+    private void buildFieldName(StringBuilder buffer, String objectName, Set<String> objects, String propertyName) {
         WormsEntity entity = getEntity(objectName, true);
         FieldProperty field = Interfaces.cast(FieldProperty.class, entity.getProperty(propertyName));
         Assert.notNull(field);
         buildFieldName(buffer, objectName, getFieldLocationName(objectName, false), objects, field);
     }
 
-    private void buildFieldName(StringBuffer buffer, String objName, String location, Set<String> objects, FieldProperty field) {
+    private void buildFieldName(StringBuilder buffer, String objName, String location, Set<String> objects, FieldProperty field) {
         if(objects != null)
             objects.add(getEntityName(objName));
         buffer.append(location);
@@ -196,13 +198,13 @@ public class JoinSQLBuilder extends AbstractSQLBuilder {
     }
 
     private String buildSelectClause(Document desc) {
-        StringBuffer clause = new StringBuffer();
+        StringBuilder clause = new StringBuilder();
         for(Document node : desc.getChildren("field"))
             buildSelectPhrase(clause, node);
         return clause.toString();
     }
 
-    private void buildSelectPhrase(StringBuffer clause, Document desc) {
+    private void buildSelectPhrase(StringBuilder clause, Document desc) {
         String name = Documents.getAttributeValue(desc, "name");
         String entityName = getReference(Documents.getAttributeValue(desc, "entity-name", null));
         String propertyName = Documents.getAttributeValue(desc, "property-name");
@@ -214,7 +216,7 @@ public class JoinSQLBuilder extends AbstractSQLBuilder {
                 if(field != null) {
                     appendDelimiter(clause, ",");
                     buildFieldName(clause, name, getFieldLocationName(name, false), null, field);
-                    clause.append(" '" + name + '.' + field.getName() + "'");
+                    clause.append(" '").append(name).append(fieldConnector).append(field.getName()).append('\'');
                 }
             }
         } else {
@@ -282,7 +284,7 @@ public class JoinSQLBuilder extends AbstractSQLBuilder {
 
     private static class SQLJoinCriteria {
         public Set<String> objects = new HashSet<String>();
-        public StringBuffer phrase = new StringBuffer();
+        public StringBuilder phrase = new StringBuilder();
     }
 
     private static class SQLJoinEntity {

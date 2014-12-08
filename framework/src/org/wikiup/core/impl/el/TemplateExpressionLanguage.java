@@ -46,7 +46,7 @@ public class TemplateExpressionLanguage implements ExpressionLanguage<Getter<?>,
 
     private String replaceValue(String str, Getter<?> getter) {
         if(str != null) {
-            StringBuffer buf = new StringBuffer();
+            StringBuilder buf = new StringBuilder();
             int headPos = 0, tailPos = 0;
             while(headPos != -1) {
                 headPos = str.indexOf(token, headPos);
@@ -111,7 +111,7 @@ public class TemplateExpressionLanguage implements ExpressionLanguage<Getter<?>,
     }
 
     private Pattern getVariableNamePattern() {
-        StringBuffer pattern = new StringBuffer();
+        StringBuilder pattern = new StringBuilder();
         pattern.append("([").append(WikiupConfigure.CHARACTER_PATTERN).append('\\').append(closeBracket);
         pattern.append("]|(\\").append(token).append('\\').append(openBracket).append("))+");
         return Pattern.compile(pattern.toString());

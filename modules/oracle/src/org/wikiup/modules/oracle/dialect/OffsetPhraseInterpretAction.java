@@ -17,7 +17,7 @@ public class OffsetPhraseInterpretAction implements DialectInterpretActionInf {
         for(SQLWrapper wrapper : wrappers)
             if(wrapper.getSuffix().startsWith(LimitPhraseInterpretAction.LIMIT_SUFFIX)) {
                 String limit = wrapper.getSuffix().substring(LimitPhraseInterpretAction.LIMIT_SUFFIX.length());
-                StringBuffer buf = new StringBuffer(" ) row_ where rownum <= ");
+                StringBuilder buf = new StringBuilder(" ) row_ where rownum <= ");
                 wrapper.setPrefix("SELECT * from ( SELECT row_.*, rownum rownum_ FROM ( ");
                 if(ValueUtil.isInteger(limit) && ValueUtil.isInteger(offset))
                     buf.append(ValueUtil.toInteger(limit, 0) + ValueUtil.toInteger(offset, 0));

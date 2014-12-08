@@ -64,7 +64,7 @@ public class StringUtil {
     static public String join(Iterable<?> iterable, String connector) {
         String result = null;
         if(iterable != null) {
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder buffer = new StringBuilder();
             for(Object obj : iterable)
                 buffer.append(obj).append(connector);
 
@@ -74,10 +74,10 @@ public class StringUtil {
     }
 
     static public String connect(String str, String appendix, char connector) {
-        return connect(new StringBuffer(str), appendix, connector).toString();
+        return connect(new StringBuilder(str), appendix, connector).toString();
     }
 
-    static public StringBuffer connect(StringBuffer buffer, String appendix, char connector) {
+    static public StringBuilder connect(StringBuilder buffer, String appendix, char connector) {
         if(buffer.length() == 0)
             buffer.append(connector);
         if(buffer.charAt(buffer.length() - 1) != connector)
@@ -87,7 +87,7 @@ public class StringUtil {
         return buffer.append(appendix);
     }
 
-    static public StringBuffer connect(StringBuffer buffer, String appendix, String connector) {
+    static public StringBuilder connect(StringBuilder buffer, String appendix, String connector) {
         if(!buffer.toString().endsWith(connector))
             buffer.append(connector);
         return buffer.append(appendix.startsWith(connector) ? appendix.substring(connector.length()) : appendix);
@@ -277,7 +277,7 @@ public class StringUtil {
     }
 
     static public String getCamelName(String name, char splitter) {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         int i, len = name.length();
         for(i = 0; i < len; i++)
             buf.append(name.charAt(i) != splitter ? name.charAt(i) : Character.toUpperCase(name.charAt(++i)));
@@ -300,7 +300,7 @@ public class StringUtil {
     }
 
     static public String format(String str, Object... args) {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         int i, len = str.length();
         for(i = 0; i < len; i++) {
             if(i > 0 && str.charAt(i - 1) == '\\')
@@ -349,7 +349,7 @@ public class StringUtil {
         int i;
         final String CHAR_SET = "abcdefghijklmnopqrstuvwxyz0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
         Random rnd = seed == -1 ? new Random() : new Random(seed);
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
         for(i = 0; i < length; i++)
             buffer.append(CHAR_SET.charAt(rnd.nextInt(CHAR_SET.length())));
         return buffer.toString();

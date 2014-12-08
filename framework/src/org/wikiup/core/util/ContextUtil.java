@@ -7,10 +7,10 @@ import org.wikiup.core.impl.filter.TypeCastFilter;
 import org.wikiup.core.impl.setter.BeanPropertySetter;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.ExpressionLanguage;
-import org.wikiup.core.inf.Translator;
 import org.wikiup.core.inf.Getter;
 import org.wikiup.core.inf.ModelProvider;
 import org.wikiup.core.inf.Setter;
+import org.wikiup.core.inf.Translator;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -152,7 +152,7 @@ public class ContextUtil {
 
     static public String getPropertyName(String name, boolean firstCapital) {
         if(firstCapital) {
-            StringBuffer buffer = new StringBuffer();
+            StringBuilder buffer = new StringBuilder();
             buffer.append(Character.toUpperCase(name.charAt(0)));
             if(name.length() > 1)
                 buffer.append(StringUtil.getCamelName(name.substring(1), '-'));

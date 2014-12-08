@@ -32,7 +32,7 @@ public class URLMappingReplaceServletProcessor implements ServletProcessor, Docu
         Pattern pattern = Pattern.compile(Documents.getDocumentValue(node, "regexp"));
         String replacement = Documents.getDocumentValue(node, "replacement");
         Matcher matcher = pattern.matcher(html);
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
         Getter<String> getter = new RegexpMatcherGroupGetter(matcher);
         while(matcher.find()) {
             String rep = StringUtil.evaluateEL(replacement, getter);

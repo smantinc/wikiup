@@ -22,7 +22,7 @@ public class RelativeSQLBuilder extends BaseSQLBuilder {
     }
 
     private String buildWhereClause(SQLStatement stmt, Document desc, String connector) {
-        StringBuffer clause = new StringBuffer();
+        StringBuilder clause = new StringBuilder();
         String c = getCriteriaConnector(desc, connector);
         for(Document node : desc.getChildren()) {
             String nodeName = node.getName();
@@ -38,7 +38,7 @@ public class RelativeSQLBuilder extends BaseSQLBuilder {
         return clause.toString();
     }
 
-    private void buildWhereCriteria(SQLStatement stmt, StringBuffer clause, String connector, Document node) {
+    private void buildWhereCriteria(SQLStatement stmt, StringBuilder clause, String connector, Document node) {
         String value = Documents.getAttributeValue(node, "foreign-key", null);
         if(value != null) {
             if((value = stmt.translate(getParameters(), value)) != null)

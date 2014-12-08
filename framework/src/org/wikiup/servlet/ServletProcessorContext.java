@@ -406,7 +406,7 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
 
     public String getContextURI(String uri) {
         String contextPath = servletRequest.getContextPath();
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         StringUtil.connect(buf, contextPath, '/');
         return StringUtil.connect(buf, getContextPath(uri), '/').toString();
     }

@@ -36,19 +36,19 @@ public class XSLTagProcessor implements TagProcessor {
     }
 
     private String replaceHTMLEntities(String html) {
-        StringBuffer buffer = new StringBuffer(html);
+        StringBuilder buffer = new StringBuilder(html);
         replaceHTMLEntity(buffer, 1, "<?xml ", "?>", "");
         replaceHTMLEntity(buffer, 0, "&nbsp", ";", "&#160;");
         return buffer.toString();
     }
 
-    private void replaceHTMLEntity(StringBuffer buffer, int offset, String start, String end, String replacement) {
+    private void replaceHTMLEntity(StringBuilder buffer, int offset, String start, String end, String replacement) {
         int idx = offset;
         while(idx != -1)
             idx = replaceStringBuffer(buffer, start, end, idx, replacement);
     }
 
-    private int replaceStringBuffer(StringBuffer buffer, String start, String end, int offset, String replacement) {
+    private int replaceStringBuffer(StringBuilder buffer, String start, String end, int offset, String replacement) {
         int idx = buffer.indexOf(start, offset);
         if(idx != -1) {
             int e = buffer.indexOf(end, idx);
@@ -62,7 +62,7 @@ public class XSLTagProcessor implements TagProcessor {
 
     static public class XSLTOutputWriter extends Writer {
         private Writer writer;
-        private StringBuffer buffer = new StringBuffer();
+        private StringBuilder buffer = new StringBuilder();
         private ServletProcessorContext context;
         private boolean eval;
 

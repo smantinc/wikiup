@@ -56,7 +56,7 @@ public class DefaultSQLDialect extends WikiupDynamicSingleton<DefaultSQLDialect>
     }
 
     public String getLocation(String catalog, String schema, String table, SQLDialectInf dialect) {
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
         if(!StringUtil.isEmpty(catalog))
             buffer.append(dialect.quote(catalog, SQLDialectInf.QuoteType.catalog));
         else if(!StringUtil.isEmpty(schema))

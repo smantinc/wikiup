@@ -24,7 +24,7 @@ public class SQLServerDialect extends SQLDialect {
 
     @Override
     public String getLocation(String catalog, String schema, String table) {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         buf.append(ValueUtil.toString(catalog != null ? catalog : schema));
         if(buf.length() > 0)
             buf.append('.');

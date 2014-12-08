@@ -92,7 +92,7 @@ public class IbatisEntityManager extends WikiupDynamicSingleton<IbatisEntityMana
             if(text != null) {
                 int pos = text.lastIndexOf("</sqlMapConfig>");
                 if(pos != -1) {
-                    StringBuffer buf = new StringBuffer(text.substring(0, pos));
+                    StringBuilder buf = new StringBuilder(text.substring(0, pos));
                     Iterator<Resource> iterator = sqlMapResources.iterator();
                     while(iterator.hasNext()) {
                         Resource res = iterator.next();
@@ -226,7 +226,7 @@ public class IbatisEntityManager extends WikiupDynamicSingleton<IbatisEntityMana
     }
 
     private String buildWhereClause(EntityMetadata metadata) {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         buf.append(" WHERE");
         for(FieldMetadata fm : metadata.getProperties())
             if(fm.isPrimaryKey())

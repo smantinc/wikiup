@@ -15,7 +15,7 @@ public class EntitySQLBuilder extends BaseSQLBuilder {
     }
 
     protected void buildWhereClause(SQLStatement stmt) {
-        StringBuffer clause = new StringBuffer();
+        StringBuilder clause = new StringBuilder();
         for(Property property : entity.getProperties()) {
             FieldProperty field = getFieldProperty(property);
             if(field != null && (field.isDirty() || isKeyProperty(field))) {
@@ -33,7 +33,7 @@ public class EntitySQLBuilder extends BaseSQLBuilder {
     }
 
     private void buildWhereClauseByPK(SQLStatement stmt) {
-        StringBuffer clause = new StringBuffer();
+        StringBuilder clause = new StringBuilder();
         for(Property property : entity.getProperties()) {
             FieldProperty field = getFieldProperty(property);
             if(field != null && field.isPrimaryKey()) {

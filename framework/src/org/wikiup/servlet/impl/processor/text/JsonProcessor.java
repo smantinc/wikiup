@@ -59,7 +59,7 @@ public class JsonProcessor implements ServletProcessor {
     }
 
     private void writeObject(StringWriter writer, Document node, boolean warp) {
-        StringBuffer buf = new StringBuffer();
+        StringBuilder buf = new StringBuilder();
         for(Attribute attr : node.getAttributes()) {
             boolean quote = needQuote(attr.getObject()) && attr.toString() != null;
             buf.append('"');

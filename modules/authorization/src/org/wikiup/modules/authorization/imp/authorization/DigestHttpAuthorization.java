@@ -40,7 +40,7 @@ public class DigestHttpAuthorization implements AuthorizationInf, DocumentAware,
     }
 
     public void unauthorized() {
-        StringBuffer buf = new StringBuffer("Digest realm=\"");
+        StringBuilder buf = new StringBuilder("Digest realm=\"");
         buf.append(context.getServletRequest().getServerName());
         buf.append("\", domain=\"");
         buf.append(domain);

@@ -12,7 +12,7 @@ public class RawSQLBuilder extends RelativeSQLBuilder {
 
     @Override
     protected String buildSelectClause() {
-        StringBuffer clause = new StringBuffer();
+        StringBuilder clause = new StringBuilder();
         for(Document node : document.getChildren()) {
             FieldProperty field = new FieldProperty(entity, node);
             if(!field.isCriteria())

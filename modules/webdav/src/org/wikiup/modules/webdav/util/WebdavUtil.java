@@ -41,7 +41,7 @@ public class WebdavUtil {
     }
 
     static public String generateLockToken() {
-        StringBuffer buffer = new StringBuffer();
+        StringBuilder buffer = new StringBuilder();
         long seed = System.currentTimeMillis();
         buffer.append("opaquelocktoken:");
         buffer.append(StringUtil.generateRandomString(8, seed).toLowerCase());
