@@ -9,7 +9,7 @@ import org.wikiup.core.util.FileUtil;
 import java.io.File;
 
 public class DirectoryDocumentReader implements DocumentReader<File> {
-    public Document filter(File directory) {
+    public Document translate(File directory) {
         DocumentImpl data = new DocumentImpl(directory.getName());
         loadDirectoryFiles(data, directory);
         return data;
@@ -23,6 +23,6 @@ public class DirectoryDocumentReader implements DocumentReader<File> {
             if(files[i].isDirectory())
                 loadDirectoryFiles(doc.addChild(files[i].getName()), files[i]);
             else if(FileUtil.getFileExt(files[i].getName()).equalsIgnoreCase("xml"))
-                Documents.merge(doc, fs.filter(files[i]));
+                Documents.merge(doc, fs.translate(files[i]));
     }
 }

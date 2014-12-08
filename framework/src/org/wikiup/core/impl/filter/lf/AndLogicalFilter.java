@@ -9,11 +9,11 @@ import java.util.Vector;
 public class AndLogicalFilter<E> implements LogicalFilter<E> {
     private List<LogicalFilter<E>> filters = null;
 
-    public Boolean filter(E context) {
+    public Boolean translate(E context) {
         if(filters != null) {
             Iterator<LogicalFilter<E>> iterator = filters.iterator();
             while(iterator.hasNext())
-                if(!iterator.next().filter(context))
+                if(!iterator.next().translate(context))
                     return false;
         }
         return true;

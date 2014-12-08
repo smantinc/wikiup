@@ -2,7 +2,7 @@ package org.wikiup.core.impl.filter;
 
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Filter;
+import org.wikiup.core.inf.Translator;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
@@ -10,10 +10,10 @@ import org.wikiup.core.util.Interfaces;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-public class ValueOfFilter implements Filter<Object, Object>, DocumentAware {
+public class ValueOfFilter implements Translator<Object, Object>, DocumentAware {
     private Class toClass;
 
-    public Object filter(Object object) {
+    public Object translate(Object object) {
         if(object != null) {
             try {
                 if(toClass.isAssignableFrom(object.getClass()))

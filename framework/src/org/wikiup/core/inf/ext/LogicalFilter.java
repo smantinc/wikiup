@@ -1,6 +1,6 @@
 package org.wikiup.core.inf.ext;
 
-import org.wikiup.core.inf.Filter;
+import org.wikiup.core.inf.Translator;
 
-public interface LogicalFilter<E> extends Filter<E, Boolean> {
+public interface LogicalFilter<E> extends Translator<E, Boolean> {
 }

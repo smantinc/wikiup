@@ -7,7 +7,7 @@ import org.wikiup.core.impl.filter.TypeCastFilter;
 import org.wikiup.core.impl.setter.BeanPropertySetter;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.ExpressionLanguage;
-import org.wikiup.core.inf.Filter;
+import org.wikiup.core.inf.Translator;
 import org.wikiup.core.inf.Getter;
 import org.wikiup.core.inf.ModelProvider;
 import org.wikiup.core.inf.Setter;
@@ -63,12 +63,12 @@ public class ContextUtil {
         return getProperty(container, path, depth, offset, null);
     }
 
-    static public Object getProperty(Getter<?> container, String path[], int depth, int offset, Filter<Getter<?>, Getter<?>> filter) {
+    static public Object getProperty(Getter<?> container, String path[], int depth, int offset, Translator<Getter<?>, Getter<?>> translator) {
         int i;
         Object obj = container;
         for(i = offset; i < depth; i++)
             if(!StringUtil.isEmpty(path[i])) {
-                obj = (filter != null ? filter.filter(container) : container).get(path[i]);
+                obj = (translator != null ? translator.translate(container) : container).get(path[i]);
                 if(obj instanceof Getter)
                     container = (Getter<?>) obj;
                 else if(i != depth - 1)

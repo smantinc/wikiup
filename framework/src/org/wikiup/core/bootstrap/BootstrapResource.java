@@ -45,7 +45,7 @@ public class BootstrapResource implements Iterable<Resource> {
             Iterator<Resource> iterator = iterator();
             while(iterator.hasNext()) {
                 Resource resource = iterator.next();
-                if(filter == null || filter.filter(resource.getURI())) {
+                if(filter == null || filter.translate(resource.getURI())) {
                     resourceHandler.handle(resource);
                     iterator.remove();
                 }

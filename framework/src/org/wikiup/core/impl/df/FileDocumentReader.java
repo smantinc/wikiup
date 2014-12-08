@@ -11,7 +11,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 
 public class FileDocumentReader extends AbstractDocumentReader implements DocumentReader<File> {
-    public Document filter(File file) {
+    public Document translate(File file) {
         InputStream stream = null;
         Document doc = null;
         try {

@@ -31,7 +31,7 @@ public class YamlStreamDocumentReader implements DocumentReader<InputStream> {
 
     private ParsingContext defaultContext = new DefaultParsingContext();
 
-    public Document filter(InputStream stream) {
+    public Document translate(InputStream stream) {
         BufferedReader reader = null;
         push(root);
         try {

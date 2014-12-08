@@ -150,7 +150,7 @@ public class FileUtil {
             zis = new ZipInputStream(is);
             while((entry = zis.getNextEntry()) != null) {
                 String name = entry.getName();
-                if(filter == null || filter.filter(name))
+                if(filter == null || filter.translate(name))
                     if(entry.isDirectory())
                         new File(directory, name).mkdirs();
                     else

@@ -6,11 +6,10 @@ import org.wikiup.core.exception.WikiupRuntimeException;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.filter.TypeCastFilter;
 import org.wikiup.core.impl.mp.GenericModelProvider;
-import org.wikiup.core.inf.Builder;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.ExceptionHandler;
-import org.wikiup.core.inf.Filter;
+import org.wikiup.core.inf.Translator;
 import org.wikiup.core.inf.Getter;
 import org.wikiup.core.inf.ModelProvider;
 import org.wikiup.core.inf.Provider;
@@ -90,8 +89,8 @@ public class Interfaces {
     }
 
     public static <E, R> R filter(Object obj, E from, R def) {
-        if(obj instanceof Filter)
-            return ((Filter<E, R>) obj).filter(from);
+        if(obj instanceof Translator)
+            return ((Translator<E, R>) obj).translate(from);
         return def;
     }
 

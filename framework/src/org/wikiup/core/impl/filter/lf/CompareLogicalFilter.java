@@ -9,7 +9,7 @@ import org.wikiup.core.util.StringUtil;
 public class CompareLogicalFilter implements LogicalFilter<String>, DocumentAware {
     private String condition;
 
-    public Boolean filter(String str) {
+    public Boolean translate(String str) {
         return StringUtil.compare(condition, str);
     }
 

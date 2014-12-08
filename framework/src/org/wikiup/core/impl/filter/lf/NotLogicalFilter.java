@@ -9,7 +9,7 @@ public class NotLogicalFilter<E> implements LogicalFilter<E> {
         this.filter = filter;
     }
 
-    public Boolean filter(E object) {
-        return !filter.filter(object);
+    public Boolean translate(E object) {
+        return !filter.translate(object);
     }
 }

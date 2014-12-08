@@ -15,7 +15,7 @@ public class EqualMatchLogicalFilter<E> implements LogicalFilter<E>, DocumentAwa
         value = obj;
     }
 
-    public Boolean filter(E obj) {
+    public Boolean translate(E obj) {
         return value != null ? value.equals(obj) : obj == null;
     }
 

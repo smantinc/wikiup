@@ -193,7 +193,7 @@ public class Documents {
 
     static public Document loadXmlFromStream(InputStream input, boolean close) {
         try {
-            return new XmlStreamDocumentReader().filter(input);
+            return new XmlStreamDocumentReader().translate(input);
         } finally {
             if(close)
                 StreamUtil.close(input);
@@ -203,7 +203,7 @@ public class Documents {
     static public Document loadYamlFromStream(InputStream input, boolean close) {
         Document xml;
         try {
-            xml = new YamlStreamDocumentReader().filter(input);
+            xml = new YamlStreamDocumentReader().translate(input);
         } finally {
             if(close)
                 StreamUtil.close(input);
@@ -216,7 +216,7 @@ public class Documents {
     }
 
     static public Document loadFromString(String str) {
-        return new StringDocumentReader().filter(str);
+        return new StringDocumentReader().translate(str);
     }
 
     static public Document loadFromResource(Resource resource) {
@@ -225,7 +225,7 @@ public class Documents {
         Assert.notNull(reader, ext);
         InputStream stream = resource.open();
         try {
-            return reader.filter(stream);
+            return reader.translate(stream);
         } finally {
             StreamUtil.close(stream);
         }
@@ -236,11 +236,11 @@ public class Documents {
     }
 
     static public Document loadFromFile(File file) {
-        return new FileDocumentReader().filter(file);
+        return new FileDocumentReader().translate(file);
     }
 
     static public Document loadFromDirectory(String dirName) {
-        return new DirectoryDocumentReader().filter(FileUtil.getFile(dirName));
+        return new DirectoryDocumentReader().translate(FileUtil.getFile(dirName));
     }
 
     static public void clearDocument(Document doc) {

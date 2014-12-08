@@ -7,7 +7,7 @@ import org.xml.sax.InputSource;
 import java.io.StringReader;
 
 public class StringDocumentReader extends AbstractDocumentReader implements DocumentReader<String> {
-    public Document filter(String xml) {
+    public Document translate(String xml) {
         return parse(new InputSource(new StringReader(xml)));
     }
 }

@@ -17,7 +17,7 @@ public class RegexpMatchLogicalFilter implements LogicalFilter<String>, Document
         setRegexp(regexp);
     }
 
-    public Boolean filter(String str) {
+    public Boolean translate(String str) {
         return pattern != null ? pattern.matcher(str).matches() : false;
     }
 
