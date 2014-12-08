@@ -63,7 +63,7 @@ public class WebArchiveResourceHandler implements ResourceHandler, DocumentAware
         InputStream is = resource.open();
         try {
             FileUtil.unzip(is, file, new LogicalFilter<String>() {
-                public Boolean filter(String object) {
+                public Boolean translate(String object) {
                     return !(object.startsWith("WEB-INF") || object.startsWith("META-INF") || FileUtil.isUpToDate(new File(file, object), lastModified));
                 }
             });

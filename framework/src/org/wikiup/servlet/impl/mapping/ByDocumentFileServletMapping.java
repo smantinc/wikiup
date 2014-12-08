@@ -19,7 +19,7 @@ public class ByDocumentFileServletMapping implements ServletConfigureMapping {
     public void appendEntry(String uriPattern, ServletMappingEntry node) {
     }
 
-    public Boolean filter(String pattern) {
+    public Boolean translate(String pattern) {
         return true;
     }
 }

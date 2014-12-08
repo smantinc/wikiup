@@ -8,7 +8,7 @@ import org.wikiup.servlet.inf.ServletConfigureMapping;
 public class NamespaceServletMapping implements ServletConfigureMapping {
     private Document namespaces = Documents.create("namespace-mapping");
 
-    public Boolean filter(String pattern) {
+    public Boolean translate(String pattern) {
         return pattern.matches("[\\w\\.\\d-/]*/\\*");
     }
 

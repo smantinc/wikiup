@@ -38,8 +38,8 @@ public class ServletMappingEntry extends AndLogicalFilter<ServletProcessorContex
     }
 
     @Override
-    public Boolean filter(ServletProcessorContext context) {
-        return super.filter(context) && (extendedFrom != null ? extendedFrom.filter(context) : true);
+    public Boolean translate(ServletProcessorContext context) {
+        return super.translate(context) && (extendedFrom != null ? extendedFrom.translate(context) : true);
     }
 
     public Document getDocument() {

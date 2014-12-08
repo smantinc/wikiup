@@ -13,7 +13,7 @@ class Util {
             Iterator<ServletMappingEntry> iterator = set.iterator();
             while(iterator.hasNext()) {
                 ServletMappingEntry node = iterator.next();
-                if(!node.isAbstract() && node.filter(context))
+                if(!node.isAbstract() && node.translate(context))
                     return node.getDocument();
             }
         }

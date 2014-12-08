@@ -44,7 +44,7 @@ public class ByPackageNameServletMapping implements ServletConfigureMapping, Doc
     public void appendEntry(String uriPattern, ServletMappingEntry node) {
     }
 
-    public Boolean filter(String object) {
+    public Boolean translate(String object) {
         return true;
     }
 

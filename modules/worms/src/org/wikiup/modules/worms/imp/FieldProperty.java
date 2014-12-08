@@ -3,7 +3,7 @@ package org.wikiup.modules.worms.imp;
 import org.wikiup.core.impl.attribute.AttributeImpl;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Filter;
+import org.wikiup.core.inf.Translator;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.modules.worms.WormsEntity;
@@ -80,8 +80,8 @@ public class FieldProperty extends Property {
     }
 
     public Object cast(Object obj) {
-        Filter<Object, Object> filter = ((WormsEntity) getOwner()).getDataSource().getDatabaseDriver().getDialect().getFieldFilter(fieldType);
-        return filter.filter(obj);
+        Translator<Object, Object> filter = ((WormsEntity) getOwner()).getDataSource().getDatabaseDriver().getDialect().getFieldFilter(fieldType);
+        return filter.translate(obj);
     }
 
     public Object getFieldValue() {

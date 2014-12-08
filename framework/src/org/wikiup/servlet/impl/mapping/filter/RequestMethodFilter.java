@@ -17,7 +17,7 @@ public class RequestMethodFilter implements LogicalFilter<ServletProcessorContex
             methods.add(StringUtil.trim(m[i]).toUpperCase());
     }
 
-    public Boolean filter(ServletProcessorContext context) {
+    public Boolean translate(ServletProcessorContext context) {
         return methods.contains(context.getServletRequest().getMethod());
     }
 }

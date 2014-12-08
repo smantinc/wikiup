@@ -10,7 +10,7 @@ import org.wikiup.servlet.inf.ServletConfigureMapping;
 public class NamespaceAndSuffixServletMapping implements ServletConfigureMapping {
     private Document namespaces = Documents.create("namespace-suffix-mapping");
 
-    public Boolean filter(String pattern) {
+    public Boolean translate(String pattern) {
         return pattern.matches("[\\w\\.\\d-/]+/\\*\\.[\\w\\d]+");
     }
 

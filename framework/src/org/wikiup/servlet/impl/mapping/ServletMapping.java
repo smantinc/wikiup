@@ -49,14 +49,14 @@ public class ServletMapping implements ServletConfigureMapping, DocumentAware, E
     }
 
     private boolean appendMatchedNode(String uriPattern, ServletMappingEntry node, ServletConfigureMapping mapper) {
-        boolean matched = mapper.filter(uriPattern);
+        boolean matched = mapper.translate(uriPattern);
         if(matched)
             mapper.appendEntry(uriPattern, node);
         else {
             String patterns[] = uriPattern.split("\\|");
             if(patterns.length > 1) {
                 for(String pattern : patterns)
-                    if(mapper.filter(pattern)) {
+                    if(mapper.translate(pattern)) {
                         mapper.appendEntry(pattern, node);
                         matched = true;
                     }
@@ -65,7 +65,7 @@ public class ServletMapping implements ServletConfigureMapping, DocumentAware, E
         return matched;
     }
 
-    public Boolean filter(String pattern) {
+    public Boolean translate(String pattern) {
         return true;
     }
 

@@ -1,7 +1,7 @@
 package org.wikiup.database.orm;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.inf.Filter;
+import org.wikiup.core.inf.Translator;
 import org.wikiup.database.orm.inf.DialectInterpretActionInf;
 import org.wikiup.database.orm.inf.SQLDialectInf;
 
@@ -12,7 +12,7 @@ public abstract class SQLDialect implements SQLDialectInf {
         return dialect.getInterpretor(name);
     }
 
-    public Filter<Object, Object> getFieldFilter(String name) {
+    public Translator<Object, Object> getFieldFilter(String name) {
         return dialect.getFieldFilter(name);
     }
 

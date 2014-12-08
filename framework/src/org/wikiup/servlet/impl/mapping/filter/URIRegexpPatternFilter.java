@@ -12,7 +12,7 @@ public class URIRegexpPatternFilter implements LogicalFilter<ServletProcessorCon
         this.pattern = Pattern.compile(pattern);
     }
 
-    public Boolean filter(ServletProcessorContext context) {
+    public Boolean translate(ServletProcessorContext context) {
         return pattern.matcher(context.getRequestURI()).matches();
     }
 }

@@ -3,7 +3,7 @@ package org.wikiup.servlet.impl.mapping;
 import org.wikiup.core.util.StringUtil;
 
 public class ExactlyMatchServletMapping extends AbstractServletMapping {
-    public Boolean filter(String pattern) {
+    public Boolean translate(String pattern) {
         return pattern.matches("[\\w\\.\\d\\-/]+");
     }
 

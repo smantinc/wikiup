@@ -20,7 +20,7 @@ public class URIRegexpPatternServletMapping implements ServletConfigureMapping {
         nodes.add(node);
     }
 
-    public Boolean filter(String pattern) {
+    public Boolean translate(String pattern) {
         return true;
     }
 

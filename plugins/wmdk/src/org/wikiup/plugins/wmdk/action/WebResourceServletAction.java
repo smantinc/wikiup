@@ -146,7 +146,7 @@ public class WebResourceServletAction {
     }
 
     private void zip(ZipOutputStream out, File f, String base, LogicalFilter<String> filter) throws IOException {
-        if(filter == null || filter.filter(f.getName()))
+        if(filter == null || filter.translate(f.getName()))
             if(f.isDirectory()) {
                 out.putNextEntry(new ZipEntry(base + "/"));
                 for(File file : f.listFiles())

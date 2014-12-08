@@ -4,9 +4,9 @@ import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupNamingDirectory;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Filter;
 import org.wikiup.core.inf.Getter;
 import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.Translator;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.core.util.Documents;
@@ -68,8 +68,8 @@ public class WikiupNamingDirectoryProcessorContext implements ProcessorContext, 
         return mc != null ? mc.getModel(clazz) : Interfaces.cast(clazz, this);
     }
 
-    private class LookupFilter implements Filter<Getter<?>, Getter<?>> {
-        public Getter<?> filter(Getter<?> object) {
+    private class LookupFilter implements Translator<Getter<?>, Getter<?>> {
+        public Getter<?> translate(Getter<?> object) {
             return context.awaredBy(object);
         }
     }

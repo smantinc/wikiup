@@ -4,7 +4,7 @@ import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Filter;
+import org.wikiup.core.inf.Translator;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DefaultSQLDialect extends WikiupDynamicSingleton<DefaultSQLDialect> implements DocumentAware {
-    private Map<String, Filter<Object, Object>> filters;
+    private Map<String, Translator<Object, Object>> filters;
     private Map<String, DialectInterpretActionInf> interpretors;
 
     private String defaultKey;
@@ -29,7 +29,7 @@ public class DefaultSQLDialect extends WikiupDynamicSingleton<DefaultSQLDialect>
         Document doc = desc.getChild("field-types");
         if(doc != null) {
             for(Document node : doc.getChildren()) {
-                Filter<Object, Object> filter = Wikiup.getInstance().getBean(Filter.class, node);
+                Translator<Object, Object> filter = Wikiup.getInstance().getBean(Translator.class, node);
                 Interfaces.initialize(filter, node);
                 filters.put(Documents.getId(node).toLowerCase(), filter);
             }
@@ -46,7 +46,7 @@ public class DefaultSQLDialect extends WikiupDynamicSingleton<DefaultSQLDialect>
         sqlTypes = desc.getChild("sql-types");
     }
 
-    public Filter<Object, Object> getFieldFilter(String name) {
+    public Translator<Object, Object> getFieldFilter(String name) {
         String n = name != null ? name.toLowerCase() : name;
         return filters.containsKey(n) ? filters.get(n) : filters.get(defaultKey);
     }
@@ -83,7 +83,7 @@ public class DefaultSQLDialect extends WikiupDynamicSingleton<DefaultSQLDialect>
     }
 
     public void firstBuilt() {
-        filters = new HashMap<String, Filter<Object, Object>>();
+        filters = new HashMap<String, Translator<Object, Object>>();
         interpretors = new HashMap<String, DialectInterpretActionInf>();
     }
 }

@@ -1,13 +1,13 @@
 package org.wikiup.database.orm.imp.dialect.filter;
 
-import org.wikiup.core.inf.Filter;
+import org.wikiup.core.inf.Translator;
 import org.wikiup.database.util.BytesBlob;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.Blob;
 
-public class BlobFieldFilter implements Filter<Object, Blob> {
-    public Blob filter(Object object) {
+public class BlobFieldFilter implements Translator<Object, Blob> {
+    public Blob translate(Object object) {
         byte[] bytes = null;
         if(object instanceof byte[])
             bytes = (byte[]) object;

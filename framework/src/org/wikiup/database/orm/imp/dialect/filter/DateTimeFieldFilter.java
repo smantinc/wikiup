@@ -1,14 +1,14 @@
 package org.wikiup.database.orm.imp.dialect.filter;
 
-import org.wikiup.core.inf.Filter;
+import org.wikiup.core.inf.Translator;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.ValueUtil;
 
 import java.sql.Timestamp;
 import java.util.Date;
 
-public class DateTimeFieldFilter implements Filter<Object, Object> {
-    public Object filter(Object object) {
+public class DateTimeFieldFilter implements Translator<Object, Object> {
+    public Object translate(Object object) {
         Timestamp ts = null;
         if(object != null) {
             if(ValueUtil.isInteger(object.toString()))
