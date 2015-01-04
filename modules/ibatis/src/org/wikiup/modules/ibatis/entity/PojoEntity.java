@@ -2,8 +2,8 @@ package org.wikiup.modules.ibatis.entity;
 
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.attribute.BeanProperty;
-import org.wikiup.core.impl.filter.TypeCastFilter;
 import org.wikiup.core.impl.iterable.BeanProperties;
+import org.wikiup.core.impl.translator.TypeCastFilter;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.ModelProvider;
 import org.wikiup.core.util.Interfaces;

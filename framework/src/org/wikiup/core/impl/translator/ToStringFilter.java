@@ -1,4 +1,4 @@
-package org.wikiup.core.impl.filter;
+package org.wikiup.core.impl.translator;
 
 import org.wikiup.core.inf.Translator;
 import org.wikiup.core.util.ValueUtil;

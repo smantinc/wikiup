@@ -1,4 +1,4 @@
-package org.wikiup.core.impl.filter.lf;
+package org.wikiup.core.impl.translator.lf;
 
 import org.wikiup.core.inf.ext.LogicalFilter;
 

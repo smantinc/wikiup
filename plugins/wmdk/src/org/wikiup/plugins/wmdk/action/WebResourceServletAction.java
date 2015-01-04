@@ -1,8 +1,8 @@
 package org.wikiup.plugins.wmdk.action;
 
 import org.wikiup.core.bean.WikiupConfigure;
-import org.wikiup.core.impl.filter.lf.NotLogicalFilter;
-import org.wikiup.core.impl.filter.lf.RegexpMatchLogicalFilter;
+import org.wikiup.core.impl.translator.lf.NotLogicalFilter;
+import org.wikiup.core.impl.translator.lf.RegexpMatchLogicalFilter;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Resource;
 import org.wikiup.core.inf.ext.LogicalFilter;

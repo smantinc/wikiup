@@ -1,7 +1,7 @@
 package org.wikiup.servlet.impl.mapping;
 
 import org.wikiup.core.impl.document.MergedDocument;
-import org.wikiup.core.impl.filter.lf.AndLogicalFilter;
+import org.wikiup.core.impl.translator.lf.AndLogicalFilter;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;

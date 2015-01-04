@@ -1,4 +1,4 @@
-package org.wikiup.core.impl.filter;
+package org.wikiup.core.impl.translator;
 
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
