@@ -12,35 +12,6 @@ import javax.xml.parsers.SAXParserFactory;
 import java.io.IOException;
 
 abstract class AbstractDocumentReader {
-    /*
-      private DocumentBuilder builder = null;
-    
-      private DocumentBuilder getDOMBuilder()
-      {
-        if(builder == null)
-          builder = DomUtil.getDOMBuilder();
-        return builder;
-      }
-    
-      protected Document parse(InputSource source)
-      {
-        DocumentBuilder docBuilder = getDOMBuilder();
-        Document doc = null;
-        try
-        {
-          doc = DomUtil.duplicate(docBuilder.parse(source));
-        }
-        catch (IOException ex)
-        {
-          Assert.fail(ex);
-        }
-        catch (SAXException ex)
-        {
-          Assert.fail(ex);
-        }
-        return doc;
-      }
-    /*/
     protected Document parse(InputSource source) {
         DocumentSaxHandler handler = new DocumentSaxHandler();
         SAXParserFactory factory = SAXParserFactory.newInstance();
@@ -56,5 +27,4 @@ abstract class AbstractDocumentReader {
         }
         return handler.getDocument();
     }
-/**/
 }
