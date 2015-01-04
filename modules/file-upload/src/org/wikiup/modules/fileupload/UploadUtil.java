@@ -41,11 +41,9 @@ public class UploadUtil {
     }
 
     static private File getTemporaryPath(String path) {
-        String list[] = path.split(";");
-        int i;
-        for(i = 0; i < list.length; i++)
-            if(FileUtil.isDirectory(list[i]))
-                return new File(list[i]);
+        for(String filename : path.split(";"))
+            if(FileUtil.isDirectory(filename))
+                return new File(filename);
         return null;
     }
 

@@ -8,6 +8,7 @@ import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.modules.xslt.TransformerCache;
 import org.wikiup.servlet.ServletProcessorContext;
+import org.wikiup.servlet.beans.ServletContextContainer;
 import org.wikiup.servlet.inf.TagProcessor;
 
 import javax.xml.transform.Transformer;
@@ -24,7 +25,7 @@ public class XSLTagProcessor implements TagProcessor {
         try {
             StringWriter buf = new StringWriter();
             boolean eval = ValueUtil.toBoolean(parameters.get("evaluate-el"), false);
-            Transformer transformer = TransformerCache.getInstance().getTransformer(context.getRealPathByURI(parameters.get("href").toString()));
+            Transformer transformer = TransformerCache.getInstance().getTransformer(ServletContextContainer.getInstance().getRealPath(parameters.get("href").toString()));
             Documents.writeXMLHeader(buf, WikiupConfigure.CHAR_SET);
             buf.write("<root>");
             parent.process(context, parent, body, parameters, buf);
