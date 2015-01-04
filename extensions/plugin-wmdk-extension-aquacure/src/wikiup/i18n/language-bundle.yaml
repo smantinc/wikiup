@@ -1,0 +1,17 @@
+# -*- coding: utf-8 -*-
+en-us:
+  extensions:
+    wmdk:
+      aquacure:
+        title: Wikiup WMDK Runtime Console
+        brief: Creates a console which can show and modify runtime configurations of the system 
+        description:
+        console: Console
+zh-cn:
+  extensions:
+    wmdk:
+      aquacure:
+        title: Wikiup WMDK 控制台
+        brief: 提供一个操作运行期程序内部数据结构的控制台
+        description:
+        console: 控制台

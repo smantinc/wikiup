@@ -1,0 +1,67 @@
+@charset "utf-8";
+
+html, body {
+    height: 100%;
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    background-color: #000;
+    color: #ccc;
+}
+
+pre {
+    margin: 0;
+    padding: 4px;
+}
+
+.console-screen {
+    line-height: 28px;
+}
+
+#console-line, #font-gauge {
+    font-size: 16px;
+    font-family: "Courier New", Courier, monospace;
+    padding: 0;
+    margin: 0;
+    border: 0 none;
+}
+
+#console-line {
+    overflow: hidden;
+    margin: 5px 0;
+    width: 100%;
+    color: #ccc;
+    background-color: #000;
+}
+
+#console-line:focus {
+    outline: none;
+}
+
+#font-gauge {
+    visibility: hidden;
+}
+
+.ls {
+    float: left;
+    width: 18% !important;
+    min-width: 240px;
+    width: 240px;
+    overflow: hidden;
+    height: 24px;
+    margin: 0 4px;
+}
+
+.ls .file {
+}
+
+.ls .folder {
+    color: #00f;
+}
+
+.console-cmd {
+    clear: both;
+}
+
+.get .value {
+    color: #0f0;
+}

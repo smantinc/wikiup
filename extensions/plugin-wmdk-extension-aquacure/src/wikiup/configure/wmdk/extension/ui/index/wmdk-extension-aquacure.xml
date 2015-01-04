@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configures>
+	<html><![CDATA[
+<script type="text/javascript">
+Ext.onReady(function(){
+  var title = '${i18n:extensions.wmdk.aquacure.console}';
+	Ext.getCmp('wmdk-main-toolbar').insert(10, {
+		id: 'wmdk-tb-console',
+		text: title,
+		iconCls: 'wmdk-tb-console',
+		handler: function() {
+      var browser = document.createElement('IFRAME');
+      jQuery(browser).attr('height', '100%').attr('width','100%').attr('frameborder', 0).attr('src', '../aquacure/console-form.html');
+      uAddTab({title: title, items: '', contentEl: browser, closable: true});
+		}
+	});
+	Ext.getCmp('wmdk-main-toolbar').insert(10, '-');
+});
+</script>
+]]>
+	</html>
+</configures>

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+
+    <script type="text/javascript" src="../wmdk/js_css/thirdparty/jquery/jquery-1.4.2.min.js"></script>
+    <script type="text/javascript" src="js_css/console.js"></script>
+    <link href="js_css/console.css" rel="stylesheet" type="text/css"/>
+</head>
+<body>
+<div class="console-screen">
+    <div id="stdout" style="clear: both;"><input id="console-line" onkeyup="onConsoleKeyUp(event, this)"
+                                                 onkeypress="return onConsoleKeyPress(event, this)"/></div>
+    <span id="font-gauge"></span>
+</div>
+<div id="resp-tpl" style="display: none">
+    <div class="ls"><span class="name"></span></div>
+    <div class="pwd"><span class="pwd"></span></div>
+    <div class="get">
+        <pre class="value"></pre>
+    </div>
+    <div class="type"><span class="value"></span></div>
+</div>
+</body>
+</html>

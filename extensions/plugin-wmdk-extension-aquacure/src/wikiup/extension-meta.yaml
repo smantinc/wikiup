@@ -1,0 +1,4 @@
+name: wikiup-extension-wmdk-aquacure
+title: ${extensions.wmdk.aquacure.title}
+brief: ${extensions.wmdk.aquacure.brief}
+description: ${extensions.wmdk.aquacure.description}
