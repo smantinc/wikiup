@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configures>
+	<html><![CDATA[
+<script type="text/javascript" src="js_css/thirdparty/ext/ux/spotlight.js"></script>
+<script type="text/javascript" src="${env:uri:/pages/leprechaun/js_css/helper.js}"></script>
+<div id="wmdk-leprechaun-tips" class="x-hide-display">
+	<h1>${i18n:wmdk.extension.leprechaun.text.did-you-know}</h1>
+	<p style="margin: 10px; font-size: 14px"></p>
+</div>
+<ul class="wmdk-leprechaun-prospective" style="margin-left: 20px; display: none">
+  <li><a href="#" onclick="return hCreateTestPage(window)">${i18n:wmdk.extension.leprechaun.welcome-page.new-page}</a></li>
+  <li><a href="#" onclick="return hConfigureDatasources(window)">${i18n:wmdk.extension.leprechaun.welcome-page.configure-datasources}</a></li>
+  <li><a href="#" onclick="return hCreateTestDomain(window)">${i18n:wmdk.extension.leprechaun.welcome-page.create-domain}</a></li>
+  <li><a href="#" onclick="return hImportTestDomain(window)">${i18n:wmdk.extension.leprechaun.welcome-page.import-domain}</a></li>
+  <li><a href="#" onclick="return hWelcomeConfigurePlugins(window)">${i18n:wmdk.extension.leprechaun.welcome-page.configure-plugins}</a></li>
+  <li><a href="#" onclick="return hWelcomeExportApplication(window)">${i18n:wmdk.extension.leprechaun.welcome-page.application-export}</a></li>
+</ul>
+]]>
+	</html>
+	<html><![CDATA[
+<script language="javascript">
+var leprechaun = {
+	i18n: {
+		DomainBtnOk: "${i18n:wmdk.extension.leprechaun.tooltip.domain-btn-ok}",
+		NewPageFileName: "${i18n:wmdk.extension.leprechaun.tooltip.new-page-file-name}",
+		NewPageFileType: "${i18n:wmdk.extension.leprechaun.tooltip.new-page-file-type}",
+		NewPageBtnOk: "${i18n:wmdk.extension.leprechaun.tooltip.new-page-btn-ok}",
+		DomainPostGenerate: "${i18n:wmdk.extension.leprechaun.tooltip.domain-post-generate}",
+		PagePostCreate: "${i18n:wmdk.extension.leprechaun.tooltip.page-post-create}",
+		DatasourcePostConfig: "${i18n:wmdk.extension.leprechaun.tooltip.datasource-post-config}",
+		ImportDomainSchema: "${i18n:wmdk.extension.leprechaun.tooltip.import-domain-schema}",
+		ImportDomainTable: "${i18n:wmdk.extension.leprechaun.tooltip.import-domain-table}",
+		ImportDomainEngine: "${i18n:wmdk.extension.leprechaun.tooltip.import-domain-engine}",
+		PluginConfirm: '${i18n:wmdk.extension.leprechaun.welcome-page.plugin-confirm}'
+	}
+};
+
+var spot = null, win = null;
+var tipsCount = ${env:conf:wmdk/leprechaun/tips[@tips-count]};
+
+function loadTip(seq, callback, tipLoadCallback)
+{
+  jQuery.get('${env:uri:/pages/leprechaun/tips!tips.x}',
+    {seq: seq, dc: 0},
+    function(xml) {
+      showTip(seq, xml, callback);
+      rCallback(tipLoadCallback);
+    }
+  );
+}
+
+function showTip(seq, xml, callback)
+{
+	var s = jQuery('spot-light', xml).text();
+	jQuery('#wmdk-leprechaun-tips p').text(jQuery('tip', xml).text());
+	leprechaunSpotlightoff();
+	if(s)
+		leprechaunSpotlight(s);
+	var	win = new Ext.Window({
+			title: '${i18n:wmdk.extension.leprechaun.text.tooltips}',
+			layout: 'fit',
+			width: 500,
+			height: 200,
+			plain: true,
+			border: false,
+			closable: false,
+			items: {
+				xtype: 'panel',
+				frame: true,
+				contentEl: jQuery('#wmdk-leprechaun-tips').clone().attr('id', null).get(0)
+			},
+			listeners: {
+				close: leprechaunSpotlightoff
+			},
+			buttons: [{
+				text: '${i18n:wmdk.extension.leprechaun.text.previous-tip}',
+				handler: function(){
+					if(seq > 1)
+					  rDefer(function() {
+                win.close();
+                loadTip(--seq, callback);
+              });
+					}
+				},{
+				text: '${i18n:wmdk.extension.leprechaun.text.next-tip}',
+				handler: function(){
+					if(seq < tipsCount)
+					  rDefer(function() {
+                win.close();
+                loadTip(++seq, callback);
+              });
+					}
+				},{
+				text: i18n.ui.text.Close,
+				handler: function(){
+						win.close();
+						leprechaunSpotlightoff();
+						rCallback(callback);
+					}
+				}]
+		});
+	win.show();
+}
+Ext.onReady(function(){
+  wmdk.uri = '${env:uri:/pages/leprechaun/welcome.html}';
+	hEditPage(wmdk.uri, 'Welcome', false, null, {closable: false});
+});
+Ext.onReady(function(){
+	var s = Ext.util.Cookies.get('leprechaun.seq');
+	var t = Ext.util.Cookies.get('leprechaun.tick');
+	var seq = s ? parseInt(s) : 0;
+	var tick = t ? parseInt(t) : 0;
+	var day = parseInt(new Date() / 3600000 / 24);
+	if(seq <= tipsCount && tick <= day)
+	{
+		var expiredays = 1000;
+		var exdate = new Date();
+		exdate.setTime(exdate.getTime() + (expiredays * 24 * 3600 * 1000));
+		Ext.util.Cookies.set('leprechaun.tick', day + 1 , exdate);
+		Ext.util.Cookies.set('leprechaun.seq', ++seq , exdate);
+		loadTip(seq);
+	}
+	var toolbar = Ext.getCmp('wmdk-main-toolbar');
+	toolbar.insert(10, {
+		id: 'wmdk-tb-tooltip',
+		text: '${i18n:wmdk.extension.leprechaun.text.tooltips}',
+		iconCls: 'wmdk-tb-tips',
+		handler: function() {
+			loadTip(Math.min(seq, tipsCount));
+		}
+	});
+	toolbar.insert(10, '-');
+	toolbar.doLayout();
+	Ext.getCmp('wmdk-tp-processor-context').addTool({
+		id:'help',
+		handler: function() {
+			var cmp = Ext.getCmp('wmdk-tp-processor-context');
+			var selNode = cmp.getSelectionModel().getSelectedNode();
+			if(selNode)
+			{
+				var path = ['context'];
+				while(selNode != null && cmp.root != selNode)
+				{
+					path.splice(1, 0, selNode.text);
+					selNode = selNode.parentNode;
+				}
+				jQuery.get('../../pages/leprechaun/tips!help.x',
+					{path: path.join('.'), dc: tick},
+					function(xml) {
+						var seq = parseInt(jQuery('seq', xml).text());
+						showTip(seq, xml);
+					}
+				);
+			}
+		}
+	});
+	jQuery('#wmdk-dynamic-context-reference hr').before(jQuery('.wmdk-leprechaun-prospective'));
+  uSetProspective('leprechaun');
+});
+function leprechaunTooltip(id, text, delay, dismiss, pos)
+{
+	setTimeout(function() {
+		var tt = new Ext.ToolTip({
+			anchor: 'top',
+			dismissDelay: dismiss || 5000,
+			html: text
+		});
+		tt.showBy(id, pos || 'b');
+	}, delay || 1000);
+}
+function leprechaunSpotlight(s)
+{
+	spot = new Ext.ux.Spotlight({
+		easing: 'easeOut',
+		duration: .3
+	});
+	spot.show(s);
+}
+function leprechaunSpotlightoff()
+{
+	if(spot)
+	{
+		spot.hide();
+		spot = null;
+	}
+}
+		</script>]]>
+	</html>
+</configures>

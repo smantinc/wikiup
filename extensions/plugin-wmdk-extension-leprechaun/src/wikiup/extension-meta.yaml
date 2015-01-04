@@ -1,0 +1,4 @@
+name: wikiup-extension-wmdk-leprechaun
+title: ${extensions.wmdk.leprechaun.title}
+brief: ${extensions.wmdk.leprechaun.brief}
+description: ${extensions.wmdk.leprechaun.description}

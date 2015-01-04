@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<context>
+		<sc>
+			<realPath>100</realPath>
+		</sc>
+		<expr>
+			<eval>101</eval>
+		</expr>
+		<i18n>108</i18n>
+		<param>107</param>
+		<entity>109</entity>
+		<var>110</var>
+		<env>
+			<prop>102</prop>
+			<conf>103</conf>
+			<uri>104</uri>
+			<url>104</url>
+			<request>105</request>
+		</env>
+		<util>
+			<datetime>106</datetime>
+			<random>18</random>
+		</util>
+	</context>
+</root>

@@ -1,0 +1,24 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>IBATIS SQL Maps</title>
+</head>
+<body>
+<h3>1. IBATIS SQL Maps</h3>
+
+<p>Without creating a sqlmap-config, all xml files placed at these location below are loaded automaticlly</p>
+<ul>
+    <li>classpath:/wikiup/ibatis/sql-maps</li>
+    <li>webroot:${env:uri:/WEB-INF/wikiup/ibatis/sql-maps}</li>
+</ul>
+<p>Current sqlmaps available:</p>
+<dl>
+    <wk:foreach in="list">
+        <dt>$id</dt>
+        <dd>Name: $firstName $lastName</dd>
+    </wk:foreach>
+</dl>
+</body>
+</html>

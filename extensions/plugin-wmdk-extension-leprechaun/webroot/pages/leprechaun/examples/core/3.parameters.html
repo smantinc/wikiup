@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Parameters</title>
+</head>
+<body>
+<h3>3. Parameters</h3>
+<h4>Hello World <em>$!{param.name}{folks}</em>!</h4>
+
+<p>The most heavily used inputs are http request parameters.</p>
+
+<p>As you might already know, the HTTP requests can be accessible from a context named '\$param'.</p>
+
+<p>Here are the patterns show you how to get request parameters displayed on pages. Try to click 'Submit' button
+    below:</p>
+
+<form id="form1" name="form1" method="get" action="">
+    <label> name =
+        <input name="name" type="text" id="name" value="$!{param.name}"/>
+    </label>
+    &nbsp;
+    <label>
+        <input type="submit"/>
+    </label>
+</form>
+</body>
+</html>

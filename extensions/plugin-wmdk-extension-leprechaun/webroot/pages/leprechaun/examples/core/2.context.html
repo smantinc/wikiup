@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Context</title>
+</head>
+<body>
+<h3>2. Context</h3>
+<h4>Hello World at ${util.datetime.MM/dd/yyyy EEE HH:mm:ss}</h4>
+
+<p>For every specified requesting url, there are a set of contexts used to render its output.</p>
+
+<p>Any variable with a '\$' token is meant to be replaced by its context value. Like the datetime below:</p>
+
+<p>\${util.datetime} =&gt; ${util.datetime}</p>
+
+<p>There are some predefined context for certain requests, and they are listed <a href="#"
+                                                                                  onclick="parent.loadTip(11); return false">here</a>
+</p>
+<hr/>
+<p>Here are more date examples below if you are really interested in it a lot.</p>
+<dl>
+    <dt>Two and half hours before</dt>
+    <dd>\${util/datetime/HH:mm:ss,-2h30m} =&gt; ${util/datetime/HH:mm:ss,-2h30m}</dd>
+    <dt>Three days after 10-03-2008</dt>
+    <dd>\${util\datetime\MM/dd/yyyy EEE,3d,2008-10-03 00:00:00.0} =&gt; ${util\datetime\MM/dd/yyyy EEE,3d,2008-10-03
+        00:00:00.0}
+    </dd>
+</dl>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<text>
+		<did-you-know>Did You Know?</did-you-know>
+		<tooltips>Tooltips</tooltips>
+		<previous-tip>Previous Tip</previous-tip>
+		<next-tip>Next Tip</next-tip>
+	</text>
+	<welcome-page>
+		<title>Welcome...</title>
+		<recent-files>Recent files:</recent-files>
+		<examples>Examples</examples>
+		<installed-plugins>Installed Plugins</installed-plugins>
+		<plugin-unavailable>Enabled only certain plugin being installed</plugin-unavailable>
+		<plugin-confirm>Are you going to download plugin "{0}"?</plugin-confirm>
+		<get-start>Get Start</get-start>
+		<new-page>New page</new-page>
+		<configure-datasources>Configure datasources</configure-datasources>
+		<import-domain>Import domain from table</import-domain>
+		<create-domain>Create domain from scratch</create-domain>
+		<configure-plugins>Configure plugins</configure-plugins>
+		<application-export>Export your application</application-export>
+	</welcome-page>
+	<tooltip>
+		<domain-btn-ok>Click here to generate a domain with its CRUD pages</domain-btn-ok>
+		<new-page-file-name>Enter your page name here</new-page-file-name>
+		<new-page-file-type>Choose the type of your page in this select box</new-page-file-type>
+		<new-page-btn-ok>Click this button to create</new-page-btn-ok>
+		<domain-post-generate>You can explore domains in this domain manager to see the database records after creating
+			them
+		</domain-post-generate>
+		<page-post-create>The page you've created will appear here in this file explorer, you can also change contents
+			of the page in a newly opened page editor
+		</page-post-create>
+		<datasource-post-config>The catalogs in your datasource will show up here if you've configured it successfully
+		</datasource-post-config>
+		<import-domain-schema>Please select your schema here</import-domain-schema>
+		<import-domain-table>Please select your table name here</import-domain-table>
+		<import-domain-engine>Please select your domain model engine here. Selections are determined by how many domain
+			model engine modules you've installed
+		</import-domain-engine>
+	</tooltip>
+	<tips>
+		<t1>If you are feeling like staying in Wonderland, the best you could do is taking a look at the dynamic help
+			board sign.
+		</t1>
+		<t2>Tooltips dialogue will never pop up more than once in every 24 hours, just in case endless popups which
+			driving you mad. :) But you can still open the dialogue by clicking the 'toolstip' button.
+		</t2>
+		<t3>Did you notice any extra question marks in the title of a panel? Yeah, that's the magic I've done. You will
+			get more infomations about the contents in the panel by click them
+		</t3>
+		<t5>IoC is a honking great idea. Well, the letter 'C' here is NOT Control but Configuration. i.e. Any xml put in
+			/wikiup/hibernate/entities will be loaded by Hibernate Entity Manager. SQL maps which placed in
+			/wikiup/ibatis/sql-maps will be loaded by iBatis. /wikiup/spring/beans will be loaded by Spring bean
+			factory. You should import the certain plugins of coz
+		</t5>
+		<t6>Wikiup enterpise goes much further than just a framework. It can help you with configuration generation,
+			online editing, datasources browsing, and so on.
+		</t6>
+		<t7>Are you one of the RoR or Grails fans ? Scaffolding is one of the greatest invention of the 21th Century,
+			which you will also find here without striking out any shell commands.
+		</t7>
+		<t8>Besides Hibernate, there are other couples of Java persistence framework you can choose for Scaffolding
+			system.
+		</t8>
+		<t9>Configuration which contains default settings such as localhost datasources is ship with its distribution
+			library. It can be overrided. i.e. configuring the datasource connection by clicking this button.
+		</t9>
+		<t10>Contexts are the dynamic models used to render html pages. Any word starts with a $ sign symbol will be
+			replaced by its context value. Different url requests have different contexts
+		</t10>
+		<t11>Contexts are maintained in some sort of tree structs. Contexts of current url request are listed in the
+			right panel here. Double clicking it will popup a message box showing its value which might be the same as
+			using a $ sign symbol in pages.
+		</t11>
+		<t12>You might be curious，it appears that ${env:uri} &amp; ${env.uri} have both shown up in some demostration
+			pages, but which one is correct? The answer is both. ${env/uri} &amp; ${env\uri} will also lead you to the
+			right result. But in some case, i.e. when writing ${env.uri./webdav} or ${env:uri:index.html} you should
+			choose the delimeters carefully cause not all of them give you the correct output.
+		</t12>
+		<t13>Plugins and modules, jar files in most occasion, will be automatically installed by deploying them in the
+			Java classpath.
+		</t13>
+		<t14>After installing the corresponding module. Regarding to default configuration, *.groovy, *.py, *.rb scripts
+			will be executed by accessing them via the servlet.
+		</t14>
+		<t15>Uninstall the 'leprechaun' plugin if you are getting tired of the tips. Most of the modules can be
+			installed/uninstalled in the plugins manager.
+		</t15>
+		<t16>Some security exceptions will raise when you are trying to use wikup.org sandbox demostration, causing by
+			its strict security settings. Problems would disapear after being exported on your own machines
+		</t16>
+		<t17>Those contents between &lt;wk:pre&gt;&lt;/wk:pre&gt; will be output to pages unaltered. It might help when
+			there are javascripts in your pages
+		</t17>
+		<t18>One of the REST concepts is specifying method parameters by the presentation of URI, so $util.random.string
+			$util.random.string.4 $util.random.integer $util.random.integer.4 all work well.
+		</t18>
+		<t19>Scaffolding will handle dialect problems by generation corresponding sqlmap against different datasources
+			when the ibatis engine's chosen
+		</t19>
+		<t20>WMDK which helps you maintain web resources and plugins is also a plugin. Visit the index page
+			/pages/wmdk/index.html after plugin depolyment being done.
+		</t20>
+		<t21>Informations in the tips might only suit for current web application, not all. Because there is no strict
+			specification defining what is 'var' 'entity' 'param', they are just names which might be changed by some
+			others
+		</t21>
+		<t22></t22>
+		<t23>Since I cannot create Pojo java class for you, default entity result class is hashmap. But nothing stops
+			you writing DO class and editing IBATIS sqlmap or Hibernate configurations to complete pojo mapping.
+		</t23>
+		<t24>IT producers are always facing a agony dilemma, which is the only thing he can do is waiting forever if he
+			wants something perfect. Please submit bugs and suggestion in 'Submit Bugs' dialogue, we are looking forward
+			to your feedbacks
+		</t24>
+		<t25>Scaffolding helps you with creating CRUD pages, which placed under /domain/"Entity Name"/, and I'm bet only
+			these pages won't suit you very well because things are more complex in the real world. So, use it as a
+			guide line, change it all by yourselves making them work better.
+		</t25>
+		<t26>After installing webdav module, you can use some tools supports webdav protocol (like Dreamweaver) to
+			explore webdav://localhost:8080/webdav, to modify web resources
+		</t26>
+		<t27>You can export the whole application to your local machine to deploy on if you have JRE &amp; ant installed
+			on your computer
+		</t27>
+		<t28>Including the tips helping system 'Leprechaun', many features are provided by pluggable modules. Call a
+			plugin manager to pop by clicking the 'Plugins' button.
+		</t28>
+		<t29>You've got a chance to customize your modules and plugins before exporting the application. Only the active
+			modules will be exported with your application, so diasable the ones you don't want to package then start
+			the exporting
+		</t29>
+		<t30>Wikiup supports and recommends the using of dynamic languages such as Groovy, Python, Ruby to build your
+			agile applications
+		</t30>
+		<t31>Dependencies and conflicts might happen between some of those plugins. We've tried to reduce the cases to
+			mininal. But eg. C3p0 and Dbcp modules conflict with each other all the time, causing either being disabled
+			by the system if you were installing both
+		</t31>
+		<t32>The system will help you with scaffolding those CRUD pages and the definition of a domain by the table
+			you've created in datasource at the time you clicking the 'import' tool button in the datasource explorer
+		</t32>
+
+		<t100>sc.realPath returns the realpath of web context resource file like ServletContext.getRealPath.
+			${sc:realPath:/} displays '/var/wwwroot', ${sc:realPath:index.html} displays '/var/wwwroot/index.html' if
+			web archive deployed in /var/wwwroot
+		</t100>
+		<t101>expr.eval the expression evaluator, support arithmetic expression and math functions. i.e.
+			${expr:eval:1 + 1} = 2，${expr:eval:1 + sin(0)} = 1
+		</t101>
+		<t102>env.prop displays properties, i.e. ${env:prop:wikiup.charset} is current system charset</t102>
+		<t103>env.conf displays configures，xml &amp; yaml files placed under /wikiup/configure/</t103>
+		<t104>env.uri and env.url are very insteresting. They display the current page url when used alone, such as
+			${env.url}, retrieving current working page, i.e. http://localhost:8080/index.html. When combined with a
+			path，i.e. ${env:uri:/images/s.gif} return /images/s.gif (context-path assumped "/")
+		</t104>
+		<t105>env.request is a wrapper of HttpServletRequest, providing bean access abilities. i.e.
+			${env.request.headers.user-agent}
+		</t105>
+		<t106>util.datetime datetime converter. Usage: ${util:datetime:yyyy-MM-dd} today,
+			${util:datetime:yyyy-MM-dd,-3d} 3days ago
+		</t106>
+		<t107>param might be the most heavily used context. It does the same job like request.getParameter. i.e.
+			$param.id. But please be careful, cause it raises exception when parameter doesn't exist. Additional
+			selectors like '!' '+' are advised. i.e. $!param.id $+param.id{0}
+		</t107>
+		<t108>i18n is used to handle international information. It picks the prefered language package provided by your
+			browser to render pages.
+		</t108>
+		<t109>entity context stores a set of entities. Once created, it can be accessed in pages</t109>
+		<t110>var context contains temporary variables, threadlocal variables, cookies, session variables</t110>
+	</tips>
+</root>

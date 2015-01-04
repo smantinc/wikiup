@@ -1,0 +1,30 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>Ruby Variables</title>
+</head>
+<body>
+<h3>1. Ruby Context Variables</h3>
+
+<p>An existing ruby script, which named the same as the requesting url but with the 'rb' extension, is implicitly
+    executed before rendering views.</p>
+
+<p>After that, the variables defined in the script can be replaced by using a '\$' prefix. Here goes:</p>
+<hr/>
+<dl style="margin: 5px 0 0 15px">
+    <dt>a</dt>
+    <dd>a = $a</dd>
+    <dt>b</dt>
+    <dd>b = $b</dd>
+    <dt>c</dt>
+    <dd>sum(
+        <wk:foreach var="i" in="c">$i,</wk:foreach>
+        ) = $cs
+    </dd>
+    <dt>now</dt>
+    <dd>now = $now</dd>
+</dl>
+</body>
+</html>

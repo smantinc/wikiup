@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root tips-count="32">
+	<s1>wmdk-dynamic-help-sign</s1>
+	<s2>wmdk-tb-tooltip</s2>
+	<s8>wmdk-tb-entity-manager</s8>
+	<s9>wmdk-tb-datasource</s9>
+	<s11>wmdk-tp-processor-context</s11>
+	<s24>wmdk-tb-bug-report</s24>
+	<s27>wmdk-tb-export</s27>
+	<s28>wmdk-tb-plugin</s28>
+</root>

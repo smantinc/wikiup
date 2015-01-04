@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+en-us:
+  extensions:
+    wmdk:
+      leprechaun:
+        title: Wikiup WMDK Tips and Helping Extension
+        brief: This extension contains tips and help samples which help you understanding how to handle this system 
+        description:
+zh-cn:
+  extensions:
+    wmdk:
+      leprechaun:
+        title: Wikiup WMDK 帮助和提示扩展
+        brief: 本扩展包含小贴士和一些例子帮助您理解如何使用此在线开发平台
+        description:

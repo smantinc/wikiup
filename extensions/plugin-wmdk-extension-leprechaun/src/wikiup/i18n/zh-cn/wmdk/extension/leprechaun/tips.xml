@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+	<text>
+		<did-you-know>您知道吗？</did-you-know>
+		<tooltips>小贴士</tooltips>
+		<previous-tip>上一条</previous-tip>
+		<next-tip>下一条</next-tip>
+	</text>
+	<welcome-page>
+		<title>欢迎您的使用!</title>
+		<recent-files>最近打开文件:</recent-files>
+		<examples>代码示例</examples>
+		<installed-plugins>插件列表</installed-plugins>
+		<plugin-unavailable>需要安装对应的插件后才可使用</plugin-unavailable>
+		<plugin-confirm>您现在准备好下载"{0}"插件了吗？</plugin-confirm>
+		<get-start>快速上手</get-start>
+		<new-page>新建页面</new-page>
+		<configure-datasources>配置数据源</configure-datasources>
+		<import-domain>通过数据库表导入域对象</import-domain>
+		<create-domain>创建一个测试域对象</create-domain>
+		<configure-plugins>定制系统中的插件</configure-plugins>
+		<application-export>导出您的应用</application-export>
+	</welcome-page>
+	<tooltip>
+		<domain-btn-ok>点击这里可以生成一个域对象，以及它的增删改查页面</domain-btn-ok>
+		<new-page-file-name>在这里输入您要创建的页面名称</new-page-file-name>
+		<new-page-file-type>这里选择您要创建的文件类型</new-page-file-type>
+		<new-page-btn-ok>点击这里创建一张新的页面</new-page-btn-ok>
+		<domain-post-generate>在您创建实体域之后，可以在“实体域浏览器”中点击查看该实体域模型中的数据记录</domain-post-generate>
+		<page-post-create>在“文件浏览器”中可以找到您刚刚创建的页面，同时系统会为您自动打开该页面的编辑器</page-post-create>
+		<datasource-post-config>如果您的数据源配置成功，在“数据源浏览器”中就可以看到数据源中的数据库列表了</datasource-post-config>
+		<import-domain-schema>请选择您要导入域对象的库名称</import-domain-schema>
+		<import-domain-table>请选择您要导入域对象的数据表名称</import-domain-table>
+		<import-domain-engine>请选择您的域模型引擎，这里的选项会由您安装的具体实体域模型引擎模块而决定</import-domain-engine>
+	</tooltip>
+	<tips>
+		<t1>如果您找不到一点头绪，请尝试着去使用“现在可以干嘛？”面板上列出的命令</t1>
+		<t2>为了降低反复地弹出窗口而导致您抓狂的可能性，小贴士24小时内只会弹出一次。不过，您可以主动点击“小贴士”按钮来获得更多的帮助信息</t2>
+		<t3>发现某些面板上出现了‘?’按钮吗？，没错，是我添加上去的。点击他们可以看到对面板中对象的小贴士</t3>
+		<t4>Wikiup是一个开放的框架，您可以即时查看系统运行时的对象数据结构，并能够查看修改其数据值，以便于调试或者获取帮助信息。此功能借鉴于Python的dir函数</t4>
+		<t5>
+			IoC是个奇妙的点子。不过，在这里C不是控制(Control)，而是配置(Configuration)。举个例子吧：放在/wikiup/hibernate/entities下的配置会默认被Hibernate加载，放在/wikiup/ibatis/sql-maps下的配置会默认被iBatis读取，放在/wikiup/spring/beans里的配置，会放入Spring容器。当然，前提是您开启了这些插件
+		</t5>
+		<t6>既然都IoC了，既然约定胜过配置了，我似乎帮助您做了不少的事情。那为什么不更进一步，自动帮你生成默认的配置文件呢？</t6>
+		<t7>您是RoR或者Grails的粉丝吗？ 脚手架是一项伟大的发明。而且您在这里也能找到它，如何使用？ 小提示： 不一定要用命令行的形式。</t7>
+		<t8>有人规定了只允许用Hibernate实现脚手架功能吗？ 这个问题也许不那么重要。关键在于，你最喜欢，最希望用什么模块为脚手架提供支持功能？</t8>
+		<t9>
+			零配置是我们搭建环境时永恒的目标，您现在使用的数据源都有一份连接到本地服务的默认配置。默认配置无法修改吗？或者需要您手动编辑Jar文件中的资源吗？Wikiup还没这么地糟糕，点击数据源按钮就可以修改它的默认链接地址。
+		</t9>
+		<t10>上下文内容是一次页面请求中生成的数据和变量，您可以在很多地方，譬如页面上，通过$符号来引用它们。您可以配置不同的上下文集合对应不同的请求地址</t10>
+		<t11>上下文变量存放在树形数据结构中，你可以在右侧的列表里找到当前的请求中有多少变量已被赋值，双击它可以查看它的值，和你在页面中通过$来应用它们的内容一样</t11>
+		<t12>
+			您可能会奇怪，${env:uri}和${env.uri}似乎都出现过，到底用哪个？正确的答案是，都行！你甚至可以写${env/uri}或${env\uri}，不过，需要输出${env.uri./webdav}和${env:uri:index.html}时，某些写法将会得不到正确的结果
+		</t12>
+		<t13>如果您获得了本系统其他的功能插件，并希望安装他们，只需要做一件事情，将它们（通常是jar文件）拷贝到classpath下即可</t13>
+		<t14>默认情况下，在浏览器中访问*.groovy，*.py，*.rb文件会自动将他们作为动态脚本执行。同样，前提也是您需要开启这些插件</t14>
+		<t15>如果您厌倦了弹出提示，可以在插件管理中将它卸载，它仅是一个插件而已。另外，本系统中用到的大部分插件，都不是必须的，请根据您的实际需要酌情安装</t15>
+		<t16>出于安全性的考虑，本服务器上的安全策略较为严格，因此，部分功能，特别是动态脚本插件，可能会出现运行时错误，没有关系，当您将他们打包发布到您机器上的时候，一切都会恢复正常</t16>
+		<t17>&lt;wk:pre&gt;&lt;/wk:pre&gt;之间的内容会原封不动地输出到页面上，当您使用某些前端框架（如jQuery）时非常有用，这么做避免了将$符号在后台就被优先处理掉。某些情况下，在$前面加上转义符'\'也是不错的选择</t17>
+		<t18>REST的中心思想之一是用访问地址信息描述功能参数，在这里的类似例子也很多，您能够用以下多种写法${util.random.string} ${util.random.string.4}
+			${util.random.integer} ${util.random.integer.4}得到您想要的内容
+		</t18>
+		<t19>当您用iBatis实体引擎通过脚手架功能生成实体访问页面时，系统会根据您当前的数据库引擎自动解决方言的问题</t19>
+		<t20>
+			虽然描述起来有些拗口，但仍然需要澄清一点：尽管本系统可以单独运行并拥有众多插件，但这并不阻碍其成为其他应用的插件。需要您将wikiup-module-wmdk.jar和其他一些依赖文件放到classpath中（使用ivy可以简化此操作），启动服务后访问地址/pages/wmdk/index.html即可
+		</t20>
+		<t21>本帮助中的某些信息只适合于当前环境，因为Wikiup并没有强硬地规定上下文entity必须要存放实体信息，var中必须要存放变量信息。这些名字都能随着您的意志而改变。</t21>
+		<t22>系统提供关联实体查询功能吗？ 是的。脚手架功能提供关联实体查询页面的生成吗？ 很遗憾，暂时不提供。也许在某一天，您发现此条帮助信息消失时，关联实体浏览已经悄悄地出现在脚手架功能中了</t22>
+		<t23>Hibernate插件默认采用的是Map的Entity映射模式，因为我还无法帮您自动生成POJO对象。需要您自己用Java或者Groovy来实现后，将Entity映射模式改为POJO模式</t23>
+		<t24>
+			IT业的产品经理面临一个无法调和的矛盾：如果他希望得到一个完美的产品，似乎他唯一能做的就是无限期地等下去。因此，在使用中您发现了任何的Bug，或者有更好的点子，请点击“提交Bug”按钮告诉我们您的想法。我们迫切地期望能够得到您的反馈
+		</t24>
+		<t25>
+			脚手架功能会自动帮你生成多套实体访问模板页面，他们都具备实体的CRUD功能，默认放置在/domain/实体名称/之下。我敢打包票说他们无法满足当今复杂的业务需求，与其说他们是功能页面，还不如将他们比作入门级的例子，具体如何使用取决于您自己的意志，而且您可以做得更好
+		</t25>
+		<t26>
+			如果您安装了webdav插件，您就能够通过webdav的形式访问localhost:8080/webdav地址，其中存放的就是网站的文件资源，而您可以使用某些支持webdav的工具（如Dreamwaver）方便地编辑页面，让本系统提供的简单的网页在线编辑功能见鬼去吧！
+		</t26>
+		<t27>如果您的机器上安装了JRE和ant，则可以将当前应用打包下载到本地，在/build文件夹下键入“ant
+			run”后，就能重新编译并启动服务，在浏览器中输入http://localhost:8080/pages/wmdk/index.html即可打开此页面
+		</t27>
+		<t28>本系统的功能大部分是采用引入插件的形式实现，包括您现在看到的帮助小贴士功能。点击右上方的菜单栏上的“管理插件”来选择您所需要的插件列表</t28>
+		<t29>导出应用的时候，您开启的插件也会一并被导出。您可以通过这样的方式有选择性地导出部分插件。例如，您可以选择是否导您出现在看到的帮助小贴士功能</t29>
+		<t30>Wikiup支持，并建议您使用动态语言，如Groovy、Python、Ruby，去实现绝大多数的业务逻辑，以方便日后的维护工作。</t30>
+		<t31>模块和插件之前可能互相依赖，也可能互相冲突。我们尽力减少此类情况的发生。但，例如，c3p0和dbcp两模块之间无法避免地会有冲突，如果您同时安装了他们，系统则会随机禁用掉其中的一个</t31>
+		<t32>点击“数据库浏览器”上的“导入实体”按钮，可以将已经定义好的数据库里的表格自动生成实体域对象，并生成其增删改查页面</t32>
+
+		<t100>
+			sc.realPath返回当前web容器中资源的真实地址，例如，您的web资源部署在/var/wwwroot下，那么${sc:realPath:/}将返回上述地址，${sc:realPath:index.html}将返回/var/wwwroot/index.html
+		</t100>
+		<t101>expr.eval是内置的简单表达式计算工具，支持加减乘除取模五则运算，以及java.lang.Math中的函数。例如：${expr:eval:1 + 1} = 2，${expr:eval:1 + sin(0)}
+			= 1
+		</t101>
+		<t102>env.prop用来读取内置properties文件的配置信息，例如${env:prop:wikiup.charset}返回当前系统的默认编码</t102>
+		<t103>env.conf用来读取内置xml文件的配置信息，放在/wikiup/configure/文件夹中的所有xml文件都会被读取成为系统配置，其内容通常由用户自己定义</t103>
+		<t104>
+			env.uri和env.url都非常有趣，因为，如果您单独使用他们，例如${env.url}，它将返回请求的地址，如http://localhost:8080/index.html，如果您带上参数访问，例如${env:uri:/images/s.gif}它会返回/images/s.gif（上述例子中，假设了您的context-path是空）
+		</t104>
+		<t105>env.request就是那个任何情况下您都非常需要的HttpServletRequest对象，可以通过bean的方式取值，例如${env.request.headers.user-agent}</t105>
+		<t106>
+			util.datetime是处理时间的方法，他有四个参数，简单起见，这里只介绍前两个，余下的请参考开发手册：显示格式和时间间隔。例如${util:datetime:yyyy-MM-dd}生成当天的日期，${util:datetime:yyyy-MM-dd,-3d}生成3天之前的日期
+		</t106>
+		<t107>
+			param可能是你使用的最多的一个上下文变量，用它可以取得页面输入参数，等同于request.getParameter。例如${param:id}，小心，当参数不存在时，它会抛出异常，所以您需要加上！或者+选择器让防止过程的中断，例如$!{param.name}
+		</t107>
+		<t108>嗯，i18n用来处理国际化信息，根据您浏览器提交的语言偏好选择最合适的语言。如果现在您看到的是亲切的母语，这全部都是它的功劳</t108>
+		<t109>这里用来存放生成当前页面所需要的实体对象，一旦实体建立后，在页面上就能访问他们和他们从属实体的值。 此时，您有可能需要使用到&lt;wk:foreach&gt;标签来进行重复区域的迭代工作</t109>
+		<t110>var用来存放一些临时变量，或者线程变量，或者cookie变量等等，全部取决于您在定义他们的时候标注的scope信息</t110>
+	</tips>
+</root>

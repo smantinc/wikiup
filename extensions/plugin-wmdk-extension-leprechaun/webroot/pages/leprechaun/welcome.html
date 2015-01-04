@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title></title>
+    <link href="js_css/style.css" rel="stylesheet" type="text/css"/>
+    <script language="javascript">
+        var parentname = '${env:uri:${env:location:parentname}/examples}';
+    </script>
+    <script type="text/javascript" src="js_css/helper.js"></script>
+    <script type="text/javascript" src="js_css/examples.js"></script>
+</head>
+<body>
+<div class="wmdk-page">
+    <i18n:wmdk.extension.leprechaun.welcome-page>
+        <h1>$title</h1>
+
+        <div class="wmdk-welcome-columns">
+            <div class="wmdk-column">
+                <h2>${installed-plugins}</h2>
+                <ul>
+                    <psd:wikiup-plugin-wmdk title="Wikiup WMDK" plugin="true" tooltip="${plugin-unavailable}"/>
+                    <psd:wikiup-plugin-wordpress title="WordPress" plugin="true" tooltip="${plugin-unavailable}"/>
+                </ul>
+            </div>
+            <div class="wmdk-column">
+                <h2>${examples}</h2>
+                <!--        <ul>
+                  <li><a href="#" onclick="showExample(parentname + '/core'); return false">Basic Moves</a></li>
+                </ul>-->
+                <ul>
+                    <psd:wikiup-module-jython title="Python Language" category="python"
+                                              tooltip="${plugin-unavailable}"/>
+                    <psd:wikiup-module-ruby title="Ruby Language" category="ruby" tooltip="${plugin-unavailable}"/>
+                    <psd:wikiup-module-jsp title="JSP" category="jsp" tooltip="${plugin-unavailable}"/>
+                    <psd:wikiup-module-php title="PHP" category="php" tooltip="${plugin-unavailable}"/>
+                    <psd:wikiup-module-velocity title="Velocity" category="velocity" tooltip="${plugin-unavailable}"/>
+                </ul>
+            </div>
+            <div class="wmdk-column">
+                <h2>${get-start}</h2>
+                <ul style="list-style: decimal; margin-left: 20px">
+                    <li><a href="#" onclick="return hCreateTestPage()">${new-page}</a></li>
+                    <li><a href="#" onclick="return hConfigureDatasources()">${configure-datasources}</a></li>
+                    <li><a href="#" onclick="return hCreateTestDomain()">${create-domain}</a></li>
+                    <li><a href="#" onclick="return hImportTestDomain()">${import-domain}</a></li>
+                    <li><a href="#" onclick="return hWelcomeConfigurePlugins()">${configure-plugins}</a></li>
+                    <li><a href="#" onclick="return hWelcomeExportApplication()">${application-export}</a></li>
+                </ul>
+            </div>
+            <div style="clear: both"></div>
+        </div>
+    </i18n:wmdk.extension.leprechaun.welcome-page>
+</div>
+<div id="leprechaun-sample-header" style="display: none">
+    <ul>
+        <li>These tabs below are the files which are put within a directory to make the example work</li>
+        <li>Click on 'Previous' and 'Next' to select on different examples</li>
+    </ul>
+</div>
+</body>
+</html>
