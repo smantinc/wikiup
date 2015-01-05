@@ -1,13 +1,13 @@
 package org.wikiup.core.bean;
 
-import org.wikiup.core.impl.mp.SingletonModelProvider;
+import org.wikiup.core.impl.beanfactory.Singleton;
 
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class WikiupDynamicSingletons extends SingletonModelProvider {
+public class WikiupDynamicSingletons extends Singleton {
     static private Map<Class<?>, Object> byClasses = new HashMap<Class<?>, Object>();
     static private Set<Object> singletons = new HashSet<Object>();
     static private WikiupDynamicSingletons instance = null;

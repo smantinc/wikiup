@@ -1,7 +1,7 @@
 package org.wikiup.modules.ibatis.bindable;
 
 import org.wikiup.core.impl.context.MapContext;
-import org.wikiup.core.impl.mp.ByTypeModelProvider;
+import org.wikiup.core.impl.beanfactory.ByField;
 import org.wikiup.core.impl.wirable.WireByGetter;
 import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.inf.Bindable;
@@ -33,7 +33,7 @@ public class DataStore implements BeanFactory, Bindable {
             if(binded == store)
                 bind(model = Interfaces.newInstance(clazz));
             else
-                model = new ByTypeModelProvider(binded).query(clazz);
+                model = new ByField(binded).query(clazz);
         Assert.notNull(model, InsufficientPrimaryKeys.class, binded, clazz.getName());
         return model;
     }
