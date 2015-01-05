@@ -1,6 +1,6 @@
 package org.wikiup.database.impl.datasource;
 
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.database.inf.DataSourceInf;
 import org.wikiup.database.inf.DatabaseDriver;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
 import java.util.logging.Logger;
 
-public class DataSourceWrapper implements DataSourceInf, ModelProvider {
+public class DataSourceWrapper implements DataSourceInf, BeanFactory {
     protected DataSource dataSource;
 
     public Connection getConnection(String username, String password) throws SQLException {
@@ -68,7 +68,7 @@ public class DataSourceWrapper implements DataSourceInf, ModelProvider {
         return null;
     }
 
-    public <E> E getModel(Class<E> clazz) {
+    public <E> E query(Class<E> clazz) {
         return Interfaces.cast(clazz, DataSource.class.isAssignableFrom(clazz) ? getDataSource() : this);
     }
 }

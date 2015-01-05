@@ -41,7 +41,7 @@ public abstract class WikiupDynamicSingleton<E extends WikiupDynamicSingleton> i
 
     @Deprecated
     synchronized static protected <E> E getInstance(Class<E> clazz) {
-        return WikiupDynamicSingletons.getInstance().getModel(clazz);
+        return WikiupDynamicSingletons.getInstance().query(clazz);
     }
 
     public void cloneFrom(E instance) {

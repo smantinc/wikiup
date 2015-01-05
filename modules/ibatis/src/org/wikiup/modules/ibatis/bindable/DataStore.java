@@ -4,7 +4,7 @@ import org.wikiup.core.impl.bindable.ByPropertyNames;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.impl.mp.ByTypeModelProvider;
 import org.wikiup.core.inf.Bindable;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.database.exception.InsufficientPrimaryKeys;
@@ -12,7 +12,7 @@ import org.wikiup.database.exception.InsufficientPrimaryKeys;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DataStore implements ModelProvider, Bindable {
+public class DataStore implements BeanFactory, Bindable {
     private Map<String, Object> store = new HashMap<String, Object>();
     private Object binded = store;
 
@@ -26,13 +26,13 @@ public class DataStore implements ModelProvider, Bindable {
         }
     }
 
-    public <E> E getModel(Class<E> clazz) {
+    public <E> E query(Class<E> clazz) {
         E model = Interfaces.cast(clazz, binded);
         if(model == null)
             if(binded == store)
                 bind(model = Interfaces.newInstance(clazz));
             else
-                model = new ByTypeModelProvider(binded).getModel(clazz);
+                model = new ByTypeModelProvider(binded).query(clazz);
         Assert.notNull(model, InsufficientPrimaryKeys.class, binded, clazz.getName());
         return model;
     }

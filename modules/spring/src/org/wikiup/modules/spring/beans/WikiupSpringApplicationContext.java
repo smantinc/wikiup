@@ -9,8 +9,8 @@ import org.wikiup.core.impl.mp.InstanceModelProvider;
 import org.wikiup.core.impl.translator.lf.RegexpMatchLogicalTranslator;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.ModelProvider;
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.inf.ext.LogicalTranslator;
 import org.wikiup.core.inf.ext.ModelFactory;
 import org.wikiup.core.util.Documents;
@@ -33,7 +33,7 @@ public class WikiupSpringApplicationContext extends AbstractXmlApplicationContex
         definitionNames = new ArrayIterable<String>(getBeanDefinitionNames());
     }
 
-    public ModelProvider get(String name) {
+    public BeanFactory get(String name) {
         Object bean = getBean(name);
         return bean != null ? new InstanceModelProvider(bean) : null;
     }

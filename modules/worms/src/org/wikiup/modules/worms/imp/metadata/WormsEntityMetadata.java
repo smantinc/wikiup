@@ -2,7 +2,7 @@ package org.wikiup.modules.worms.imp.metadata;
 
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class WormsEntityMetadata implements EntityMetadata, ModelProvider {
+public class WormsEntityMetadata implements EntityMetadata, BeanFactory {
     public Document description;
 
     public WormsEntityMetadata extendz;
@@ -85,7 +85,7 @@ public class WormsEntityMetadata implements EntityMetadata, ModelProvider {
         return Documents.getAttributeValue(entity != null ? entity : description, name, defValue);
     }
 
-    public <E> E getModel(Class<E> clazz) {
+    public <E> E query(Class<E> clazz) {
         return Interfaces.findAssignable(clazz, description, this);
     }
 }

@@ -6,7 +6,7 @@ import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.ContextUtil;
@@ -30,8 +30,8 @@ public class VariableProcessorContext implements ProcessorContext, ServletProces
         this.context = context;
     }
 
-    public ModelProvider getModelContainer(String name, Getter<?> params) {
-        return Interfaces.cast(ModelProvider.class, variables.get(name));
+    public BeanFactory getModelContainer(String name, Getter<?> params) {
+        return Interfaces.cast(BeanFactory.class, variables.get(name));
     }
 
     public Object get(String name) {

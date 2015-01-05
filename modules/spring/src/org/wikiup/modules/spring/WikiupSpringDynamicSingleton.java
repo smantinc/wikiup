@@ -1,7 +1,6 @@
 package org.wikiup.modules.spring;
 
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.ApplicationContext;
@@ -11,8 +10,8 @@ import org.springframework.context.NoSuchMessageException;
 import org.springframework.core.io.Resource;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.impl.iterable.IterableCollection;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.ModelProvider;
 import org.wikiup.core.inf.Setter;
 import org.wikiup.core.inf.ext.ModelFactory;
 import org.wikiup.core.util.Interfaces;
@@ -27,20 +26,15 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class WikiupSpringDynamicSingleton extends WikiupDynamicSingleton<WikiupSpringDynamicSingleton> implements Setter<ApplicationContext>, ApplicationContext, Iterable<String>, ModelFactory, DocumentAware, ModelProvider {
+public class WikiupSpringDynamicSingleton extends WikiupDynamicSingleton<WikiupSpringDynamicSingleton> implements Setter<ApplicationContext>, ApplicationContext, Iterable<String>, ModelFactory, DocumentAware, BeanFactory {
     private Map<String, ApplicationContext> contexts;
-
-//  public void cloneFrom(WikiupSpringDynamicSingleton instance)
-//  {
-//    contexts = instance.contexts;
-//  }
 
     public void firstBuilt() {
         contexts = new HashMap<String, ApplicationContext>();
     }
 
-    public ModelProvider get(String name) {
-        BeanFactory beanFactory = getBeanFactory(name, false);
+    public BeanFactory get(String name) {
+        org.springframework.beans.factory.BeanFactory beanFactory = getBeanFactory(name, false);
         return beanFactory != null ? new BeanFactoryModelProvider(beanFactory, name) : null;
     }
 
@@ -201,8 +195,8 @@ public class WikiupSpringDynamicSingleton extends WikiupDynamicSingleton<WikiupS
         return null;
     }
 
-    public BeanFactory getParentBeanFactory() {
-        BeanFactory beanFactory;
+    public org.springframework.beans.factory.BeanFactory getParentBeanFactory() {
+        org.springframework.beans.factory.BeanFactory beanFactory;
         for(ApplicationContext ctx : contexts.values())
             if((beanFactory = ctx.getParentBeanFactory()) != null)
                 return beanFactory;
@@ -266,7 +260,7 @@ public class WikiupSpringDynamicSingleton extends WikiupDynamicSingleton<WikiupS
         return iterable.iterator();
     }
 
-    public <E> E getModel(Class<E> clazz) {
+    public <E> E query(Class<E> clazz) {
         for(ApplicationContext ctx : contexts.values()) {
             String[] names = ctx.getBeanNamesForType(clazz);
             if(names.length > 0)

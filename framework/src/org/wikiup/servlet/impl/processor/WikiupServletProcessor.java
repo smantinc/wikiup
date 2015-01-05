@@ -1,6 +1,6 @@
 package org.wikiup.servlet.impl.processor;
 
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.FileUtil;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.servlet.ServletProcessorContext;

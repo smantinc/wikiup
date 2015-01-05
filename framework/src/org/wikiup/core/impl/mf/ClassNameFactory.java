@@ -6,7 +6,7 @@ import org.wikiup.core.impl.element.ElementImpl;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Element;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.inf.ext.ModelFactory;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
@@ -32,7 +32,7 @@ public class ClassNameFactory implements ModelFactory, DocumentAware, Iterable<S
         aware(desc);
     }
 
-    public ModelProvider get(String name) {
+    public BeanFactory get(String name) {
         String className = classNameMap.get(name);
         return className != null ? new AliasNameFactoryModelProvider(factory.get(className), classDocumentMap.get(name)) : null;
     }
@@ -61,21 +61,21 @@ public class ClassNameFactory implements ModelFactory, DocumentAware, Iterable<S
         return classNameMap.keySet().iterator();
     }
 
-    static private class AliasNameFactoryModelProvider implements ModelProvider {
-        private ModelProvider modelProvider;
+    static private class AliasNameFactoryModelProvider implements BeanFactory {
+        private BeanFactory modelProvider;
         private Document document;
 
-        public AliasNameFactoryModelProvider(ModelProvider modelProvider, Document document) {
+        public AliasNameFactoryModelProvider(BeanFactory modelProvider, Document document) {
             this.modelProvider = modelProvider;
             this.document = document;
         }
 
-        public <E> E getModel(Class<E> clazz) {
+        public <E> E query(Class<E> clazz) {
             if(clazz.equals(DocumentAware.class)) {
-                DocumentAware aware = modelProvider.getModel(DocumentAware.class);
+                DocumentAware aware = modelProvider.query(DocumentAware.class);
                 return aware != null ? clazz.cast(document != null ? new AliasNameFactoryModelContainerDocumentAware(aware, document) : aware) : null;
             }
-            return modelProvider.getModel(clazz);
+            return modelProvider.query(clazz);
         }
 
         @Override

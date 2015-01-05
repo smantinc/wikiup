@@ -49,7 +49,7 @@ public class DbcpPooledDataSource extends DataSourceWrapper {
     }
 
     @Override
-    public <E> E getModel(Class<E> clazz) {
+    public <E> E query(Class<E> clazz) {
         return Interfaces.cast(clazz, DataSource.class.isAssignableFrom(clazz) ? orgDataSource : this);
     }
 }

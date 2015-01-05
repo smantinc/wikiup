@@ -2,7 +2,7 @@ package org.wikiup.core.util;
 
 import org.wikiup.core.impl.resource.FileResource;
 import org.wikiup.core.impl.resource.JarFileResource;
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.ext.Resource;
 
 import java.io.File;
 import java.io.IOException;

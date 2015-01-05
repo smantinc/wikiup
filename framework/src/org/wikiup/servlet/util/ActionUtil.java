@@ -3,7 +3,7 @@ package org.wikiup.servlet.util;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
@@ -38,9 +38,9 @@ public class ActionUtil {
 
     private static void doActionList(ServletProcessorContext context, Document node) {
         if(node.getName().equals("foreach")) {
-            ModelProvider mc = context.getModelContainer(Documents.getAttributeValue(node, "in"), context.loadContextAttributes(node));
+            BeanFactory mc = context.getModelContainer(Documents.getAttributeValue(node, "in"), context.loadContextAttributes(node));
             String key = Documents.getAttributeValue(node, "key", null);
-            Iterable<?> iterable = mc != null ? mc.getModel(Iterable.class) : Null.getInstance();
+            Iterable<?> iterable = mc != null ? mc.query(Iterable.class) : Null.getInstance();
             for(Object v : iterable) {
                 if(key != null)
                     context.set(key, v);

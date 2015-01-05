@@ -3,7 +3,7 @@ package org.wikiup.core.bootstrap;
 import org.wikiup.core.bootstrap.inf.ResourceHandler;
 import org.wikiup.core.impl.iterable.IterableCollection;
 import org.wikiup.core.impl.resource.OverridedResource;
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.inf.ext.LogicalTranslator;
 
 import java.util.HashMap;

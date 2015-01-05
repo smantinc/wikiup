@@ -5,7 +5,7 @@ import org.hibernate.metadata.ClassMetadata;
 import org.wikiup.core.impl.attribute.BeanProperty;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Interfaces;
@@ -16,7 +16,7 @@ import org.wikiup.database.orm.EntityRelatives;
 import org.wikiup.database.orm.inf.EntityModel;
 import org.wikiup.modules.hibernate.HibernateEntityManager;
 
-public class PojoEntity implements EntityModel, ModelProvider, Releasable {
+public class PojoEntity implements EntityModel, BeanFactory, Releasable {
     private Object pojo;
     private Class pojoClass;
     private Session session;
@@ -77,7 +77,7 @@ public class PojoEntity implements EntityModel, ModelProvider, Releasable {
         session.close();
     }
 
-    public <E> E getModel(Class<E> clazz) {
+    public <E> E query(Class<E> clazz) {
         return Interfaces.cast(clazz, getPojoInstance());
     }
 

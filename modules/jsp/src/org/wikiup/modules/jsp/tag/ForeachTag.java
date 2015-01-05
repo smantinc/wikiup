@@ -4,7 +4,7 @@ import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.ExpressionLanguage;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.modules.jsp.JspServletContainer;
 import org.wikiup.modules.jsp.JspServletContext;
@@ -19,7 +19,7 @@ import java.util.Iterator;
 public class ForeachTag extends BodyTagSupport {
     private String in;
     private ServletProcessorContext context;
-    private Iterator<ModelProvider> iterator;
+    private Iterator<BeanFactory> iterator;
     private String body;
     private ExpressionLanguage<Getter<?>, String> el = Wikiup.getModel(JspServletContainer.class).getEl();
 
@@ -35,7 +35,7 @@ public class ForeachTag extends BodyTagSupport {
 
     @Override
     public int doStartTag() throws JspException {
-        ModelProvider modelProvider;
+        BeanFactory modelProvider;
         context = JspServletContext.get().context;
         ProcessorContextModelContainer container = context.pushModelContainer();
         if(in != null) {
@@ -54,7 +54,7 @@ public class ForeachTag extends BodyTagSupport {
     @Override
     public int doAfterBody() throws JspException {
         context.popModelContainer();
-        ModelProvider modelProvider;
+        BeanFactory modelProvider;
         if(body == null)
             body = bodyContent.getString();
         try {

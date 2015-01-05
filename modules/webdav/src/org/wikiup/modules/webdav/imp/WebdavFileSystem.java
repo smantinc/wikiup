@@ -6,7 +6,7 @@ import org.wikiup.core.impl.document.DocumentImpl;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.modules.authorization.AuthorizationManager;
@@ -64,10 +64,10 @@ public class WebdavFileSystem extends WikiupDynamicSingleton<WebdavFileSystem> i
     }
 
     public FileSystemInf getFileSystem(ServletProcessorContext context, Document node) {
-        ModelProvider provider = node != null ? Wikiup.getModelProvider(FileSystemInf.class, node) : null;
+        BeanFactory provider = node != null ? Wikiup.getModelProvider(FileSystemInf.class, node) : null;
         context.awaredBy(provider);
         Interfaces.initialize(provider, node);
-        return provider != null ? provider.getModel(FileSystemInf.class) : null;
+        return provider != null ? provider.query(FileSystemInf.class) : null;
     }
 
     public Document getFileSystemConfigure(String path) {

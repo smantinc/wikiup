@@ -1,13 +1,13 @@
 package org.wikiup.core.impl.resource;
 
-import org.wikiup.core.inf.ModelProvider;
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.Interfaces;
 
 import java.io.InputStream;
 import java.util.Collection;
 
-public class OverridedResource implements Resource, ModelProvider {
+public class OverridedResource implements Resource, BeanFactory {
     private Resource resource;
     private Collection<Resource> resources;
 
@@ -36,7 +36,7 @@ public class OverridedResource implements Resource, ModelProvider {
         return resources;
     }
 
-    public <E> E getModel(Class<E> clazz) {
+    public <E> E query(Class<E> clazz) {
         return Interfaces.cast(clazz, resource);
     }
 }

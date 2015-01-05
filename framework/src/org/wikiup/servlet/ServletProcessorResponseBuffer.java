@@ -1,9 +1,9 @@
 package org.wikiup.servlet;
 
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.inf.Releasable;
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
@@ -16,7 +16,7 @@ import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ServletProcessorResponseBuffer implements ModelProvider, Releasable {
+public class ServletProcessorResponseBuffer implements BeanFactory, Releasable {
     private Map<Class<?>, Object> values = new HashMap<Class<?>, Object>();
 
     private StringWriter responseWriter;
@@ -95,12 +95,12 @@ public class ServletProcessorResponseBuffer implements ModelProvider, Releasable
         return getResponseXML("root", true);
     }
 
-    public <E> E getModel(Class<E> clazz) {
+    public <E> E query(Class<E> clazz) {
         E instance = null;
         for(Object obj : values.values())
             if((instance = Interfaces.cast(clazz, obj)) != null)
                 return instance;
-        return instance;
+        return null;
     }
 
     public <E> E getObject(Class<E> clazz) {

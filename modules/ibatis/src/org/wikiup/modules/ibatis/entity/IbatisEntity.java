@@ -2,7 +2,7 @@ package org.wikiup.modules.ibatis.entity;
 
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class IbatisEntity implements EntityModel, ModelProvider {
+public class IbatisEntity implements EntityModel, BeanFactory {
     private IbatisEntityManager entityManager;
     private EntityModel entity = new NullEntity();
     private String name;
@@ -114,11 +114,11 @@ public class IbatisEntity implements EntityModel, ModelProvider {
 
     private Object getParameterObject(String id) {
         Class<?> parameterClass = entityManager.getStatementParameterClass(id);
-        return dataStore.getModel(parameterClass);
+        return dataStore.query(parameterClass);
     }
 
-    public <E> E getModel(Class<E> clazz) {
-        return dataStore.getModel(clazz);
+    public <E> E query(Class<E> clazz) {
+        return dataStore.query(clazz);
     }
 
     private class IbatisEntityAttribute implements Attribute {

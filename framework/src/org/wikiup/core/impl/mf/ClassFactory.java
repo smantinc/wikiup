@@ -3,7 +3,7 @@ package org.wikiup.core.impl.mf;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupClassLoader;
 import org.wikiup.core.impl.mp.InstanceModelProvider;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.inf.ext.ModelFactory;
 import org.wikiup.core.util.Assert;
 
@@ -18,7 +18,7 @@ public class ClassFactory implements ModelFactory {
         this.cl = cl;
     }
 
-    public ModelProvider get(String className) {
+    public BeanFactory get(String className) {
         try {
             Class<?> clazz = cl != null ? cl.get(className) : Class.forName(className);
             Assert.notNull(clazz, ClassNotFoundException.class, className);

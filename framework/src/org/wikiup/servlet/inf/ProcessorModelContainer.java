@@ -1,8 +1,8 @@
 package org.wikiup.servlet.inf;
 
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 
 public interface ProcessorModelContainer {
-    public ModelProvider getModelContainer(String name, Getter<?> params);
+    public BeanFactory getModelContainer(String name, Getter<?> params);
 }

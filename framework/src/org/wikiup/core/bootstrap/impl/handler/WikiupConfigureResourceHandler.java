@@ -2,7 +2,7 @@ package org.wikiup.core.bootstrap.impl.handler;
 
 import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.ext.Resource;
 
 public class WikiupConfigureResourceHandler extends DirectoryDocumentResourceHandler {
     @Override

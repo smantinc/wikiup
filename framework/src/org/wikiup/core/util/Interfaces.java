@@ -10,7 +10,7 @@ import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.ExceptionHandler;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.inf.Provider;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.Setter;
@@ -56,8 +56,8 @@ public class Interfaces {
         return false;
     }
 
-    public static boolean initialize(ModelProvider mc, Document doc) {
-        return mc != null ? initialize(mc.getModel(DocumentAware.class), doc) : false;
+    public static boolean initialize(BeanFactory mc, Document doc) {
+        return mc != null ? initialize(mc.query(DocumentAware.class), doc) : false;
     }
 
     public static <E> Iterable<E> foreach(Object obj) {
@@ -109,19 +109,19 @@ public class Interfaces {
         return eh != null ? eh.handle(ex) : false;
     }
 
-    public static ModelProvider getModelContainer(Object obj) {
+    public static BeanFactory getModelContainer(Object obj) {
         return obj != null ? new GenericModelProvider(obj) : null;
     }
 
     public static <E> E getModel(Object obj, Class<E> clazz) {
-        ModelProvider mc = getModelContainer(obj);
-        return mc != null ? mc.getModel(clazz) : null;
+        BeanFactory mc = getModelContainer(obj);
+        return mc != null ? mc.query(clazz) : null;
     }
 
     public static <E> E getModelFromProvider(Object obj, Class<E> clazz) {
         Provider<?> p = Interfaces.cast(Provider.class, obj);
-        ModelProvider mc = getModelContainer(p != null ? p.get() : obj);
-        return mc != null ? mc.getModel(clazz) : null;
+        BeanFactory mc = getModelContainer(p != null ? p.get() : obj);
+        return mc != null ? mc.query(clazz) : null;
     }
 
     public static <E> E getModel(Iterable<?> iterable, Class<E> clazz) {

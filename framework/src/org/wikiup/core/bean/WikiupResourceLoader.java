@@ -5,7 +5,7 @@ import org.wikiup.core.bootstrap.BootstrapResource;
 import org.wikiup.core.impl.rl.ClassPathResourceLoader;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Releasable;
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.inf.ext.ResourceLoader;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;

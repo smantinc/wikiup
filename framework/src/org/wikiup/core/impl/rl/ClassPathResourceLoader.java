@@ -4,7 +4,7 @@ import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupNamingDirectory;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.inf.ext.ResourceLoader;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Resources;

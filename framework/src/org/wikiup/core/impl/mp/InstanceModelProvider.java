@@ -1,9 +1,9 @@
 package org.wikiup.core.impl.mp;
 
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.util.Interfaces;
 
-public class InstanceModelProvider implements ModelProvider {
+public class InstanceModelProvider implements BeanFactory {
     private Object instance;
 
     public InstanceModelProvider() {
@@ -14,7 +14,7 @@ public class InstanceModelProvider implements ModelProvider {
         this.instance = instance;
     }
 
-    public <E> E getModel(Class<E> clazz) {
+    public <E> E query(Class<E> clazz) {
         return Interfaces.cast(clazz, instance);
     }
 

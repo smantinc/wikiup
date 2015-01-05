@@ -4,7 +4,7 @@ import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.inf.Setter;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.Assert;
@@ -54,12 +54,12 @@ public class TemplateServletProcessor extends ResponseBufferResourceHandler impl
                     int end = searchMarkupClosePosition(text, matcher.end(), markupName);
                     Assert.isTrue(end != -1, CloseMarkupNotFoundException.class, name);
                     String body = text.substring(offset + 1, end);
-                    ModelProvider modelProvider;
+                    BeanFactory modelProvider;
                     offset = text.indexOf('>', end) + 1;
                     if(!doTagProcess(context, name, body, params, writer)) {
                         modelProvider = context.getModelContainer(StringUtil.evaluateEL(name, context), params);
-                        if(modelProvider != null && ValueUtil.toBoolean(modelProvider.getModel(Boolean.class), true)) {
-                            String html = modelProvider.getModel(String.class);
+                        if(modelProvider != null && ValueUtil.toBoolean(modelProvider.query(Boolean.class), true)) {
+                            String html = modelProvider.query(String.class);
                             token.setModelContainer(modelProvider);
                             process(context, parent, html != null ? html : body, params, writer);
                         }
@@ -82,8 +82,8 @@ public class TemplateServletProcessor extends ResponseBufferResourceHandler impl
     }
 
     private String getStringFromModelContainer(ServletProcessorContext context, String name, Getter<?> params) {
-        ModelProvider modelProvider = context.getModelContainer(name, params);
-        Object value = modelProvider != null ? modelProvider.getModel(String.class) : null;
+        BeanFactory modelProvider = context.getModelContainer(name, params);
+        Object value = modelProvider != null ? modelProvider.query(String.class) : null;
         return ValueUtil.toString(value, "");
     }
 

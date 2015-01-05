@@ -1,6 +1,6 @@
 package org.wikiup.core.impl.mp;
 
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.util.Interfaces;
 
@@ -9,22 +9,22 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class SingletonModelProvider implements ModelProvider, Releasable {
+public class SingletonModelProvider implements BeanFactory, Releasable {
     private Map<Class<?>, Object> byClasses = new HashMap<Class<?>, Object>();
-    private ModelProvider factory = new ClassModelProvider();
+    private BeanFactory factory = new ClassModelProvider();
     private Set<Object> singletons = new HashSet<Object>();
 
     public SingletonModelProvider() {
     }
 
-    public SingletonModelProvider(ModelProvider factory) {
+    public SingletonModelProvider(BeanFactory factory) {
         this.factory = factory;
     }
 
-    synchronized public <E> E getModel(Class<E> clazz) {
+    synchronized public <E> E query(Class<E> clazz) {
         E model = Interfaces.cast(clazz, byClasses.get(clazz));
         if(model == null)
-            put(model = factory.getModel(clazz));
+            put(model = factory.query(clazz));
         return model;
     }
 

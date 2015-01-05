@@ -7,7 +7,7 @@ import org.wikiup.core.impl.mp.InstanceModelProvider;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.FileUtil;
 import org.wikiup.core.util.StringUtil;
@@ -32,7 +32,7 @@ public class UploadProcessorContext implements ProcessorContext, ServletProcesso
         this.context = context;
     }
 
-    public ModelProvider getModelContainer(String name, Getter<?> params) {
+    public BeanFactory getModelContainer(String name, Getter<?> params) {
         return new InstanceModelProvider(name != null ? configure.getChild(name) : configure);
     }
 

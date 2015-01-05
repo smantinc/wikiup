@@ -1,6 +1,6 @@
 package org.wikiup.modules.spring;
 
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.ext.Resource;
 
 import java.io.File;
 import java.io.IOException;

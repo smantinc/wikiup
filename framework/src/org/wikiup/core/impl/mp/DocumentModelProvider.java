@@ -4,14 +4,14 @@ package org.wikiup.core.impl.mp;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
 
 import java.util.Iterator;
 
-public class DocumentModelProvider implements ModelProvider {
+public class DocumentModelProvider implements BeanFactory {
     private Document document;
     private Iterable<Document> iterable;
 
@@ -24,7 +24,7 @@ public class DocumentModelProvider implements ModelProvider {
         this.iterable = iterable;
     }
 
-    public <E> E getModel(Class<E> clazz) {
+    public <E> E query(Class<E> clazz) {
         Object object = null;
         if(Document.class.isAssignableFrom(clazz))
             object = document;

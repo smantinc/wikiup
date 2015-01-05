@@ -9,7 +9,7 @@ import org.wikiup.core.impl.document.Context2Document;
 import org.wikiup.core.impl.iterable.BeanPropertyNames;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ClassIdentity;
 import org.wikiup.core.util.ContextUtil;
@@ -78,7 +78,7 @@ public class ServletActionSupport implements ServletAction {
 
 
     private SupportedHandler getSupportedHandler(String handler, ServletProcessorContext context, Document desc) {
-        ModelProvider mc = context.getModelContainer();
+        BeanFactory mc = context.getModelContainer();
         for(Method m : instance.getClass().getMethods()) {
             if(m.getName().equals(handler) || m.getName().equals(ContextUtil.getPropertyName("do-" + handler, false))) {
                 List<Object> parameters = new ArrayList<Object>();
@@ -86,7 +86,7 @@ public class ServletActionSupport implements ServletAction {
                     Object param;
                     if(argClass.isInstance(desc))
                         parameters.add(desc);
-                    else if((param = mc.getModel(argClass)) != null)
+                    else if((param = mc.query(argClass)) != null)
                         parameters.add(param);
                     else {
                         parameters = null;

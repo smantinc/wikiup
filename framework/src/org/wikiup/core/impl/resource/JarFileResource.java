@@ -1,6 +1,6 @@
 package org.wikiup.core.impl.resource;
 
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;

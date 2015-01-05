@@ -6,7 +6,7 @@ import org.wikiup.core.bootstrap.Bootstrap;
 import org.wikiup.core.bootstrap.BootstrapResource;
 import org.wikiup.core.bootstrap.inf.ext.BootstrapAction;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.Documents;
 
 public class ResourceLoaderBootstrapAction implements BootstrapAction {

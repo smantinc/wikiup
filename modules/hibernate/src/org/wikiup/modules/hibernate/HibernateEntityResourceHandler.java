@@ -2,7 +2,7 @@ package org.wikiup.modules.hibernate;
 
 import org.wikiup.core.bootstrap.Bootstrap;
 import org.wikiup.core.bootstrap.inf.ResourceHandler;
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.ext.Resource;
 
 public class HibernateEntityResourceHandler implements ResourceHandler {
     public void finish() {

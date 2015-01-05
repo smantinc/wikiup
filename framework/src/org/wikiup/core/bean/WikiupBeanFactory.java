@@ -5,7 +5,7 @@ import org.wikiup.core.impl.mf.ClassFactory;
 import org.wikiup.core.impl.mf.ClassNameFactory;
 import org.wikiup.core.impl.mf.NamespaceFactory;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.inf.ext.ModelFactory;
 import org.wikiup.core.util.ClassIdentity;
@@ -39,16 +39,6 @@ public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory>
     public ModelFactory getModelFactory(Class<?> inf, ClassIdentity alias) {
         Map<String, ModelFactory> a = nameAlias.get(inf);
         return a != null ? a.get(alias.getNamespace()) : factories.getFactory(alias.getNamespace());
-    }
-
-    public ModelProvider getModelContainer(Class<?> inf, ClassIdentity csid) {
-        ModelFactory factory = getModelFactory(inf, csid);
-        return factory != null ? factory.get(csid.getName()) : null;
-    }
-
-    public <E> E getBean(Class<E> clazz, ClassIdentity csid) {
-        ModelProvider mc = getModelContainer(clazz, csid);
-        return mc != null ? mc.getModel(clazz) : null;
     }
 
     public ModelFactory get(String name) {
@@ -98,12 +88,12 @@ public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory>
     private class DefaultBeanFactory implements ModelFactory {
         private ClassFactory classFactory = new ClassFactory();
 
-        public ModelProvider get(String name) {
-            ModelProvider mc = find(name);
+        public BeanFactory get(String name) {
+            BeanFactory mc = find(name);
             return mc != null ? mc : classFactory.get(name);
         }
 
-        private ModelProvider find(String name) {
+        private BeanFactory find(String name) {
             ModelFactory modelFactory = byNames.get(name);
             return modelFactory != null ? modelFactory.get(name) : null;
         }

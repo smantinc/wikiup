@@ -11,7 +11,7 @@ import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Element;
 import org.wikiup.core.inf.ExceptionHandler;
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.inf.ext.DocumentReader;
 
 import java.io.File;

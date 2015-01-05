@@ -7,7 +7,7 @@ import org.wikiup.core.impl.getter.StackGetter;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.inf.Setter;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.core.util.Interfaces;
@@ -26,7 +26,7 @@ public class RubyProcessorContext implements ProcessorContext, DocumentAware, Se
         return RubyUtil.toJava(scriptingContainer.get(name));
     }
 
-    public ModelProvider getModelContainer(String name, Getter<?> params) {
+    public BeanFactory getModelContainer(String name, Getter<?> params) {
         return Interfaces.getModelContainer(get(name));
     }
 

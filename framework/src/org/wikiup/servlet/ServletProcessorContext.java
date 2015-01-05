@@ -14,9 +14,9 @@ import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.ExceptionHandler;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.inf.Releasable;
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.inf.Setter;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.Assert;
@@ -166,8 +166,8 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
             awaredBy(iterator.next());
     }
 
-    public void awaredBy(ModelProvider mc) {
-        ServletProcessorContextAware aware = mc.getModel(ServletProcessorContextAware.class);
+    public void awaredBy(BeanFactory mc) {
+        ServletProcessorContextAware aware = mc.query(ServletProcessorContextAware.class);
         if(aware != null)
             aware.setServletProcessorContext(this);
     }
@@ -229,9 +229,9 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
         requestScope.init(this, getRequestContextConf());
     }
 
-    public ModelProvider buildProcessorContextModelContainer(Document desc) {
+    public BeanFactory buildProcessorContextModelContainer(Document desc) {
         if(desc != null) {
-            ModelProvider mc = Wikiup.getModelProvider(ProcessorContext.class, desc);
+            BeanFactory mc = Wikiup.getModelProvider(ProcessorContext.class, desc);
             return new ProcessorContextSupportedModelProvider(mc);
         }
         return null;
@@ -262,8 +262,8 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
         return servletContextConf;
     }
 
-    public ModelProvider getModelContainer(String name, Getter<?> params) {
-        ModelProvider provider = globalContext.getModelContainer(name, params);
+    public BeanFactory getModelContainer(String name, Getter<?> params) {
+        BeanFactory provider = globalContext.getModelContainer(name, params);
         provider = provider != null ? provider : servletScope.getModelContainer(name, params);
         provider = provider != null ? provider : requestScope.getModelContainer(name, params);
         return provider != null ? provider : modelContainerStack.getModelContainer(name, params);
@@ -440,7 +440,7 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
         return modelContainerStack;
     }
 
-    public ProcessorContextModelContainer pushModelContainer(ModelProvider mc) {
+    public ProcessorContextModelContainer pushModelContainer(BeanFactory mc) {
         return modelContainerStack.push(new ProcessorContextModelContainer(mc));
     }
 
@@ -453,7 +453,7 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
         return modelContainerStack.pop();
     }
 
-    public ModelProvider getModelContainer() {
+    public BeanFactory getModelContainer() {
         return new ServletProcessorContextModelProvider(this);
     }
 
@@ -509,8 +509,8 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
             this.configure = configure;
             for(Document node : configure.getChildren("context")) {
                 String name = Documents.getId(node);
-                ModelProvider mc = context.buildProcessorContextModelContainer(node);
-                ProcessorContext ctx = mc != null ? mc.getModel(ProcessorContext.class) : null;
+                BeanFactory mc = context.buildProcessorContextModelContainer(node);
+                ProcessorContext ctx = mc != null ? mc.query(ProcessorContext.class) : null;
                 Assert.notNull(ctx);
                 context.awaredBy(ctx);
                 if(name != null)
@@ -549,34 +549,34 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
         }
     }
 
-    class ProcessorContextSupportedModelProvider implements ModelProvider {
-        private ModelProvider modelProvider;
+    class ProcessorContextSupportedModelProvider implements BeanFactory {
+        private BeanFactory modelProvider;
 
-        public ProcessorContextSupportedModelProvider(ModelProvider modelProvider) {
+        public ProcessorContextSupportedModelProvider(BeanFactory modelProvider) {
             this.modelProvider = modelProvider;
         }
 
-        public <E> E getModel(Class<E> clazz) {
+        public <E> E query(Class<E> clazz) {
             if(clazz.equals(ProcessorContext.class)) {
-                Object obj = modelProvider.getModel(Object.class);
+                Object obj = modelProvider.query(Object.class);
                 putToTrashTin(obj);
                 if(clazz.isInstance(obj))
                     return clazz.cast(obj);
                 return clazz.cast(new ProcessorContextSupport(obj));
             }
-            return modelProvider.getModel(clazz);
+            return modelProvider.query(clazz);
         }
     }
 
-    private static class ServletProcessorContextModelProvider implements ModelProvider {
+    private static class ServletProcessorContextModelProvider implements BeanFactory {
         private CollectionModelProvider modelContainer = new CollectionModelProvider();
 
         public ServletProcessorContextModelProvider(ServletProcessorContext context) {
             modelContainer.append(context.getServletRequest(), context.getServletResponse(), context.getResponseWriter(), context.getResponseOutputStream(), context);
         }
 
-        public <E> E getModel(Class<E> clazz) {
-            E e = modelContainer.getModel(clazz);
+        public <E> E query(Class<E> clazz) {
+            E e = modelContainer.query(clazz);
             return e != null ? e : Wikiup.getModel(clazz);
         }
     }

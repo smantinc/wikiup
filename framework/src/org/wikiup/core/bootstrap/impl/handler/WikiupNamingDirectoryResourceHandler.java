@@ -7,7 +7,7 @@ import org.wikiup.core.impl.document.MergedDocument;
 import org.wikiup.core.impl.resource.JarFileResource;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;

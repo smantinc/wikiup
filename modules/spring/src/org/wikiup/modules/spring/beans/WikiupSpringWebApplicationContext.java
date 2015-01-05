@@ -1,7 +1,6 @@
 package org.wikiup.modules.spring.beans;
 
 import org.springframework.beans.BeansException;
-import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.NoSuchBeanDefinitionException;
 import org.springframework.beans.factory.config.AutowireCapableBeanFactory;
 import org.springframework.context.ApplicationContext;
@@ -14,7 +13,7 @@ import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.iterable.ArrayIterable;
 import org.wikiup.core.impl.mp.InstanceModelProvider;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.inf.ext.ModelFactory;
 import org.wikiup.servlet.beans.ServletContextContainer;
 
@@ -30,7 +29,7 @@ public class WikiupSpringWebApplicationContext implements ModelFactory, Iterable
         applicationContext = WebApplicationContextUtils.getWebApplicationContext(Wikiup.getModel(ServletContextContainer.class).getServletContext());
     }
 
-    public ModelProvider get(String name) {
+    public BeanFactory get(String name) {
         Object bean = applicationContext.getBean(name);
         return bean != null ? new InstanceModelProvider(bean) : null;
     }
@@ -103,7 +102,7 @@ public class WikiupSpringWebApplicationContext implements ModelFactory, Iterable
         return applicationContext.getClassLoader();
     }
 
-    public BeanFactory getParentBeanFactory() {
+    public org.springframework.beans.factory.BeanFactory getParentBeanFactory() {
         return applicationContext.getParentBeanFactory();
     }
 

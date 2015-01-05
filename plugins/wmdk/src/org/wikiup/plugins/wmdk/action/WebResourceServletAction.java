@@ -4,7 +4,7 @@ import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.impl.translator.lf.NotLogicalTranslator;
 import org.wikiup.core.impl.translator.lf.RegexpMatchLogicalTranslator;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.inf.ext.LogicalTranslator;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.FileUtil;

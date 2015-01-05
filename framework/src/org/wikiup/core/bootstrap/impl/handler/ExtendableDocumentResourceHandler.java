@@ -5,7 +5,7 @@ import org.wikiup.core.bootstrap.inf.ExtendableDocumentResource;
 import org.wikiup.core.bootstrap.inf.ResourceHandler;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 

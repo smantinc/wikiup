@@ -5,7 +5,7 @@ import org.wikiup.core.bean.WikiupPluginManager;
 import org.wikiup.core.bootstrap.Bootstrap;
 import org.wikiup.core.bootstrap.inf.ResourceHandler;
 import org.wikiup.core.impl.resource.JarFileResource;
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Interfaces;
 

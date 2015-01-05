@@ -22,7 +22,7 @@ import org.wikiup.core.bean.WikiupModelProvider;
 import org.wikiup.core.bean.WikiupNamingDirectory;
 import org.wikiup.core.impl.mp.InstanceModelProvider;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.inf.Provider;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.Setter;
@@ -36,7 +36,7 @@ import org.wikiup.core.util.Interfaces;
 public class Wikiup implements Context<Object, Object>, Releasable {
     private static Provider<Wikiup> instanceProvider = new DefaultWikiupInstanceProvider();
 
-    private ModelProvider modelProvider = new WikiupModelProvider();
+    private BeanFactory modelProvider = new WikiupModelProvider();
     private WikiupBeanFactory beanFactory = new WikiupBeanFactory();
     private Context<Object, Object> wndi = WikiupNamingDirectory.getInstance();
 
@@ -67,14 +67,14 @@ public class Wikiup implements Context<Object, Object>, Releasable {
 
     public <E> E getBean(Class<E> clazz, Document doc) {
         ClassIdentity csid = getClassIdentity(doc);
-        ModelProvider mc = csid.getModelContainer(clazz);
-        E bean = mc != null ? mc.getModel(clazz) : null;
+        BeanFactory mc = csid.getModelContainer(clazz);
+        E bean = mc != null ? mc.query(clazz) : null;
         return bean != null ? bean : build(clazz, csid.getNamespace(), csid.getName(), doc);
     }
 
-    static public ModelProvider getModelProvider(Class<?> inf, Document doc) {
+    static public BeanFactory getModelProvider(Class<?> inf, Document doc) {
         ClassIdentity csid = getClassIdentity(doc);
-        ModelProvider mc = csid.getModelContainer(inf);
+        BeanFactory mc = csid.getModelContainer(inf);
         return mc == null ? new InstanceModelProvider(build(Object.class, doc, null)) : mc;
     }
 
@@ -102,13 +102,13 @@ public class Wikiup implements Context<Object, Object>, Releasable {
     }
 
     static private <E> E build(Class<E> clazz, ModelFactory factory, String name, Document desc) {
-        ModelProvider mc = name != null ? factory.get(name) : null;
+        BeanFactory mc = name != null ? factory.get(name) : null;
         Interfaces.initialize(mc, desc);
-        return mc != null ? mc.getModel(clazz) : null;
+        return mc != null ? mc.query(clazz) : null;
     }
 
     static public <E> E getModel(Class<E> clazz) {
-        return getInstance().modelProvider.getModel(clazz);
+        return getInstance().modelProvider.query(clazz);
     }
 
     static public ClassIdentity getClassIdentity(String id) {

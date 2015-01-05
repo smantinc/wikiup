@@ -9,7 +9,7 @@ import org.wikiup.core.bootstrap.inf.ResourceHandler;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Resource;
+import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;

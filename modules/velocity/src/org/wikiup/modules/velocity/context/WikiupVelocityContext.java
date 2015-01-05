@@ -3,7 +3,7 @@ package org.wikiup.modules.velocity.context;
 import org.apache.velocity.context.Context;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.servlet.ServletProcessorContext;
 
@@ -19,12 +19,12 @@ public class WikiupVelocityContext implements Context {
     }
 
     public Object get(String s) {
-        ModelProvider mc = context.getModelContainer(s, null);
+        BeanFactory mc = context.getModelContainer(s, null);
         if(mc != null) {
-            Document doc = mc.getModel(Document.class);
+            Document doc = mc.query(Document.class);
             if(doc != null)
                 return new org.wikiup.modules.velocity.context.WikiupDocumentVelocityContext(doc);
-            Getter<?> getter = mc.getModel(Getter.class);
+            Getter<?> getter = mc.query(Getter.class);
             if(getter != null)
                 return new org.wikiup.modules.velocity.context.WikiupAccessorVelocityContext(context, getter);
         }

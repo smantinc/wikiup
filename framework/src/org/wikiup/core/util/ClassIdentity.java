@@ -2,7 +2,7 @@ package org.wikiup.core.util;
 
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupBeanFactory;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.inf.ext.ModelFactory;
 
 public class ClassIdentity {
@@ -36,11 +36,11 @@ public class ClassIdentity {
     }
 
     public <E> E getBean(Class<E> clazz) {
-        ModelProvider mc = getModelContainer(clazz);
-        return mc == null ? Interfaces.newInstance(clazz, getName()) : mc.getModel(clazz);
+        BeanFactory mc = getModelContainer(clazz);
+        return mc == null ? Interfaces.newInstance(clazz, getName()) : mc.query(clazz);
     }
 
-    public ModelProvider getModelContainer(Class<?> clazz) {
+    public BeanFactory getModelContainer(Class<?> clazz) {
         ModelFactory aliasFactory = getModelFactory(clazz);
         ModelFactory factory = aliasFactory != null ? aliasFactory : Wikiup.getInstance().get(ModelFactory.class, namespace);
         return factory != null ? factory.get(name) : null;

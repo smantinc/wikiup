@@ -4,17 +4,17 @@ import org.wikiup.core.inf.Bindable;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.ModelProvider;
+import org.wikiup.core.inf.BeanFactory;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class ByPropertyAutomatically implements Bindable, DocumentAware {
     private Getter<?> getter;
-    private ModelProvider modelProvider;
+    private BeanFactory modelProvider;
     private Document configure;
 
-    public ByPropertyAutomatically(Getter<Object> getter, ModelProvider modelProvider) {
+    public ByPropertyAutomatically(Getter<Object> getter, BeanFactory modelProvider) {
         this.getter = getter;
         this.modelProvider = modelProvider;
     }
@@ -34,7 +34,7 @@ public class ByPropertyAutomatically implements Bindable, DocumentAware {
         configure = desc;
     }
 
-    private class Once implements Getter<Object>, ModelProvider {
+    private class Once implements Getter<Object>, BeanFactory {
         private Set<String> setNames = new HashSet<String>();
         private Set<Class<?>> setClasses = new HashSet<Class<?>>();
 
@@ -47,8 +47,8 @@ public class ByPropertyAutomatically implements Bindable, DocumentAware {
             return obj;
         }
 
-        public <E> E getModel(Class<E> clazz) {
-            return setClasses.contains(clazz) ? null : modelProvider.getModel(clazz);
+        public <E> E query(Class<E> clazz) {
+            return setClasses.contains(clazz) ? null : modelProvider.query(clazz);
         }
     }
 }
