@@ -1,7 +1,7 @@
 package org.wikiup.core.util;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupBeanFactory;
+import org.wikiup.core.bean.WikiupModelDirectory;
 import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.inf.ext.ModelFactory;
 
@@ -47,6 +47,6 @@ public class ClassIdentity {
     }
 
     private ModelFactory getModelFactory(Class<?> clazz) {
-        return Wikiup.getModel(WikiupBeanFactory.class).getModelFactory(clazz, this);
+        return Wikiup.getModel(WikiupModelDirectory.class).getModelFactory(clazz, this);
     }
 }

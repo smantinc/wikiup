@@ -16,9 +16,9 @@
 
 package org.wikiup.core;
 
-import org.wikiup.core.bean.WikiupBeanFactory;
+import org.wikiup.core.bean.WikiupModelDirectory;
 import org.wikiup.core.bean.WikiupConfigure;
-import org.wikiup.core.bean.WikiupModelProvider;
+import org.wikiup.core.bean.WikiupBeanFactory;
 import org.wikiup.core.bean.WikiupNamingDirectory;
 import org.wikiup.core.impl.mp.InstanceModelProvider;
 import org.wikiup.core.inf.Document;
@@ -36,8 +36,8 @@ import org.wikiup.core.util.Interfaces;
 public class Wikiup implements Context<Object, Object>, Releasable {
     private static Provider<Wikiup> instanceProvider = new DefaultWikiupInstanceProvider();
 
-    private BeanFactory modelProvider = new WikiupModelProvider();
-    private WikiupBeanFactory beanFactory = new WikiupBeanFactory();
+    private BeanFactory beanFactory = new WikiupBeanFactory();
+    private WikiupModelDirectory modelDirectory = new WikiupModelDirectory();
     private Context<Object, Object> wndi = WikiupNamingDirectory.getInstance();
 
     static public Wikiup getInstance() {
@@ -96,7 +96,7 @@ public class Wikiup implements Context<Object, Object>, Releasable {
     }
 
     private <E> E build(Class<E> clazz, String namespace, String name, Document desc) {
-        ModelFactory factory = beanFactory.get(namespace);
+        ModelFactory factory = modelDirectory.get(namespace);
         Assert.notNull(factory, namespace);
         return build(clazz, factory, name, desc);
     }
@@ -108,7 +108,7 @@ public class Wikiup implements Context<Object, Object>, Releasable {
     }
 
     static public <E> E getModel(Class<E> clazz) {
-        return getInstance().modelProvider.query(clazz);
+        return getInstance().beanFactory.query(clazz);
     }
 
     static public ClassIdentity getClassIdentity(String id) {
@@ -125,8 +125,8 @@ public class Wikiup implements Context<Object, Object>, Releasable {
     }
 
     public void release() {
-        Interfaces.release(modelProvider);
         Interfaces.release(beanFactory);
+        Interfaces.release(modelDirectory);
         Interfaces.release(wndi);
         instanceProvider = new DefaultWikiupInstanceProvider();
     }

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <beans>
 	<bean name="configure" class="org.wikiup.core.bean.WikiupConfigure"/>
-	<bean name="bean-factory" class="org.wikiup.core.bean.WikiupBeanFactory"/>
-	<bean name="model-container" class="org.wikiup.core.bean.WikiupModelProvider">
+	<bean name="bean-factory" class="org.wikiup.core.bean.WikiupModelDirectory"/>
+	<bean name="model-container" class="org.wikiup.core.bean.WikiupBeanFactory">
 		<bean name="singletons" class="org.wikiup.core.bean.WikiupDynamicSingletons"/>
 	</bean>
 	<bean name="filters" class="org.wikiup.core.impl.filter.TypeCastFilter">

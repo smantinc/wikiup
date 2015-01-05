@@ -1,7 +1,7 @@
 package org.wikiup.servlet.impl.action;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupModelProvider;
+import org.wikiup.core.bean.WikiupBeanFactory;
 import org.wikiup.core.impl.context.BeanPropertyContext;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.impl.document.Context2Document;
@@ -40,7 +40,7 @@ public class ServletActionSupport implements ServletAction {
         String handler = entry != null ? ContextUtil.getPropertyName(entry, false) : null;
         if(handler != null)
             try {
-                ByPropertyAutomatically bindable = new ByPropertyAutomatically(new WikiupBeanGetter(), Wikiup.getModel(WikiupModelProvider.class));
+                ByPropertyAutomatically bindable = new ByPropertyAutomatically(new WikiupBeanGetter(), Wikiup.getModel(WikiupBeanFactory.class));
                 Interfaces.initialize(bindable, doc);
                 bindable.bind(instance);
 
