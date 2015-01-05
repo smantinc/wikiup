@@ -3,10 +3,16 @@
 	<factory class="org.wikiup.core.impl.mf.ClassFactory"/>
 	<factory name="wndi" class="org.wikiup.core.impl.mf.WndiFactory"/>
 	<factory name="bindable" interface="org.wikiup.core.inf.Bindable">
-		<item name="by-name" class="org.wikiup.core.impl.bindable.ByPropertyNames"/>
-		<item name="by-type" class="org.wikiup.core.impl.bindable.ByPropertyTypes"/>
-		<item name="manual" class="org.wikiup.core.impl.bindable.ByPropertyManually"/>
-		<item name="auto" class="org.wikiup.core.impl.bindable.ByPropertyAutomatically"/>
+		<item name="by-name" class="org.wikiup.servlet.impl.bindable.ByPropertyNames"/>
+		<item name="by-type" class="org.wikiup.servlet.impl.bindable.ByPropertyTypes"/>
+		<item name="manual" class="org.wikiup.servlet.impl.bindable.ByPropertyManually"/>
+		<item name="auto" class="org.wikiup.servlet.impl.bindable.ByPropertyAutomatically"/>
+	</factory>
+	<factory name="wirable" interface="org.wikiup.core.inf.Wirable">
+		<item name="by-configure" class="org.wikiup.core.impl.wirable.WireByConfigure"/>
+		<item name="by-document" class="org.wikiup.core.impl.wirable.WireByDocument"/>
+		<item name="by-fields" class="org.wikiup.core.impl.wirable.WireByFields"/>
+		<item name="by-getter" class="org.wikiup.core.impl.wirable.WireByGetter"/>
 	</factory>
 	<factory name="filter" interface="org.wikiup.core.inf.Translator">
 		<item name="regexp" class="org.wikiup.core.impl.filter.lf.RegexpMatchLogicalFilter"/>

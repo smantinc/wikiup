@@ -1,10 +1,10 @@
 package org.wikiup.modules.ibatis.bindable;
 
-import org.wikiup.core.impl.bindable.ByPropertyNames;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.impl.mp.ByTypeModelProvider;
-import org.wikiup.core.inf.Bindable;
+import org.wikiup.core.impl.wirable.WireByGetter;
 import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.Bindable;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.database.exception.InsufficientPrimaryKeys;
@@ -21,7 +21,8 @@ public class DataStore implements BeanFactory, Bindable {
         if(object instanceof Map)
             store = (Map<String, Object>) object;
         else if(store != null) {
-            new ByPropertyNames(new MapContext<Object>(store)).bind(binded);
+            new WireByGetter<Object>(binded).wire(new MapContext<Object>(store));
+//            new ByPropertyNames(new MapContext<Object>(store)).bind(binded);
             store = null;
         }
     }

@@ -2,19 +2,19 @@ package org.wikiup.servlet.impl.action;
 
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupModelProvider;
-import org.wikiup.core.impl.bindable.ByPropertyAutomatically;
 import org.wikiup.core.impl.context.BeanPropertyContext;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.impl.document.Context2Document;
 import org.wikiup.core.impl.iterable.BeanPropertyNames;
+import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ClassIdentity;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.servlet.ServletProcessorContext;
+import org.wikiup.servlet.impl.bindable.ByPropertyAutomatically;
 import org.wikiup.servlet.inf.ServletAction;
 
 import java.lang.reflect.InvocationTargetException;
