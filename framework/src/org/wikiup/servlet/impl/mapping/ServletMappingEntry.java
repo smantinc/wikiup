@@ -1,14 +1,14 @@
 package org.wikiup.servlet.impl.mapping;
 
 import org.wikiup.core.impl.document.MergedDocument;
-import org.wikiup.core.impl.translator.lf.AndLogicalFilter;
+import org.wikiup.core.impl.translator.lf.AndLogicalTranslator;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.servlet.ServletProcessorContext;
-import org.wikiup.servlet.impl.mapping.filter.RequestMethodFilter;
+import org.wikiup.servlet.impl.mapping.filter.RequestMethodTranslator;
 
-public class ServletMappingEntry extends AndLogicalFilter<ServletProcessorContext> {
+public class ServletMappingEntry extends AndLogicalTranslator<ServletProcessorContext> {
     private Document document;
     private boolean isAbstract;
     private ServletMappingEntry extendedFrom;
@@ -25,7 +25,7 @@ public class ServletMappingEntry extends AndLogicalFilter<ServletProcessorContex
         String forMethod = Documents.getDocumentValue(document, "for-method", null);
         this.document = document;
         if(forMethod != null)
-            addFilter(new RequestMethodFilter(forMethod));
+            addFilter(new RequestMethodTranslator(forMethod));
     }
 
     public String getSuperName() {

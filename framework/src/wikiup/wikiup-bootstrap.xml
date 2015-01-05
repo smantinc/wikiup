@@ -8,8 +8,8 @@
 				  class="org.wikiup.core.bootstrap.impl.handler.ExtendableDocumentResourceHandler"/>
 		</factory>
 		<factory name="filter" class="org.wikiup.core.impl.mf.ClassNameFactory">
-			<item name="regexp" class="org.wikiup.core.impl.translator.lf.RegexpMatchLogicalFilter"/>
-			<item name="equal" class="org.wikiup.core.impl.translator.lf.EqualMatchLogicalFilter"/>
+			<item name="regexp" class="org.wikiup.core.impl.translator.lf.RegexpMatchLogicalTranslator"/>
+			<item name="equal" class="org.wikiup.core.impl.translator.lf.EqualMatchLogicalTranslator"/>
 		</factory>
 		<factory name="action" class="org.wikiup.core.impl.mf.ClassNameFactory">
 			<item name="resource-handler" class="org.wikiup.core.bootstrap.impl.action.ResourceHandlerBootstrapAction"/>

@@ -4,7 +4,7 @@ import org.wikiup.core.bootstrap.inf.ResourceHandler;
 import org.wikiup.core.impl.iterable.IterableCollection;
 import org.wikiup.core.impl.resource.OverridedResource;
 import org.wikiup.core.inf.Resource;
-import org.wikiup.core.inf.ext.LogicalFilter;
+import org.wikiup.core.inf.ext.LogicalTranslator;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -40,7 +40,7 @@ public class BootstrapResource implements Iterable<Resource> {
         set.add(resource);
     }
 
-    public void loadResources(ResourceHandler resourceHandler, LogicalFilter<String> filter) {
+    public void loadResources(ResourceHandler resourceHandler, LogicalTranslator<String> filter) {
         try {
             Iterator<Resource> iterator = iterator();
             while(iterator.hasNext()) {

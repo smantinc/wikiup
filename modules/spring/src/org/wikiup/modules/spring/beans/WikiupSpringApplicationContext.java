@@ -6,12 +6,12 @@ import org.wikiup.core.bootstrap.inf.ResourceHandler;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.iterable.ArrayIterable;
 import org.wikiup.core.impl.mp.InstanceModelProvider;
-import org.wikiup.core.impl.translator.lf.RegexpMatchLogicalFilter;
+import org.wikiup.core.impl.translator.lf.RegexpMatchLogicalTranslator;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.ModelProvider;
 import org.wikiup.core.inf.Resource;
-import org.wikiup.core.inf.ext.LogicalFilter;
+import org.wikiup.core.inf.ext.LogicalTranslator;
 import org.wikiup.core.inf.ext.ModelFactory;
 import org.wikiup.core.util.Documents;
 import org.wikiup.modules.spring.SpringResource;
@@ -50,7 +50,7 @@ public class WikiupSpringApplicationContext extends AbstractXmlApplicationContex
     public void aware(Document desc) {
         for(Document node : desc.getChildren("configure-location")) {
             String location = Documents.getDocumentValue(node);
-            LogicalFilter<String> filter = new RegexpMatchLogicalFilter(location);
+            LogicalTranslator<String> filter = new RegexpMatchLogicalTranslator(location);
             Bootstrap.getInstance().getBootstrapResource().loadResources(this, filter);
         }
     }

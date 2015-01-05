@@ -2,7 +2,7 @@ package org.wikiup.core.util;
 
 import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.inf.ExceptionHandler;
-import org.wikiup.core.inf.ext.LogicalFilter;
+import org.wikiup.core.inf.ext.LogicalTranslator;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -142,7 +142,7 @@ public class FileUtil {
         return file.getName().charAt(0) == '.' || file.isHidden();
     }
 
-    static public void unzip(InputStream is, File directory, LogicalFilter<String> filter) throws IOException {
+    static public void unzip(InputStream is, File directory, LogicalTranslator<String> filter) throws IOException {
         byte buffer[] = new byte[16384];
         ZipInputStream zis = null;
         try {
@@ -166,7 +166,7 @@ public class FileUtil {
         unzip(file, directory, null);
     }
 
-    static public void unzip(File file, File directory, LogicalFilter<String> filter) throws IOException {
+    static public void unzip(File file, File directory, LogicalTranslator<String> filter) throws IOException {
         InputStream is = new FileInputStream(file);
         try {
             unzip(is, directory, filter);

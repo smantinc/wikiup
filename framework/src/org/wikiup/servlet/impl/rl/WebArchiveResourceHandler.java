@@ -6,7 +6,7 @@ import org.wikiup.core.impl.resource.JarFileResource;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Resource;
-import org.wikiup.core.inf.ext.LogicalFilter;
+import org.wikiup.core.inf.ext.LogicalTranslator;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.FileUtil;
@@ -62,7 +62,7 @@ public class WebArchiveResourceHandler implements ResourceHandler, DocumentAware
         final long lastModified = resourceFile != null ? resourceFile.lastModified() : Long.MAX_VALUE;
         InputStream is = resource.open();
         try {
-            FileUtil.unzip(is, file, new LogicalFilter<String>() {
+            FileUtil.unzip(is, file, new LogicalTranslator<String>() {
                 public Boolean translate(String object) {
                     return !(object.startsWith("WEB-INF") || object.startsWith("META-INF") || FileUtil.isUpToDate(new File(file, object), lastModified));
                 }

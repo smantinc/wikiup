@@ -2,7 +2,7 @@ package org.wikiup.servlet.impl.mapping;
 
 import org.wikiup.core.inf.Document;
 import org.wikiup.servlet.ServletProcessorContext;
-import org.wikiup.servlet.impl.mapping.filter.URIRegexpPatternFilter;
+import org.wikiup.servlet.impl.mapping.filter.URIRegexpPatternTranslator;
 import org.wikiup.servlet.inf.ServletConfigureMapping;
 
 import java.util.List;
@@ -16,7 +16,7 @@ public class URIRegexpPatternServletMapping implements ServletConfigureMapping {
     }
 
     public void appendEntry(String uriPattern, ServletMappingEntry node) {
-        node.addFilter(new URIRegexpPatternFilter(uriPattern));
+        node.addFilter(new URIRegexpPatternTranslator(uriPattern));
         nodes.add(node);
     }
 

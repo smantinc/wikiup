@@ -1,11 +1,11 @@
 package org.wikiup.plugins.wmdk.action;
 
 import org.wikiup.core.bean.WikiupConfigure;
-import org.wikiup.core.impl.translator.lf.NotLogicalFilter;
-import org.wikiup.core.impl.translator.lf.RegexpMatchLogicalFilter;
+import org.wikiup.core.impl.translator.lf.NotLogicalTranslator;
+import org.wikiup.core.impl.translator.lf.RegexpMatchLogicalTranslator;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Resource;
-import org.wikiup.core.inf.ext.LogicalFilter;
+import org.wikiup.core.inf.ext.LogicalTranslator;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.FileUtil;
 import org.wikiup.core.util.StreamUtil;
@@ -128,7 +128,7 @@ public class WebResourceServletAction {
                 String uri = context.getContextAttribute(node, "uri", null);
                 if(uri == null) {
                     Document exclude = node.getChild("exclude");
-                    LogicalFilter<String> filter = exclude != null ? new NotLogicalFilter<String>(new RegexpMatchLogicalFilter(Documents.getDocumentValue(exclude, "regexp", null))) : null;
+                    LogicalTranslator<String> filter = exclude != null ? new NotLogicalTranslator<String>(new RegexpMatchLogicalTranslator(Documents.getDocumentValue(exclude, "regexp", null))) : null;
                     if(path == null)
                         out.putNextEntry(new ZipEntry(fileName + "/"));
                     else
@@ -145,7 +145,7 @@ public class WebResourceServletAction {
         }
     }
 
-    private void zip(ZipOutputStream out, File f, String base, LogicalFilter<String> filter) throws IOException {
+    private void zip(ZipOutputStream out, File f, String base, LogicalTranslator<String> filter) throws IOException {
         if(filter == null || filter.translate(f.getName()))
             if(f.isDirectory()) {
                 out.putNextEntry(new ZipEntry(base + "/"));

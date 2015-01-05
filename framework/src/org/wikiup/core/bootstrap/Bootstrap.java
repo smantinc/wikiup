@@ -12,7 +12,7 @@ import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.ModelProvider;
 import org.wikiup.core.inf.Resource;
-import org.wikiup.core.inf.ext.LogicalFilter;
+import org.wikiup.core.inf.ext.LogicalTranslator;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
@@ -53,7 +53,7 @@ public class Bootstrap implements DocumentAware, ResourceHandler {
     private void handleBootstrapResources(Document container) {
         for(Document node : container.getChildren("handler")) {
             ResourceHandler resourceHandler = build(ResourceHandler.class, node);
-            LogicalFilter<String> filter = build(LogicalFilter.class, node.getChild("filter"));
+            LogicalTranslator<String> filter = build(LogicalTranslator.class, node.getChild("filter"));
             bootstrapResource.loadResources(resourceHandler, filter);
         }
     }

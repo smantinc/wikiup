@@ -14,10 +14,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.Stack;
 
-interface ParsingContext {
-    public void parse(DocumentImpl doc, String line);
-}
-
 public class YamlStreamDocumentReader implements DocumentReader<InputStream> {
     private int indentBlockSize = 0;
     private char indentChar = 0;
@@ -78,8 +74,7 @@ public class YamlStreamDocumentReader implements DocumentReader<InputStream> {
     }
 
     private String parseLine(String line) {
-        String first = line != null ? StringUtil.first(line, '#', 0) : null;
-        return first;
+        return line != null ? StringUtil.first(line, '#', 0) : null;
     }
 
     private int indentCount(String line) {
@@ -163,5 +158,9 @@ public class YamlStreamDocumentReader implements DocumentReader<InputStream> {
                     doc.setObject(value);
             }
         }
+    }
+
+    private interface ParsingContext {
+        public void parse(DocumentImpl doc, String line);
     }
 }

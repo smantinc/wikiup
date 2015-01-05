@@ -1,6 +1,5 @@
 package org.wikiup.core.bean;
 
-import org.wikiup.core.impl.document.DocumentImpl;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Getter;
 import org.wikiup.core.util.Documents;
@@ -105,7 +104,7 @@ public class WikiupConfigure extends WikiupDynamicSingleton<WikiupConfigure> imp
     public void mergeConfigure(String path[], Document doc) {
         Document node = Documents.touchDocument(document, path, path.length);
         Documents.mergeAttribute(node, doc);
-        Documents.mergeChildren((DocumentImpl) node, doc.getChildren(), true);
+        Documents.mergeChildren(node, doc.getChildren(), true);
     }
 
     private char getCharacter(String value, char def) {
