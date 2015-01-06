@@ -1,5 +1,5 @@
 /*
- *  Copyright 2005 - 2010 by Jason T. smantinc@gmail.com
+ *  Copyright 2005 - 2015 by Jason T. smantinc@gmail.com
  *
  *  Licensed under the Apache License, Version 2.0 (the "License");
  *  you may not use this file except in compliance with the License.
@@ -37,7 +37,7 @@ public class Wikiup implements Context<Object, Object>, Releasable {
     private static Provider<Wikiup> instanceProvider = new DefaultWikiupInstanceProvider();
 
     private BeanContainer beanContainer = new WikiupBeanContainer();
-    private WikiupBeanFactory modelDirectory = new WikiupBeanFactory();
+    private WikiupBeanFactory beanFactory = new WikiupBeanFactory();
     private Context<Object, Object> wndi = WikiupNamingDirectory.getInstance();
 
     static public Wikiup getInstance() {
@@ -96,7 +96,7 @@ public class Wikiup implements Context<Object, Object>, Releasable {
     }
 
     private <E> E build(Class<E> clazz, String namespace, String name, Document desc) {
-        ModelFactory factory = modelDirectory.get(namespace);
+        ModelFactory factory = beanFactory.get(namespace);
         Assert.notNull(factory, namespace);
         return build(clazz, factory, name, desc);
     }
@@ -128,7 +128,7 @@ public class Wikiup implements Context<Object, Object>, Releasable {
 
     public void release() {
         Interfaces.release(beanContainer);
-        Interfaces.release(modelDirectory);
+        Interfaces.release(beanFactory);
         Interfaces.release(wndi);
         instanceProvider = new DefaultWikiupInstanceProvider();
     }
