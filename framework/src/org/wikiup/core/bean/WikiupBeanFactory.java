@@ -1,5 +1,6 @@
 package org.wikiup.core.bean;
 
+import org.wikiup.core.Constants;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.mf.ClassFactory;
 import org.wikiup.core.impl.mf.ClassNameFactory;
@@ -76,9 +77,9 @@ public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory>
     }
 
     private void addInterfaceAlias(Document doc, ModelFactory factory) {
-        String inf = Documents.getAttributeValue(doc, "interface", null);
+        String inf = Documents.getAttributeValue(doc, Constants.Attributes.INTERFACE, null);
         if(inf != null)
-            addInterfaceAlias(Interfaces.getClass(inf), Documents.getAttributeValue(doc, "alias", null), factory);
+            addInterfaceAlias(Interfaces.getClass(inf), Documents.getAttributeValue(doc, Constants.Attributes.ALIAS, null), factory);
     }
 
     public Iterator<String> iterator() {

@@ -16,13 +16,13 @@
 
 package org.wikiup.core;
 
+import org.wikiup.core.bean.WikiupBeanContainer;
 import org.wikiup.core.bean.WikiupBeanFactory;
 import org.wikiup.core.bean.WikiupConfigure;
-import org.wikiup.core.bean.WikiupBeanContainer;
 import org.wikiup.core.bean.WikiupNamingDirectory;
 import org.wikiup.core.impl.mp.InstanceModelProvider;
-import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Provider;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.Setter;
@@ -111,10 +111,12 @@ public class Wikiup implements Context<Object, Object>, Releasable {
         return getInstance().beanContainer.query(clazz);
     }
 
+    @Deprecated
     static public ClassIdentity getClassIdentity(String id) {
         return new ClassIdentity(id);
     }
 
+    @Deprecated
     static public ClassIdentity getClassIdentity(Document doc) {
         return new ClassIdentity(getCsidAttribute(doc, null));
     }

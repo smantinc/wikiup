@@ -2,7 +2,9 @@ package org.wikiup.core.util;
 
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupBeanFactory;
+import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.ext.ModelFactory;
 
 public class ClassIdentity {
@@ -48,5 +50,13 @@ public class ClassIdentity {
 
     private ModelFactory getModelFactory(Class<?> clazz) {
         return Wikiup.getModel(WikiupBeanFactory.class).getModelFactory(clazz, this);
+    }
+
+    public static ClassIdentity obtain(String id) {
+        return new ClassIdentity(id);
+    }
+
+    public static ClassIdentity obtain(Document desc) {
+        return obtain(Documents.getAttributeValue(desc, WikiupConfigure.DEFAULT_FACTORY_ATTRIBUTE, null));
     }
 }
