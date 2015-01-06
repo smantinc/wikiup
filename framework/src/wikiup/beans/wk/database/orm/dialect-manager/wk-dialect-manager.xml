@@ -2,9 +2,9 @@
 <beans class="org.wikiup.database.orm.DefaultSQLDialect">
 	<field-types default="string">
 		<field-type name="string" class="org.wikiup.core.impl.translator.ToStringTranslator"/>
-		<field-type name="blob" class="org.wikiup.database.orm.imp.dialect.filter.BlobFieldFilter"/>
-		<field-type name="timestamp" class="org.wikiup.database.orm.imp.dialect.filter.TimestampFieldFilter"/>
-		<field-type name="datetime" class="org.wikiup.database.orm.imp.dialect.filter.DateTimeFieldFilter"/>
+		<field-type name="blob" class="org.wikiup.database.orm.imp.dialect.translator.BlobFieldFilter"/>
+		<field-type name="timestamp" class="org.wikiup.database.orm.imp.dialect.translator.TimestampFieldFilter"/>
+		<field-type name="datetime" class="org.wikiup.database.orm.imp.dialect.translator.DateTimeFieldFilter"/>
 
 		<field-type name="date" class="org.wikiup.core.impl.translator.ValueOfTranslator" to-class="java.sql.Date"/>
 		<field-type name="integer" class="org.wikiup.core.impl.translator.ValueOfTranslator" to-class="java.lang.Long"/>
