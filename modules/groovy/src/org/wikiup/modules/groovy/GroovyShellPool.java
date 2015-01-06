@@ -13,20 +13,14 @@ public class GroovyShellPool extends WikiupDynamicSingleton<GroovyShellPool> imp
     private static final String THREAD_LOCAL_NAMESPACE = "threadlocal";
 
     private GroovyShellContainer container;
-    private ThreadLocalJythonInterpreterContainer threadLocalPythonInterpreter;
+    private ThreadLocalGroovyInterpreterContainer threadLocalGroovyInterpreter;
 
     static public GroovyShellPool getInstance() {
         return getInstance(GroovyShellPool.class);
     }
 
-//  public void cloneFrom(GroovyShellPool instance)
-//  {
-//    threadLocalPythonInterpreter = instance.threadLocalPythonInterpreter;
-//    container = instance.container;
-//  }
-
     public void firstBuilt() {
-        threadLocalPythonInterpreter = new ThreadLocalJythonInterpreterContainer();
+        threadLocalGroovyInterpreter = new ThreadLocalGroovyInterpreterContainer();
     }
 
     public GroovyShell get(String name) {
@@ -35,7 +29,7 @@ public class GroovyShellPool extends WikiupDynamicSingleton<GroovyShellPool> imp
             String ns = name.substring(0, idx);
             String key = name.substring(idx + 1);
             if(ns.equalsIgnoreCase(THREAD_LOCAL_NAMESPACE))
-                return threadLocalPythonInterpreter.get().get(key);
+                return threadLocalGroovyInterpreter.get().get(key);
             return getContainer().get(key);
         }
         return new GroovyShell();
@@ -47,7 +41,7 @@ public class GroovyShellPool extends WikiupDynamicSingleton<GroovyShellPool> imp
             String ns = name.substring(0, idx);
             String key = name.substring(idx + 1);
             if(ns.equalsIgnoreCase(THREAD_LOCAL_NAMESPACE))
-                threadLocalPythonInterpreter.get().release(key);
+                threadLocalGroovyInterpreter.get().release(key);
             else
                 getContainer().release(key);
         }
@@ -80,7 +74,7 @@ public class GroovyShellPool extends WikiupDynamicSingleton<GroovyShellPool> imp
         }
     }
 
-    static private class ThreadLocalJythonInterpreterContainer extends ThreadLocal<GroovyShellContainer> {
+    static private class ThreadLocalGroovyInterpreterContainer extends ThreadLocal<GroovyShellContainer> {
         @Override
         protected GroovyShellContainer initialValue() {
             return new GroovyShellContainer();
