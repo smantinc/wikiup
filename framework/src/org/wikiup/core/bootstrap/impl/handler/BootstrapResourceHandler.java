@@ -13,7 +13,7 @@ public class BootstrapResourceHandler implements ResourceHandler {
     public void handle(Resource resource) {
         try {
             Bootstrap.getInstance().handle(resource);
-        } catch(Exception ex) {
+        } catch(Throwable ex) {
             JarFileResource jarFile = Interfaces.cast(JarFileResource.class, resource);
             if(jarFile != null) {
                 WikiupPluginManager.Plugin plugin = Wikiup.getModel(WikiupPluginManager.class).getPluginByJar(jarFile.getJar());

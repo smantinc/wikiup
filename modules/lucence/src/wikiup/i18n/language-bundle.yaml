@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    lucene:
+      title: Apache Lucene
+      brief: Apache Lucene is a free open source information retrieval software library
+      description:
+zh-cn:
+  modules:
+    lucene:
+      title: Lucene全文信息检索
+      brief: Lucene是一套用于全文检索和搜寻的开放源码程式库
+      description:

@@ -23,15 +23,11 @@ public class ScheduleManager extends WikiupDynamicSingleton<ScheduleManager> imp
 
     public void release() {
         try {
-            scheduler.shutdown();
+            if(scheduler != null)
+                scheduler.shutdown();
         } catch(SchedulerException e) {
         }
     }
-
-//  public void cloneFrom(ScheduleManager instance)
-//  {
-//    this.scheduler = instance.scheduler;
-//  }
 
     public void firstBuilt() {
         try {
