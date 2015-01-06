@@ -15,11 +15,11 @@
 		<item name="by-getter" class="org.wikiup.core.impl.wirable.WireByGetter"/>
 	</factory>
 	<factory name="filter" interface="org.wikiup.core.inf.Translator">
-		<item name="regexp" class="org.wikiup.core.impl.filter.lf.RegexpMatchLogicalFilter"/>
-		<item name="equal" class="org.wikiup.core.impl.filter.lf.EqualMatchLogicalFilter"/>
-		<item name="compare" class="org.wikiup.core.impl.filter.lf.CompareLogicalFilter"/>
-		<item name="value-of" class="org.wikiup.core.impl.filter.ValueOfFilter"/>
-		<item name="to-string" class="org.wikiup.core.impl.filter.ToStringFilter"/>
+		<item name="regexp" class="org.wikiup.core.impl.translator.lf.RegexpMatchLogicalTranslator"/>
+		<item name="equal" class="org.wikiup.core.impl.translator.lf.EqualMatchLogicalTranslator"/>
+		<item name="compare" class="org.wikiup.core.impl.translator.lf.CompareLogicalTranslator"/>
+		<item name="value-of" class="org.wikiup.core.impl.translator.ValueOfTranslator"/>
+		<item name="to-string" class="org.wikiup.core.impl.translator.ToStringTranslator"/>
 	</factory>
 	<factory name="connection-pool">
 		<item name="infinite" class="org.wikiup.database.impl.cp.InfiniteConnectionPool"/>
