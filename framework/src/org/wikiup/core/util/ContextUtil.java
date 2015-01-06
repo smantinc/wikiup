@@ -8,7 +8,7 @@ import org.wikiup.core.impl.translator.TypeCastFilter;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.ExpressionLanguage;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Setter;
 import org.wikiup.core.inf.Translator;
 
@@ -78,7 +78,7 @@ public class ContextUtil {
     }
 
     static public void setProperties(Document properties, Object obj, Getter<?> src) {
-        BeanFactory mc = Interfaces.cast(BeanFactory.class, obj);
+        BeanContainer mc = Interfaces.cast(BeanContainer.class, obj);
         Setter<?> dest = mc != null ? mc.query(Setter.class) : Interfaces.cast(Setter.class, obj);
         setProperties(properties, dest != null ? dest : new BeanPropertySetter(obj), src);
     }

@@ -5,7 +5,7 @@ import org.wikiup.core.bean.WikiupNamingDirectory;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Translator;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ContextUtil;
@@ -17,7 +17,7 @@ import org.wikiup.servlet.inf.ProcessorContext;
 import org.wikiup.servlet.inf.ProcessorModelContainer;
 import org.wikiup.servlet.inf.ServletProcessorContextAware;
 
-public class WikiupNamingDirectoryProcessorContext implements ProcessorContext, DocumentAware, ServletProcessorContextAware, BeanFactory {
+public class WikiupNamingDirectoryProcessorContext implements ProcessorContext, DocumentAware, ServletProcessorContextAware, BeanContainer {
     private ServletProcessorContext context;
     private Getter<?> directory;
     private String uri;
@@ -29,7 +29,7 @@ public class WikiupNamingDirectoryProcessorContext implements ProcessorContext, 
         directory = Wikiup.getInstance().get(Getter.class, path);
     }
 
-    public BeanFactory getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Getter<?> params) {
         String[] path = StringUtil.splitNamespaces(name);
         if(path.length < 2)
             return Interfaces.getModelContainer(get(name));
@@ -64,7 +64,7 @@ public class WikiupNamingDirectoryProcessorContext implements ProcessorContext, 
     }
 
     public <E> E query(Class<E> clazz) {
-        BeanFactory mc = Interfaces.getModelContainer(getDirectory());
+        BeanContainer mc = Interfaces.getModelContainer(getDirectory());
         return mc != null ? mc.query(clazz) : Interfaces.cast(clazz, this);
     }
 

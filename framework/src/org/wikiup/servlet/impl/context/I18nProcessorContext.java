@@ -6,7 +6,7 @@ import org.wikiup.core.impl.mp.InstanceModelProvider;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.inf.ProcessorContext;
@@ -16,7 +16,7 @@ public class I18nProcessorContext implements ProcessorContext, ServletProcessorC
     private String locale;
     private ServletProcessorContext context;
 
-    public BeanFactory getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Getter<?> params) {
         return new InstanceModelProvider(new I18nProcessorContextGetter(name));
     }
 

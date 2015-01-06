@@ -3,7 +3,7 @@ package org.wikiup.servlet.ms;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.XPath;
 import org.wikiup.servlet.inf.ProcessorContext;
@@ -14,15 +14,15 @@ import java.util.Stack;
 public class ProcessorContextModelContainerStack implements ProcessorContext {
     private Stack<ProcessorContextModelContainer> contextStack = new Stack<ProcessorContextModelContainer>();
 
-    public BeanFactory getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Getter<?> params) {
         return getModelContainerFromStack(name, params);
     }
 
-    public BeanFactory getModelContainerFromStack(String name, Getter<?> params) {
+    public BeanContainer getModelContainerFromStack(String name, Getter<?> params) {
         int i;
         for(i = contextStack.size() - 1; i >= 0; i--) {
             ProcessorContextModelContainer container = contextStack.get(i);
-            BeanFactory mc = container.getModelContainer(name, params);
+            BeanContainer mc = container.getModelContainer(name, params);
             if(mc != null)
                 return mc;
         }
@@ -41,14 +41,14 @@ public class ProcessorContextModelContainerStack implements ProcessorContext {
         XPath xp = new XPath(xpath);
         String cond = xp.getCondition();
         if(xp.isXPath() && cond != null) {
-            BeanFactory modelProvider = getModelContainer(xp.getPath(), params);
+            BeanContainer modelProvider = getModelContainer(xp.getPath(), params);
             Document doc = modelProvider != null ? modelProvider.query(Document.class) : null;
             return doc != null ? Documents.getAttributeValue(doc, cond, null) : null;
         }
         return null;
     }
 
-    public Iterator<BeanFactory> getIteratorFromContextStack(String name) {
+    public Iterator<BeanContainer> getIteratorFromContextStack(String name) {
         ProcessorContextModelContainer container = peek();
         return container != null ? container.getIterator(name) : Null.getInstance();
     }
@@ -57,7 +57,7 @@ public class ProcessorContextModelContainerStack implements ProcessorContext {
         return getValueFromContextStack(name, null);
     }
 
-    public Iterator<BeanFactory> getIterator(String name) {
+    public Iterator<BeanContainer> getIterator(String name) {
         return contextStack.empty() ? Null.getInstance() : contextStack.peek().getIterator(name);
     }
 

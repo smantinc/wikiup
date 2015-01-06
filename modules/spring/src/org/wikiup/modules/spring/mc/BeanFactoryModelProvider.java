@@ -1,8 +1,8 @@
 package org.wikiup.modules.spring.mc;
 
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 
-public class BeanFactoryModelProvider implements BeanFactory {
+public class BeanFactoryModelProvider implements BeanContainer {
     private org.springframework.beans.factory.BeanFactory beanFactory;
     private String beanName;
 

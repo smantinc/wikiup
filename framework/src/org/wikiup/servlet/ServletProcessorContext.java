@@ -14,7 +14,7 @@ import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.ExceptionHandler;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.inf.Setter;
@@ -166,7 +166,7 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
             awaredBy(iterator.next());
     }
 
-    public void awaredBy(BeanFactory mc) {
+    public void awaredBy(BeanContainer mc) {
         ServletProcessorContextAware aware = mc.query(ServletProcessorContextAware.class);
         if(aware != null)
             aware.setServletProcessorContext(this);
@@ -229,9 +229,9 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
         requestScope.init(this, getRequestContextConf());
     }
 
-    public BeanFactory buildProcessorContextModelContainer(Document desc) {
+    public BeanContainer buildProcessorContextModelContainer(Document desc) {
         if(desc != null) {
-            BeanFactory mc = Wikiup.getModelProvider(ProcessorContext.class, desc);
+            BeanContainer mc = Wikiup.getModelProvider(ProcessorContext.class, desc);
             return new ProcessorContextSupportedModelProvider(mc);
         }
         return null;
@@ -262,8 +262,8 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
         return servletContextConf;
     }
 
-    public BeanFactory getModelContainer(String name, Getter<?> params) {
-        BeanFactory provider = globalContext.getModelContainer(name, params);
+    public BeanContainer getModelContainer(String name, Getter<?> params) {
+        BeanContainer provider = globalContext.getModelContainer(name, params);
         provider = provider != null ? provider : servletScope.getModelContainer(name, params);
         provider = provider != null ? provider : requestScope.getModelContainer(name, params);
         return provider != null ? provider : modelContainerStack.getModelContainer(name, params);
@@ -440,7 +440,7 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
         return modelContainerStack;
     }
 
-    public ProcessorContextModelContainer pushModelContainer(BeanFactory mc) {
+    public ProcessorContextModelContainer pushModelContainer(BeanContainer mc) {
         return modelContainerStack.push(new ProcessorContextModelContainer(mc));
     }
 
@@ -453,7 +453,7 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
         return modelContainerStack.pop();
     }
 
-    public BeanFactory getModelContainer() {
+    public BeanContainer getModelContainer() {
         return new ServletProcessorContextModelProvider(this);
     }
 
@@ -509,7 +509,7 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
             this.configure = configure;
             for(Document node : configure.getChildren("context")) {
                 String name = Documents.getId(node);
-                BeanFactory mc = context.buildProcessorContextModelContainer(node);
+                BeanContainer mc = context.buildProcessorContextModelContainer(node);
                 ProcessorContext ctx = mc != null ? mc.query(ProcessorContext.class) : null;
                 Assert.notNull(ctx);
                 context.awaredBy(ctx);
@@ -549,10 +549,10 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
         }
     }
 
-    class ProcessorContextSupportedModelProvider implements BeanFactory {
-        private BeanFactory modelProvider;
+    class ProcessorContextSupportedModelProvider implements BeanContainer {
+        private BeanContainer modelProvider;
 
-        public ProcessorContextSupportedModelProvider(BeanFactory modelProvider) {
+        public ProcessorContextSupportedModelProvider(BeanContainer modelProvider) {
             this.modelProvider = modelProvider;
         }
 
@@ -568,7 +568,7 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
         }
     }
 
-    private static class ServletProcessorContextModelProvider implements BeanFactory {
+    private static class ServletProcessorContextModelProvider implements BeanContainer {
         private CollectionModelProvider modelContainer = new CollectionModelProvider();
 
         public ServletProcessorContextModelProvider(ServletProcessorContext context) {

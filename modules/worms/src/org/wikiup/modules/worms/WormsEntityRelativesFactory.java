@@ -6,7 +6,7 @@ import org.wikiup.core.impl.mf.ClassNameFactory;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.modules.worms.imp.relatives.EntityRelatives;
@@ -28,7 +28,7 @@ public class WormsEntityRelativesFactory extends WikiupDynamicSingleton<WormsEnt
     public org.wikiup.database.orm.EntityRelatives buildEntityRelatives(
             Document desc, WormsEntity origin, Getter<?> getter) {
         String type = Documents.getAttributeValue(desc, "type", null);
-        BeanFactory mc = factory.get(type);
+        BeanContainer mc = factory.get(type);
         Assert.notNull(mc, AttributeException.class, mc != null ? null : "Entity " + origin.getName() + "'s " + Documents.getId(desc) + " relation has no type \"" + type + "\"");
         EntityRelatives relatives = mc.query(EntityRelatives.class);
         relatives.init(desc, origin, getter);

@@ -1,7 +1,7 @@
 package org.wikiup.servlet.impl;
 
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.servlet.inf.ProcessorContext;
 
 public class NullProcessorContext implements ProcessorContext {
@@ -11,7 +11,7 @@ public class NullProcessorContext implements ProcessorContext {
         return instance == null ? (instance = new NullProcessorContext()) : instance;
     }
 
-    public BeanFactory getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Getter<?> params) {
         return null;
     }
 

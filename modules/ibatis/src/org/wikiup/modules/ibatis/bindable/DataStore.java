@@ -1,9 +1,9 @@
 package org.wikiup.modules.ibatis.bindable;
 
 import org.wikiup.core.impl.context.MapContext;
-import org.wikiup.core.impl.beanfactory.ByField;
+import org.wikiup.core.impl.beancontainer.ByField;
 import org.wikiup.core.impl.wirable.WireByGetter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Bindable;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Interfaces;
@@ -12,7 +12,7 @@ import org.wikiup.database.exception.InsufficientPrimaryKeys;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DataStore implements BeanFactory, Bindable {
+public class DataStore implements BeanContainer, Bindable {
     private Map<String, Object> store = new HashMap<String, Object>();
     private Object binded = store;
 

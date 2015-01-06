@@ -1,6 +1,6 @@
 package org.wikiup.core.bean;
 
-import org.wikiup.core.impl.beanfactory.Singleton;
+import org.wikiup.core.impl.beancontainer.Singleton;
 
 import java.util.HashMap;
 import java.util.HashSet;

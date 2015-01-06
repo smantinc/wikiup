@@ -5,7 +5,7 @@ import org.wikiup.core.exception.AttributeException;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ContextUtil;
@@ -32,7 +32,7 @@ public class NamespaceProcessorContext implements ProcessorContext, ServletProce
         contexts.put(name, context);
     }
 
-    public BeanFactory getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Getter<?> params) {
         String path[] = StringUtil.splitNamespaces(name);
         ProcessorContext ctx = getNamespace(path[0]);
         return ctx != null ? (path.length > 1 ? ctx.getModelContainer(name.substring(path[0].length() + 1), params) : Interfaces.getModelContainer(ctx)) : null;
@@ -60,7 +60,7 @@ public class NamespaceProcessorContext implements ProcessorContext, ServletProce
         for(Document node : desc.getChildren()) {
             String name = Documents.getId(node, null);
             ProcessorContext obj;
-            BeanFactory mc = null;
+            BeanContainer mc = null;
             Assert.notNull(name, AttributeException.class, "name");
             if(context != null) {
                 mc = context.buildProcessorContextModelContainer(node);

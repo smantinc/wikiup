@@ -1,13 +1,13 @@
 package org.wikiup.core.impl.resource;
 
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.Interfaces;
 
 import java.io.InputStream;
 import java.util.Collection;
 
-public class OverridedResource implements Resource, BeanFactory {
+public class OverridedResource implements Resource, BeanContainer {
     private Resource resource;
     private Collection<Resource> resources;
 

@@ -10,7 +10,7 @@ import org.springframework.context.NoSuchMessageException;
 import org.springframework.core.io.Resource;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.impl.iterable.IterableCollection;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Setter;
 import org.wikiup.core.inf.ext.ModelFactory;
@@ -26,14 +26,14 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class WikiupSpringDynamicSingleton extends WikiupDynamicSingleton<WikiupSpringDynamicSingleton> implements Setter<ApplicationContext>, ApplicationContext, Iterable<String>, ModelFactory, DocumentAware, BeanFactory {
+public class WikiupSpringDynamicSingleton extends WikiupDynamicSingleton<WikiupSpringDynamicSingleton> implements Setter<ApplicationContext>, ApplicationContext, Iterable<String>, ModelFactory, DocumentAware, BeanContainer {
     private Map<String, ApplicationContext> contexts;
 
     public void firstBuilt() {
         contexts = new HashMap<String, ApplicationContext>();
     }
 
-    public BeanFactory get(String name) {
+    public BeanContainer get(String name) {
         org.springframework.beans.factory.BeanFactory beanFactory = getBeanFactory(name, false);
         return beanFactory != null ? new BeanFactoryModelProvider(beanFactory, name) : null;
     }

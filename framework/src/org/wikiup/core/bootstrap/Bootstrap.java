@@ -10,7 +10,7 @@ import org.wikiup.core.exception.BeanException;
 import org.wikiup.core.impl.mf.NamespaceFactory;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.inf.ext.LogicalTranslator;
 import org.wikiup.core.util.Assert;
@@ -66,7 +66,7 @@ public class Bootstrap implements DocumentAware, ResourceHandler {
         if(desc != null) {
             String attr = Wikiup.getCsidAttribute(desc, def);
             if(attr != null) {
-                BeanFactory mc = Assert.notNull(factory.get(attr), AttributeException.class, factory, attr);
+                BeanContainer mc = Assert.notNull(factory.get(attr), AttributeException.class, factory, attr);
                 E obj = mc.query(clazz);
                 Assert.notNull(obj, BeanException.class, attr, desc);
                 Interfaces.initialize(obj, desc);

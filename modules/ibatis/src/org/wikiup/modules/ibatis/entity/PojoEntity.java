@@ -5,14 +5,14 @@ import org.wikiup.core.impl.attribute.BeanProperty;
 import org.wikiup.core.impl.iterable.BeanProperties;
 import org.wikiup.core.impl.translator.TypeCastFilter;
 import org.wikiup.core.inf.Attribute;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.ValueUtil;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class PojoEntity extends AbstractEntity implements BeanFactory {
+public class PojoEntity extends AbstractEntity implements BeanContainer {
     private Object object;
     private Map<String, Attribute> attributes = new HashMap<String, Attribute>();
 

@@ -11,7 +11,7 @@ import org.wikiup.core.impl.mp.IterableModelProvider;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.modules.lucene.Lucene;
@@ -53,7 +53,7 @@ public class QueryResultProcessorContext implements ServletProcessorContextAware
         return null;
     }
 
-    public BeanFactory getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Getter<?> params) {
         Lucene lucene = Wikiup.getModel(Lucene.class);
         try {
             return new IterableModelProvider(lucene.search(name, query, pageSize));

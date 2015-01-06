@@ -4,14 +4,14 @@ package org.wikiup.core.impl.mp;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
 
 import java.util.Iterator;
 
-public class DocumentModelProvider implements BeanFactory {
+public class DocumentModelProvider implements BeanContainer {
     private Document document;
     private Iterable<Document> iterable;
 

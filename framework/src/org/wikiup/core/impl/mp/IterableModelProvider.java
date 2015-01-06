@@ -1,11 +1,11 @@
 package org.wikiup.core.impl.mp;
 
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Interfaces;
 
 import java.util.Iterator;
 
-public class IterableModelProvider implements BeanFactory {
+public class IterableModelProvider implements BeanContainer {
 
     private Iterable<?> iterable;
 

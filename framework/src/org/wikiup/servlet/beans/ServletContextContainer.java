@@ -4,7 +4,7 @@ import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.impl.iterable.BeanPropertyNames;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.core.util.FileUtil;
@@ -65,7 +65,7 @@ public class ServletContextContainer extends WikiupDynamicSingleton<ServletConte
         return new BeanPropertyNames(this.getClass(), true).iterator();
     }
 
-    private class ServletContextResource implements Resource, BeanFactory {
+    private class ServletContextResource implements Resource, BeanContainer {
         private String uri;
 
         private ServletContextResource(String uri) {

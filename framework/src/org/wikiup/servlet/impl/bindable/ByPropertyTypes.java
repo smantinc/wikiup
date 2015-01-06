@@ -3,12 +3,12 @@ package org.wikiup.servlet.impl.bindable;
 import org.wikiup.core.impl.attribute.BeanProperty;
 import org.wikiup.core.impl.iterable.BeanProperties;
 import org.wikiup.core.inf.Bindable;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 
 public class ByPropertyTypes implements Bindable {
-    private BeanFactory modelProvider;
+    private BeanContainer modelProvider;
 
-    public ByPropertyTypes(BeanFactory modelProvider) {
+    public ByPropertyTypes(BeanContainer modelProvider) {
         this.modelProvider = modelProvider;
     }
 

@@ -15,7 +15,7 @@ import org.wikiup.core.impl.getter.StackGetter;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Setter;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ContextUtil;
@@ -43,7 +43,7 @@ public class JavascriptProcessorContext implements ProcessorContext, DocumentAwa
         return jsToJava(obj, ctx);
     }
 
-    public BeanFactory getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Getter<?> params) {
         return Interfaces.getModelContainer(get(name));
     }
 

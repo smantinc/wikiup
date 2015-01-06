@@ -2,7 +2,7 @@ package org.wikiup.modules.ibatis.entity;
 
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-public class IbatisEntity implements EntityModel, BeanFactory {
+public class IbatisEntity implements EntityModel, BeanContainer {
     private IbatisEntityManager entityManager;
     private EntityModel entity = new NullEntity();
     private String name;

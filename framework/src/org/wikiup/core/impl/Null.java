@@ -4,14 +4,14 @@ import org.wikiup.core.impl.iterable.GenericCastIterable;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Bindable;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.ext.Container;
 import org.wikiup.core.inf.ext.Context;
 
 import java.util.Iterator;
 
 
-public class Null implements Context, Iterator, Document, BeanFactory, Iterable, Bindable, Container {
+public class Null implements Context, Iterator, Document, BeanContainer, Iterable, Bindable, Container {
     private static Null instance = null;
 
     public static Null getInstance() {

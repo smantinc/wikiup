@@ -4,17 +4,17 @@ import org.wikiup.core.inf.Bindable;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class ByPropertyAutomatically implements Bindable, DocumentAware {
     private Getter<?> getter;
-    private BeanFactory modelProvider;
+    private BeanContainer modelProvider;
     private Document configure;
 
-    public ByPropertyAutomatically(Getter<Object> getter, BeanFactory modelProvider) {
+    public ByPropertyAutomatically(Getter<Object> getter, BeanContainer modelProvider) {
         this.getter = getter;
         this.modelProvider = modelProvider;
     }
@@ -34,7 +34,7 @@ public class ByPropertyAutomatically implements Bindable, DocumentAware {
         configure = desc;
     }
 
-    private class Once implements Getter<Object>, BeanFactory {
+    private class Once implements Getter<Object>, BeanContainer {
         private Set<String> setNames = new HashSet<String>();
         private Set<Class<?>> setClasses = new HashSet<Class<?>>();
 

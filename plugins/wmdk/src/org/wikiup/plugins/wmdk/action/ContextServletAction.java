@@ -4,7 +4,7 @@ import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
@@ -97,7 +97,7 @@ public class ContextServletAction {
 
     private Iterator<Object> getIterator(ServletProcessorContext ctx, String path) {
         try {
-            BeanFactory mc = ctx.getModelContainer(path, Null.getInstance());
+            BeanContainer mc = ctx.getModelContainer(path, Null.getInstance());
             return mc != null ? mc.query(Iterator.class) : null;
         } catch(Exception e) {
             return null;

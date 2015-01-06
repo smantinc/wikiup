@@ -1,6 +1,6 @@
-package org.wikiup.core.impl.beanfactory;
+package org.wikiup.core.impl.beancontainer;
 
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.util.Interfaces;
 
@@ -9,15 +9,15 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class Singleton implements BeanFactory, Releasable {
+public class Singleton implements BeanContainer, Releasable {
     private Map<Class<?>, Object> byClasses = new HashMap<Class<?>, Object>();
-    private BeanFactory factory = new NewInstance();
+    private BeanContainer factory = new NewInstance();
     private Set<Object> singletons = new HashSet<Object>();
 
     public Singleton() {
     }
 
-    public Singleton(BeanFactory factory) {
+    public Singleton(BeanContainer factory) {
         this.factory = factory;
     }
 

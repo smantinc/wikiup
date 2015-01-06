@@ -6,7 +6,7 @@ import org.wikiup.core.impl.getter.StackGetter;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.modules.jython.util.JythonUtil;
 import org.wikiup.servlet.ServletProcessorContext;
@@ -23,7 +23,7 @@ public class WikiupPythonProcessorContext implements ProcessorContext, DocumentA
         return interpreter != null ? JythonUtil.toJava(interpreter.get(name)) : null;
     }
 
-    public BeanFactory getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Getter<?> params) {
         return Interfaces.getModelContainer(get(name));
     }
 

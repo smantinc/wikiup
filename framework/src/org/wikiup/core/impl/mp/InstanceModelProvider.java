@@ -1,9 +1,9 @@
 package org.wikiup.core.impl.mp;
 
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Interfaces;
 
-public class InstanceModelProvider implements BeanFactory {
+public class InstanceModelProvider implements BeanContainer {
     private Object instance;
 
     public InstanceModelProvider() {

@@ -1,7 +1,7 @@
 package org.wikiup.servlet.impl.context;
 
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.inf.ProcessorContext;
 import org.wikiup.servlet.inf.ServletProcessorContextAware;
@@ -29,9 +29,9 @@ public class CompositeProcessorContext implements ProcessorContext, ServletProce
         context.awaredBy(contexts.descendingIterator());
     }
 
-    public BeanFactory getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Getter<?> params) {
         for(ProcessorContext ctx : contexts) {
-            BeanFactory mc = ctx.getModelContainer(name, params);
+            BeanContainer mc = ctx.getModelContainer(name, params);
             if(mc != null)
                 return mc;
         }

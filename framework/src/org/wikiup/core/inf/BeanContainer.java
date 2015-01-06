@@ -1,6 +1,6 @@
 package org.wikiup.core.inf;
 
-public interface BeanFactory {
+public interface BeanContainer {
     /**
      * BeanFactory was inspired by <a href="http://picocontainer.codehaus.org/">PicoContainer</a>,
      * which is an Inversion of Control (IoC) container for components honor the Dependency Injection pattern.

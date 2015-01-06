@@ -1,6 +1,6 @@
 package org.wikiup.database.impl.datasource;
 
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.database.inf.DataSourceInf;
 import org.wikiup.database.inf.DatabaseDriver;
@@ -12,7 +12,7 @@ import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
 import java.util.logging.Logger;
 
-public class DataSourceWrapper implements DataSourceInf, BeanFactory {
+public class DataSourceWrapper implements DataSourceInf, BeanContainer {
     protected DataSource dataSource;
 
     public Connection getConnection(String username, String password) throws SQLException {

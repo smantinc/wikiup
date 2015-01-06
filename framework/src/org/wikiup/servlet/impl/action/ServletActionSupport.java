@@ -1,12 +1,12 @@
 package org.wikiup.servlet.impl.action;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupBeanFactory;
+import org.wikiup.core.bean.WikiupBeanContainer;
 import org.wikiup.core.impl.context.BeanPropertyContext;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.impl.document.Context2Document;
 import org.wikiup.core.impl.iterable.BeanPropertyNames;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Getter;
 import org.wikiup.core.util.Assert;
@@ -40,7 +40,7 @@ public class ServletActionSupport implements ServletAction {
         String handler = entry != null ? ContextUtil.getPropertyName(entry, false) : null;
         if(handler != null)
             try {
-                ByPropertyAutomatically bindable = new ByPropertyAutomatically(new WikiupBeanGetter(), Wikiup.getModel(WikiupBeanFactory.class));
+                ByPropertyAutomatically bindable = new ByPropertyAutomatically(new WikiupBeanGetter(), Wikiup.getModel(WikiupBeanContainer.class));
                 Interfaces.initialize(bindable, doc);
                 bindable.bind(instance);
 
@@ -78,7 +78,7 @@ public class ServletActionSupport implements ServletAction {
 
 
     private SupportedHandler getSupportedHandler(String handler, ServletProcessorContext context, Document desc) {
-        BeanFactory mc = context.getModelContainer();
+        BeanContainer mc = context.getModelContainer();
         for(Method m : instance.getClass().getMethods()) {
             if(m.getName().equals(handler) || m.getName().equals(ContextUtil.getPropertyName("do-" + handler, false))) {
                 List<Object> parameters = new ArrayList<Object>();

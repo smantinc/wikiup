@@ -13,7 +13,7 @@ import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.iterable.ArrayIterable;
 import org.wikiup.core.impl.mp.InstanceModelProvider;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.ext.ModelFactory;
 import org.wikiup.servlet.beans.ServletContextContainer;
 
@@ -29,7 +29,7 @@ public class WikiupSpringWebApplicationContext implements ModelFactory, Iterable
         applicationContext = WebApplicationContextUtils.getWebApplicationContext(Wikiup.getModel(ServletContextContainer.class).getServletContext());
     }
 
-    public BeanFactory get(String name) {
+    public BeanContainer get(String name) {
         Object bean = applicationContext.getBean(name);
         return bean != null ? new InstanceModelProvider(bean) : null;
     }

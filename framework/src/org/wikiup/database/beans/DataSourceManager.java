@@ -1,7 +1,7 @@
 package org.wikiup.database.beans;
 
 import org.wikiup.core.bean.WikiupDynamicSingleton;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.Interfaces;
@@ -17,7 +17,7 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class DataSourceManager extends WikiupDynamicSingleton<DataSourceManager> implements Context<DataSourceInf, Object>, DataSourceInf, Iterable<String>, BeanFactory, Releasable {
+public class DataSourceManager extends WikiupDynamicSingleton<DataSourceManager> implements Context<DataSourceInf, Object>, DataSourceInf, Iterable<String>, BeanContainer, Releasable {
     private Map<String, DataSourceInf> dataSources;
     private DataSourceInf dataSource;
 

@@ -5,7 +5,7 @@ import org.wikiup.core.impl.mp.DocumentModelProvider;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.core.util.Documents;
@@ -31,7 +31,7 @@ public class EntityProcessorContext implements ProcessorContext, ServletProcesso
         this.context = context;
     }
 
-    public BeanFactory getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Getter<?> params) {
         Document doc;
         EntityPath ePath = new EntityPath(name);
         String eName = ePath.getEntityName();

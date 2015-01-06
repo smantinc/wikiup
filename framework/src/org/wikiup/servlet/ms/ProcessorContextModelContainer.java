@@ -3,7 +3,7 @@ package org.wikiup.servlet.ms;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
@@ -12,9 +12,9 @@ import org.wikiup.servlet.inf.ProcessorContext;
 import java.util.Iterator;
 
 public class ProcessorContextModelContainer implements ProcessorContext {
-    private BeanFactory modelProvider;
+    private BeanContainer modelProvider;
 
-    public ProcessorContextModelContainer(BeanFactory modelProvider) {
+    public ProcessorContextModelContainer(BeanContainer modelProvider) {
         this.modelProvider = modelProvider;
     }
 
@@ -32,7 +32,7 @@ public class ProcessorContextModelContainer implements ProcessorContext {
         return null;
     }
 
-    public BeanFactory getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Getter<?> params) {
         Document doc = modelProvider != null ? modelProvider.query(Document.class) : null;
         if(doc != null) {
             Document child = doc.getChild(name);
@@ -43,15 +43,15 @@ public class ProcessorContextModelContainer implements ProcessorContext {
         return getter != null ? Interfaces.getModelContainer(getter.get(name)) : null;
     }
 
-    public BeanFactory getModelContainer() {
+    public BeanContainer getModelContainer() {
         return modelProvider;
     }
 
-    public void setModelContainer(BeanFactory provider) {
+    public void setModelContainer(BeanContainer provider) {
         modelProvider = provider;
     }
 
-    public Iterator<BeanFactory> getIterator(String name) {
+    public Iterator<BeanContainer> getIterator(String name) {
         if(modelProvider != null) {
             Document doc = modelProvider.query(Document.class);
             if(doc != null)
@@ -66,13 +66,13 @@ public class ProcessorContextModelContainer implements ProcessorContext {
         return Null.getInstance();
     }
 
-    private Iterator<BeanFactory> iterator(final Iterator<?> iterator) {
-        return new Iterator<BeanFactory>() {
+    private Iterator<BeanContainer> iterator(final Iterator<?> iterator) {
+        return new Iterator<BeanContainer>() {
             public boolean hasNext() {
                 return iterator.hasNext();
             }
 
-            public BeanFactory next() {
+            public BeanContainer next() {
                 return Interfaces.getModelContainer(iterator.next());
             }
 

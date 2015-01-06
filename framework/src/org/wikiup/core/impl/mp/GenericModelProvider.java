@@ -1,14 +1,14 @@
 package org.wikiup.core.impl.mp;
 
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 
-public class GenericModelProvider implements BeanFactory {
-    private BeanFactory modelProvider;
+public class GenericModelProvider implements BeanContainer {
+    private BeanContainer modelProvider;
 
     public GenericModelProvider(Object obj) {
-        if(obj instanceof BeanFactory)
-            modelProvider = (BeanFactory) obj;
+        if(obj instanceof BeanContainer)
+            modelProvider = (BeanContainer) obj;
         else if(obj instanceof Iterable)
             modelProvider = new IterableModelProvider((Iterable<?>) obj);
         else if(obj instanceof Document)

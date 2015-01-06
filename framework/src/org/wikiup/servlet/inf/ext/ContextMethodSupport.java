@@ -1,7 +1,7 @@
 package org.wikiup.servlet.inf.ext;
 
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.ValueUtil;
@@ -13,7 +13,7 @@ import org.wikiup.servlet.inf.ServletProcessorContextAware;
 public abstract class ContextMethodSupport implements ProcessorModelContainer, ServletProcessorContextAware {
     private ServletProcessorContext context;
 
-    public BeanFactory getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Getter<?> params) {
         return Interfaces.getModelContainer(invoke(context, params));
     }
 

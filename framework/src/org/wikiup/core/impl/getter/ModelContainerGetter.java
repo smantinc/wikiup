@@ -1,12 +1,12 @@
 package org.wikiup.core.impl.getter;
 
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 
 public class ModelContainerGetter implements Getter<Object> {
-    private BeanFactory modelProvider;
+    private BeanContainer modelProvider;
 
-    public ModelContainerGetter(BeanFactory modelProvider) {
+    public ModelContainerGetter(BeanContainer modelProvider) {
         this.modelProvider = modelProvider;
     }
 

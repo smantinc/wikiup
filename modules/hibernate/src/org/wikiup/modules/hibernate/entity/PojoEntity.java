@@ -5,7 +5,7 @@ import org.hibernate.metadata.ClassMetadata;
 import org.wikiup.core.impl.attribute.BeanProperty;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Interfaces;
@@ -16,7 +16,7 @@ import org.wikiup.database.orm.EntityRelatives;
 import org.wikiup.database.orm.inf.EntityModel;
 import org.wikiup.modules.hibernate.HibernateEntityManager;
 
-public class PojoEntity implements EntityModel, BeanFactory, Releasable {
+public class PojoEntity implements EntityModel, BeanContainer, Releasable {
     private Object pojo;
     private Class pojoClass;
     private Session session;

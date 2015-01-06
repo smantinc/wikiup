@@ -1,7 +1,7 @@
 package org.wikiup.servlet;
 
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.BeanFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.Documents;
@@ -16,7 +16,7 @@ import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Map;
 
-public class ServletProcessorResponseBuffer implements BeanFactory, Releasable {
+public class ServletProcessorResponseBuffer implements BeanContainer, Releasable {
     private Map<Class<?>, Object> values = new HashMap<Class<?>, Object>();
 
     private StringWriter responseWriter;
