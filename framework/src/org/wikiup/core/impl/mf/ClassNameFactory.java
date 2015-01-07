@@ -15,6 +15,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+@Deprecated
 public class ClassNameFactory implements ModelFactory, DocumentAware, Iterable<String> {
     private Map<String, String> classNameMap = new HashMap<String, String>();
     private Map<String, Document> classDocumentMap = new HashMap<String, Document>();

@@ -2,7 +2,7 @@ package org.wikiup.core.bean.scratchpad;
 
 import org.wikiup.core.Constants;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
-import org.wikiup.core.impl.factory.ByClass;
+import org.wikiup.core.impl.factory.FactoryByName;
 import org.wikiup.core.impl.factory.ByNamespace;
 import org.wikiup.core.impl.factory.ToDocumentWirable;
 import org.wikiup.core.inf.Document;
@@ -90,7 +90,7 @@ public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory>
     }
 
     private class DefaultBeanFactory implements Factory.ByName<Object> {
-        private ByClass<Object> classFactory = new ByClass<Object>();
+        private FactoryByName<Object> classFactory = new FactoryByName<Object>();
 
         public Object build(String name) {
             Factory.ByName<Object> factory = byNames.get(name);

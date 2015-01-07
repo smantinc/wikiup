@@ -1,10 +1,10 @@
 package org.wikiup.core.bean;
 
-import org.wikiup.core.impl.cl.DefaultClassLoader;
+import org.wikiup.core.impl.cl.ClassDictionaryImpl;
 import org.wikiup.core.impl.getter.GetterCollection;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.Setter;
-import org.wikiup.core.inf.ext.ClassLoader;
+import org.wikiup.core.inf.ext.ClassDictionary;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Interfaces;
 
@@ -12,8 +12,8 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-public class WikiupClassLoader extends WikiupDynamicSingleton<WikiupClassLoader> implements ClassLoader, Setter<ClassLoader>, Releasable, Iterable<ClassLoader> {
-    private List<ClassLoader> collection;
+public class WikiupClassLoader extends WikiupDynamicSingleton<WikiupClassLoader> implements ClassDictionary, Setter<ClassDictionary>, Releasable, Iterable<ClassDictionary> {
+    private List<ClassDictionary> collection;
     private GetterCollection<Class> loaders;
 
     public Class get(String name) {
@@ -23,12 +23,12 @@ public class WikiupClassLoader extends WikiupDynamicSingleton<WikiupClassLoader>
     }
 
     public void firstBuilt() {
-        collection = new ArrayList<ClassLoader>();
-        collection.add(new DefaultClassLoader());
+        collection = new ArrayList<ClassDictionary>();
+        collection.add(new ClassDictionaryImpl());
         loaders = new GetterCollection<Class>(collection);
     }
 
-    public void set(String name, ClassLoader obj) {
+    public void set(String name, ClassDictionary obj) {
         collection.add(0, obj);
     }
 
@@ -38,7 +38,7 @@ public class WikiupClassLoader extends WikiupDynamicSingleton<WikiupClassLoader>
         collection = null;
     }
 
-    public Iterator<ClassLoader> iterator() {
+    public Iterator<ClassDictionary> iterator() {
         return collection.iterator();
     }
 }
