@@ -12,15 +12,15 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class ToDocumentWirable<T> extends WrapperImpl<Factory.ByName<T>> implements Factory.ByNameToWirable<T, Document>, Iterable<String> {
+public class ToWirableByDocument<T> extends WrapperImpl<Factory.ByName<T>> implements Factory.ByNameToWirable<T, Document>, Iterable<String> {
     private final Map<String, Node> nodes;
     
-    public ToDocumentWirable(Factory.ByName<T> factory) {
+    public ToWirableByDocument(Factory.ByName<T> factory) {
         super(factory);
         nodes = new HashMap<String, Node>();
     }
 
-    public ToDocumentWirable(Factory.ByName<T> factory, Map<String, Node> nodes) {
+    public ToWirableByDocument(Factory.ByName<T> factory, Map<String, Node> nodes) {
         super(factory);
         this.nodes = nodes;
     }
@@ -68,13 +68,13 @@ public class ToDocumentWirable<T> extends WrapperImpl<Factory.ByName<T>> impleme
         }
     }
     
-    public static final class WIRABLE<T> extends WrapperImpl<ToDocumentWirable<T>> implements Wirable.ByDocument<ToDocumentWirable<T>> {
-        public WIRABLE(ToDocumentWirable<T> wrapped) {
+    public static final class WIRABLE<T> extends WrapperImpl<ToWirableByDocument<T>> implements Wirable.ByDocument<ToWirableByDocument<T>> {
+        public WIRABLE(ToWirableByDocument<T> wrapped) {
             super(wrapped);
         }
 
         @Override
-        public ToDocumentWirable<T> wire(Document desc) {
+        public ToWirableByDocument<T> wire(Document desc) {
             for(Document node : desc.getChildren()) {
                 String id = Documents.getId(node);
                 wrapped.nodes.put(id, new Node(id, node));

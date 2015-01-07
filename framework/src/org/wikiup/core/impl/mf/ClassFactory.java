@@ -7,6 +7,7 @@ import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.ext.ModelFactory;
 import org.wikiup.core.util.Assert;
 
+@Deprecated
 public class ClassFactory implements ModelFactory {
     private WikiupClassLoader cl;
 

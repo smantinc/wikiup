@@ -6,6 +6,7 @@ import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.ext.ModelFactory;
 import org.wikiup.core.util.Interfaces;
 
+@Deprecated
 public class WndiFactory implements ModelFactory {
     private WikiupNamingDirectory directory;
 

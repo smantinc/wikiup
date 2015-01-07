@@ -11,6 +11,7 @@ import org.wikiup.core.util.Documents;
 import java.util.HashMap;
 import java.util.Map;
 
+@Deprecated
 public class NamespaceFactory implements ModelFactory, DocumentAware {
     private Map<String, ModelFactory> factorys = new HashMap<String, ModelFactory>();
 

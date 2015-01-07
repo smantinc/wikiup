@@ -6,7 +6,7 @@ public interface Factory<T, P> {
     public interface ByName<T> extends Factory<T, String> {
     }
     
-    public interface ByType<T> extends Factory<T, Class<?>> {
+    public interface ByClass<T> extends Factory<T, Class<?>> {
     }
 
     public interface ByDocument<T> extends Factory<T, Document> {
@@ -18,7 +18,7 @@ public interface Factory<T, P> {
     public interface ByNameToWirable<T, E> extends ByName<Wirable<T, E>> {
     }
     
-    public interface ByTypeToWirable<T, E> extends ByType<Wirable<T, E>> {
+    public interface ByClassToWirable<T, E> extends ByClass<Wirable<T, E>> {
     }
 
     public interface ByDocumentToWirable<T, E> extends ByDocument<Wirable<T, E>> {

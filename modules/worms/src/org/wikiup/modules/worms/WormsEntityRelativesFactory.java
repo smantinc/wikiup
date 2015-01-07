@@ -19,7 +19,6 @@ public class WormsEntityRelativesFactory extends WikiupDynamicSingleton<WormsEnt
     }
 
     public WormsEntityRelativesFactory() {
-        factory = new FactoryByName<EntityRelatives>();
     }
 
     public void firstBuilt() {
@@ -36,6 +35,6 @@ public class WormsEntityRelativesFactory extends WikiupDynamicSingleton<WormsEnt
 
     @Override
     public void aware(Document desc) {
-        factory = new FactoryByName.WIRABLE<EntityRelatives>(factory).wire(desc);
+        factory = new FactoryByName.WIRABLE<EntityRelatives>().wire(desc);
     }
 }

@@ -1,5 +1,6 @@
 package org.wikiup.core.util;
 
+import org.wikiup.core.Constants;
 import org.wikiup.core.impl.df.DirectoryDocumentReader;
 import org.wikiup.core.impl.df.FileDocumentReader;
 import org.wikiup.core.impl.df.StringDocumentReader;
@@ -42,7 +43,7 @@ public class Documents {
     }
 
     static public String getId(Document doc, String def) {
-        String name = getAttributeValue(doc, "name", null);
+        String name = getAttributeValue(doc, Constants.Attributes.NAME, null);
         return name != null ? name : getAttributeValue(doc, "id", def);
     }
 

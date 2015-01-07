@@ -13,14 +13,14 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class ByNamespace<T> implements Factory.ByName<T>, Iterable<String>, Context<Factory.ByName<T>, Factory.ByName<T>> {
+public class FactoryByNamespace<T> implements Factory.ByName<T>, Iterable<String>, Context<Factory.ByName<T>, Factory.ByName<T>> {
     private final Map<String, Factory.ByName<T>> factorys;
 
-    public ByNamespace() {
+    public FactoryByNamespace() {
         factorys = new HashMap<String, ByName<T>>();
     }
 
-    public ByNamespace(Map<String, ByName<T>> factorys) {
+    public FactoryByNamespace(Map<String, ByName<T>> factorys) {
         this.factorys = factorys;
     }
 
@@ -54,16 +54,16 @@ public class ByNamespace<T> implements Factory.ByName<T>, Iterable<String>, Cont
         return factorys;
     }
 
-    public static final class WIRABLE<T> extends WrapperImpl<ByNamespace<T>> implements Wirable<ByNamespace<T>, Document> {
+    public static final class WIRABLE<T> extends WrapperImpl<FactoryByNamespace<T>> implements Wirable<FactoryByNamespace<T>, Document> {
         private Factory.ByDocument<Factory.ByName<T>> builder;
 
-        public WIRABLE(ByNamespace<T> wrapped, Factory.ByDocument<Factory.ByName<T>> builder) {
+        public WIRABLE(FactoryByNamespace<T> wrapped, Factory.ByDocument<Factory.ByName<T>> builder) {
             super(wrapped);
             this.builder = builder;
         }
 
         @Override
-        public ByNamespace<T> wire(Document desc) {
+        public FactoryByNamespace<T> wire(Document desc) {
             for(Document node : desc.getChildren()) {
                 String namespace = Documents.getId(node);
                 if(!wrapped.factorys.containsKey(namespace) || Documents.getAttributeBooleanValue(desc, Constants.Attributes.OVERRIDE, false))
