@@ -61,12 +61,12 @@ public class Wikiup implements Context<Object, Object>, Releasable {
     }
 
     public <E> E get(Class<E> clazz, Document doc) {
-        ClassIdentity csid = getClassIdentity(doc);
+        ClassIdentity csid = ClassIdentity.obtain(doc);
         return get(clazz, csid.getId());
     }
 
     public <E> E getBean(Class<E> clazz, Document doc) {
-        ClassIdentity csid = getClassIdentity(doc);
+        ClassIdentity csid = ClassIdentity.obtain(doc);
         BeanContainer mc = csid.getModelContainer(clazz);
         E bean = mc != null ? mc.query(clazz) : null;
         return bean != null ? bean : build(clazz, csid.getNamespace(), csid.getName(), doc);
@@ -79,7 +79,7 @@ public class Wikiup implements Context<Object, Object>, Releasable {
     }
 
     public <E> void loadBeans(Class<E> clazz, Setter<E> directory, Document doc) {
-        for(Document node : doc.getChildren("bean")) {
+        for(Document node : doc.getChildren(Constants.Attributes.BEAN)) {
             E bean = getBean(clazz, node);
             bean = bean != null ? bean : Wikiup.build(clazz, node, null);
             String name = Documents.getId(node, Assert.notNull(bean).toString());
@@ -89,7 +89,7 @@ public class Wikiup implements Context<Object, Object>, Releasable {
     }
 
     static public <E> E build(Class<E> clazz, Document doc, Document init) {
-        ClassIdentity csid = getClassIdentity(doc);
+        ClassIdentity csid = ClassIdentity.obtain(doc);
         E instance = Interfaces.newInstance(clazz, csid.getName());
         Interfaces.initialize(instance, init);
         return instance;

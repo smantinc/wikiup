@@ -6,7 +6,6 @@ import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.ext.Resource;
 
 public class BeanFactoryResourceHandler extends DirectoryDocumentResourceHandler {
-
     private WikiupBeanFactory beanFactory = Wikiup.getModel(WikiupBeanFactory.class);
 
     @Override

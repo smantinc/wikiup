@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <bootstrap>
+	<bean-factory>
+		<factory name="factory" class="org.wikiup.core.impl.factory.FactoryByClass$WIRABLE">
+			<item name="by-class" class="org.wikiup.core.impl.factory.FactoryByClass$WIRABLE"/>
+			<item name="by-document" class="org.wikiup.core.impl.factory.FactoryByDocument"/>
+		</factory>
+	</bean-factory>
 	<model-factory class="org.wikiup.core.impl.mf.NamespaceFactory">
 		<factory class="org.wikiup.core.impl.mf.ClassFactory"/>
 		<factory name="wndi" class="org.wikiup.core.impl.mf.WndiFactory"/>

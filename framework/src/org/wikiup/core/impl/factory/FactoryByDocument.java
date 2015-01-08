@@ -8,7 +8,11 @@ import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 
 public class FactoryByDocument<T> implements Factory.ByDocument<T> {
-    private Factory.ByName<?> factory;
+    private final Factory.ByName<?> factory;
+
+    public FactoryByDocument() {
+        this.factory = new FactoryByClass<Object>();
+    }
 
     public FactoryByDocument(Factory.ByName<?> factory) {
         this.factory = factory;
@@ -16,7 +20,9 @@ public class FactoryByDocument<T> implements Factory.ByDocument<T> {
     
     @Override
     public T build(Document desc) {
-        String name = Documents.ensureAttributeValue(desc, Constants.Attributes.NAME);
+        String name = Documents.getAttributeValue(desc, Constants.Attributes.CLASS, null);
+        if(name == null)
+            return null;
         Object bean = factory.build(name);
         Wirable.ByDocument<?> wirable = Interfaces.cast(Wirable.ByDocument.class, bean);
         if(wirable != null)

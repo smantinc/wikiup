@@ -2,8 +2,8 @@ package org.wikiup.servlet.util;
 
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.Null;
-import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Document;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
@@ -61,7 +61,11 @@ public class ActionUtil {
 
     private static ServletAction getAction(Document node) {
         ServletAction action = Wikiup.getInstance().getBean(ServletAction.class, node);
-        Object object = action == null ? Wikiup.getInstance().getBean(Object.class, node) : null;
-        return action != null ? action : (object != null ? new ServletActionSupport(object) : null);
+        if(action == null) {
+            Object object = Wikiup.getInstance().getBean(Object.class, node);
+            if(object != null)
+                action = new ServletActionSupport(object);
+        }
+        return action;
     }
 }

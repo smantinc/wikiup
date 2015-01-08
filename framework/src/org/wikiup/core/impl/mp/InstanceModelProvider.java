@@ -3,6 +3,7 @@ package org.wikiup.core.impl.mp;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Interfaces;
 
+@Deprecated
 public class InstanceModelProvider implements BeanContainer {
     private Object instance;
 
