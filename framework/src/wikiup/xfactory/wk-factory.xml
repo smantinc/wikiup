@@ -2,6 +2,10 @@
 <beans>
 	<factory class="org.wikiup.core.impl.mf.ClassFactory"/>
 	<factory name="wndi" class="org.wikiup.core.impl.mf.WndiFactory"/>
+	<factory name="factory" interface="org.wikiup.core.inf.Factory">
+		<item name="by-class" class="org.wikiup.core.impl.factory.FactoryByClass"/>
+		<item name="by-document" class="org.wikiup.core.impl.factory.FactoryByDocument"/>
+	</factory>
 	<factory name="bindable" interface="org.wikiup.core.inf.Bindable">
 		<item name="by-name" class="org.wikiup.servlet.impl.bindable.ByPropertyNames"/>
 		<item name="by-type" class="org.wikiup.servlet.impl.bindable.ByPropertyTypes"/>

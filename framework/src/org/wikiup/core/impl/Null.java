@@ -5,13 +5,14 @@ import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Bindable;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Factory;
 import org.wikiup.core.inf.ext.Container;
 import org.wikiup.core.inf.ext.Context;
 
 import java.util.Iterator;
 
 
-public class Null implements Context, Iterator, Document, BeanContainer, Iterable, Bindable, Container {
+public class Null implements Context, Iterator, Document, BeanContainer, Iterable, Bindable, Container, Factory {
     private static Null instance = null;
 
     public static Null getInstance() {
@@ -112,6 +113,11 @@ public class Null implements Context, Iterator, Document, BeanContainer, Iterabl
     }
 
     public Object get() {
+        return null;
+    }
+
+    @Override
+    public Object build(Object params) {
         return null;
     }
 }
