@@ -1,7 +1,6 @@
 package org.wikiup.core.impl.factory;
 
 import org.wikiup.core.Constants;
-import org.wikiup.core.impl.wrapper.WrapperImpl;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;
 import org.wikiup.core.inf.Wirable;
@@ -22,6 +21,15 @@ public class FactoryByNamespace<T> implements Factory.ByName<T>, Iterable<String
 
     public FactoryByNamespace(Map<String, ByName<T>> factorys) {
         this.factorys = factorys;
+    }
+
+    public FactoryByNamespace(Document desc, Factory.ByDocument<Factory.ByName<T>> builder) {
+        factorys = new HashMap<String, ByName<T>>();
+        for(Document node : desc.getChildren()) {
+            String namespace = Documents.getId(node);
+            if(!factorys.containsKey(namespace) || Documents.getAttributeBooleanValue(desc, Constants.Attributes.OVERRIDE, false))
+                add(namespace, builder.build(node));
+        }
     }
 
     @Override
@@ -54,22 +62,16 @@ public class FactoryByNamespace<T> implements Factory.ByName<T>, Iterable<String
         return factorys;
     }
 
-    public static final class WIRABLE<T> extends WrapperImpl<FactoryByNamespace<T>> implements Wirable<FactoryByNamespace<T>, Document> {
+    public static final class WIRABLE<T> implements Wirable.ByDocument<FactoryByNamespace<T>> {
         private Factory.ByDocument<Factory.ByName<T>> builder;
 
-        public WIRABLE(FactoryByNamespace<T> wrapped, Factory.ByDocument<Factory.ByName<T>> builder) {
-            super(wrapped);
+        public WIRABLE(Factory.ByDocument<Factory.ByName<T>> builder) {
             this.builder = builder;
         }
 
         @Override
         public FactoryByNamespace<T> wire(Document desc) {
-            for(Document node : desc.getChildren()) {
-                String namespace = Documents.getId(node);
-                if(!wrapped.factorys.containsKey(namespace) || Documents.getAttributeBooleanValue(desc, Constants.Attributes.OVERRIDE, false))
-                    wrapped.add(namespace, builder.build(node));
-            }
-            return wrapped;
+            return new FactoryByNamespace<T>(desc, builder);
         }
     }
 }

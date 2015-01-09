@@ -9,7 +9,7 @@ import org.wikiup.core.inf.ext.ClassDictionary;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Interfaces;
 
-public class FactoryByClass<T> implements Factory.ByName<T> {
+public class FactoryByClass<T> implements Factory.ByName<T>, Wirable.ByDocument<FactoryByClass<T>> {
     private ClassDictionary classDictionary;
 
     public FactoryByClass() {
@@ -20,6 +20,10 @@ public class FactoryByClass<T> implements Factory.ByName<T> {
         this.classDictionary = classDictionary;
     }
 
+    public FactoryByClass(Document desc) {
+        this.classDictionary = new ClassDictionaryByName(desc);
+    }
+    
     @Override
     public T build(String className) {
         Class<?> clazz = classDictionary.get(className);
@@ -27,10 +31,9 @@ public class FactoryByClass<T> implements Factory.ByName<T> {
         return className != null ? Interfaces.newInstance((Class<T>) clazz) : null;
     }
 
-    public static final class WIRABLE<T> implements Wirable.ByDocument<FactoryByClass<T>> {
-        @Override
-        public FactoryByClass<T> wire(Document desc) {
-            return new FactoryByClass<T>(new ClassDictionaryByName(desc));
-        }
+    @Override
+    public FactoryByClass<T> wire(Document desc) {
+        classDictionary = new ClassDictionaryByName(desc);
+        return this;
     }
 }
