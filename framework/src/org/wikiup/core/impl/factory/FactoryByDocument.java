@@ -27,6 +27,6 @@ public class FactoryByDocument<T> implements Factory.ByDocument<T> {
         Wirable.ByDocument<?> wirable = Interfaces.cast(Wirable.ByDocument.class, bean);
         if(wirable != null)
             bean = wirable.wire(desc);
-        return Interfaces.cast(bean);
+        return (T) bean;
     }
 }
