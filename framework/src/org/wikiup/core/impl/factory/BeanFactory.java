@@ -10,14 +10,13 @@ import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 
 import java.util.HashMap;
-import java.util.Map;
 
-public class BeanFactory implements Factory<Factory<Object, Object>, String> {
-    private Map<Object, FactoryWrapper<Object, Object>> factories = new HashMap<Object, FactoryWrapper<Object, Object>>();
+public class BeanFactory implements Factory<FactoryWrapper<Object, Object>, String> {
+    private HashMap<Object, FactoryWrapper<Object, Object>> factories = new HashMap<Object, FactoryWrapper<Object, Object>>();
 
     @Override
     public FactoryWrapper<Object, Object> build(String name) {
-        return factories.get(name);
+        return getFactory(name);
     }
 
     public <T> T build(Class<T> clazz, String id) {

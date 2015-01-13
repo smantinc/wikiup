@@ -13,8 +13,7 @@ import org.wikiup.core.util.Interfaces;
 public class FactoryByClass<T> implements Factory.ByName<T> {
     private ClassDictionary classDictionary;
 
-    public FactoryByClass() {
-        classDictionary = new ClassDictionaryImpl();
+    private FactoryByClass() {
     }
 
     public FactoryByClass(ClassDictionary classDictionary) {

@@ -1,6 +1,7 @@
 package org.wikiup.core.impl.factory;
 
 import org.wikiup.core.Constants;
+import org.wikiup.core.impl.cl.ClassDictionaryImpl;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;
 import org.wikiup.core.inf.ext.Wirable;
@@ -11,7 +12,7 @@ public class FactoryByDocument<T> implements Factory.ByDocument<T> {
     private final Factory.ByName<?> factory;
 
     public FactoryByDocument() {
-        this.factory = new FactoryByClass<Object>();
+        this.factory = new FactoryByClass<Object>(new ClassDictionaryImpl());
     }
 
     public FactoryByDocument(Factory.ByName<?> factory) {

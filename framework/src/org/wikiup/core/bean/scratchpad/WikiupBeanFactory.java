@@ -2,7 +2,6 @@ package org.wikiup.core.bean.scratchpad;
 
 import org.wikiup.core.Constants;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
-import org.wikiup.core.impl.factory.FactoryByClass;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;
 import org.wikiup.core.inf.ext.Context;
@@ -55,16 +54,6 @@ public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory>
                 addFactory(name, (f = factory.build(doc)));
             set(name, f);
             addInterfaceAlias(doc, f);
-        }
-    }
-
-    private class DefaultBeanFactory implements Factory.ByName<Object> {
-        private FactoryByClass<Object> classFactory = new FactoryByClass<Object>();
-
-        public Object build(String name) {
-            Factory.ByName<?> factory = factories.get(name);
-            Object mc = factory != null ? factory.build(name) : null;
-            return mc != null ? mc : classFactory.build(name);
         }
     }
 }
