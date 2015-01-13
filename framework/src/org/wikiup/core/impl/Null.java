@@ -13,10 +13,10 @@ import java.util.Iterator;
 
 
 public class Null implements Context, Iterator, Document, BeanContainer, Iterable, Bindable, Container, Factory {
-    private static Null instance = null;
+    private static final Null instance = new Null();
 
     public static Null getInstance() {
-        return instance == null ? (instance = new Null()) : instance;
+        return instance;
     }
 
     public Object get(String name) {

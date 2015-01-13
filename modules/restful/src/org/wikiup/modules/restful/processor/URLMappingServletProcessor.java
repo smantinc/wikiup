@@ -1,6 +1,7 @@
 package org.wikiup.modules.restful.processor;
 
 import org.wikiup.core.bean.WikiupConfigure;
+import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.getter.dl.ByAttributeNameSelector;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Getter;
@@ -11,7 +12,7 @@ import org.wikiup.servlet.inf.ServletProcessor;
 
 public class URLMappingServletProcessor implements ServletProcessor {
     private static Document MAPPING = WikiupConfigure.getInstance().lookup("wk/url-mapping");
-    private static Getter<Document> MAPPING_PATTERNS = new ByAttributeNameSelector(MAPPING, "name", "pattern");
+    private static Getter<Document> MAPPING_PATTERNS = MAPPING != null ? new ByAttributeNameSelector(MAPPING, "name", "pattern") : Null.getInstance();
 
     public void process(ServletProcessorContext context) {
         String uri = context.getRequestURI();

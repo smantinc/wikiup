@@ -6,15 +6,17 @@ import org.wikiup.core.exception.WikiupRuntimeException;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.mp.GenericModelProvider;
 import org.wikiup.core.impl.translator.TypeCastFilter;
+import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Decorator;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.ExceptionHandler;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Provider;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.Setter;
 import org.wikiup.core.inf.Translator;
+import org.wikiup.core.inf.Wirable;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -73,6 +75,16 @@ public class Interfaces {
     public static <E> E get(Object object, String name) {
         Getter<E> getter = cast(Getter.class, object);
         return getter != null ? getter.get(name) : null;
+    }
+
+    public static <T> T wire(Class<T> clazz, Object obj, Document doc) {
+        Wirable.ByDocument<T> wirable = cast(Wirable.ByDocument.class, obj);
+        return wirable != null ? wirable.wire(doc) : Interfaces.cast(clazz, obj);
+    }
+
+    public static <T> T decorate(T obj, Object decorator, Document doc) {
+        Decorator<T> decoratorImpl = cast(Decorator.class, decorator);
+        return decoratorImpl != null ? decoratorImpl.decorate(obj, doc) : obj;
     }
 
     public static <E> boolean set(Object object, String name, E value) {
