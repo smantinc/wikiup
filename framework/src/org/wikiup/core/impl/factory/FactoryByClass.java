@@ -4,12 +4,11 @@ import org.wikiup.core.impl.cl.ClassDictionaryByName;
 import org.wikiup.core.impl.cl.ClassDictionaryImpl;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;
-import org.wikiup.core.inf.Wirable;
 import org.wikiup.core.inf.ext.ClassDictionary;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Interfaces;
 
-public class FactoryByClass<T> implements Factory.ByName<T>, Wirable.ByDocument<FactoryByClass<T>> {
+public class FactoryByClass<T> implements Factory.ByName<T> {
     private ClassDictionary classDictionary;
 
     public FactoryByClass() {
@@ -29,11 +28,5 @@ public class FactoryByClass<T> implements Factory.ByName<T>, Wirable.ByDocument<
         Class<?> clazz = classDictionary.get(className);
         Assert.notNull(clazz, ClassNotFoundException.class, className);
         return className != null ? Interfaces.newInstance((Class<T>) clazz) : null;
-    }
-
-    @Override
-    public FactoryByClass<T> wire(Document desc) {
-        classDictionary = new ClassDictionaryByName(desc);
-        return this;
     }
 }

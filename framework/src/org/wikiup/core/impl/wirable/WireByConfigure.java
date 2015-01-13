@@ -4,7 +4,7 @@ import org.wikiup.core.impl.setter.BeanPropertySetter;
 import org.wikiup.core.impl.wrapper.WrapperImpl;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.Wirable;
+import org.wikiup.core.inf.ext.Wirable;
 import org.wikiup.core.util.ContextUtil;
 
 public class WireByConfigure<T> extends WrapperImpl<T> implements Wirable<T, Getter<?>> {

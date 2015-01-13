@@ -1,11 +1,11 @@
 package org.wikiup.core.impl.factory;
 
 import org.wikiup.core.Constants;
-import org.wikiup.core.inf.Decorator;
+import org.wikiup.core.impl.wrapper.WrapperImpl;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;
-import org.wikiup.core.inf.Wirable;
 import org.wikiup.core.inf.ext.Context;
+import org.wikiup.core.inf.ext.Wirable;
 import org.wikiup.core.util.ClassIdentity;
 import org.wikiup.core.util.Documents;
 
@@ -26,6 +26,10 @@ public class FactoryByNamespace<T> implements Factory.ByName<T>, Iterable<String
 
     public FactoryByNamespace(Document desc, Factory.ByDocument<Factory.ByName<T>> builder) {
         factorys = new HashMap<String, ByName<T>>();
+        wire(desc, builder);
+    }
+
+    private void wire(Document desc, ByDocument<ByName<T>> builder) {
         for(Document node : desc.getChildren()) {
             String namespace = Documents.getId(node);
             if(!factorys.containsKey(namespace) || Documents.getAttributeBooleanValue(desc, Constants.Attributes.OVERRIDE, false))
@@ -63,24 +67,18 @@ public class FactoryByNamespace<T> implements Factory.ByName<T>, Iterable<String
         return factorys;
     }
 
-    public static final class BUILDER<T> implements Wirable.ByDocument<FactoryByNamespace<T>>, Decorator<FactoryByNamespace<T>> {
+    public static final class WIRABLE<T> extends WrapperImpl<FactoryByNamespace<T>> implements Wirable.ByDocument<FactoryByNamespace<T>> {
         private Factory.ByDocument<Factory.ByName<T>> builder;
 
-        public BUILDER(Factory.ByDocument<Factory.ByName<T>> builder) {
+        public WIRABLE(Factory.ByDocument<Factory.ByName<T>> builder) {
+            super(new FactoryByNamespace<T>());
             this.builder = builder;
         }
 
         @Override
         public FactoryByNamespace<T> wire(Document desc) {
-            return new FactoryByNamespace<T>(desc, builder);
-        }
-
-        @Override
-        public FactoryByNamespace<T> decorate(FactoryByNamespace<T> factory, Document desc) {
-            Factory.ByName<T> f = builder.build(desc);
-            String namespace = Documents.ensureAttributeValue(desc, Constants.Attributes.NAME);
-            factory.add(namespace, f);
-            return factory;
+            wrapped.wire(desc, builder);
+            return wrapped;
         }
     }
 }

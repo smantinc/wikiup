@@ -16,7 +16,7 @@ import org.wikiup.core.inf.Provider;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.Setter;
 import org.wikiup.core.inf.Translator;
-import org.wikiup.core.inf.Wirable;
+import org.wikiup.core.inf.ext.Wirable;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;

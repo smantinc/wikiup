@@ -4,7 +4,7 @@ import org.wikiup.core.impl.attribute.BeanProperty;
 import org.wikiup.core.impl.iterable.BeanProperties;
 import org.wikiup.core.impl.wrapper.WrapperImpl;
 import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.inf.Wirable;
+import org.wikiup.core.inf.ext.Wirable;
 
 public class WireByFields<T> extends WrapperImpl<T> implements Wirable<T, BeanContainer> {
     public WireByFields(T instance) {

@@ -4,7 +4,7 @@ import org.wikiup.core.Constants;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;
-import org.wikiup.core.inf.Wirable;
+import org.wikiup.core.inf.ext.Wirable;
 import org.wikiup.core.util.ClassIdentity;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;

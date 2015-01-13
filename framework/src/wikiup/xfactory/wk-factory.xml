@@ -12,7 +12,7 @@
 		<item name="manual" class="org.wikiup.servlet.impl.bindable.ByPropertyManually"/>
 		<item name="auto" class="org.wikiup.servlet.impl.bindable.ByPropertyAutomatically"/>
 	</factory>
-	<factory name="wirable" interface="org.wikiup.core.inf.Wirable">
+	<factory name="wirable" interface="org.wikiup.core.inf.ext.Wirable">
 		<item name="by-configure" class="org.wikiup.core.impl.wirable.WireByConfigure"/>
 		<item name="by-document" class="org.wikiup.core.impl.wirable.WireByDocument"/>
 		<item name="by-fields" class="org.wikiup.core.impl.wirable.WireByFields"/>

@@ -4,7 +4,7 @@ import org.wikiup.core.impl.attribute.BeanProperty;
 import org.wikiup.core.impl.iterable.BeanProperties;
 import org.wikiup.core.impl.wrapper.WrapperImpl;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.Wirable;
+import org.wikiup.core.inf.ext.Wirable;
 
 public class WireByGetter<T> extends WrapperImpl<T> implements Wirable<T, Getter<?>> {
     public WireByGetter(T wrapped) {

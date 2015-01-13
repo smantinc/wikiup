@@ -2,7 +2,7 @@ package org.wikiup.core.impl.cl;
 
 import org.wikiup.core.Constants;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Wirable;
+import org.wikiup.core.inf.ext.Wirable;
 import org.wikiup.core.inf.ext.ClassDictionary;
 import org.wikiup.core.util.Documents;
 
@@ -46,6 +46,11 @@ public class ClassDictionaryByName implements ClassDictionary {
         @Override
         public ClassDictionaryByName wire(Document desc) {
             return new ClassDictionaryByName(desc, classDictionary);
+        }
+
+        @Override
+        public ClassDictionaryByName wrapped() {
+            return null;
         }
     }
 }

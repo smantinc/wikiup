@@ -4,7 +4,7 @@ import org.wikiup.core.impl.wrapper.WrapperImpl;
 import org.wikiup.core.inf.Decorator;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;
-import org.wikiup.core.inf.Wirable;
+import org.wikiup.core.inf.ext.Wirable;
 import org.wikiup.core.util.Interfaces;
 
 public class WiringByDocumentFactory<T> extends WrapperImpl<Factory.ByDocument<T>> implements Factory.ByDocument<T> {
