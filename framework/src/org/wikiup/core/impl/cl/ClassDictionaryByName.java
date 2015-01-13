@@ -20,37 +20,19 @@ public class ClassDictionaryByName implements ClassDictionary {
     }
 
     public ClassDictionaryByName(Document desc, ClassDictionary classDictionary) {
+        wire(desc, classDictionary);
+    }
+
+    public void wire(Document desc, ClassDictionary classDictionary) {
         for(Document node : desc.getChildren()) {
             String name = Documents.getId(node);
             Class clazz = classDictionary.get(Documents.ensureAttributeValue(node, Constants.Attributes.CLASS));
             dictionary.put(name, clazz);
         }
     }
-    
+
     @Override
     public Class get(String name) {
         return dictionary.get(name);
-    }
-
-    public static final class WIRABLE implements Wirable.ByDocument<ClassDictionaryByName> {
-        private final ClassDictionary classDictionary;
-
-        public WIRABLE(ClassDictionary classDictionary) {
-            this.classDictionary = classDictionary;
-        }
-
-        public WIRABLE() {
-            classDictionary = new ClassDictionaryImpl();
-        }
-
-        @Override
-        public ClassDictionaryByName wire(Document desc) {
-            return new ClassDictionaryByName(desc, classDictionary);
-        }
-
-        @Override
-        public ClassDictionaryByName wrapped() {
-            return null;
-        }
     }
 }

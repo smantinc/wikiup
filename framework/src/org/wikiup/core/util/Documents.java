@@ -1,6 +1,7 @@
 package org.wikiup.core.util;
 
 import org.wikiup.core.Constants;
+import org.wikiup.core.exception.AttributeException;
 import org.wikiup.core.impl.df.DirectoryDocumentReader;
 import org.wikiup.core.impl.df.FileDocumentReader;
 import org.wikiup.core.impl.df.StringDocumentReader;
@@ -12,8 +13,8 @@ import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Element;
 import org.wikiup.core.inf.ExceptionHandler;
-import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.inf.ext.DocumentReader;
+import org.wikiup.core.inf.ext.Resource;
 
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -288,7 +289,8 @@ public class Documents {
 
     public static String ensureAttributeValue(Document desc, String name) {
         String value = getAttributeValue(desc, name, null);
-        Assert.notNull(value, IllegalArgumentException.class);
+        if(value == null)
+            Assert.fail(new AttributeException(desc.toString(), name));
         return value;
     }
 
