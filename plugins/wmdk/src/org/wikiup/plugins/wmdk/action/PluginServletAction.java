@@ -49,7 +49,7 @@ public class PluginServletAction {
         WikiupPluginManager pm = Wikiup.getModel(WikiupPluginManager.class);
         for(Document node : doc.getChildren()) {
             String moduleName = Documents.getId(node);
-            String status = context.getParameter(moduleName, null);
+            String status = moduleName != null ? context.getParameter(moduleName, null) : null;
             boolean required = Documents.getAttributeBooleanValue(node, "required", false);
             boolean removed = "removed".equals(status);
             Documents.setAttributeValue(node, "disabled", "off".equals(status) && !required);
