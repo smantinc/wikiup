@@ -1,59 +1,39 @@
 package org.wikiup.core.bean.scratchpad;
 
-import org.wikiup.core.Constants;
+import java.util.Iterator;
+
 import org.wikiup.core.bean.WikiupDynamicSingleton;
+import org.wikiup.core.impl.factory.BeanFactory;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;
 import org.wikiup.core.inf.ext.Context;
-import org.wikiup.core.util.Documents;
-import org.wikiup.core.util.Interfaces;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
-public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory> implements Context<Factory.ByName<?>, Factory.ByName<?>>, Iterable<Object> {
-    private Map<Object, Factory.ByName<?>> factories;
+public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory> implements Context<Factory<?, ?>, Factory<?, ?>>, Iterable<Object> {
+    private BeanFactory beanFactory;
 
     public void firstBuilt() {
-        factories = new HashMap<Object, Factory.ByName<?>>();
+        beanFactory = new BeanFactory();
     }
 
-    public void addInterfaceAlias(Class<?> inf, String alias, Factory.ByName<?> factory) {
-        factories.put(inf, factory);
-        factories.put(alias, factory);
+    @Override
+    public Factory<?, ?> get(String name) {
+        return beanFactory.build(name);
     }
 
-    public Factory.ByName<?> get(String name) {
-        return factories.get(name);
-    }
-
-    public void set(String name, Factory.ByName<?> factory) {
+    @Override
+    public void set(String name, Factory<?, ?> factory) {
         addFactory(name, factory);
     }
 
-    private void addFactory(String name, Factory.ByName<?> factory) {
-        factories.put(name, factory);
-    }
-
-    private void addInterfaceAlias(Document doc, Factory.ByName<?> factory) {
-        String inf = Documents.getAttributeValue(doc, Constants.Attributes.INTERFACE, null);
-        if(inf != null)
-            addInterfaceAlias(Interfaces.getClass(inf), Documents.getAttributeValue(doc, Constants.Attributes.ALIAS, null), factory);
+    private void addFactory(String name, Factory<?, ?> factory) {
+        beanFactory.add(name, factory);
     }
 
     public Iterator<Object> iterator() {
-        return factories.keySet().iterator();
+        return beanFactory.getFactories().keySet().iterator();
     }
 
-    public void loadBeans(Document desc, Factory.ByDocument<Factory.ByName<?>> factory) {
-        for(Document doc : desc.getChildren()) {
-            String name = Documents.getId(doc);
-            Factory.ByName<?> f = factories.get(name);
-            if(f == null)
-                addFactory(name, (f = factory.build(doc)));
-            set(name, f);
-            addInterfaceAlias(doc, f);
-        }
+    public void loadBeans(Document desc, Factory.ByDocument<Factory<?, ?>> factory) {
+        beanFactory.loadFactories(desc, factory);
     }
 }

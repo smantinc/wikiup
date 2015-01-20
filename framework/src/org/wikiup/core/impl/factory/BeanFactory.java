@@ -1,5 +1,8 @@
 package org.wikiup.core.impl.factory;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.wikiup.core.Constants;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.Document;
@@ -9,14 +12,16 @@ import org.wikiup.core.util.ClassIdentity;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 
-import java.util.HashMap;
-
 public class BeanFactory implements Factory<FactoryWrapper<Object, Object>, String> {
-    private HashMap<Object, FactoryWrapper<Object, Object>> factories = new HashMap<Object, FactoryWrapper<Object, Object>>();
+    private Map<Object, FactoryWrapper<Object, Object>> factories = new HashMap<Object, FactoryWrapper<Object, Object>>();
 
     @Override
     public FactoryWrapper<Object, Object> build(String name) {
         return getFactory(name);
+    }
+
+    public Map<Object, FactoryWrapper<Object, Object>> getFactories() {
+        return factories;
     }
 
     public <T> T build(Class<T> clazz, String id) {
@@ -61,5 +66,9 @@ public class BeanFactory implements Factory<FactoryWrapper<Object, Object>, Stri
         if(f == null)
             factories.put(name, f = new FactoryWrapper<Object, Object>(Null.getInstance()));
         return f;
+    }
+
+    public void add(String name, Factory<?, ?> factory) {
+        getFactory(name).wrap((Factory) factory);
     }
 }
