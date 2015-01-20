@@ -11,7 +11,7 @@ import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.FileUtil;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.database.beans.DataSourceManager;
-import org.wikiup.database.inf.DataSourceInf;
+import org.wikiup.database.inf.DataSource;
 import org.wikiup.database.orm.WikiupEntityManager;
 import org.wikiup.database.orm.inf.EntityManager;
 import org.wikiup.plugins.wmdk.metadata.DatabaseEntityMetadata;
@@ -35,7 +35,7 @@ public class WMDKUtil {
     private static final Document SCAFFOLD_TEMPLATES = WikiupConfigure.getInstance().lookup("wmdk/templates");
 
     public static void reboot() {
-        DataSourceInf defaultDatasource = DataSourceManager.getInstance().getDataSource();
+        DataSource defaultDatasource = DataSourceManager.getInstance().getDataSource();
         EntityManager defaultEntityManager = WikiupEntityManager.getInstance().getDefaultEntityManager();
         String defDSName = null, defManName = null;
         for(String name : DataSourceManager.getInstance().getDataSources().keySet())
@@ -173,7 +173,7 @@ public class WMDKUtil {
         return getDatasource(context).getConnection();
     }
 
-    public static DataSourceInf getDatasource(ServletProcessorContext context) {
+    public static DataSource getDatasource(ServletProcessorContext context) {
         String mgr = context.getParameter("ds", null);
         return (mgr != null ? DataSourceManager.getInstance().get(mgr) : DataSourceManager.getInstance());
     }

@@ -9,7 +9,7 @@ import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
-import org.wikiup.database.inf.DataSourceInf;
+import org.wikiup.database.inf.DataSource;
 import org.wikiup.database.orm.FieldMetadata;
 import org.wikiup.database.orm.inf.EntityManager;
 import org.wikiup.database.orm.inf.EntityMetadata;
@@ -76,7 +76,7 @@ public class WormsEntityManager extends WikiupDynamicSingleton<WormsEntityManage
     }
 
     public EntityModel getEntityModel(String name) {
-        DataSourceInf ds = Wikiup.getModel(DataSourceInf.class);
+        DataSource ds = Wikiup.getModel(DataSource.class);
         return getEntityInterface(name, ds, null);
     }
 
@@ -107,7 +107,7 @@ public class WormsEntityManager extends WikiupDynamicSingleton<WormsEntityManage
         return new GenericCastIterable<EntityMetadata>(entities.values());
     }
 
-    public EntityModel getEntityInterface(String name, DataSourceInf dataSource, Connection conn) {
+    public EntityModel getEntityInterface(String name, DataSource dataSource, Connection conn) {
         WormsEntity entity = null;
         Document desc = Assert.notNull(getEntityDescription(name), EntityDescriptionNotFoundException.class, name);
         try {

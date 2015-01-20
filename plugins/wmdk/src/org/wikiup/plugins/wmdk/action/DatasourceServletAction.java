@@ -7,7 +7,7 @@ import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.database.beans.DataSourceManager;
 import org.wikiup.database.impl.datasource.DriverManagerDataSource;
-import org.wikiup.database.inf.DataSourceInf;
+import org.wikiup.database.inf.DataSource;
 import org.wikiup.database.orm.inf.SQLDialectInf;
 import org.wikiup.plugins.wmdk.util.WMDKUtil;
 import org.wikiup.servlet.ServletProcessorContext;
@@ -24,10 +24,10 @@ public class DatasourceServletAction {
 
     public void srcs(ServletProcessorContext context, DataSourceManager manager) throws SQLException {
         Document resp = context.getResponseXML();
-        DataSourceInf ds = Interfaces.getModel(manager.getDataSource(), DataSourceInf.class);
+        DataSource ds = Interfaces.getModel(manager.getDataSource(), DataSource.class);
         boolean active = false;
         for(String key : manager) {
-            DataSourceInf keyds = Interfaces.getModel(manager.get(key), DataSourceInf.class);
+            DataSource keyds = Interfaces.getModel(manager.get(key), DataSource.class);
             Document item = resp.addChild("datasource");
             Documents.setAttributeValue(item, "name", key);
             active = !active && ds == keyds;
@@ -50,7 +50,7 @@ public class DatasourceServletAction {
     }
 
     public void drop(ServletProcessorContext context) throws SQLException {
-        DataSourceInf ds = WMDKUtil.getDatasource(context);
+        DataSource ds = WMDKUtil.getDatasource(context);
         Connection conn = ds.getConnection();
         try {
             Statement stmt = conn.createStatement();
@@ -94,7 +94,7 @@ public class DatasourceServletAction {
 
     public void doDefault(ServletProcessorContext context, DataSourceManager manager) {
         String name = context.getParameter("ds");
-        DataSourceInf ds = DataSourceManager.getInstance().get(name);
+        DataSource ds = DataSourceManager.getInstance().get(name);
         if(name != null && ds != null)
             manager.setDataSource(ds);
         WMDKUtil.success(context);

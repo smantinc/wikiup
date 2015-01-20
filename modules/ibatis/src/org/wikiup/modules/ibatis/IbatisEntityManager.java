@@ -27,7 +27,7 @@ import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StreamUtil;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.database.exception.InsufficientPrimaryKeys;
-import org.wikiup.database.inf.DataSourceInf;
+import org.wikiup.database.inf.DataSource;
 import org.wikiup.database.orm.FieldMetadata;
 import org.wikiup.database.orm.inf.EntityManager;
 import org.wikiup.database.orm.inf.EntityMetadata;
@@ -37,7 +37,6 @@ import org.wikiup.database.orm.util.SQLStatement;
 import org.wikiup.modules.ibatis.entity.IbatisEntity;
 import org.wikiup.modules.ibatis.meta.IbatisEntityMetadata;
 
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
@@ -127,7 +126,7 @@ public class IbatisEntityManager extends WikiupDynamicSingleton<IbatisEntityMana
         Document root = Documents.create("sqlMap");
         SQLStatement stmt = new SQLStatement();
         String whereClause = buildWhereClause(metadata);
-        SQLDialectInf dialect = Wikiup.getModel(DataSourceInf.class).getDatabaseDriver().getDialect();
+        SQLDialectInf dialect = Wikiup.getModel(DataSource.class).getDatabaseDriver().getDialect();
         Document parameters = Documents.create("param");
 
         Documents.setAttributeValue(parameters, "limit", "$limit$");
@@ -294,7 +293,7 @@ public class IbatisEntityManager extends WikiupDynamicSingleton<IbatisEntityMana
         return sqlMap.getCurrentConnection();
     }
 
-    public DataSource getDataSource() {
+    public javax.sql.DataSource getDataSource() {
         return sqlMap.getDataSource();
     }
 

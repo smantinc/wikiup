@@ -5,7 +5,7 @@ import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.Interfaces;
-import org.wikiup.database.inf.DataSourceInf;
+import org.wikiup.database.inf.DataSource;
 import org.wikiup.database.inf.DatabaseDriver;
 
 import java.io.PrintWriter;
@@ -17,36 +17,36 @@ import java.util.Iterator;
 import java.util.Map;
 import java.util.logging.Logger;
 
-public class DataSourceManager extends WikiupDynamicSingleton<DataSourceManager> implements Context<DataSourceInf, Object>, DataSourceInf, Iterable<String>, BeanContainer, Releasable {
-    private Map<String, DataSourceInf> dataSources;
-    private DataSourceInf dataSource;
+public class DataSourceManager extends WikiupDynamicSingleton<DataSourceManager> implements Context<DataSource, Object>, DataSource, Iterable<String>, BeanContainer, Releasable {
+    private Map<String, DataSource> dataSources;
+    private DataSource dataSource;
 
     static public DataSourceManager getInstance() {
         return getInstance(DataSourceManager.class);
     }
 
-    public void setDataSource(DataSourceInf dataSource) {
+    public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
-    public DataSourceInf getDataSource() {
+    public DataSource getDataSource() {
         return dataSource;
     }
 
-    public Map<String, DataSourceInf> getDataSources() {
+    public Map<String, DataSource> getDataSources() {
         return dataSources;
     }
 
     public void firstBuilt() {
-        dataSources = new HashMap<String, DataSourceInf>();
+        dataSources = new HashMap<String, DataSource>();
     }
 
-    public DataSourceInf get(String name) {
+    public DataSource get(String name) {
         return dataSources.get(name);
     }
 
     public void set(String name, Object obj) {
-        DataSourceInf ds = Interfaces.cast(DataSourceInf.class, obj);
+        DataSource ds = Interfaces.cast(DataSource.class, obj);
         if(ds != null) {
             dataSources.put(name, ds);
             setDataSource(ds);

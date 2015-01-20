@@ -6,7 +6,7 @@ import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
-import org.wikiup.database.inf.DataSourceInf;
+import org.wikiup.database.inf.DataSource;
 import org.wikiup.database.inf.DatabaseDriver;
 
 import java.io.PrintWriter;
@@ -16,7 +16,7 @@ import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
 import java.util.logging.Logger;
 
-public class DriverManagerDataSource implements DataSourceInf, DocumentAware {
+public class DriverManagerDataSource implements DataSource, DocumentAware {
     private int timeout = 0;
     private PrintWriter logger = null;
 

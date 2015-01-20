@@ -9,7 +9,7 @@ import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.database.exception.RecordNotFoundException;
-import org.wikiup.database.inf.DataSourceInf;
+import org.wikiup.database.inf.DataSource;
 import org.wikiup.database.orm.inf.EntityModel;
 import org.wikiup.database.orm.util.SQLUtil;
 import org.wikiup.modules.worms.imp.FieldProperty;
@@ -29,7 +29,7 @@ import java.util.Set;
 public class WormsEntity extends Component implements EntityModel, Iterable<WormsEntity> {
     private Connection connection;
     private ResultSet resultSet = null;
-    private DataSourceInf dataSource;
+    private DataSource dataSource;
 
     private String tableName;
     private String schemaName;
@@ -38,7 +38,7 @@ public class WormsEntity extends Component implements EntityModel, Iterable<Worm
 
     private Set<String> keySet = new HashSet<String>();
 
-    public WormsEntity(DataSourceInf dataSource) {
+    public WormsEntity(DataSource dataSource) {
         try {
             connection = dataSource.getConnection();
         } catch(SQLException ex) {
@@ -47,7 +47,7 @@ public class WormsEntity extends Component implements EntityModel, Iterable<Worm
         this.dataSource = dataSource;
     }
 
-    public WormsEntity(DataSourceInf dataSource, Connection conn) {
+    public WormsEntity(DataSource dataSource, Connection conn) {
         connection = conn;
         this.dataSource = dataSource;
     }
@@ -76,7 +76,7 @@ public class WormsEntity extends Component implements EntityModel, Iterable<Worm
         return resultSet == null;
     }
 
-    public DataSourceInf getDataSource() {
+    public DataSource getDataSource() {
         return dataSource;
     }
 

@@ -9,5 +9,6 @@ public class Constants {
         public static final String TYPE = "type";
         public static final String NAME = "name";
         public static final String BEAN = "bean";
+        public static final String ID = "id";
     }
 }

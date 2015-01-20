@@ -5,21 +5,20 @@ import org.wikiup.core.Wikiup;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.database.impl.datasource.DataSourceWrapper;
-import org.wikiup.database.inf.DataSourceInf;
+import org.wikiup.database.inf.DataSource;
 import org.wikiup.database.inf.DatabaseDriver;
 
-import javax.sql.DataSource;
 import java.sql.SQLException;
 
 public class C3p0PooledDataSource extends DataSourceWrapper {
-    private DataSource orgDataSource;
+    private javax.sql.DataSource orgDataSource;
 
-    public C3p0PooledDataSource(DataSourceInf dataSource) {
+    public C3p0PooledDataSource(DataSource dataSource) {
         setUnpooledDataSource(dataSource);
     }
 
     @Override
-    public DataSource getDataSource() {
+    public javax.sql.DataSource getDataSource() {
         if(dataSource == null) {
             C3p0DataSources manager = Wikiup.getModel(C3p0DataSources.class);
             dataSource = manager.getDataSource();
@@ -31,11 +30,11 @@ public class C3p0PooledDataSource extends DataSourceWrapper {
 
     @Override
     public DatabaseDriver getDatabaseDriver() {
-        DataSourceInf ds = Interfaces.cast(DataSourceInf.class, orgDataSource);
+        DataSource ds = Interfaces.cast(DataSource.class, orgDataSource);
         return ds != null ? ds.getDatabaseDriver() : null;
     }
 
-    public void setUnpooledDataSource(DataSource ds) {
+    public void setUnpooledDataSource(javax.sql.DataSource ds) {
         try {
             orgDataSource = ds;
             dataSource = DataSources.pooledDataSource(ds);
@@ -46,6 +45,6 @@ public class C3p0PooledDataSource extends DataSourceWrapper {
 
     @Override
     public <E> E query(Class<E> clazz) {
-        return Interfaces.cast(clazz, DataSource.class.isAssignableFrom(clazz) ? orgDataSource : this);
+        return Interfaces.cast(clazz, javax.sql.DataSource.class.isAssignableFrom(clazz) ? orgDataSource : this);
     }
 }

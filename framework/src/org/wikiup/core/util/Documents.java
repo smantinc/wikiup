@@ -45,7 +45,7 @@ public class Documents {
 
     static public String getId(Document doc, String def) {
         String name = getAttributeValue(doc, Constants.Attributes.NAME, null);
-        return name != null ? name : getAttributeValue(doc, "id", def);
+        return name != null ? name : getAttributeValue(doc, Constants.Attributes.ID, def);
     }
 
     static public String getId(Document doc) {

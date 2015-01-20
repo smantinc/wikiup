@@ -7,7 +7,7 @@ import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.FileUtil;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
-import org.wikiup.database.inf.DataSourceInf;
+import org.wikiup.database.inf.DataSource;
 import org.wikiup.database.orm.FieldMetadata;
 import org.wikiup.database.orm.WikiupEntityManager;
 import org.wikiup.database.orm.inf.EntityManager;
@@ -81,7 +81,7 @@ public class EntityManagerServletAction {
     }
 
     public void define(ServletProcessorContext context, Document desc) throws SQLException {
-        DataSourceInf ds = WMDKUtil.getDatasource(context);
+        DataSource ds = WMDKUtil.getDatasource(context);
         Connection conn = ds.getConnection();
         try {
             Statement stmt = conn.createStatement();

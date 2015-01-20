@@ -8,21 +8,19 @@ import org.apache.commons.pool.impl.GenericObjectPool;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.database.impl.datasource.DataSourceWrapper;
-import org.wikiup.database.inf.DataSourceInf;
+import org.wikiup.database.inf.DataSource;
 import org.wikiup.database.inf.DatabaseDriver;
-
-import javax.sql.DataSource;
 
 public class DbcpPooledDataSource extends DataSourceWrapper {
     private PoolableConnectionFactory poolableFactory;
-    private DataSource orgDataSource;
+    private javax.sql.DataSource orgDataSource;
 
-    public DbcpPooledDataSource(DataSourceInf dataSource) {
+    public DbcpPooledDataSource(DataSource dataSource) {
         setUnpooledDataSource(dataSource);
     }
 
     @Override
-    public DataSource getDataSource() {
+    public javax.sql.DataSource getDataSource() {
         if(dataSource == null) {
             DbcpDataSources manager = Wikiup.getModel(DbcpDataSources.class);
             dataSource = manager.getDataSource();
@@ -34,11 +32,11 @@ public class DbcpPooledDataSource extends DataSourceWrapper {
 
     @Override
     public DatabaseDriver getDatabaseDriver() {
-        DataSourceInf ds = Interfaces.cast(DataSourceInf.class, orgDataSource);
+        DataSource ds = Interfaces.cast(DataSource.class, orgDataSource);
         return ds != null ? ds.getDatabaseDriver() : null;
     }
 
-    public void setUnpooledDataSource(DataSource dataSource) {
+    public void setUnpooledDataSource(javax.sql.DataSource dataSource) {
         GenericObjectPool pool = new GenericObjectPool(null);
 
         ConnectionFactory factory = new DataSourceConnectionFactory(dataSource);
@@ -50,6 +48,6 @@ public class DbcpPooledDataSource extends DataSourceWrapper {
 
     @Override
     public <E> E query(Class<E> clazz) {
-        return Interfaces.cast(clazz, DataSource.class.isAssignableFrom(clazz) ? orgDataSource : this);
+        return Interfaces.cast(clazz, javax.sql.DataSource.class.isAssignableFrom(clazz) ? orgDataSource : this);
     }
 }

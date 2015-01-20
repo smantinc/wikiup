@@ -8,9 +8,8 @@ import org.wikiup.core.util.Documents;
 import org.wikiup.database.impl.DataSourceConnectionProvider;
 import org.wikiup.database.impl.DataSourceWithAuthConnectionProvider;
 import org.wikiup.database.inf.ConnectionPool;
-import org.wikiup.database.inf.DataSourceInf;
+import org.wikiup.database.inf.DataSource;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
 
@@ -33,10 +32,10 @@ public class PooledDataSource extends DataSourceWrapper implements DocumentAware
     }
 
     @Override
-    public DataSource getDataSource() {
-        DataSource ds = super.getDataSource();
+    public javax.sql.DataSource getDataSource() {
+        javax.sql.DataSource ds = super.getDataSource();
         if(ds == null)
-            setDataSource(ds = Wikiup.getInstance().get(DataSourceInf.class, wndName));
+            setDataSource(ds = Wikiup.getInstance().get(DataSource.class, wndName));
         return ds;
     }
 

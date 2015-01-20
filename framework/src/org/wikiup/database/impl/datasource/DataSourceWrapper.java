@@ -2,18 +2,17 @@ package org.wikiup.database.impl.datasource;
 
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Interfaces;
-import org.wikiup.database.inf.DataSourceInf;
+import org.wikiup.database.inf.DataSource;
 import org.wikiup.database.inf.DatabaseDriver;
 
-import javax.sql.DataSource;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.SQLFeatureNotSupportedException;
 import java.util.logging.Logger;
 
-public class DataSourceWrapper implements DataSourceInf, BeanContainer {
-    protected DataSource dataSource;
+public class DataSourceWrapper implements DataSource, BeanContainer {
+    protected javax.sql.DataSource dataSource;
 
     public Connection getConnection(String username, String password) throws SQLException {
         return getDataSource().getConnection(username, password);
@@ -24,7 +23,7 @@ public class DataSourceWrapper implements DataSourceInf, BeanContainer {
     }
 
     public DatabaseDriver getDatabaseDriver() {
-        DataSourceInf ds = Interfaces.cast(DataSourceInf.class, getDataSource());
+        DataSource ds = Interfaces.cast(DataSource.class, getDataSource());
         return ds != null ? ds.getDatabaseDriver() : null;
     }
 
@@ -52,11 +51,11 @@ public class DataSourceWrapper implements DataSourceInf, BeanContainer {
         getDataSource().setLoginTimeout(seconds);
     }
 
-    public DataSource getDataSource() {
+    public javax.sql.DataSource getDataSource() {
         return dataSource;
     }
 
-    public void setDataSource(DataSource dataSource) {
+    public void setDataSource(javax.sql.DataSource dataSource) {
         this.dataSource = dataSource;
     }
 
@@ -69,6 +68,6 @@ public class DataSourceWrapper implements DataSourceInf, BeanContainer {
     }
 
     public <E> E query(Class<E> clazz) {
-        return Interfaces.cast(clazz, DataSource.class.isAssignableFrom(clazz) ? getDataSource() : this);
+        return Interfaces.cast(clazz, javax.sql.DataSource.class.isAssignableFrom(clazz) ? getDataSource() : this);
     }
 }
