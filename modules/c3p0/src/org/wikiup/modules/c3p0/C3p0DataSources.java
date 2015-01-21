@@ -19,7 +19,7 @@ public class C3p0DataSources extends DataSourceManager {
 
     @Override
     public void cloneFrom(DataSourceManager instance) {
-        cloneFrom(this, getClass().getSuperclass());
+        cloneFrom(instance, getClass().getSuperclass());
         C3p0DataSources c3p0 = Interfaces.cast(C3p0DataSources.class, instance);
         if(c3p0 != null)
             unpooledDataSources = c3p0.unpooledDataSources;

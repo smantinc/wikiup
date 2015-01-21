@@ -1,9 +1,9 @@
 package org.wikiup.core.impl.mf;
 
 import org.wikiup.core.Wikiup;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.ext.ModelFactory;
 import org.wikiup.core.util.ClassIdentity;
 import org.wikiup.core.util.Documents;
@@ -16,7 +16,7 @@ public class NamespaceFactory implements ModelFactory, DocumentAware {
     private Map<String, ModelFactory> factorys = new HashMap<String, ModelFactory>();
 
     public BeanContainer get(String name) {
-        ClassIdentity ci = Wikiup.getClassIdentity(name);
+        ClassIdentity ci = ClassIdentity.obtain(name);
         ModelFactory factory = getFactory(ci.getNamespace());
         return factory != null ? factory.get(ci.getName()) : null;
     }

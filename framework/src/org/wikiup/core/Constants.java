@@ -11,4 +11,8 @@ public class Constants {
         public static final String BEAN = "bean";
         public static final String ID = "id";
     }
+    
+    public static class Configure {
+        public static final boolean SCRATCHPAD = true;
+    }
 }

@@ -29,7 +29,7 @@ public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory>
         factories.addFactory(null, new DefaultBeanFactory());
     }
 
-    public void addInterfaceAlias(Class<?> inf, String alias, ModelFactory factory) {
+    private void addInterfaceAlias(Class<?> inf, String alias, ModelFactory factory) {
         boolean contains = nameAlias.containsKey(inf);
         Map<String, ModelFactory> a = contains ? nameAlias.get(inf) : new HashMap<String, ModelFactory>();
         a.put(alias, factory);
@@ -65,7 +65,7 @@ public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory>
     }
 
     private ModelFactory buildFactory(Document desc) {
-        ClassIdentity csid = Wikiup.getClassIdentity(desc);
+        ClassIdentity csid = ClassIdentity.obtain(desc);
         ModelFactory modelFactory = csid.getBean(ModelFactory.class);
         return modelFactory != null ? modelFactory : new ClassNameFactory();
     }

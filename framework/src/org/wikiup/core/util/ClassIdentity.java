@@ -37,11 +37,13 @@ public class ClassIdentity {
         name = idx != -1 ? id.substring(idx + 1) : id;
     }
 
+    @Deprecated
     public <E> E getBean(Class<E> clazz) {
         BeanContainer mc = getModelContainer(clazz);
         return mc == null ? Interfaces.newInstance(clazz, getName()) : mc.query(clazz);
     }
 
+    @Deprecated
     public BeanContainer getModelContainer(Class<?> clazz) {
         ModelFactory aliasFactory = getModelFactory(clazz);
         ModelFactory factory = aliasFactory != null ? aliasFactory : Wikiup.getInstance().get(ModelFactory.class, namespace);

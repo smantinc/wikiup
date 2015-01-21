@@ -19,7 +19,7 @@ public class DbcpDataSources extends DataSourceManager {
 
     @Override
     public void cloneFrom(DataSourceManager instance) {
-        cloneFrom(this, getClass().getSuperclass());
+        cloneFrom(instance, getClass().getSuperclass());
         DbcpDataSources dbcp = Interfaces.cast(DbcpDataSources.class, instance);
         if(dbcp != null)
             unpooledDataSources = dbcp.unpooledDataSources;

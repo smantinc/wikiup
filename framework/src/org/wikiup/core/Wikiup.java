@@ -38,6 +38,7 @@ public class Wikiup implements Context<Object, Object>, Releasable {
 
     private BeanContainer beanContainer = new WikiupBeanContainer();
     private WikiupBeanFactory beanFactory = new WikiupBeanFactory();
+    private org.wikiup.core.bean.scratchpad.WikiupBeanFactory sBeanFactory = new org.wikiup.core.bean.scratchpad.WikiupBeanFactory();
     private Context<Object, Object> wndi = WikiupNamingDirectory.getInstance();
 
     static public Wikiup getInstance() {
@@ -68,12 +69,13 @@ public class Wikiup implements Context<Object, Object>, Releasable {
     public <E> E getBean(Class<E> clazz, Document doc) {
         ClassIdentity csid = ClassIdentity.obtain(doc);
         BeanContainer mc = csid.getModelContainer(clazz);
-        E bean = mc != null ? mc.query(clazz) : null;
+        E bean = Constants.Configure.SCRATCHPAD ? sBeanFactory.build(clazz, doc) : (mc != null ? mc.query(clazz) : null);
         return bean != null ? bean : build(clazz, csid.getNamespace(), csid.getName(), doc);
     }
 
+    @Deprecated
     static public BeanContainer getModelProvider(Class<?> inf, Document doc) {
-        ClassIdentity csid = getClassIdentity(doc);
+        ClassIdentity csid = ClassIdentity.obtain(doc);
         BeanContainer mc = csid.getModelContainer(inf);
         return mc == null ? new InstanceModelProvider(build(Object.class, doc, null)) : mc;
     }
@@ -101,7 +103,7 @@ public class Wikiup implements Context<Object, Object>, Releasable {
         return build(clazz, factory, name, desc);
     }
 
-    static private <E> E build(Class<E> clazz, ModelFactory factory, String name, Document desc) {
+    private <E> E build(Class<E> clazz, ModelFactory factory, String name, Document desc) {
         BeanContainer mc = name != null ? factory.get(name) : null;
         Interfaces.initialize(mc, desc);
         return mc != null ? mc.query(clazz) : null;
@@ -109,16 +111,6 @@ public class Wikiup implements Context<Object, Object>, Releasable {
 
     static public <E> E getModel(Class<E> clazz) {
         return getInstance().beanContainer.query(clazz);
-    }
-
-    @Deprecated
-    static public ClassIdentity getClassIdentity(String id) {
-        return new ClassIdentity(id);
-    }
-
-    @Deprecated
-    static public ClassIdentity getClassIdentity(Document doc) {
-        return new ClassIdentity(getCsidAttribute(doc, null));
     }
 
     @Deprecated

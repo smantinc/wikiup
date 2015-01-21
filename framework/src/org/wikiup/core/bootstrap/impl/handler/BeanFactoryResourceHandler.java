@@ -1,5 +1,6 @@
 package org.wikiup.core.bootstrap.impl.handler;
 
+import org.wikiup.core.Constants;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupBeanFactory;
 import org.wikiup.core.inf.Document;
@@ -11,5 +12,7 @@ public class BeanFactoryResourceHandler extends DirectoryDocumentResourceHandler
     @Override
     protected void loadDirectoryResource(Resource resource, Document doc, String[] path) {
         beanFactory.loadBeans(doc);
+        if(Constants.Configure.SCRATCHPAD)
+            Wikiup.getModel(org.wikiup.core.bean.scratchpad.WikiupBeanFactory.class).loadBeans(doc);
     }
 }

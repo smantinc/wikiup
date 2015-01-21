@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <beans>
-	<factory class="org.wikiup.core.impl.mf.ClassFactory"/>
+	<!--<factory class="org.wikiup.core.impl.mf.ClassFactory"/>-->
 	<factory name="wndi" class="org.wikiup.core.impl.mf.WndiFactory"/>
 	<factory name="factory" interface="org.wikiup.core.inf.Factory">
 		<item name="by-class" class="org.wikiup.core.impl.factory.FactoryByClass"/>
