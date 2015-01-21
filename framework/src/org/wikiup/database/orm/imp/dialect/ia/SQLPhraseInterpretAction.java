@@ -5,10 +5,10 @@ import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Getter;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
-import org.wikiup.database.orm.inf.DialectInterpretActionInf;
+import org.wikiup.database.orm.inf.DialectInterpretAction;
 import org.wikiup.database.orm.util.SQLStatement;
 
-public class SQLPhraseInterpretAction implements DialectInterpretActionInf, DocumentAware {
+public class SQLPhraseInterpretAction implements DialectInterpretAction, DocumentAware {
     private String phrase;
 
     public void doAction(SQLStatement stmt, final Document param) {

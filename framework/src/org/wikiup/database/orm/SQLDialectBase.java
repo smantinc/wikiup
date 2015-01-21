@@ -2,13 +2,13 @@ package org.wikiup.database.orm;
 
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.inf.Translator;
-import org.wikiup.database.orm.inf.DialectInterpretActionInf;
+import org.wikiup.database.orm.inf.DialectInterpretAction;
 import org.wikiup.database.orm.inf.SQLDialect;
 
 public abstract class SQLDialectBase implements SQLDialect {
     private DefaultSQLDialect dialect = Wikiup.getModel(DefaultSQLDialect.class);
 
-    public DialectInterpretActionInf getInterpretor(String name) {
+    public DialectInterpretAction getInterpretor(String name) {
         return dialect.getInterpretor(name);
     }
 

@@ -7,7 +7,7 @@ import org.wikiup.core.inf.Getter;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
-import org.wikiup.database.orm.inf.DialectInterpretActionInf;
+import org.wikiup.database.orm.inf.DialectInterpretAction;
 import org.wikiup.database.orm.inf.SQLDialect;
 import org.wikiup.database.orm.util.SQLStatement;
 import org.wikiup.modules.worms.WormsEntity;
@@ -91,7 +91,7 @@ public abstract class AbstractSQLBuilder implements SQLBuilderInf {
 
     protected void appendSQLAppendix(SQLStatement stmt, Document node, String name, Getter<?> getter) {
         if(node.getAttribute(name) != null) {
-            DialectInterpretActionInf interpretor = dialect.getInterpretor(name);
+            DialectInterpretAction interpretor = dialect.getInterpretor(name);
             Assert.notNull(interpretor, WikiupRuntimeException.class, name);
             interpretor.doAction(stmt, new DocumentWithGetter(node, getter));
         }

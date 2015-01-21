@@ -5,9 +5,9 @@ import org.wikiup.core.inf.Getter;
 import org.wikiup.database.orm.Entity;
 import org.wikiup.database.orm.EntityRelatives;
 import org.wikiup.database.orm.inf.EntityModel;
-import org.wikiup.database.orm.inf.PersistentOperationInf;
+import org.wikiup.database.orm.inf.PersistentOperation;
 
-public class PythonEntity implements PersistentOperationInf, EntityModel {
+public class PythonEntity implements PersistentOperation, EntityModel {
     private Entity entity;
 
     public PythonEntity(Entity entity) {

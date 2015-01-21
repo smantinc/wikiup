@@ -6,7 +6,7 @@ import org.wikiup.core.inf.Getter;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.database.orm.EntityRelatives;
 
-public interface EntityModel extends Getter<Attribute>, PersistentOperationInf, Releasable, Bindable {
+public interface EntityModel extends Getter<Attribute>, PersistentOperation, Releasable, Bindable {
     public String getName();
 
     public EntityRelatives getRelatives(String name, Getter<String> getter);

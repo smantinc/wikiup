@@ -4,13 +4,13 @@ import org.wikiup.core.inf.Document;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
-import org.wikiup.database.orm.inf.DialectInterpretActionInf;
+import org.wikiup.database.orm.inf.DialectInterpretAction;
 import org.wikiup.database.orm.util.SQLStatement;
 import org.wikiup.database.orm.util.SQLWrapper;
 
 import java.util.List;
 
-public class OffsetPhraseInterpretAction implements DialectInterpretActionInf {
+public class OffsetPhraseInterpretAction implements DialectInterpretAction {
     public void doAction(SQLStatement stmt, Document param) {
         List<SQLWrapper> wrappers = stmt.getWrappers();
         String offset = Documents.getDocumentValue(param, "offset", "0");

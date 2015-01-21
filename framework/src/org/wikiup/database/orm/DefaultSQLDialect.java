@@ -10,7 +10,7 @@ import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.database.orm.imp.dialect.ia.SQLPhraseInterpretAction;
-import org.wikiup.database.orm.inf.DialectInterpretActionInf;
+import org.wikiup.database.orm.inf.DialectInterpretAction;
 import org.wikiup.database.orm.inf.SQLDialect;
 
 import java.sql.Types;
@@ -19,7 +19,7 @@ import java.util.Map;
 
 public class DefaultSQLDialect extends WikiupDynamicSingleton<DefaultSQLDialect> implements DocumentAware {
     private Map<String, Translator<Object, Object>> filters;
-    private Map<String, DialectInterpretActionInf> interpretors;
+    private Map<String, DialectInterpretAction> interpretors;
 
     private String defaultKey;
     private Document sqlTypes;
@@ -38,7 +38,7 @@ public class DefaultSQLDialect extends WikiupDynamicSingleton<DefaultSQLDialect>
         doc = desc.getChild("interpretors");
         if(doc != null) {
             for(Document node : doc.getChildren()) {
-                DialectInterpretActionInf interpretor = new SQLPhraseInterpretAction();
+                DialectInterpretAction interpretor = new SQLPhraseInterpretAction();
                 Interfaces.initialize(interpretor, node);
                 interpretors.put(Documents.getId(node).toLowerCase(), interpretor);
             }
@@ -51,7 +51,7 @@ public class DefaultSQLDialect extends WikiupDynamicSingleton<DefaultSQLDialect>
         return filters.containsKey(n) ? filters.get(n) : filters.get(defaultKey);
     }
 
-    public DialectInterpretActionInf getInterpretor(String name) {
+    public DialectInterpretAction getInterpretor(String name) {
         return interpretors.get(name);
     }
 
@@ -84,6 +84,6 @@ public class DefaultSQLDialect extends WikiupDynamicSingleton<DefaultSQLDialect>
 
     public void firstBuilt() {
         filters = new HashMap<String, Translator<Object, Object>>();
-        interpretors = new HashMap<String, DialectInterpretActionInf>();
+        interpretors = new HashMap<String, DialectInterpretAction>();
     }
 }
