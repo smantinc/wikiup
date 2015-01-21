@@ -8,7 +8,7 @@ import org.wikiup.core.util.FileUtil;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.database.inf.DatabaseDriver;
-import org.wikiup.database.orm.inf.SQLDialectInf;
+import org.wikiup.database.orm.inf.SQLDialect;
 import org.wikiup.modules.sqlite.dialect.SqliteDialect;
 
 import java.io.IOException;
@@ -29,7 +29,7 @@ public class SqliteDatabaseDriver implements DatabaseDriver, DocumentAware {
         return Interfaces.getClass("org.sqlite.JDBC");
     }
 
-    public SQLDialectInf getDialect() {
+    public SQLDialect getDialect() {
         return dialect;
     }
 

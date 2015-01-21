@@ -1,9 +1,9 @@
 package org.wikiup.modules.mysql.dialect;
 
 import org.wikiup.database.orm.FieldMetadata;
-import org.wikiup.database.orm.SQLDialect;
+import org.wikiup.database.orm.SQLDialectBase;
 
-public class MySQLDialect extends SQLDialect {
+public class MySQLDialect extends SQLDialectBase {
     @Override
     public String quote(String name, QuoteType quoteType) {
         return quoteType != QuoteType.string ? '`' + name + '`' : super.quote(name, quoteType);

@@ -7,7 +7,7 @@ import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.database.inf.DatabaseDriver;
-import org.wikiup.database.orm.inf.SQLDialectInf;
+import org.wikiup.database.orm.inf.SQLDialect;
 import org.wikiup.modules.hsqldb.dialect.HSQLDialect;
 
 public class HSQLDatabaseDriver implements DatabaseDriver, DocumentAware {
@@ -26,7 +26,7 @@ public class HSQLDatabaseDriver implements DatabaseDriver, DocumentAware {
         return Interfaces.getClass("org.hsqldb.jdbcDriver");
     }
 
-    public SQLDialectInf getDialect() {
+    public SQLDialect getDialect() {
         return dialect;
     }
 

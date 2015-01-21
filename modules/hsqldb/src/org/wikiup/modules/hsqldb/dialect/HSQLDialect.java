@@ -1,10 +1,10 @@
 package org.wikiup.modules.hsqldb.dialect;
 
 import org.wikiup.database.orm.FieldMetadata;
-import org.wikiup.database.orm.SQLDialect;
+import org.wikiup.database.orm.SQLDialectBase;
 import org.wikiup.database.orm.inf.DialectInterpretActionInf;
 
-public class HSQLDialect extends SQLDialect {
+public class HSQLDialect extends SQLDialectBase {
     @Override
     public DialectInterpretActionInf getInterpretor(String name) {
         if(name.equals("limit"))

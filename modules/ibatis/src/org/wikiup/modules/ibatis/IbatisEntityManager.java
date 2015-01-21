@@ -32,7 +32,7 @@ import org.wikiup.database.orm.FieldMetadata;
 import org.wikiup.database.orm.inf.EntityManager;
 import org.wikiup.database.orm.inf.EntityMetadata;
 import org.wikiup.database.orm.inf.EntityModel;
-import org.wikiup.database.orm.inf.SQLDialectInf;
+import org.wikiup.database.orm.inf.SQLDialect;
 import org.wikiup.database.orm.util.SQLStatement;
 import org.wikiup.modules.ibatis.entity.IbatisEntity;
 import org.wikiup.modules.ibatis.meta.IbatisEntityMetadata;
@@ -126,7 +126,7 @@ public class IbatisEntityManager extends WikiupDynamicSingleton<IbatisEntityMana
         Document root = Documents.create("sqlMap");
         SQLStatement stmt = new SQLStatement();
         String whereClause = buildWhereClause(metadata);
-        SQLDialectInf dialect = Wikiup.getModel(DataSource.class).getDatabaseDriver().getDialect();
+        SQLDialect dialect = Wikiup.getModel(DataSource.class).getDatabaseDriver().getDialect();
         Document parameters = Documents.create("param");
 
         Documents.setAttributeValue(parameters, "limit", "$limit$");
@@ -220,7 +220,7 @@ public class IbatisEntityManager extends WikiupDynamicSingleton<IbatisEntityMana
         return StringUtil.getCamelName(fm.getFieldName(), '_');
     }
 
-    private void appendSchemaTable(SQLDialectInf dialect, EntityMetadata metadata, SQLStatement stmt) {
+    private void appendSchemaTable(SQLDialect dialect, EntityMetadata metadata, SQLStatement stmt) {
         stmt.append(dialect.getLocation(metadata.getCatalog(), metadata.getSchema(), metadata.getTable()));
     }
 

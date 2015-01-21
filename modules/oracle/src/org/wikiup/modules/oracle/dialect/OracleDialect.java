@@ -1,9 +1,9 @@
 package org.wikiup.modules.oracle.dialect;
 
-import org.wikiup.database.orm.SQLDialect;
+import org.wikiup.database.orm.SQLDialectBase;
 import org.wikiup.database.orm.inf.DialectInterpretActionInf;
 
-public class OracleDialect extends SQLDialect {
+public class OracleDialect extends SQLDialectBase {
     @Override
     public DialectInterpretActionInf getInterpretor(String name) {
         if(name.equals("limit"))

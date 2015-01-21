@@ -1,9 +1,9 @@
 package org.wikiup.modules.sqlite.dialect;
 
 import org.wikiup.database.orm.FieldMetadata;
-import org.wikiup.database.orm.SQLDialect;
+import org.wikiup.database.orm.SQLDialectBase;
 
-public class SqliteDialect extends SQLDialect {
+public class SqliteDialect extends SQLDialectBase {
     @Override
     public String getLocation(String catalog, String schema, String table) {
         return table;

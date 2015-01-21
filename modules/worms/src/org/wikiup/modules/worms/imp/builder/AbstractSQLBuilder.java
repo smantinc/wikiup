@@ -8,7 +8,7 @@ import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.database.orm.inf.DialectInterpretActionInf;
-import org.wikiup.database.orm.inf.SQLDialectInf;
+import org.wikiup.database.orm.inf.SQLDialect;
 import org.wikiup.database.orm.util.SQLStatement;
 import org.wikiup.modules.worms.WormsEntity;
 import org.wikiup.modules.worms.imp.FieldProperty;
@@ -18,7 +18,7 @@ import org.wikiup.modules.worms.inf.SQLBuilderInf;
 public abstract class AbstractSQLBuilder implements SQLBuilderInf {
     protected WormsEntity entity;
     protected Document document;
-    protected SQLDialectInf dialect;
+    protected SQLDialect dialect;
 
     private Getter<?> parameters;
 
@@ -64,9 +64,9 @@ public abstract class AbstractSQLBuilder implements SQLBuilderInf {
     }
 
     protected void buildSelectPhrase(StringBuilder clause, FieldProperty field) {
-        String name = dialect.quote(field.getName(), SQLDialectInf.QuoteType.string);
+        String name = dialect.quote(field.getName(), SQLDialect.QuoteType.string);
         String fieldSQL = field.getFieldSQL();
-        connectPhrase(clause, (fieldSQL != null ? StringUtil.evaluateEL(fieldSQL, parameters) : dialect.quote(field.getFieldName(), SQLDialectInf.QuoteType.field)) + " " + name, ",");
+        connectPhrase(clause, (fieldSQL != null ? StringUtil.evaluateEL(fieldSQL, parameters) : dialect.quote(field.getFieldName(), SQLDialect.QuoteType.field)) + " " + name, ",");
     }
 
     protected void appendSQLSuffix(SQLStatement sql) {
@@ -114,7 +114,7 @@ public abstract class AbstractSQLBuilder implements SQLBuilderInf {
                 if(value == null)
                     value = field.getDefaultValue();
                 if(value != null) {
-                    connectPhrase(fieldsBuffer, dialect.quote(field.getFieldName(), SQLDialectInf.QuoteType.field), ",");
+                    connectPhrase(fieldsBuffer, dialect.quote(field.getFieldName(), SQLDialect.QuoteType.field), ",");
                     connectPhrase(valuesBuffer, "?(" + field.getName() + ")", ",");
                     stmt.addParameter(field.getName(), value);
                 }
@@ -136,7 +136,7 @@ public abstract class AbstractSQLBuilder implements SQLBuilderInf {
             FieldProperty field = getFieldProperty(property);
             if(field != null && field.isDirty() && !isKeyProperty(field)) {
                 Object value = field.getFieldValue();
-                connectPhrase(buf, dialect.quote(field.getFieldName(), SQLDialectInf.QuoteType.field), ",");
+                connectPhrase(buf, dialect.quote(field.getFieldName(), SQLDialect.QuoteType.field), ",");
                 buf.append("=?(");
                 buf.append(field.getName());
                 buf.append(')');

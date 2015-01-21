@@ -11,7 +11,7 @@ import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.database.orm.imp.dialect.ia.SQLPhraseInterpretAction;
 import org.wikiup.database.orm.inf.DialectInterpretActionInf;
-import org.wikiup.database.orm.inf.SQLDialectInf;
+import org.wikiup.database.orm.inf.SQLDialect;
 
 import java.sql.Types;
 import java.util.HashMap;
@@ -55,16 +55,16 @@ public class DefaultSQLDialect extends WikiupDynamicSingleton<DefaultSQLDialect>
         return interpretors.get(name);
     }
 
-    public String getLocation(String catalog, String schema, String table, SQLDialectInf dialect) {
+    public String getLocation(String catalog, String schema, String table, SQLDialect dialect) {
         StringBuilder buffer = new StringBuilder();
         if(!StringUtil.isEmpty(catalog))
-            buffer.append(dialect.quote(catalog, SQLDialectInf.QuoteType.catalog));
+            buffer.append(dialect.quote(catalog, SQLDialect.QuoteType.catalog));
         else if(!StringUtil.isEmpty(schema))
-            buffer.append(dialect.quote(schema, SQLDialectInf.QuoteType.schema));
+            buffer.append(dialect.quote(schema, SQLDialect.QuoteType.schema));
         if(buffer.length() > 0)
-            StringUtil.connect(buffer, dialect.quote(table, SQLDialectInf.QuoteType.table), '.');
+            StringUtil.connect(buffer, dialect.quote(table, SQLDialect.QuoteType.table), '.');
         else
-            buffer.append(dialect.quote(table, SQLDialectInf.QuoteType.table));
+            buffer.append(dialect.quote(table, SQLDialect.QuoteType.table));
         return buffer.toString();
     }
 

@@ -1,6 +1,6 @@
 package org.wikiup.database.inf;
 
-import org.wikiup.database.orm.inf.SQLDialectInf;
+import org.wikiup.database.orm.inf.SQLDialect;
 
 public interface DatabaseDriver {
     public String getConnectionURL();
@@ -9,5 +9,5 @@ public interface DatabaseDriver {
 
     public Class getDriverClass();
 
-    public SQLDialectInf getDialect();
+    public SQLDialect getDialect();
 }

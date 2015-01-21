@@ -8,7 +8,7 @@ import org.wikiup.core.util.ValueUtil;
 import org.wikiup.database.beans.DataSourceManager;
 import org.wikiup.database.impl.datasource.DriverManagerDataSource;
 import org.wikiup.database.inf.DataSource;
-import org.wikiup.database.orm.inf.SQLDialectInf;
+import org.wikiup.database.orm.inf.SQLDialect;
 import org.wikiup.plugins.wmdk.util.WMDKUtil;
 import org.wikiup.servlet.ServletProcessorContext;
 
@@ -54,7 +54,7 @@ public class DatasourceServletAction {
         Connection conn = ds.getConnection();
         try {
             Statement stmt = conn.createStatement();
-            SQLDialectInf dialect = ds.getDatabaseDriver().getDialect();
+            SQLDialect dialect = ds.getDatabaseDriver().getDialect();
             String[] l = WMDKUtil.parseCatalogSchema(context.getParameter("l"));
             String table = context.getParameter("table");
             stmt.execute("DROP TABLE " + dialect.getLocation(l[0], l[1], table));

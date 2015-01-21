@@ -2,10 +2,10 @@ package org.wikiup.modules.sqlserver.dialect;
 
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.database.orm.FieldMetadata;
-import org.wikiup.database.orm.SQLDialect;
+import org.wikiup.database.orm.SQLDialectBase;
 import org.wikiup.database.orm.inf.DialectInterpretActionInf;
 
-public class SQLServerDialect extends SQLDialect {
+public class SQLServerDialect extends SQLDialectBase {
     @Override
     public DialectInterpretActionInf getInterpretor(String name) {
         if(name.equals("limit"))

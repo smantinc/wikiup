@@ -5,7 +5,7 @@ import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.database.inf.DatabaseDriver;
-import org.wikiup.database.orm.inf.SQLDialectInf;
+import org.wikiup.database.orm.inf.SQLDialect;
 import org.wikiup.modules.mysql.dialect.MySQLDialect;
 
 public class MySQLDatabaseDriver implements DatabaseDriver, DocumentAware {
@@ -47,7 +47,7 @@ public class MySQLDatabaseDriver implements DatabaseDriver, DocumentAware {
         return Interfaces.getClass("com.mysql.jdbc.Driver");
     }
 
-    public SQLDialectInf getDialect() {
+    public SQLDialect getDialect() {
         return new MySQLDialect();
     }
 
