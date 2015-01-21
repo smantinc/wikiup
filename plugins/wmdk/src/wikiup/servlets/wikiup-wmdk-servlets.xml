@@ -4,25 +4,25 @@
 		<headers>
 			<property name="Content-Type" value="text/xml;${env:prop:wikiup.charset}"/>
 		</headers>
-		<processor class=":get"/>
+		<processor class="get"/>
 	</servlet>
 	<servlet name="ivy-xml" uri-pattern="/pages/wmdk/template/build/*">
 		<headers>
 			<property name="Content-Type" value="text/xml;${env:prop:wikiup.charset}"/>
 		</headers>
-		<processor class=":file-resource" resource-handler="html"/>
+		<processor class="file-resource" resource-handler="html"/>
 	</servlet>
 	<servlet name="wmdk-template" uri-pattern="/pages/wmdk/template/*">
 		<headers>
 			<property name="Content-Type" value="text/html;${env:prop:wikiup.charset}"/>
 		</headers>
-		<processor class=":chain">
-			<module name="file-resource" class=":file-resource" suffix="html,xml" resource-handler="html"/>
-			<module name="ssi" class=":ssi"/>
-			<module name="template" class=":template"/>
+		<processor class="chain">
+			<module name="file-resource" class="file-resource" suffix="html,xml" resource-handler="html"/>
+			<module name="ssi" class="ssi"/>
+			<module name="template" class="template"/>
 		</processor>
-		<context name="param" class=":parameter"/>
-		<context name="i18n" class=":i18n" locale="$param.locale"/>
+		<context name="param" class="parameter"/>
+		<context name="i18n" class="i18n" locale="$param.locale"/>
 	</servlet>
 	<servlet name="new-page" uri-pattern="/pages/wmdk/template/new-page/*" extends="wiki">
 		<headers>

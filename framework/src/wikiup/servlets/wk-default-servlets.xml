@@ -4,6 +4,6 @@
 		<headers>
 			<property name="Content-Type" value="text/html;${env:prop:wikiup.charset}"/>
 		</headers>
-		<processor class=":deny" reason="SC_NOT_FOUND"/>
+		<processor class="deny" reason="SC_NOT_FOUND"/>
 	</default-servlet>
 </root>

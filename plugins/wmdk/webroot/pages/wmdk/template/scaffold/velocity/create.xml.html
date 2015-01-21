@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
   <action>
-    <interceptor class=":request-method" intercept-method="POST">
-      <action class=":insert" entity-name="${param:manager}:${domain.name}">
+    <interceptor class="request-method" intercept-method="POST">
+      <action class="insert" entity-name="${param:manager}:${domain.name}">
       <wk:foreach in="domain:fields">
 	    <wk:if test="!$primaryKey">
           <property name="$name" value="\$param:$name"/>
 		</wk:if>
       </wk:foreach>
       </action>
-      <action class=":redirect" url="index.html"/>
+      <action class="redirect" url="index.html"/>
 	</interceptor>
   </action>
 </root>

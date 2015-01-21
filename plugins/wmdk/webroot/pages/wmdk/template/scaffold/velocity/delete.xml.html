@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <action class=":delete" entity-name="${param:manager}:${domain.name}">
+  <action class="delete" entity-name="${param:manager}:${domain.name}">
     <wk:foreach in="domain:primary-keys">
       <property name="$name" value="\$param:$name"/>
     </wk:foreach>
   </action>
-  <action class=":redirect" url="index.html"/>
+  <action class="redirect" url="index.html"/>
 </root>

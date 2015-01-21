@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-  <context name="entity" class=":entity">
+  <context name="entity" class="entity">
     <entity name="domain" entity-name="${param:manager}:${domain.name}">
       <property name="limit" value="15"/>
       <property name="offset" value="\$+{param:offset}{0}"/>
     </entity>
   </context>
-  <context name="var" class=":variable">
+  <context name="var" class="variable">
     <property name="total" value="\$+{entity/${param:manager}:$domain.name-size[@size]}{15}"/>
     <property name="last-page-offset" value="\${expr:eval:\${var:total} - \${var:total} % 15}"/>
   </context>
   <exception-handler>
-    <handler class=":ignore" for=".*RecordNotFoundException"/>
+    <handler class="ignore" for=".*RecordNotFoundException"/>
   </exception-handler>
 </root>

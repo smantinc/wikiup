@@ -8,7 +8,7 @@
 		</context>
 	</servlet>
 	<servlet name="python-script" uri-pattern="*.py" extends="do">
-		<action class=":python">
+		<action class="python">
 			<property name="wkContext" value="${org.wikiup.servlet.ServletProcessorContext}"/>
 			<property name="response" value="${javax.servlet.http.HttpServletResponse}"/>
 			<property name="request" value="${javax.servlet.http.HttpServletRequest}"/>

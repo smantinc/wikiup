@@ -8,7 +8,7 @@
 		</context>
 	</servlet>
 	<servlet name="ruby-script" uri-pattern="*.rb" extends="do">
-		<action class=":ruby">
+		<action class="ruby">
 			<property name="wkContext" value="${org.wikiup.servlet.ServletProcessorContext}"/>
 			<property name="response" value="${javax.servlet.http.HttpServletResponse}"/>
 			<property name="request" value="${javax.servlet.http.HttpServletRequest}"/>

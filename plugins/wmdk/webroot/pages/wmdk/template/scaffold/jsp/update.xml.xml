@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
   <action>
-    <interceptor class=":request-method" intercept-method="POST">
-      <action class=":update" entity-name="${param:manager}:${domain.name}">
+    <interceptor class="request-method" intercept-method="POST">
+      <action class="update" entity-name="${param:manager}:${domain.name}">
         <wk:foreach in="domain:fields">
           <property name="$name" value="\$param:$name"/>
         </wk:foreach>
       </action>
-      <action class=":redirect" url="index.jsp"/>
+      <action class="redirect" url="index.jsp"/>
     </interceptor>
   </action>
-  <context name="entity" class=":entity">
+  <context name="entity" class="entity">
     <entity name="domain" entity-name="${param:manager}:${domain.name}">
       <wk:foreach in="domain:primary-keys">
         <property name="$name" value="\$param:$name"/>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
 	<servlet name="webdav" uri-pattern="/webdav/*">
-		<processor class=":chain">
+		<processor class="chain">
 			<module class="org.wikiup.modules.webdav.imp.processor.WebdavServletProcessor">
 				<authorization class="org.wikiup.modules.webdav.imp.authorization.BasicHttpAuthorization"/>
 				<method-handlers>
@@ -24,8 +24,8 @@
 					<copy class="webdav-method:copy"/>
 				</method-handlers>
 			</module>
-			<module class=":xml" auto-create="false"/>
+			<module class="xml" auto-create="false"/>
 		</processor>
-		<context name="param" class=":namespace"/>
+		<context name="param" class="namespace"/>
 	</servlet>
 </root>
