@@ -37,23 +37,6 @@ public class ClassIdentity {
         name = idx != -1 ? id.substring(idx + 1) : id;
     }
 
-    @Deprecated
-    public <E> E getBean(Class<E> clazz) {
-        BeanContainer mc = getModelContainer(clazz);
-        return mc == null ? Interfaces.newInstance(clazz, getName()) : mc.query(clazz);
-    }
-
-    @Deprecated
-    public BeanContainer getModelContainer(Class<?> clazz) {
-        ModelFactory aliasFactory = getModelFactory(clazz);
-        ModelFactory factory = aliasFactory != null ? aliasFactory : Wikiup.getInstance().get(ModelFactory.class, namespace);
-        return factory != null ? factory.get(name) : null;
-    }
-
-    private ModelFactory getModelFactory(Class<?> clazz) {
-        return Wikiup.getModel(WikiupBeanFactory.class).getModelFactory(clazz, this);
-    }
-
     public static ClassIdentity obtain(String id) {
         return new ClassIdentity(id);
     }

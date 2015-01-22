@@ -36,22 +36,22 @@ public class WebdavFileSystem extends WikiupDynamicSingleton<WebdavFileSystem> i
 
     public boolean move(ServletProcessorContext context, String src, String dest) {
         FileSystemInf fs = getFileSystem(context, src);
-        return fs != null ? fs.move(src, dest) : false;
+        return fs != null && fs.move(src, dest);
     }
 
     public boolean copy(ServletProcessorContext context, String src, String dest) {
         FileSystemInf fs = getFileSystem(context, src);
-        return fs != null ? fs.copy(src, dest) : false;
+        return fs != null && fs.copy(src, dest);
     }
 
     public boolean lock(ServletProcessorContext context, String src, String token, Document desc, Document response) {
         FileSystemInf fs = getFileSystem(context, src);
-        return fs != null ? fs.lock(src, token, desc, response) : false;
+        return fs != null && fs.lock(src, token, desc, response);
     }
 
     public boolean unlock(ServletProcessorContext context, String src, String token) {
         FileSystemInf fs = getFileSystem(context, src);
-        return fs != null ? fs.unlock(src, token) : false;
+        return fs != null && fs.unlock(src, token);
     }
 
     public FileInf createFileCollection(ServletProcessorContext context, String path) {
@@ -64,7 +64,7 @@ public class WebdavFileSystem extends WikiupDynamicSingleton<WebdavFileSystem> i
     }
 
     public FileSystemInf getFileSystem(ServletProcessorContext context, Document node) {
-        BeanContainer provider = node != null ? Wikiup.getModelProvider(FileSystemInf.class, node) : null;
+        BeanContainer provider = node != null ? Wikiup.getInstance().getModelProvider(FileSystemInf.class, node) : null;
         context.awaredBy(provider);
         Interfaces.initialize(provider, node);
         return provider != null ? provider.query(FileSystemInf.class) : null;
@@ -92,13 +92,6 @@ public class WebdavFileSystem extends WikiupDynamicSingleton<WebdavFileSystem> i
     public AuthorizationContextInf getAuthorizationContext(ServletProcessorContext context, FileSystemInf fs, String path) {
         return Wikiup.getModel(AuthorizationManager.class).getAuthorizationContext(context);
     }
-
-//  public void cloneFrom(WebdavFileSystem instance)
-//  {
-//    configure = instance.configure;
-//    fileSystems = instance.fileSystems;
-//    defaultFileSystemConfigure = instance.defaultFileSystemConfigure;
-//  }
 
     public void firstBuilt() {
         configure = new DocumentImpl("file-systems");

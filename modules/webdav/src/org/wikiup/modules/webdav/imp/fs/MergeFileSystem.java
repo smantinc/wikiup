@@ -87,7 +87,7 @@ public class MergeFileSystem implements FileSystemInf, DocumentAware, ServletPro
     }
 
     private FileSystemInf getFileSystem(Document node) {
-        BeanContainer mc = node != null ? Wikiup.getModelProvider(FileSystemInf.class, node) : null;
+        BeanContainer mc = node != null ? Wikiup.getInstance().getModelProvider(FileSystemInf.class, node) : null;
         context.awaredBy(mc);
         Interfaces.initialize(mc, node);
         return mc != null ? mc.query(FileSystemInf.class) : null;

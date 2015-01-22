@@ -231,7 +231,7 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
 
     public BeanContainer buildProcessorContextModelContainer(Document desc) {
         if(desc != null) {
-            BeanContainer mc = Wikiup.getModelProvider(ProcessorContext.class, desc);
+            BeanContainer mc = Wikiup.getInstance().getModelProvider(ProcessorContext.class, desc);
             return new ProcessorContextSupportedModelProvider(mc);
         }
         return null;

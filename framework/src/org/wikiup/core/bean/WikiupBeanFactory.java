@@ -1,102 +1,88 @@
 package org.wikiup.core.bean;
 
 import org.wikiup.core.Constants;
-import org.wikiup.core.Wikiup;
-import org.wikiup.core.impl.mf.ClassFactory;
-import org.wikiup.core.impl.mf.ClassNameFactory;
-import org.wikiup.core.impl.mf.NamespaceFactory;
+import org.wikiup.core.impl.cl.ClassDictionaryImpl;
+import org.wikiup.core.impl.factory.BeanFactory;
+import org.wikiup.core.impl.factory.FactoryByClass;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Factory;
 import org.wikiup.core.inf.ext.Context;
-import org.wikiup.core.inf.ext.ModelFactory;
 import org.wikiup.core.util.ClassIdentity;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Map;
 
-public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory> implements Context<ModelFactory, ModelFactory>, Iterable<String> {
-    private Map<Class<?>, Map<String, ModelFactory>> nameAlias;
-    private NamespaceFactory factories;
-    private Map<String, ModelFactory> byNames;
+public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory> implements Context<Factory<?, ?>, Factory<?, ?>>, Iterable<Object> {
+    private BeanFactory beanFactory;
+    private Builder builder = new Builder();
 
     public void firstBuilt() {
-        nameAlias = new HashMap<Class<?>, Map<String, ModelFactory>>();
-        factories = new NamespaceFactory();
-        byNames = new HashMap<String, ModelFactory>();
-        factories.addFactory(null, new DefaultBeanFactory());
+        beanFactory = new BeanFactory(new FactoryByClass<Object>(new ClassDictionaryImpl()));
+        beanFactory.add(Object.class, new DefaultObjectClass(beanFactory));
     }
 
-    private void addInterfaceAlias(Class<?> inf, String alias, ModelFactory factory) {
-        boolean contains = nameAlias.containsKey(inf);
-        Map<String, ModelFactory> a = contains ? nameAlias.get(inf) : new HashMap<String, ModelFactory>();
-        a.put(alias, factory);
-        if(!contains)
-            nameAlias.put(inf, a);
+    @Override
+    public Factory<?, ?> get(String name) {
+        return beanFactory.build(name);
     }
 
-    public ModelFactory getModelFactory(Class<?> inf, ClassIdentity alias) {
-        Map<String, ModelFactory> a = nameAlias.get(inf);
-        return a != null ? a.get(alias.getNamespace()) : factories.getFactory(alias.getNamespace());
+    @Override
+    public void set(String name, Factory<?, ?> factory) {
+        addFactory(name, factory);
     }
 
-    public ModelFactory get(String name) {
-        return factories.getFactory(name);
+    public <E> E build(Class<E> clazz, Document desc) {
+        return beanFactory.build(clazz, Documents.getAttributeValue(desc, Constants.Attributes.CLASS, null), desc);
     }
 
-    public void set(String name, ModelFactory factory) {
-        appendModelFactoryByNames(factory);
-        factories.addFactory(name, factory);
+    public <E> E build(Class<E> clazz, String namespace, String name) {
+        return Interfaces.cast(clazz, beanFactory.build(namespace, name));
+    }
+
+    public <E> E build(Class<E> clazz, String name, Document desc) {
+        return beanFactory.build(clazz, name, desc);
+    }
+    
+    private void addFactory(String name, Factory<?, ?> factory) {
+        beanFactory.add(name, factory);
+    }
+
+    public Iterator<Object> iterator() {
+        return beanFactory.getFactories().keySet().iterator();
     }
 
     public void loadBeans(Document desc) {
-        for(Document doc : desc.getChildren()) {
-            String name = Documents.getId(doc);
-            ModelFactory f = factories.getFactory(name);
-            if(f == null)
-                factories.addFactory(name, (f = buildFactory(doc)));
-            Interfaces.initialize(f, doc);
-            appendModelFactoryByNames(f);
-            set(name, f);
-            addInterfaceAlias(doc, f);
+        beanFactory.loadFactories(desc, builder);
+    }
+
+    private static class Builder implements Factory.ByDocument<Factory<?, ?>> {
+        private HashMap<String, FactoryByClass.WIRABLE<?>> factories = new HashMap<String, FactoryByClass.WIRABLE<?>>();
+
+        @Override
+        public Factory<?, ?> build(Document desc) {
+            String name = Documents.getAttributeValue(desc, Constants.Attributes.NAME, null);
+            if(name == null)
+                return null;
+            FactoryByClass.WIRABLE<?> wirable = factories.get(name);
+            if(wirable == null)
+                factories.put(name, wirable = new FactoryByClass.WIRABLE<Object>());
+            return wirable.wire(desc);
         }
     }
-
-    private ModelFactory buildFactory(Document desc) {
-        ClassIdentity csid = ClassIdentity.obtain(desc);
-        ModelFactory modelFactory = csid.getBean(ModelFactory.class);
-        return modelFactory != null ? modelFactory : new ClassNameFactory();
-    }
-
-    private void appendModelFactoryByNames(ModelFactory factory) {
-        Iterable<String> iterable = Interfaces.foreach(factory);
-        for(String name : iterable)
-            byNames.put(name, factory);
-    }
-
-    private void addInterfaceAlias(Document doc, ModelFactory factory) {
-        String inf = Documents.getAttributeValue(doc, Constants.Attributes.INTERFACE, null);
-        if(inf != null)
-            addInterfaceAlias(Interfaces.getClass(inf), Documents.getAttributeValue(doc, Constants.Attributes.ALIAS, null), factory);
-    }
-
-    public Iterator<String> iterator() {
-        return factories.getFactorys().keySet().iterator();
-    }
-
-    private class DefaultBeanFactory implements ModelFactory {
-        private ClassFactory classFactory = new ClassFactory();
-
-        public BeanContainer get(String name) {
-            BeanContainer mc = find(name);
-            return mc != null ? mc : classFactory.get(name);
+    
+    private static class DefaultObjectClass implements Factory<Object, String> {
+        private BeanFactory beanFactory;
+        
+        public DefaultObjectClass(BeanFactory beanFactory) {
+            this.beanFactory = beanFactory;
         }
-
-        private BeanContainer find(String name) {
-            ModelFactory modelFactory = byNames.get(name);
-            return modelFactory != null ? modelFactory.get(name) : null;
+        
+        @Override
+        public Object build(String name) {
+            ClassIdentity classIdentity = ClassIdentity.obtain(name);
+            return beanFactory.build(classIdentity.getNamespace(), classIdentity.getName());
         }
     }
 }

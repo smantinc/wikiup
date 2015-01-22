@@ -2,6 +2,7 @@ package org.wikiup.servlet.impl.action;
 
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupBeanContainer;
+import org.wikiup.core.bean.WikiupBeanFactory;
 import org.wikiup.core.impl.context.BeanPropertyContext;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.impl.document.Context2Document;
@@ -118,7 +119,7 @@ public class ServletActionSupport implements ServletAction {
         public Object get(String name) {
             ClassIdentity csid = new ClassIdentity(name);
             try {
-                return csid.getBean(Object.class);
+                return Wikiup.getModel(WikiupBeanFactory.class).build(Object.class, csid.getNamespace(), csid.getName());
             } catch(Exception e) {
                 return null;
             }

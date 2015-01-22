@@ -17,9 +17,9 @@
 package org.wikiup.core;
 
 import org.wikiup.core.bean.WikiupBeanContainer;
+import org.wikiup.core.bean.WikiupBeanFactory;
 import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.bean.WikiupNamingDirectory;
-import org.wikiup.core.bean.scratchpad.WikiupBeanFactory;
 import org.wikiup.core.impl.mp.InstanceModelProvider;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Document;
@@ -27,7 +27,6 @@ import org.wikiup.core.inf.Provider;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.Setter;
 import org.wikiup.core.inf.ext.Context;
-import org.wikiup.core.inf.ext.ModelFactory;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ClassIdentity;
 import org.wikiup.core.util.Documents;
@@ -70,10 +69,11 @@ public class Wikiup implements Context<Object, Object>, Releasable {
     }
 
     @Deprecated
-    static public BeanContainer getModelProvider(Class<?> inf, Document doc) {
-        ClassIdentity csid = ClassIdentity.obtain(doc);
-        BeanContainer mc = csid.getModelContainer(inf);
-        return mc == null ? new InstanceModelProvider(build(Object.class, doc, null)) : mc;
+    public BeanContainer getModelProvider(Class<?> inf, Document doc) {
+        Object obj = getBean(inf, doc);
+        if(obj == null)
+            obj = beanFactory.build(Object.class, doc);
+        return new InstanceModelProvider(obj);
     }
 
     public <E> void loadBeans(Class<E> clazz, Setter<E> directory, Document doc) {
