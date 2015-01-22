@@ -11,12 +11,20 @@ import org.wikiup.core.util.Interfaces;
 import java.util.HashMap;
 import java.util.Map;
 
-public class BeanFactory implements Factory<FactoryWrapper<Object, Object>, String> {
+public class BeanFactory implements Factory<Factory<Object, Object>, String> {
     private Map<Object, FactoryWrapper<Object, Object>> factories = new HashMap<Object, FactoryWrapper<Object, Object>>();
+    private FactoryWrapper<Object, Object> defaultFactory;
+
+    public BeanFactory() {
+    }
+
+    public BeanFactory(Factory<Object, ?> defaultFactory) {
+        this.defaultFactory = new FactoryWrapper<Object, Object>((Factory) defaultFactory);
+    }
 
     @Override
-    public FactoryWrapper<Object, Object> build(String name) {
-        return getFactory(name);
+    public Factory<Object, Object> build(String name) {
+        return ensureFactory(name);
     }
 
     public Map<Object, FactoryWrapper<Object, Object>> getFactories() {
@@ -35,14 +43,19 @@ public class BeanFactory implements Factory<FactoryWrapper<Object, Object>, Stri
     }
 
     public Object build(Object namespace, String name) {
-        FactoryWrapper<Object, Object> factoryWrapper = factories.get(namespace);
+        FactoryWrapper<Object, Object> factoryWrapper = getFactory(namespace);
         return factoryWrapper != null ? factoryWrapper.asByName().build(name) : null;
+    }
+
+    private FactoryWrapper<Object, Object> getFactory(Object namespace) {
+        FactoryWrapper<Object, Object> f = factories.get(namespace);
+        return f != null ? f : defaultFactory;
     }
 
     public void loadFactories(Document desc, Factory.ByDocument<Factory<?, ?>> builder) {
         for(Document doc : desc.getChildren()) {
             String name = Documents.getId(doc);
-            FactoryWrapper<Object, Object> f = getFactory(name);
+            FactoryWrapper<Object, Object> f = ensureFactory(name);
             String inf = Documents.getAttributeValue(doc, Constants.Attributes.INTERFACE, null);
             if(inf != null)
                 factories.put(Interfaces.getClass(inf), f);
@@ -51,7 +64,7 @@ public class BeanFactory implements Factory<FactoryWrapper<Object, Object>, Stri
         }
     }
 
-    private FactoryWrapper<Object, Object> getFactory(Object name) {
+    private FactoryWrapper<Object, Object> ensureFactory(Object name) {
         FactoryWrapper<Object, Object> f = factories.get(name);
         if(f == null)
             factories.put(name, f = new FactoryWrapper<Object, Object>(Null.getInstance()));
@@ -59,6 +72,6 @@ public class BeanFactory implements Factory<FactoryWrapper<Object, Object>, Stri
     }
 
     public void add(Object name, Factory<?, ?> factory) {
-        getFactory(name).wrap((Factory) factory);
+        ensureFactory(name).wrap((Factory) factory);
     }
 }

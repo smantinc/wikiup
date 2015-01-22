@@ -1,6 +1,7 @@
 package org.wikiup.database.impl.datasource;
 
 import org.wikiup.core.Wikiup;
+import org.wikiup.core.annotation.Property;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.util.Assert;
@@ -23,7 +24,9 @@ public class DriverManagerDataSource implements DataSource, DocumentAware {
     private Document databaseDriver;
     private DatabaseDriver databaseDriverInstance = null;
 
+    @Property
     private String user;
+    @Property
     private String password;
 
     public String getUser() {

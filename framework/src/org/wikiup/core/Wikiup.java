@@ -17,9 +17,9 @@
 package org.wikiup.core;
 
 import org.wikiup.core.bean.WikiupBeanContainer;
-import org.wikiup.core.bean.WikiupBeanFactory;
 import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.bean.WikiupNamingDirectory;
+import org.wikiup.core.bean.scratchpad.WikiupBeanFactory;
 import org.wikiup.core.impl.mp.InstanceModelProvider;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Document;
@@ -38,7 +38,6 @@ public class Wikiup implements Context<Object, Object>, Releasable {
 
     private BeanContainer beanContainer = new WikiupBeanContainer();
     private WikiupBeanFactory beanFactory = new WikiupBeanFactory();
-    private org.wikiup.core.bean.scratchpad.WikiupBeanFactory sBeanFactory = new org.wikiup.core.bean.scratchpad.WikiupBeanFactory();
     private Context<Object, Object> wndi = WikiupNamingDirectory.getInstance();
 
     static public Wikiup getInstance() {
@@ -67,10 +66,7 @@ public class Wikiup implements Context<Object, Object>, Releasable {
     }
 
     public <E> E getBean(Class<E> clazz, Document doc) {
-        ClassIdentity csid = ClassIdentity.obtain(doc);
-        BeanContainer mc = csid.getModelContainer(clazz);
-        E bean = Constants.Configure.SCRATCHPAD ? sBeanFactory.build(clazz, doc) : (mc != null ? mc.query(clazz) : null);
-        return bean != null ? bean : build(clazz, csid.getNamespace(), csid.getName(), doc);
+        return beanFactory.build(clazz, doc);
     }
 
     @Deprecated
@@ -97,18 +93,6 @@ public class Wikiup implements Context<Object, Object>, Releasable {
         return instance;
     }
 
-    private <E> E build(Class<E> clazz, String namespace, String name, Document desc) {
-        ModelFactory factory = beanFactory.get(namespace);
-        Assert.notNull(factory, namespace);
-        return build(clazz, factory, name, desc);
-    }
-
-    private <E> E build(Class<E> clazz, ModelFactory factory, String name, Document desc) {
-        BeanContainer mc = name != null ? factory.get(name) : null;
-        Interfaces.initialize(mc, desc);
-        return mc != null ? mc.query(clazz) : null;
-    }
-
     static public <E> E getModel(Class<E> clazz) {
         return getInstance().beanContainer.query(clazz);
     }
@@ -120,7 +104,6 @@ public class Wikiup implements Context<Object, Object>, Releasable {
 
     public void release() {
         Interfaces.release(beanContainer);
-        Interfaces.release(beanFactory);
         Interfaces.release(wndi);
         instanceProvider = new DefaultWikiupInstanceProvider();
     }
