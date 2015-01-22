@@ -8,7 +8,7 @@ class Util {
         Object wikiup = obj;
         if(obj != null) {
             if(obj instanceof EntityModel)
-                wikiup = new org.wikiup.modules.velocity.context.WikiupEntityVelocityContext((EntityModel) wikiup);
+                wikiup = new WikiupEntityVelocityContext((EntityModel) wikiup);
 //      else if(obj instanceof ProcessorContext)
 //        wikiup = new WikiupAccessorVelocityContext((ProcessorContext) obj);
 //      else if(obj instanceof GetterInf)

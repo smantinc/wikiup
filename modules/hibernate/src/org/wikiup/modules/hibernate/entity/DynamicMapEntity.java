@@ -3,6 +3,7 @@ package org.wikiup.modules.hibernate.entity;
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.metadata.ClassMetadata;
+import org.wikiup.core.exception.AttributeException;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Getter;
 import org.wikiup.core.inf.Releasable;
@@ -15,12 +16,16 @@ import org.wikiup.modules.hibernate.HibernateEntityManager;
 import org.wikiup.modules.hibernate.er.CollectionEntityRelatives;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class DynamicMapEntity implements EntityModel, Releasable {
     private Map<String, Object> map = new HashMap<String, Object>();
+    private Set<String> propertyNames;
     private Session session;
     private String name;
     private ClassMetadata metadata;
@@ -35,6 +40,11 @@ public class DynamicMapEntity implements EntityModel, Releasable {
         this.session = session;
         this.name = entityName;
         metadata = HibernateEntityManager.getInstance().getSessionFactory().getClassMetadata(entityName);
+        if(metadata != null) {
+            propertyNames = new HashSet<String>(Arrays.asList(metadata.getPropertyNames()));
+            propertyNames.add("offset");
+            propertyNames.add("limit");
+        }
     }
 
     public String getName() {
@@ -60,7 +70,9 @@ public class DynamicMapEntity implements EntityModel, Releasable {
     }
 
     public Attribute get(String name) {
-        return new DynamicMapEntityAttribute(name);
+        if(propertyNames == null || propertyNames.contains(name))
+            return new DynamicMapEntityAttribute(name);
+        throw new AttributeException(this.name, name);
     }
 
     public void select() throws RecordNotFoundException, InsufficientPrimaryKeys {
