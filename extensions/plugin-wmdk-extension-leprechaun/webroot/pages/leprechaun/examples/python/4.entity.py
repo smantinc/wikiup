@@ -1,10 +1,10 @@
 #/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from wk import entity
+from wk import orm
 
 try:
-	e = entity.getContextEntity(wkContext, 'tTestTable')
+	e = orm.getEntity('tTestTable', wkContext)
 	
 	e.offset = 0
 	e.limit = 15
