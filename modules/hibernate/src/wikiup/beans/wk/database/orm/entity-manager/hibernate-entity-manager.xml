@@ -2,7 +2,6 @@
 <beans>
 	<bean name="hibernate" class="org.wikiup.modules.hibernate.HibernateEntityManager">
 		<describe>
-			<field-type id=".*" type="string"/>
 			<field-type id="5|-6" type="short"/>
 			<field-type id="4" type="integer"/>
 			<field-type id="-5" type="long"/>

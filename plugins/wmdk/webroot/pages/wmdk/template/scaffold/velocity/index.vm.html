@@ -31,7 +31,7 @@ table.wk-domain-list th {
       <wk:foreach in="domain:fields">
         <td>\$i.$name</td>
       </wk:foreach>
-      <td><a href="update.html?<wk:foreach in='domain:primary-keys'>$name=\$$name&</wk:foreach>">[${i18n:wmdk.ui.text.update}]</a> <a href="delete.do?<wk:foreach in='domain:primary-keys'>$name=\$$name&</wk:foreach>">[${i18n:wmdk.ui.text.delete}]</a></td>
+      <td><a href="update.html?<wk:foreach in='domain:primary-keys'>$name=\$i.$name&</wk:foreach>">[${i18n:wmdk.ui.text.update}]</a> <a href="delete.do?<wk:foreach in='domain:primary-keys'>$name=\$i.$name&</wk:foreach>">[${i18n:wmdk.ui.text.delete}]</a></td>
     </tr>
 #end
   </table>
