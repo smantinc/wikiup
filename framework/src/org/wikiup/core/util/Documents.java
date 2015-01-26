@@ -53,7 +53,7 @@ public class Documents {
     }
 
     static public String getDocumentValue(Document doc) {
-        String value = ValueUtil.toString(doc.getAttribute("value"));
+        String value = ValueUtil.toString(doc.getAttribute(Constants.Attributes.VALUE));
         return value != null ? value : ValueUtil.toString(doc);
     }
 

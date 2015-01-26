@@ -1,5 +1,6 @@
 package org.wikiup.modules.worms.imp;
 
+import org.wikiup.core.Constants;
 import org.wikiup.core.impl.attribute.AttributeImpl;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
@@ -72,8 +73,8 @@ public class FieldProperty extends Property {
 
     @Override
     protected Attribute setupPropertyValue(Document desc) {
-        String name = Documents.getAttributeValue(desc, "name");
-        String value = Documents.getAttributeValue(desc, "value", null);
+        String name = Documents.getAttributeValue(desc, Constants.Attributes.NAME);
+        String value = Documents.getAttributeValue(desc, Constants.Attributes.VALUE, null);
         setActionListener(GET_OBJECT_ACTION_NAME, new FieldPropertyGetListener());
         setActionListener(SET_OBJECT_ACTION_NAME, new FieldPropertySetListener());
         return isCriteria() ? new AttributeImpl(name, value) : new FieldPropertyValue(this, name, value);
