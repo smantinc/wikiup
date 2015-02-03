@@ -13,7 +13,9 @@ def query(name, relation, condition=None ,ctx=None):
     entity = _getEntity(name, condition, ctx, autoselect=False)
     relatives = entity.getRelatives(relation, None)
     props = [str(i.getName()) for i in relatives.getAttributes()]
-    return [dict([(j, str(i.getAttribute(j))) for j in props]) for i in relatives.getChildren()]
+    r = [dict([(j, str(i.getAttribute(j))) for j in props]) for i in relatives.getChildren()]
+    entity.release()
+    return r
 
 
 def _getEntity(name, condition=None, ctx=None, autoselect=True):
