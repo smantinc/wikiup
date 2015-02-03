@@ -8,7 +8,7 @@
     <password><wk:out with="util.encode.xml" name="$param.password"/></password>
   </bean>
   <bean name="threadlocal-hsqldb-standalone" class="org.wikiup.database.impl.datasource.PooledDataSource">
-    <data-source>wk:database:provider:hsqldb-standalone</data-source>
+    <data-source>wk:database:data-source:hsqldb-standalone</data-source>
     <connection-pool class="org.wikiup.database.impl.cp.ThreadLocalConnectionPool"/>
   </bean>
 </beans>

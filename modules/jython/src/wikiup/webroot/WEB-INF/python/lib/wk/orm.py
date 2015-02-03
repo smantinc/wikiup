@@ -10,16 +10,17 @@ def getEntity(name, condition=None, ctx=None):
 
 
 def query(name, relation, condition=None ,ctx=None):
-    entity = _getEntity(name, condition, ctx)
+    entity = _getEntity(name, condition, ctx, autoselect=False)
     relatives = entity.getRelatives(relation, None)
     props = [str(i.getName()) for i in relatives.getAttributes()]
     return [dict([(j, str(i.getAttribute(j))) for j in props]) for i in relatives.getChildren()]
 
 
-def _getEntity(name, condition=None, ctx=None):
+def _getEntity(name, condition=None, ctx=None, autoselect=True):
     entity = (ctx or WikiupEntityManager.getInstance()).getEntity(name)
     if condition:
         for k in condition:
             entity.set(k, condition[k])
-        entity.select()
+        if autoselect:
+            entity.select()
     return entity

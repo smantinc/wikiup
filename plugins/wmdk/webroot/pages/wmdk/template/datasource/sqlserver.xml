@@ -8,7 +8,7 @@
     <password><wk:out with="util.encode.xml" name="$param.password"/></password>
   </bean>
   <bean name="sqlserver-pooled" class="org.wikiup.database.impl.datasource.PooledDataSource">
-    <data-source>wk:database:provider:sqlserver</data-source>
+    <data-source>wk:database:data-source:sqlserver</data-source>
     <connection-pool class="org.wikiup.database.impl.cp.DefaultConnectionPool"/>
   </bean>
 </beans>
