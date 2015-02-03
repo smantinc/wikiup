@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
   <action class="org.wikiup.plugins.wmdk.action.DatasourceServletAction">
-    <configure bean-location="WEB-INF/wikiup/beans/wk/database/provider">
+    <configure bean-location="WEB-INF/wikiup/beans/wk/database/data-source">
       <entry driver=".*oracle.*">
 	    <bean-file>oracle-datasource.xml</bean-file>
         <template uri="template/datasource/oracle.xml"/>
