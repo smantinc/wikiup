@@ -54,8 +54,8 @@ public class PythonEntity implements PersistentOperation, EntityModel {
         return entity.getRelatives(name, null);
     }
 
-    public EntityRelatives getRelatives(String name, Getter<String> getter) {
-        return entity.getRelatives(name, getter);
+    public EntityRelatives getRelatives(String name, Getter<?> props) {
+        return entity.getRelatives(name, props);
     }
 
     public Iterable<Attribute> getAttributes() {

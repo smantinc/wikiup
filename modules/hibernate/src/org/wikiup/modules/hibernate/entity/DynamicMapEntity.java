@@ -51,7 +51,7 @@ public class DynamicMapEntity implements EntityModel, Releasable {
         return name;
     }
 
-    public EntityRelatives getRelatives(String name, Getter<String> parameters) {
+    public EntityRelatives getRelatives(String name, Getter<?> parameters) {
         Query query = session.createQuery("from " + this.name);
         query.setFirstResult(ValueUtil.toInteger(map.get("offset"), 0));
         query.setMaxResults(ValueUtil.toInteger(map.get("limit"), 20));

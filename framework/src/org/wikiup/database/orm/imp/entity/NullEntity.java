@@ -21,7 +21,7 @@ public class NullEntity extends Entity {
     }
 
     @Override
-    public EntityRelatives getRelatives(String name, Getter<String> getter) {
+    public EntityRelatives getRelatives(String name, Getter<?> props) {
         return new org.wikiup.database.orm.imp.entity.NullEntityRelatives();
     }
 

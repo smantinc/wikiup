@@ -8,8 +8,6 @@ import org.wikiup.database.orm.EntityRelatives;
 
 public interface EntityModel extends Getter<Attribute>, PersistentOperation, Releasable, Bindable {
     public String getName();
-
-    public EntityRelatives getRelatives(String name, Getter<String> getter);
-
+    public EntityRelatives getRelatives(String name, Getter<?> props);
     public Iterable<Attribute> getAttributes();
 }

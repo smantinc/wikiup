@@ -57,7 +57,7 @@ public class IbatisEntity implements EntityModel, BeanContainer {
         return name;
     }
 
-    public EntityRelatives getRelatives(String name, Getter<String> getter) {
+    public EntityRelatives getRelatives(String name, Getter<?> getter) {
         try {
             String id = StringUtil.connect(this.name, name, '.');
             List<Object> relatives = entityManager.queryForList(id, getParameterObject(id));

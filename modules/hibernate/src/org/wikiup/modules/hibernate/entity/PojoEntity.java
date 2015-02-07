@@ -40,7 +40,7 @@ public class PojoEntity implements EntityModel, BeanContainer, Releasable {
         return name;
     }
 
-    public EntityRelatives getRelatives(String name, Getter<String> getter) {
+    public EntityRelatives getRelatives(String name, Getter<?> getter) {
         return null;
     }
 

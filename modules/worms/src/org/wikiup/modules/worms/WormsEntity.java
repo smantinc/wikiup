@@ -158,9 +158,9 @@ public class WormsEntity extends Component implements EntityModel, Iterable<Worm
         }
     }
 
-    public org.wikiup.database.orm.EntityRelatives getRelatives(String name, Getter<String> getter) {
+    public org.wikiup.database.orm.EntityRelatives getRelatives(String name, Getter<?> props) {
         Document node = WormsEntityManager.getInstance().getEntityRelativeDescription(getName(), name);
-        return node != null ? WormsEntityRelativesFactory.getInstance().buildEntityRelatives(node, this, getter == null ? this : getter) : null;
+        return node != null ? WormsEntityRelativesFactory.getInstance().buildEntityRelatives(node, this, props == null ? this : props) : null;
     }
 
     public void setDirty(boolean dirty) {

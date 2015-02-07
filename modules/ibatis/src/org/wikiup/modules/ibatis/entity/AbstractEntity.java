@@ -18,7 +18,7 @@ public abstract class AbstractEntity implements EntityModel {
     public void delete() {
     }
 
-    public EntityRelatives getRelatives(String name, Getter<String> getter) {
+    public EntityRelatives getRelatives(String name, Getter<?> getter) {
         return null;
     }
 
