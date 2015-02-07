@@ -5,12 +5,12 @@ from org.wikiup.database.orm import WikiupEntityManager
 from org.wikiup.modules.jython.orm import PythonEntity
 
 
-def getEntity(name, condition=None, ctx=None):
-    return PythonEntity(_getEntity(name, condition, ctx))
+def getEntity(name, ctx=None, **selection):
+    return PythonEntity(_getEntity(name, selection, ctx))
 
 
-def query(name, relation, condition=None ,ctx=None):
-    entity = _getEntity(name, condition, ctx, autoselect=False)
+def query(name, relation, ctx=None, **selection):
+    entity = _getEntity(name, selection, ctx, autoselect=False)
     relatives = entity.getRelatives(relation, None)
     props = [str(i.getName()) for i in relatives.getAttributes()]
     r = [dict([(j, str(i.getAttribute(j))) for j in props]) for i in relatives.getChildren()]
@@ -18,11 +18,15 @@ def query(name, relation, condition=None ,ctx=None):
     return r
 
 
-def _getEntity(name, condition=None, ctx=None, autoselect=True):
-    entity = (ctx or WikiupEntityManager.getInstance()).getEntity(name)
-    if condition:
-        for k in condition:
-            entity.set(k, condition[k])
+def _getEntity(name, selection=None, ctx=None, autoselect=True):
+    entity = None
+    if ctx is not None:
+        entity = ctx.get(name)
+    if entity is None:
+        entity = (ctx or WikiupEntityManager.getInstance()).getEntity(name)
+    if selection:
+        for k in selection:
+            entity.set(k, selection[k])
         if autoselect:
             entity.select()
     return entity
