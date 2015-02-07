@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <beans class="org.wikiup.database.orm.DefaultSQLDialect">
 	<field-types default="string">
-		<field-type name="string" class="org.wikiup.core.impl.translator.ToStringTranslator"/>
+		<field-type name="string" class="to-string"/>
 		<field-type name="blob" class="org.wikiup.database.orm.imp.dialect.translator.BlobFieldFilter"/>
 		<field-type name="timestamp" class="org.wikiup.database.orm.imp.dialect.translator.TimestampFieldFilter"/>
 		<field-type name="datetime" class="org.wikiup.database.orm.imp.dialect.translator.DateTimeFieldFilter"/>
 
-		<field-type name="date" class="org.wikiup.core.impl.translator.ValueOfTranslator" to-class="java.sql.Date"/>
-		<field-type name="integer" class="org.wikiup.core.impl.translator.ValueOfTranslator" to-class="java.lang.Long"/>
-		<field-type name="numeric" class="org.wikiup.core.impl.translator.ValueOfTranslator" to-class="java.lang.Double"/>
-		<field-type name="boolean" class="org.wikiup.core.impl.translator.ValueOfTranslator" to-class="java.lang.Boolean"/>
+		<field-type name="date" class="value-of" to-class="java.sql.Date"/>
+		<field-type name="integer" class="value-of" to-class="java.lang.Long"/>
+		<field-type name="numeric" class="value-of" to-class="java.lang.Double"/>
+		<field-type name="boolean" class="value-of" to-class="java.lang.Boolean"/>
 	</field-types>
 	<sql-types>
 		<sql-type id="5|-6" type="INTEGER"/>
