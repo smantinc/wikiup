@@ -2,6 +2,8 @@ package org.wikiup.modules.jython.orm;
 
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Getter;
+import org.wikiup.core.util.Interfaces;
+import org.wikiup.core.util.ValueUtil;
 import org.wikiup.database.orm.Entity;
 import org.wikiup.database.orm.EntityRelatives;
 import org.wikiup.database.orm.inf.EntityModel;
@@ -23,7 +25,9 @@ public class PythonEntity implements PersistentOperation, EntityModel {
     }
 
     public Object __getattr__(String name) {
-        return entity.get(name);
+        Object obj = entity.get(name);
+        Attribute attr = Interfaces.cast(Attribute.class, obj);
+        return attr != null ? attr.getObject() : ValueUtil.toString(obj);
     }
 
     public void __setattr__(String name, Object value) {
