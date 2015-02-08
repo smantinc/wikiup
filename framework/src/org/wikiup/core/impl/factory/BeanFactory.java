@@ -43,13 +43,9 @@ public class BeanFactory implements Factory<Factory<Object, Object>, String> {
     }
 
     public Object build(Object namespace, String name) {
-        FactoryWrapper<Object, Object> factoryWrapper = getFactory(namespace);
-        return factoryWrapper != null ? factoryWrapper.asByName().build(name) : null;
-    }
-
-    private FactoryWrapper<Object, Object> getFactory(Object namespace) {
-        FactoryWrapper<Object, Object> f = factories.get(namespace);
-        return f != null ? f : defaultFactory;
+        FactoryWrapper<Object, Object> factoryWrapper = factories.get(namespace);
+        Object obj = factoryWrapper != null ? factoryWrapper.asByName().build(name) : null;
+        return obj == null ? defaultFactory.asByName().build(name) : obj;
     }
 
     public void loadFactories(Document desc, Factory.ByDocument<Factory<?, ?>> builder) {
