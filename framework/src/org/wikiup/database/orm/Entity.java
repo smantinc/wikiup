@@ -41,7 +41,8 @@ public class Entity implements EntityModel, Context<Attribute, Object> {
 
     @Override
     public void release() {
-        entity.release();
+        if(entity != null)
+            entity.release();
         entity = null;
     }
 

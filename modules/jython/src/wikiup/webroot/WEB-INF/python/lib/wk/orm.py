@@ -14,6 +14,8 @@ def query(name, relation, ctx=None, **selection):
     relatives = entity.getRelatives(relation, None)
     props = [str(i.getName()) for i in relatives.getAttributes()]
     r = [dict([(j, str(i.getAttribute(j))) for j in props]) for i in relatives.getChildren()]
+    if len(r) == 0:
+        r = dict([(str(i.getName()), i.getObject()) for i in relatives.getAttributes()])
     entity.release()
     return r
 
