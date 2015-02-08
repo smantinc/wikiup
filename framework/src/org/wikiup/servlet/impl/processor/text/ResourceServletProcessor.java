@@ -1,5 +1,7 @@
 package org.wikiup.servlet.impl.processor.text;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.wikiup.core.impl.iterable.ArrayIterable;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
@@ -11,6 +13,7 @@ import org.wikiup.core.util.FileUtil;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.servlet.ServletProcessorContext;
+import org.wikiup.servlet.exception.WikiupServletException;
 import org.wikiup.servlet.impl.rh.ResourceHandlerBridge;
 import org.wikiup.servlet.inf.ServletProcessor;
 import org.wikiup.servlet.inf.ext.ResourceHandler;
@@ -47,7 +50,7 @@ public class ResourceServletProcessor implements ServletProcessor, DocumentAware
             }
         }
         boolean exists = resource != null && resource.exists();
-        Assert.isTrue(exists, exists ? null : String.format("URL '%s%s' not found", pathName, ext));
+        Assert.isTrue(exists, WikiupServletException.class, HttpServletResponse.SC_NOT_FOUND, "URL '{0}{1}' not found", pathName, ext);
         doProcess(context, processors, resource);
     }
 

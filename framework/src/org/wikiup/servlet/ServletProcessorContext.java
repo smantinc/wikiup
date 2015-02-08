@@ -549,7 +549,7 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
         }
     }
 
-    class ProcessorContextSupportedModelProvider implements BeanContainer {
+    private class ProcessorContextSupportedModelProvider implements BeanContainer {
         private BeanContainer modelProvider;
 
         public ProcessorContextSupportedModelProvider(BeanContainer modelProvider) {

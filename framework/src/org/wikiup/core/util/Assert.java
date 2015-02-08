@@ -25,26 +25,14 @@ public class Assert {
     }
 
     static public <E extends Exception> void fail(Class<E> clazz, Object... args) {
-        Constructor<E> constructor = null;
-        Object arg = args;
         try {
-            constructor = clazz.getConstructor(Object[].class);
-        } catch(NoSuchMethodException e) {
-            try {
-                if(args.length == 1 && args[0] instanceof String) {
-                    constructor = clazz.getConstructor(String.class);
-                    arg = args[0];
-                }
-            } catch(NoSuchMethodException e1) {
-            }
-        }
-
-        try {
-            if(constructor != null)
-                throw getRuntimeException(constructor.newInstance(arg));
-        } catch(InvocationTargetException ex) {
-        } catch(IllegalAccessException ex) {
-        } catch(InstantiationException ex) {
+            throw getRuntimeException(Interfaces.newInstance(clazz, args));
+        } catch(InvocationTargetException e1) {
+            fail(e1);
+        } catch(InstantiationException e1) {
+            fail(e1);
+        } catch(IllegalAccessException e1) {
+            fail(e1);
         }
     }
 

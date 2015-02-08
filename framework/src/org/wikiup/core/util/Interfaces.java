@@ -1,5 +1,15 @@
 package org.wikiup.core.util;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.lang.reflect.Modifier;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Map;
+
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupClassLoader;
 import org.wikiup.core.exception.WikiupRuntimeException;
@@ -18,10 +28,19 @@ import org.wikiup.core.inf.Setter;
 import org.wikiup.core.inf.Translator;
 import org.wikiup.core.inf.ext.Wirable;
 
-import java.lang.reflect.Method;
-import java.lang.reflect.Modifier;
-
 public class Interfaces {
+    static private Map<String, Class<?>> PRIMITIVES = new HashMap<String, Class<?>>();
+
+    static {
+        PRIMITIVES.put("int", Integer.class);
+        PRIMITIVES.put("long", Long.class);
+        PRIMITIVES.put("short", Short.class);
+        PRIMITIVES.put("boolean", Boolean.class);
+        PRIMITIVES.put("float", Float.class);
+        PRIMITIVES.put("double", Double.class);
+        PRIMITIVES.put("byte", Byte.class);
+    }
+
     public static <E> E cast(Object obj) {
         return (E) obj;
     }
@@ -164,11 +183,6 @@ public class Interfaces {
         return null;
     }
 
-    public static <E> E newInstance(Class<E> clazz, String className) {
-        Object instance = className != null ? newInstance(getClass(className)) : null;
-        return cast(clazz, instance);
-    }
-
     public static <E> E newInstance(Class<E> clazz) {
         try {
             return clazz.newInstance();
@@ -176,6 +190,36 @@ public class Interfaces {
             Assert.fail(e);
         } catch(IllegalAccessException e) {
             Assert.fail(e);
+        }
+        return null;
+    }
+
+    public static <T> T newInstance(Class<T> clazz, Object... args) throws IllegalAccessException, InvocationTargetException, InstantiationException {
+        LinkedList<Constructor<T>> constructors = new LinkedList<Constructor<T>>((List) Arrays.asList(clazz.getConstructors()));
+        while(!constructors.isEmpty()) {
+            int i;
+            Constructor<T> constructor = constructors.pop();
+            Class<?>[] parameterTypes = constructor.getParameterTypes();
+            for(i = 0; i < parameterTypes.length - 1; i++) {
+                Object arg = args[i];
+                if(arg != null && !box(parameterTypes[i]).isAssignableFrom(args[i].getClass())) {
+                    constructor = null;
+                    break;
+                }
+            }
+            if(constructor != null) {
+                if(args.length - 1 == i) {
+                    if(args[i] == null || parameterTypes[i].isAssignableFrom(args[i].getClass()))
+                        return constructor.newInstance(args);
+                } else if(parameterTypes.length > 0) {
+                    if(parameterTypes[parameterTypes.length - 1].equals(Object[].class)) {
+                        Object[] params = Arrays.copyOfRange(args, 0, parameterTypes.length);
+                        Object[] extras = Arrays.copyOfRange(args, parameterTypes.length - 1, args.length);
+                        params[parameterTypes.length - 1] = extras;
+                        return constructor.newInstance(params);
+                    }
+                }
+            }
         }
         return null;
     }
@@ -223,5 +267,9 @@ public class Interfaces {
             else if((params[i] = typeCast.cast(paramTypes[i], args[i])) == null)
                 return null;
         return params;
+    }
+
+    public static Class<?> box(Class<?> clazz) {
+        return clazz.isPrimitive() ? PRIMITIVES.get(clazz.getName()) : clazz;
     }
 }

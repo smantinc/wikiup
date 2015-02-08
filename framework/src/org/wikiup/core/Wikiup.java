@@ -88,7 +88,7 @@ public class Wikiup implements Context<Object, Object>, Releasable {
 
     static public <E> E build(Class<E> clazz, Document doc, Document init) {
         ClassIdentity csid = ClassIdentity.obtain(doc);
-        E instance = Interfaces.newInstance(clazz, csid.getName());
+        E instance = Interfaces.cast(clazz, Interfaces.newInstance(Interfaces.getClass(csid.getName())));
         Interfaces.initialize(instance, init);
         return instance;
     }
