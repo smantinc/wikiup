@@ -65,10 +65,6 @@ public class VariableProcessorContext implements ProcessorContext, ServletProces
     private static class RequestAttributeContext implements Context<Object, Object>, ServletProcessorContextAware {
         private HttpServletRequest request;
 
-        public void setRequest(HttpServletRequest request) {
-            this.request = request;
-        }
-
         public Object get(String name) {
             return request != null ? request.getAttribute(name) : null;
         }
@@ -84,10 +80,6 @@ public class VariableProcessorContext implements ProcessorContext, ServletProces
 
     private static class SessionAttributeContext implements Context<Object, Object>, ServletProcessorContextAware {
         private HttpSession session;
-
-        public void setSession(HttpSession session) {
-            this.session = session;
-        }
 
         public Object get(String name) {
             Object attr = session != null ? session.getAttribute(name) : null;
