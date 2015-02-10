@@ -1,12 +1,18 @@
 package org.wikiup.servlet.impl.context;
 
+import java.util.HashMap;
+import java.util.Map;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.context.MapContext;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.ContextUtil;
@@ -16,15 +22,17 @@ import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.inf.ProcessorContext;
 import org.wikiup.servlet.inf.ServletProcessorContextAware;
 
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.Map;
-
 public class VariableProcessorContext implements ProcessorContext, ServletProcessorContextAware, DocumentAware, Context<Object, Object> {
     private Context<Object, Object> variables;
     private ServletProcessorContext context;
+    private String scope;
+
+    public VariableProcessorContext() {
+    }
+
+    public VariableProcessorContext(String scope) {
+        this.scope = scope;
+    }
 
     public void setServletProcessorContext(ServletProcessorContext context) {
         this.context = context;
@@ -43,7 +51,7 @@ public class VariableProcessorContext implements ProcessorContext, ServletProces
     }
 
     public void aware(Document desc) {
-        String scope = Documents.getDocumentValue(desc, "scope", null);
+        String scope = Documents.getDocumentValue(desc, "scope", this.scope);
         if(scope == null)
             variables = new MapContext<Object>();
         else {
@@ -159,6 +167,18 @@ public class VariableProcessorContext implements ProcessorContext, ServletProces
             for(ThreadLocal<?> tl : threadLocals.values())
                 tl.remove();
             threadLocals.clear();
+        }
+    }
+
+    public static final class BySession extends VariableProcessorContext {
+        public BySession() {
+            super("session");
+        }
+    }
+
+    public static final class ByCookie extends VariableProcessorContext {
+        public ByCookie() {
+            super("cookie");
         }
     }
 }
