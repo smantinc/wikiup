@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<beans>
+	<bean name="md5" class="org.wikiup.modules.crypt.context.MD5"/>
+	<bean name="rsa" class="org.wikiup.modules.crypt.context.RSA"/>
+</beans>
