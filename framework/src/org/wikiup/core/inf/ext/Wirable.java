@@ -1,11 +1,10 @@
 package org.wikiup.core.inf.ext;
 
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Wrapper;
 
-public interface Wirable<T, P> extends Wrapper<T> {
+public interface Wirable<T, P> {
     public T wire(P param);
-    
+
     public interface ByDocument<T> extends Wirable<T, Document> {
     }
 }
