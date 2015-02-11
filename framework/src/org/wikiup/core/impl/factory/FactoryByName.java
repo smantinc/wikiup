@@ -9,17 +9,17 @@ import org.wikiup.core.inf.ext.ClassDictionary;
 import org.wikiup.core.inf.ext.Wirable;
 import org.wikiup.core.util.Interfaces;
 
-public class FactoryByClass<T> implements Factory.ByName<T> {
+public class FactoryByName<T> implements Factory.ByName<T> {
     private ClassDictionary classDictionary;
 
-    private FactoryByClass() {
+    private FactoryByName() {
     }
 
-    public FactoryByClass(ClassDictionary classDictionary) {
+    public FactoryByName(ClassDictionary classDictionary) {
         this.classDictionary = classDictionary;
     }
 
-    public FactoryByClass(Document desc) {
+    public FactoryByName(Document desc) {
         this.classDictionary = new ClassDictionaryByName(desc);
     }
     
@@ -29,16 +29,16 @@ public class FactoryByClass<T> implements Factory.ByName<T> {
         return clazz != null ? Interfaces.newInstance((Class<T>) clazz) : null;
     }
     
-    public static final class WIRABLE<T> extends WrapperImpl<FactoryByClass<T>> implements Wirable.ByDocument<FactoryByClass<T>> {
+    public static final class WIRABLE<T> extends WrapperImpl<FactoryByName<T>> implements Wirable.ByDocument<FactoryByName<T>> {
         private ClassDictionaryByName classDictionaryByName = new ClassDictionaryByName();
         
         public WIRABLE() {
-            super(new FactoryByClass<T>());
+            super(new FactoryByName<T>());
             wrapped.classDictionary = classDictionaryByName;
         }
 
         @Override
-        public FactoryByClass<T> wire(Document desc) {
+        public FactoryByName<T> wire(Document desc) {
             classDictionaryByName.wire(desc, new ClassDictionaryImpl());
             return wrapped;
         }

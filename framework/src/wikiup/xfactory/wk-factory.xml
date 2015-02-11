@@ -2,7 +2,7 @@
 <beans>
 	<factory name="wndi" class="org.wikiup.core.impl.mf.WndiFactory"/>
 	<factory name="factory" interface="org.wikiup.core.inf.Factory">
-		<item name="by-class" class="org.wikiup.core.impl.factory.FactoryByClass"/>
+		<item name="by-class" class="org.wikiup.core.impl.factory.FactoryByName"/>
 		<item name="by-document" class="org.wikiup.core.impl.factory.FactoryByDocument"/>
 	</factory>
 	<factory name="bindable" interface="org.wikiup.core.inf.Bindable">
@@ -66,7 +66,7 @@
 		<item name="get" class="org.wikiup.servlet.impl.processor.GetServletProcessor"/>
 		<item name="default" class="org.wikiup.servlet.impl.processor.DefaultServletProcessor"/>
 	</factory>
-	<factory name="processor-context" interface="org.wikiup.servlet.inf.ProcessorContext">
+	<factory style="translator:org.wikiup.servlet.impl.context.ProcessorContextSupport$TRANSLATOR" name="processor-context" interface="org.wikiup.servlet.inf.ProcessorContext">
 		<item name="namespace" class="org.wikiup.servlet.impl.context.NamespaceProcessorContext"/>
 		<item name="entity" class="org.wikiup.servlet.impl.context.EntityProcessorContext"/>
 		<item name="cookie" class="org.wikiup.servlet.impl.context.VariableProcessorContext$ByCookie"/>

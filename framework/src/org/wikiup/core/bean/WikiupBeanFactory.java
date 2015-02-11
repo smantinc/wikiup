@@ -1,10 +1,9 @@
 package org.wikiup.core.bean;
 
 import org.wikiup.core.Constants;
-import org.wikiup.core.bootstrap.impl.handler.BeanFactoryResourceHandler;
 import org.wikiup.core.impl.cl.ClassDictionaryImpl;
 import org.wikiup.core.impl.factory.BeanFactory;
-import org.wikiup.core.impl.factory.FactoryByClass;
+import org.wikiup.core.impl.factory.FactoryByName;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;
 import org.wikiup.core.inf.ext.Context;
@@ -18,7 +17,7 @@ public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory>
     private BeanFactory beanFactory;
 
     public void firstBuilt() {
-        beanFactory = new BeanFactory(new FactoryByClass<Object>(new ClassDictionaryImpl()));
+        beanFactory = new BeanFactory(new FactoryByName<Object>(new ClassDictionaryImpl()));
         beanFactory.add(Object.class, new DefaultObjectClass(beanFactory));
     }
 

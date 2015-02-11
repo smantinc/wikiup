@@ -12,7 +12,7 @@ public class FactoryByDocument<T> implements Factory.ByDocument<T> {
     private final Factory.ByName<?> factory;
 
     public FactoryByDocument() {
-        this.factory = new FactoryByClass<Object>(new ClassDictionaryImpl());
+        this.factory = new FactoryByName<Object>(new ClassDictionaryImpl());
     }
 
     public FactoryByDocument(Factory.ByName<?> factory) {

@@ -5,12 +5,16 @@ import java.util.HashMap;
 import org.wikiup.core.Constants;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupBeanFactory;
-import org.wikiup.core.impl.factory.FactoryByClass;
+import org.wikiup.core.impl.factory.FactoryByName;
+import org.wikiup.core.impl.factory.FactoryWithTranslator;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;
+import org.wikiup.core.inf.Translator;
 import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.inf.ext.Wirable;
+import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
+import org.wikiup.core.util.Interfaces;
 
 public class BeanFactoryResourceHandler extends DirectoryDocumentResourceHandler {
     private WikiupBeanFactory beanFactory = Wikiup.getModel(WikiupBeanFactory.class);
@@ -29,25 +33,35 @@ public class BeanFactoryResourceHandler extends DirectoryDocumentResourceHandler
             String name = Documents.ensureAttributeValue(desc, Constants.Attributes.NAME);
             Node node = factories.get(name);
             if(node == null)
-                factories.put(name, node = createNode(desc));
-            node.wirable.wire(desc);
+                factories.put(name, node = new Node(desc));
+            node.wire(desc);
             return node.factory;
         }
         
-        private Node createNode(Document desc) {
-            Node node = new Node();
-            node.wirable = new FactoryByClass.WIRABLE<Object>();
-            node.factory = node.wirable.wire(desc);
-            return node;
-        }
-        
         private static class Node implements Wirable.ByDocument<Factory<?, ?>> {
-            private FactoryByClass.WIRABLE<?> wirable;
-            private Factory<?, ?> factory;
+            private FactoryByName.WIRABLE<Object> wirable;
+            private Factory<Object, String> factory;
+
+            public Node(Document desc) {
+                wirable = new FactoryByName.WIRABLE<Object>();
+                factory = wirable.wire(desc);
+            }
 
             @Override
             public Factory<?, ?> wire(Document desc) {
-                return wirable.wire(desc);
+                String style = Documents.getAttributeValue(desc, "style", null);
+                if(style != null) {
+                    try {
+                        String[] styles = style.split(":");
+                        String className = styles[1];
+                        Translator<Object, Object> translator = Interfaces.cast(Translator.class, Interfaces.newInstance(Interfaces.getClass(className)));
+                        factory = new FactoryWithTranslator<Object, String>(factory, translator);
+                    } catch(Exception e) {
+                        Assert.fail(e);
+                    }
+                }
+                wirable.wire(desc);
+                return factory;
             }
         }
     }
