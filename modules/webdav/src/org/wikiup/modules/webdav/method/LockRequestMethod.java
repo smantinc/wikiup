@@ -8,6 +8,7 @@ import org.wikiup.core.util.StringUtil;
 import org.wikiup.modules.webdav.imp.WebdavFileSystem;
 import org.wikiup.modules.webdav.util.StatusUtil;
 import org.wikiup.modules.webdav.util.WebdavUtil;
+import org.wikiup.modules.webdav.util.XMLRequest;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.inf.ServletAction;
 
@@ -16,9 +17,10 @@ public class LockRequestMethod implements ServletAction {
         String src = WebdavUtil.getWebdavFilePath(context);
         Document response = new DocumentWithNamespace(new DocumentImpl("prop"), "D:", "DAV:");
         String token = context.getHeader("If");
+        XMLRequest xmlRequest = context.query(XMLRequest.class);
         if(token != null)
             token = StringUtil.trim(token, "(<>)");
-        if(!WebdavFileSystem.getInstance().lock(context, src, token, context.getRequstXML(), response))
+        if(!WebdavFileSystem.getInstance().lock(context, src, token, xmlRequest.getXMLRequest(), response))
             WebdavUtil.sendError(context, StatusUtil.SC_LOCKED);
         else
             Documents.merge(context.getResponseBuffer().getResponseXML("D:prop", true), response);

@@ -1,9 +1,20 @@
 package org.wikiup.servlet;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.exception.AttributeException;
 import org.wikiup.core.impl.Null;
+import org.wikiup.core.impl.beancontainer.Singleton;
 import org.wikiup.core.impl.context.ContextWrapper;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.impl.getter.StackGetter;
@@ -11,14 +22,14 @@ import org.wikiup.core.impl.mp.CollectionModelProvider;
 import org.wikiup.core.impl.releasable.TrashTin;
 import org.wikiup.core.impl.setter.StackSetter;
 import org.wikiup.core.inf.Attribute;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.ExceptionHandler;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Releasable;
-import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.inf.Setter;
 import org.wikiup.core.inf.ext.Context;
+import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.core.util.Documents;
@@ -46,18 +57,8 @@ import org.wikiup.servlet.ms.ProcessorContextModelContainer;
 import org.wikiup.servlet.ms.ProcessorContextModelContainerStack;
 import org.wikiup.servlet.util.ActionUtil;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.StringWriter;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 
-
-public class ServletProcessorContext implements ProcessorContext, ExceptionHandler, Context<Object, Object> {
+public class ServletProcessorContext implements ProcessorContext, BeanContainer, ExceptionHandler, Context<Object, Object> {
     private ProcessorContextContainer servletScope;
     private ProcessorContextContainer requestScope;
 
@@ -70,7 +71,6 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
     private Document servletContextConf;
     private Document requestContextConf;
 
-    private Document requestXML;
     private Map<String, Object> extraParameter = new HashMap<String, Object>();
     private ServletExceptionHandler exceptionHandler;
     private ServletProcessorResponseBuffer responseBuffer = new ServletProcessorResponseBuffer();
@@ -80,6 +80,7 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
     private ResponseHeaderSetter headerSetter = new ResponseHeaderSetter(this);
 
     private ProcessorContextModelContainerStack modelContainerStack = new ProcessorContextModelContainerStack();
+    private BeanContainer beanContainer = new Singleton();
 
     public ServletProcessorContext(HttpServletRequest request, HttpServletResponse response) {
         init(request, response, request.getRequestURI());
@@ -337,16 +338,8 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
         return servletRequest.getMethod().equalsIgnoreCase("GET");
     }
 
-    public Document getRequstXML() {
-        return requestXML;
-    }
-
     public Document getResponseXML() {
         return getResponseBuffer().getResponseXML();
-    }
-
-    public void setRequstXML(Document xml) {
-        requestXML = xml;
     }
 
     public void setProperties(Document properties, Setter<?> dest) {
@@ -480,6 +473,11 @@ public class ServletProcessorContext implements ProcessorContext, ExceptionHandl
     public String getHandlerParameter(char delimter) {
         String path = getRequestPath(false);
         return StringUtil.second(path, delimter, 0);
+    }
+
+    @Override
+    public <T> T query(Class<T> clazz) {
+        return beanContainer.query(clazz);
     }
 
     static private class ResponseHeaderSetter implements Setter<String> {

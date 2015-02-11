@@ -1,5 +1,8 @@
 package org.wikiup.modules.webdav.method;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.util.Assert;
@@ -10,11 +13,9 @@ import org.wikiup.modules.webdav.imp.FileDOM;
 import org.wikiup.modules.webdav.imp.WebdavFileSystem;
 import org.wikiup.modules.webdav.inf.FileInf;
 import org.wikiup.modules.webdav.util.StatusUtil;
+import org.wikiup.modules.webdav.util.XMLRequest;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.inf.ServletAction;
-
-import java.net.URI;
-import java.net.URISyntaxException;
 
 public class PropFindRequestMethod implements ServletAction {
     public void doAction(ServletProcessorContext context, Document desc) {
@@ -30,7 +31,8 @@ public class PropFindRequestMethod implements ServletAction {
         context.setContentType("text/xml; utf-8");
         Document tree = context.getResponseBuffer().getResponseXML("D:multistatus", true);
         Documents.setAttributeValue(tree, "xmlns:D", "DAV:");
-        composeResponseXML(context.getRequstXML(), file, tree, depth, path);
+        XMLRequest xmlRequest = context.query(XMLRequest.class);
+        composeResponseXML(xmlRequest.getXMLRequest(), file, tree, depth, path);
     }
 
     private void composeResponseXML(Document request, FileInf file, Document response, int depth, String href) {

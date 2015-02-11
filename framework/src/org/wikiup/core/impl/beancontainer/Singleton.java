@@ -1,37 +1,36 @@
 package org.wikiup.core.impl.beancontainer;
 
-import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.inf.Releasable;
-import org.wikiup.core.util.Interfaces;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class Singleton implements BeanContainer, Releasable {
+import org.wikiup.core.impl.wrapper.WrapperImpl;
+import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Releasable;
+import org.wikiup.core.util.Interfaces;
+
+public class Singleton extends WrapperImpl<BeanContainer> implements BeanContainer, Releasable {
     private Map<Class<?>, Object> byClasses = new HashMap<Class<?>, Object>();
-    private BeanContainer factory = new NewInstance();
-    private Set<Object> singletons = new HashSet<Object>();
 
     public Singleton() {
+        super(new NewInstance());
     }
 
     public Singleton(BeanContainer factory) {
-        this.factory = factory;
+        super(factory);
     }
 
-    synchronized public <E> E query(Class<E> clazz) {
+    public synchronized <E> E query(Class<E> clazz) {
         E model = Interfaces.cast(clazz, byClasses.get(clazz));
         if(model == null)
-            put(model = factory.query(clazz));
+            put(model = wrapped.query(clazz));
         return model;
     }
 
     public Object put(Object singleton) {
         Class<?> clazz = singleton.getClass();
         Object oldObject = byClasses.get(clazz);
-        singletons.add(singleton);
         setModel(clazz, singleton);
         return oldObject;
     }
@@ -51,26 +50,9 @@ public class Singleton implements BeanContainer, Releasable {
         }
     }
 
-    public void setByClasses(Map<Class<?>, Object> byClasses) {
-        this.byClasses = byClasses;
-    }
-
-    public Map<Class<?>, Object> getByClasses() {
-        return byClasses;
-    }
-
-    public void setSingletons(Set<Object> singletons) {
-        this.singletons = singletons;
-    }
-
-    public Set<Object> getSingletons() {
-        return singletons;
-    }
-
     public void release() {
-        Set<Object> localSet = new HashSet<Object>(singletons);
+        Set<Object> localSet = new HashSet<Object>(byClasses.values());
         byClasses.clear();
-        singletons.clear();
         Interfaces.releaseAll(localSet);
     }
 }

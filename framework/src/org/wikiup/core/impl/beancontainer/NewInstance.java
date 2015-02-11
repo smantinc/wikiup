@@ -5,6 +5,6 @@ import org.wikiup.core.util.Interfaces;
 
 public class NewInstance implements BeanContainer {
     public <T> T query(Class<T> clazz) {
-        return Interfaces.newInstance(clazz);
+        return clazz.isInterface() ? null : Interfaces.newInstance(clazz);
     }
 }
