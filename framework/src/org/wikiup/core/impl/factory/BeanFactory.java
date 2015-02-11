@@ -12,6 +12,11 @@ import org.wikiup.core.util.Interfaces;
 
 public class BeanFactory implements Factory<Factory<Object, Object>, String> {
     private Map<Object, Factory<Object, Object>> factories = new HashMap<Object, Factory<Object, Object>>();
+    private Factory<Object, String> defaultFactory;
+
+    public BeanFactory(Factory<Object, String> defaultFactory) {
+        this.defaultFactory = defaultFactory;
+    }
 
     @Override
     public Factory<Object, Object> build(String name) {
@@ -34,8 +39,8 @@ public class BeanFactory implements Factory<Factory<Object, Object>, String> {
     }
 
     public Object build(Object namespace, String name) {
-        Factory<Object, Object> factoryWrapper = factories.get(namespace);
-        return factoryWrapper != null ? factoryWrapper.build(name) : null;
+        Factory<Object, Object> factory = factories.get(namespace);
+        return factory != null ? factory.build(name) : defaultFactory.build(name);
     }
 
     public void loadFactories(Document desc, Factory.ByDocument<Factory<?, ?>> builder) {

@@ -1,9 +1,9 @@
 package org.wikiup.core.bean;
 
+import java.util.Iterator;
+
 import org.wikiup.core.Constants;
-import org.wikiup.core.impl.cl.ClassDictionaryImpl;
 import org.wikiup.core.impl.factory.BeanFactory;
-import org.wikiup.core.impl.factory.FactoryByName;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;
 import org.wikiup.core.inf.ext.Context;
@@ -11,15 +11,12 @@ import org.wikiup.core.util.ClassIdentity;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 
-import java.util.Iterator;
-
 public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory> implements Context<Factory<?, ?>, Factory<?, ?>>, Iterable<Object> {
     private BeanFactory beanFactory;
 
     public void firstBuilt() {
-        beanFactory = new BeanFactory();
+        beanFactory = new BeanFactory(Constants.Factories.BY_CLASS_NAME);
         beanFactory.add(Object.class, new DefaultObjectClass(beanFactory));
-        beanFactory.add(null, Constants.Factories.BY_CLASS_NAME);
     }
 
     @Override
