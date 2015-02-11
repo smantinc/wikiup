@@ -23,9 +23,9 @@ import org.wikiup.core.bean.WikiupNamingDirectory;
 import org.wikiup.core.impl.mp.InstanceModelProvider;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Provider;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.Setter;
+import org.wikiup.core.inf.Wrapper;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ClassIdentity;
@@ -33,14 +33,14 @@ import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 
 public class Wikiup implements Context<Object, Object>, Releasable {
-    private static Provider<Wikiup> instanceProvider = new DefaultWikiupInstanceProvider();
+    private static Wrapper<Wikiup> instanceProvider = new DefaultWikiupInstanceWrapper();
 
     private BeanContainer beanContainer = new WikiupBeanContainer();
     private WikiupBeanFactory beanFactory = new WikiupBeanFactory();
     private Context<Object, Object> wndi = WikiupNamingDirectory.getInstance();
 
     static public Wikiup getInstance() {
-        return instanceProvider.get();
+        return instanceProvider.wrapped();
     }
 
     public void set(String name, Object container) {
@@ -105,13 +105,14 @@ public class Wikiup implements Context<Object, Object>, Releasable {
     public void release() {
         Interfaces.release(beanContainer);
         Interfaces.release(wndi);
-        instanceProvider = new DefaultWikiupInstanceProvider();
+        instanceProvider = new DefaultWikiupInstanceWrapper();
     }
 
-    static private class DefaultWikiupInstanceProvider implements Provider<Wikiup> {
+    static private class DefaultWikiupInstanceWrapper implements Wrapper<Wikiup> {
         private Wikiup instance;
 
-        synchronized public Wikiup get() {
+        @Override
+        public synchronized Wikiup wrapped() {
             return instance == null ? (instance = new Wikiup()) : instance;
         }
     }

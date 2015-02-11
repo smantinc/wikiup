@@ -3,9 +3,8 @@ package org.wikiup.core.impl.document;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.element.ElementWrapper;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Provider;
 
-public class DocumentWrapper extends ElementWrapper implements Document, Provider<Document> {
+public class DocumentWrapper extends ElementWrapper implements Document {
     private Document document;
 
     public DocumentWrapper() {
@@ -48,9 +47,5 @@ public class DocumentWrapper extends ElementWrapper implements Document, Provide
 
     public Document getParentNode() {
         return document.getParentNode();
-    }
-
-    public Document get() {
-        return document;
     }
 }

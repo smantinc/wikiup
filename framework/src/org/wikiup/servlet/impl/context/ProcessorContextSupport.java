@@ -1,13 +1,13 @@
 package org.wikiup.servlet.impl.context;
 
-import org.wikiup.core.inf.Getter;
 import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.inf.Provider;
+import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Wrapper;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.servlet.inf.ProcessorContext;
 
-public class ProcessorContextSupport implements ProcessorContext, Provider<Object> {
+public class ProcessorContextSupport implements ProcessorContext, Wrapper<Object> {
     private Object instance;
 
     public ProcessorContextSupport(Object instance) {
@@ -26,7 +26,8 @@ public class ProcessorContextSupport implements ProcessorContext, Provider<Objec
         return Interfaces.getModelContainer(ContextUtil.getBeanProperty(instance, name));
     }
 
-    public Object get() {
+    @Override
+    public Object wrapped() {
         return instance;
     }
 }

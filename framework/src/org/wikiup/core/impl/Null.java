@@ -1,18 +1,17 @@
 package org.wikiup.core.impl;
 
-import org.wikiup.core.impl.iterable.GenericCastIterable;
-import org.wikiup.core.inf.Attribute;
-import org.wikiup.core.inf.Bindable;
-import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.inf.Factory;
-import org.wikiup.core.inf.ext.Container;
-import org.wikiup.core.inf.ext.Context;
-
 import java.util.Iterator;
 
+import org.wikiup.core.impl.iterable.GenericCastIterable;
+import org.wikiup.core.inf.Attribute;
+import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Bindable;
+import org.wikiup.core.inf.Document;
+import org.wikiup.core.inf.Factory;
+import org.wikiup.core.inf.ext.Context;
 
-public class Null implements Context, Iterator, Document, BeanContainer, Iterable, Bindable, Container, Factory {
+
+public class Null implements Context, Iterator, Document, BeanContainer, Iterable, Bindable, Factory {
     private static final Null instance = new Null();
 
     public static Null getInstance() {

@@ -1,19 +1,19 @@
 package org.wikiup.core.bean;
 
+import java.lang.reflect.Field;
+import java.lang.reflect.Modifier;
+
 import org.wikiup.core.Wikiup;
+import org.wikiup.core.impl.wrapper.WrapperImpl;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Setter;
-import org.wikiup.core.inf.ext.Container;
 import org.wikiup.core.util.Interfaces;
-
-import java.lang.reflect.Field;
-import java.lang.reflect.Modifier;
 
 public abstract class WikiupDynamicSingleton<E extends WikiupDynamicSingleton> implements DocumentAware {
     abstract public void firstBuilt();
 
-    protected WikiupDynamicSingletonContainer instanceContainer;
+    protected WrapperImpl<WikiupDynamicSingleton> instanceContainer;
 
     protected WikiupDynamicSingleton() {
         Class<E> clazz = (Class<E>) this.getClass();
@@ -22,14 +22,14 @@ public abstract class WikiupDynamicSingleton<E extends WikiupDynamicSingleton> i
             E singleton = clazz.cast(inst);
             cloneFrom(singleton);
             instanceContainer = singleton.instanceContainer;
-            instanceContainer.put(this);
+            instanceContainer.wrap(this);
         } else {
-            instanceContainer = new WikiupDynamicSingletonContainer(this);
+            instanceContainer = new WrapperImpl<WikiupDynamicSingleton>(this);
             firstBuilt();
         }
     }
 
-    public WikiupDynamicSingletonContainer getInstanceContainer() {
+    public WrapperImpl<WikiupDynamicSingleton> getInstanceContainer() {
         return instanceContainer;
     }
 
@@ -59,22 +59,6 @@ public abstract class WikiupDynamicSingleton<E extends WikiupDynamicSingleton> i
                 }
             } catch(IllegalAccessException e) {
             }
-        }
-    }
-
-    static public class WikiupDynamicSingletonContainer implements Container<WikiupDynamicSingleton> {
-        private WikiupDynamicSingleton instance;
-
-        public WikiupDynamicSingletonContainer(WikiupDynamicSingleton instance) {
-            put(instance);
-        }
-
-        public WikiupDynamicSingleton get() {
-            return instance;
-        }
-
-        public void put(WikiupDynamicSingleton instance) {
-            this.instance = instance;
         }
     }
 }

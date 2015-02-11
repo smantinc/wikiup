@@ -22,7 +22,6 @@ import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.ExceptionHandler;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.Provider;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.Setter;
 import org.wikiup.core.inf.Translator;
@@ -78,8 +77,9 @@ public class Interfaces {
     }
 
     public static Object get(Object obj) {
-        Provider<?> provider = cast(Provider.class, obj);
-        return provider != null ? provider.get() : obj;
+//        Provider<?> provider = cast(Provider.class, obj);
+//        return provider != null ? provider.get() : obj;
+        return Wrappers.unwrap(obj);
     }
 
     public static <E> E get(Object object, String name) {
@@ -137,12 +137,6 @@ public class Interfaces {
 
     public static <E> E getModel(Object obj, Class<E> clazz) {
         BeanContainer mc = getModelContainer(obj);
-        return mc != null ? mc.query(clazz) : null;
-    }
-
-    public static <E> E getModelFromProvider(Object obj, Class<E> clazz) {
-        Provider<?> p = Interfaces.cast(Provider.class, obj);
-        BeanContainer mc = getModelContainer(p != null ? p.get() : obj);
         return mc != null ? mc.query(clazz) : null;
     }
 
