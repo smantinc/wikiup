@@ -17,8 +17,9 @@ public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory>
     private BeanFactory beanFactory;
 
     public void firstBuilt() {
-        beanFactory = new BeanFactory(new FactoryByName<Object>(new ClassDictionaryImpl()));
+        beanFactory = new BeanFactory();
         beanFactory.add(Object.class, new DefaultObjectClass(beanFactory));
+        beanFactory.add(null, Constants.Factories.BY_CLASS_NAME);
     }
 
     @Override

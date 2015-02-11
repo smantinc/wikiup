@@ -6,6 +6,7 @@ import org.wikiup.core.Constants;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupBeanFactory;
 import org.wikiup.core.impl.factory.FactoryByName;
+import org.wikiup.core.impl.factory.FactoryWithBackup;
 import org.wikiup.core.impl.factory.FactoryWithTranslator;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;
@@ -44,7 +45,7 @@ public class BeanFactoryResourceHandler extends DirectoryDocumentResourceHandler
 
             public Node(Document desc) {
                 wirable = new FactoryByName.WIRABLE<Object>();
-                factory = wirable.wire(desc);
+                factory = new FactoryWithBackup<Object, String>(wirable.wire(desc), Constants.Factories.BY_CLASS_NAME);
             }
 
             @Override

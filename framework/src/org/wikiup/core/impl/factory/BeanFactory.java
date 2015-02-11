@@ -1,33 +1,24 @@
 package org.wikiup.core.impl.factory;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.wikiup.core.Constants;
-import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;
 import org.wikiup.core.inf.ext.Wirable;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class BeanFactory implements Factory<Factory<Object, Object>, String> {
-    private Map<Object, FactoryWrapper<Object, Object>> factories = new HashMap<Object, FactoryWrapper<Object, Object>>();
-    private FactoryWrapper<Object, Object> defaultFactory;
-
-    public BeanFactory() {
-    }
-
-    public BeanFactory(Factory<Object, ?> defaultFactory) {
-        this.defaultFactory = new FactoryWrapper<Object, Object>((Factory) defaultFactory);
-    }
+    private Map<Object, Factory<Object, Object>> factories = new HashMap<Object, Factory<Object, Object>>();
 
     @Override
     public Factory<Object, Object> build(String name) {
-        return ensureFactory(name);
+        return factories.get(name);
     }
 
-    public Map<Object, FactoryWrapper<Object, Object>> getFactories() {
+    public Map<Object, Factory<Object, Object>> getFactories() {
         return factories;
     }
 
@@ -43,31 +34,22 @@ public class BeanFactory implements Factory<Factory<Object, Object>, String> {
     }
 
     public Object build(Object namespace, String name) {
-        FactoryWrapper<Object, Object> factoryWrapper = factories.get(namespace);
-        Object obj = factoryWrapper != null ? factoryWrapper.asByName().build(name) : null;
-        return obj == null ? defaultFactory.asByName().build(name) : obj;
+        Factory<Object, Object> factoryWrapper = factories.get(namespace);
+        return factoryWrapper != null ? factoryWrapper.build(name) : null;
     }
 
     public void loadFactories(Document desc, Factory.ByDocument<Factory<?, ?>> builder) {
         for(Document doc : desc.getChildren()) {
             String name = Documents.getId(doc);
-            FactoryWrapper<Object, Object> f = ensureFactory(name);
+            Factory<Object, Object> factory = Interfaces.cast(builder.build(doc));
             String inf = Documents.getAttributeValue(doc, Constants.Attributes.INTERFACE, null);
             if(inf != null)
-                factories.put(Interfaces.getClass(inf), f);
-            Factory<Object, Object> factory = Interfaces.cast(builder.build(doc));
-            f.wrap(factory);
+                factories.put(Interfaces.getClass(inf), factory);
+            factories.put(name, factory);
         }
     }
 
-    private FactoryWrapper<Object, Object> ensureFactory(Object name) {
-        FactoryWrapper<Object, Object> f = factories.get(name);
-        if(f == null)
-            factories.put(name, f = new FactoryWrapper<Object, Object>(Null.getInstance()));
-        return f;
-    }
-
     public void add(Object name, Factory<?, ?> factory) {
-        ensureFactory(name).wrap((Factory) factory);
+        factories.put(name, (Factory) factory);
     }
 }

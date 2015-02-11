@@ -14,7 +14,6 @@ public class FactoryWithTranslator<T, P> extends WrapperImpl<Factory<T, P>> impl
 
     @Override
     public T build(P params) {
-        T inst = wrapped.build(params);
-        return translator.translate(inst);
+        return translator.translate(wrapped.build(params));
     }
 }
