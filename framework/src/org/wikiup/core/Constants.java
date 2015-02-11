@@ -13,6 +13,11 @@ public class Constants {
         public static final String PROPERTY = "property";
     }
     
+    public static class Elements {
+        public static final String ACTION = "action";
+        public static final String PROCESSOR = "processor";
+    }
+    
     public static class Configure {
         public static final boolean SCRATCHPAD = true;
     }

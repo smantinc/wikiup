@@ -77,8 +77,6 @@ public class Interfaces {
     }
 
     public static Object get(Object obj) {
-//        Provider<?> provider = cast(Provider.class, obj);
-//        return provider != null ? provider.get() : obj;
         return Wrappers.unwrap(obj);
     }
 

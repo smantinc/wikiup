@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.wikiup.core.Constants;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.exception.AttributeException;
@@ -521,7 +522,7 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
         }
 
         private void doServletAction(ServletProcessorContext context) {
-            doServletAction(context, "action");
+            doServletAction(context, Constants.Elements.ACTION);
         }
 
         private void doServletAction(ServletProcessorContext context, String confEntry) {
@@ -530,7 +531,7 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
         }
 
         private void doServletProcess(ServletProcessorContext context) {
-            for(Document node : configure.getChildren("processor")) {
+            for(Document node : configure.getChildren(Constants.Elements.PROCESSOR)) {
                 ServletProcessor processor = context.buildServletProcessor(node, null);
                 if(processor != null)
                     processor.process(context);
