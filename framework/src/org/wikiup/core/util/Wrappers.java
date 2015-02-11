@@ -12,7 +12,7 @@ public class Wrappers {
         return wrapper;
     }
 
-    public static <T> T unwrap(Object wrapper, Class<T> clazz) {
+    public static <T> T unwrap(Class<T> clazz, Object wrapper) {
         do {
             if(clazz.isInstance(wrapper))
                 return clazz.cast(wrapper);

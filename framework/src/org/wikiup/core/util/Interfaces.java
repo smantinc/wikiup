@@ -49,15 +49,6 @@ public class Interfaces {
         return object != null && clazz.isInstance(object) ? clazz.cast(object) : null;
     }
 
-    public static <E> E castByProvider(Class<E> clazz, Object object) {
-        E e = cast(clazz, object);
-        if(e == null) {
-            Provider<?> provider = cast(Provider.class, object);
-            e = provider != null ? cast(clazz, provider.get()) : null;
-        }
-        return e;
-    }
-
     public static <E> E findAssignable(Class<E> clazz, Object... objects) {
         for(Object obj : objects) {
             E inst = cast(clazz, obj);

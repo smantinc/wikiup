@@ -1,45 +1,45 @@
 package org.wikiup.core.impl.attribute;
 
 import org.wikiup.core.impl.Null;
+import org.wikiup.core.impl.wrapper.WrapperImpl;
 import org.wikiup.core.inf.Attribute;
 
-public class AttributeWrapper implements Attribute {
-    private Attribute attribute;
+public class AttributeWrapper extends WrapperImpl<Attribute> implements Attribute {
 
     public AttributeWrapper() {
-        setAttribute(null);
+        super(null);
     }
 
     public AttributeWrapper(Attribute attr) {
-        setAttribute(attr);
+        super(attr);
     }
 
     public Attribute getAttribute() {
-        return attribute;
+        return wrapped;
     }
 
     public void setAttribute(Attribute attr) {
-        attribute = attr != null ? attr : Null.getInstance();
+        wrap(attr != null ? attr : Null.getInstance());
     }
 
     public String getName() {
-        return attribute.getName();
+        return wrapped.getName();
     }
 
     public Object getObject() {
-        return attribute.getObject();
+        return wrapped.getObject();
     }
 
     public void setName(String name) {
-        attribute.setName(name);
+        wrapped.setName(name);
     }
 
     public void setObject(Object obj) {
-        attribute.setObject(obj);
+        wrapped.setObject(obj);
     }
 
     @Override
     public String toString() {
-        return attribute.toString();
+        return wrapped.toString();
     }
 }

@@ -50,6 +50,6 @@ public class WrapperImpl<T> implements Wrapper<T> {
     }
 
     public <E extends T> E unwrap(Class<E> clazz) {
-        return Wrappers.unwrap(wrapped, clazz);
+        return Wrappers.unwrap(clazz, wrapped);
     }
 }
