@@ -16,6 +16,7 @@ public class Constants {
     public static class Elements {
         public static final String ACTION = "action";
         public static final String PROCESSOR = "processor";
+        public static final String CONTEXT = "context";
     }
     
     public static class Configure {

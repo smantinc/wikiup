@@ -1,6 +1,7 @@
 package org.wikiup.core.bean;
 
 import org.wikiup.core.Constants;
+import org.wikiup.core.bootstrap.impl.handler.BeanFactoryResourceHandler;
 import org.wikiup.core.impl.cl.ClassDictionaryImpl;
 import org.wikiup.core.impl.factory.BeanFactory;
 import org.wikiup.core.impl.factory.FactoryByClass;
@@ -11,12 +12,10 @@ import org.wikiup.core.util.ClassIdentity;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 
-import java.util.HashMap;
 import java.util.Iterator;
 
 public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory> implements Context<Factory<?, ?>, Factory<?, ?>>, Iterable<Object> {
     private BeanFactory beanFactory;
-    private Builder builder = new Builder();
 
     public void firstBuilt() {
         beanFactory = new BeanFactory(new FactoryByClass<Object>(new ClassDictionaryImpl()));
@@ -53,25 +52,10 @@ public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory>
         return beanFactory.getFactories().keySet().iterator();
     }
 
-    public void loadBeans(Document desc) {
+    public void loadBeans(Document desc, Factory.ByDocument<Factory<?, ?>> builder) {
         beanFactory.loadFactories(desc, builder);
     }
 
-    private static class Builder implements Factory.ByDocument<Factory<?, ?>> {
-        private HashMap<String, FactoryByClass.WIRABLE<?>> factories = new HashMap<String, FactoryByClass.WIRABLE<?>>();
-
-        @Override
-        public Factory<?, ?> build(Document desc) {
-            String name = Documents.getAttributeValue(desc, Constants.Attributes.NAME, null);
-            if(name == null)
-                return null;
-            FactoryByClass.WIRABLE<?> wirable = factories.get(name);
-            if(wirable == null)
-                factories.put(name, wirable = new FactoryByClass.WIRABLE<Object>());
-            return wirable.wire(desc);
-        }
-    }
-    
     private static class DefaultObjectClass implements Factory<Object, String> {
         private BeanFactory beanFactory;
         

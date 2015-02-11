@@ -1,5 +1,6 @@
 package org.wikiup.servlet.impl.context;
 
+import org.wikiup.core.Constants;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.exception.AttributeException;
 import org.wikiup.core.inf.Document;
@@ -58,10 +59,9 @@ public class NamespaceProcessorContext implements ProcessorContext, ServletProce
 
     public void aware(Document desc) {
         for(Document node : desc.getChildren()) {
-            String name = Documents.getId(node, null);
+            String name = Documents.ensureAttributeValue(node, Constants.Attributes.NAME);
             ProcessorContext obj;
             BeanContainer mc = null;
-            Assert.notNull(name, AttributeException.class, "name");
             if(context != null) {
                 mc = context.buildProcessorContextModelContainer(node);
                 obj = mc.query(ProcessorContext.class);

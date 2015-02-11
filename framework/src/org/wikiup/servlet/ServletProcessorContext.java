@@ -507,7 +507,7 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
 
         public void init(ServletProcessorContext context, Document configure) {
             this.configure = configure;
-            for(Document node : configure.getChildren("context")) {
+            for(Document node : configure.getChildren(Constants.Elements.CONTEXT)) {
                 String name = Documents.getId(node);
                 BeanContainer mc = context.buildProcessorContextModelContainer(node);
                 ProcessorContext ctx = mc != null ? mc.query(ProcessorContext.class) : null;
