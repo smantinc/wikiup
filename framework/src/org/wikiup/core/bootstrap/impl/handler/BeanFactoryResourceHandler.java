@@ -5,9 +5,11 @@ import java.util.HashMap;
 import org.wikiup.core.Constants;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupBeanFactory;
+import org.wikiup.core.impl.document.StyleDocument;
 import org.wikiup.core.impl.factory.FactoryByName;
 import org.wikiup.core.impl.factory.FactoryWithBackup;
 import org.wikiup.core.impl.factory.FactoryWithTranslator;
+import org.wikiup.core.inf.Decorator;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;
 import org.wikiup.core.inf.Translator;
@@ -50,13 +52,12 @@ public class BeanFactoryResourceHandler extends DirectoryDocumentResourceHandler
 
             @Override
             public Factory<?, ?> wire(Document desc) {
-                String style = Documents.getAttributeValue(desc, "style", null);
+                String style = Documents.getAttributeValue(desc, Constants.Attributes.STYLE, null);
                 if(style != null) {
                     try {
-                        String[] styles = style.split(":");
-                        String className = styles[1];
-                        Translator<Object, Object> translator = Interfaces.cast(Translator.class, Interfaces.newInstance(Interfaces.getClass(className)));
-                        factory = new FactoryWithTranslator<Object, String>(factory, translator);
+                        Document styles = StyleDocument.parse(style);
+                        Decorator<Factory<Object, String>> decorator = new FactoryWithTranslator.DECORATOR<Object, String>();
+                        factory = decorator.decorate(factory, styles);
                     } catch(Exception e) {
                         Assert.fail(e);
                     }

@@ -1,15 +1,14 @@
 package org.wikiup.servlet.impl.processor.text;
 
-import org.wikiup.core.impl.document.DocumentArray;
-import org.wikiup.core.inf.Attribute;
-import org.wikiup.core.inf.Document;
-import org.wikiup.servlet.ServletProcessorContext;
-import org.wikiup.servlet.inf.ServletProcessor;
-
 import java.io.StringWriter;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
+
+import org.wikiup.core.inf.Attribute;
+import org.wikiup.core.inf.Document;
+import org.wikiup.servlet.ServletProcessorContext;
+import org.wikiup.servlet.inf.ServletProcessor;
 
 public class JsonProcessor implements ServletProcessor {
     public void process(ServletProcessorContext context) {
@@ -29,7 +28,7 @@ public class JsonProcessor implements ServletProcessor {
         Iterator<Document> iterator = doc.getChildren().iterator();
         if(iterator.hasNext()) {
             if(!doc.getAttributes().iterator().hasNext())
-                writeArray(writer, iterator, !(doc instanceof DocumentArray));
+                writeArray(writer, iterator, true);
             else {
                 Set<String> names = new HashSet<String>();
                 writer.write('{');

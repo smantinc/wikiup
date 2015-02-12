@@ -14,6 +14,8 @@ public class Constants {
         public static final String ID = "id";
         public static final String VALUE = "value";
         public static final String PROPERTY = "property";
+        public static final String TRANSLATOR = "translator";
+        public static final String STYLE = "style";
     }
     
     public static class Elements {
