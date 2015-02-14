@@ -1,5 +1,6 @@
 package org.wikiup.core.bootstrap;
 
+import org.wikiup.core.Constants;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.bean.WikiupNamingDirectory;
@@ -51,7 +52,7 @@ public class Bootstrap implements DocumentAware, ResourceHandler {
     }
 
     private void handleBootstrapResources(Document container) {
-        for(Document node : container.getChildren("handler")) {
+        for(Document node : container.getChildren(Constants.Elements.HANDLER)) {
             ResourceHandler resourceHandler = build(ResourceHandler.class, node);
             LogicalTranslator<String> filter = build(LogicalTranslator.class, node.getChild("filter"));
             bootstrapResource.loadResources(resourceHandler, filter);

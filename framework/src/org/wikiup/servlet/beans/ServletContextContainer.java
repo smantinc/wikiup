@@ -1,22 +1,22 @@
 package org.wikiup.servlet.beans;
 
-import org.wikiup.core.bean.WikiupConfigure;
-import org.wikiup.core.bean.WikiupDynamicSingleton;
-import org.wikiup.core.impl.iterable.BeanPropertyNames;
-import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.inf.ext.Resource;
-import org.wikiup.core.util.ContextUtil;
-import org.wikiup.core.util.FileUtil;
-import org.wikiup.core.util.Interfaces;
-import org.wikiup.core.util.StringUtil;
-
-import javax.servlet.ServletContext;
 import java.io.File;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.util.Iterator;
+import javax.servlet.ServletContext;
+
+import org.wikiup.core.bean.WikiupConfigure;
+import org.wikiup.core.bean.WikiupDynamicSingleton;
+import org.wikiup.core.impl.iterable.BeanPropertyNames;
+import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.ext.Resource;
+import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.FileUtil;
+import org.wikiup.core.util.Interfaces;
+import org.wikiup.core.util.StringUtil;
 
 public class ServletContextContainer extends WikiupDynamicSingleton<ServletContextContainer> implements Getter<Object>, Iterable<String> {
     private ServletContext servletContext;
@@ -25,6 +25,7 @@ public class ServletContextContainer extends WikiupDynamicSingleton<ServletConte
         return getInstance(ServletContextContainer.class);
     }
 
+    @Deprecated
     public String getRealPath(String path) {
         String p = servletContext.getRealPath(path);
         try {

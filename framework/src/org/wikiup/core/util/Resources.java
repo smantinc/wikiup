@@ -73,7 +73,7 @@ public class Resources {
 
     static public Collection<Resource> getResourcesFromJAR(String name, String path) throws IOException {
         Set<Resource> res = new HashSet<Resource>();
-        if(path.endsWith("!/" + name)) {
+        if(StringUtil.shrinkRight(path, "/").endsWith("!/" + name)) {
             int idx = path.indexOf(':');
             String fileName = FileUtil.decodeFileName(path.substring(idx != -1 ? idx + 1 : 0, path.lastIndexOf("!/" + name)));
             JarFile jarFile = new JarFile(fileName);

@@ -15,6 +15,7 @@ import org.wikiup.modules.webdav.inf.FileInf;
 import org.wikiup.modules.webdav.inf.FileSystemInf;
 import org.wikiup.modules.webdav.util.WebdavUtil;
 import org.wikiup.servlet.ServletProcessorContext;
+import org.wikiup.servlet.beans.ServletContextContainer;
 import org.wikiup.servlet.inf.ServletProcessorContextAware;
 
 import java.io.File;
@@ -40,7 +41,7 @@ public class NativeFileSystem implements FileSystemInf, DocumentAware, ServletPr
 
     public void aware(Document desc) {
         contextPath = context.getContextAttribute(desc, "context-path", "/webdav");
-        repository = new File(context.getContextAttribute(desc, "repository", context.getRealPath("/")));
+        repository = new File(context.getContextAttribute(desc, "repository", ServletContextContainer.getInstance().getRealPath("/")));
         repository.mkdirs();
         anonymous = ValueUtil.toBoolean(context.getContextAttribute(desc, "anonymous", null), true);
         configure = desc;

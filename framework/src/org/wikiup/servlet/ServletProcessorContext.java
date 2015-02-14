@@ -395,8 +395,10 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
 
     public String getContextPath(String uri) {
         String contextPath = StringUtil.trim(servletRequest.getContextPath(), "/") + '/';
-        String u = StringUtil.shrinkLeft(uri, "/");
-        return u.startsWith(contextPath) ? u.substring(contextPath.length()) : u;
+        if(contextPath.length() > 1) {
+            return uri.startsWith(contextPath) ? uri.substring(contextPath.length()) : uri;
+        }
+        return uri;
     }
 
     public String getContextURI(String uri) {

@@ -22,6 +22,7 @@ public class Constants {
         public static final String ACTION = "action";
         public static final String PROCESSOR = "processor";
         public static final String CONTEXT = "context";
+        public static final String HANDLER = "handler";
     }
 
     public static class Factories {

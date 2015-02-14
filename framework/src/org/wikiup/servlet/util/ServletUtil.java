@@ -50,6 +50,6 @@ public class ServletUtil {
         String contextPath = StringUtil.shrinkLeft(request.getContextPath(), "/");
         String u = StringUtil.shrinkLeft(request.getRequestURI(), "/");
         String url = StringUtil.shrinkLeft(u, contextPath);
-        return FileUtil.decodeFileName(url);
+        return "/" + FileUtil.decodeFileName(url);
     }
 }
