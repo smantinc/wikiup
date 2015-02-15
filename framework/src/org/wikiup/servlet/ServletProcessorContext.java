@@ -149,8 +149,8 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
 
     public void doInit() {
         initContextModules();
-        doSetHeader(getServletContextConf().getChild("headers"));
-        doSetHeader(getRequestContextConf().getChild("headers"));
+        doSetHeader(getServletContextConf().getChild(Constants.Elements.HEADERS));
+        doSetHeader(getRequestContextConf().getChild(Constants.Elements.HEADERS));
     }
 
     public ServletProcessor buildServletProcessor(Document cfg, ServletProcessor def) {

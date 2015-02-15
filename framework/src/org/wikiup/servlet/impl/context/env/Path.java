@@ -5,6 +5,7 @@ import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.beans.ServletContextContainer;
 import org.wikiup.servlet.inf.ServletProcessorContextAware;
 
+@Deprecated
 public class Path implements ServletProcessorContextAware, Getter<String> {
     private ServletProcessorContext context;
 
