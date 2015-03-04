@@ -24,6 +24,8 @@ public class Constants {
         public static final String CONTEXT = "context";
         public static final String HANDLER = "handler";
         public static final String HEADERS = "headers";
+        public static final String CLASS = "class";
+        public static final String ROOT = "root";
     }
 
     public static class Factories {
