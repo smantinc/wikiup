@@ -2,7 +2,7 @@
 <bootstrap>
 	<bean-factory>
 		<factory name="factory" class="org.wikiup.core.impl.factory.FactoryImpl$WIRABLE">
-			<item name="by-document" class="org.wikiup.core.impl.factory.FactoryByDocument"/>
+			<item name="by-document" class="org.wikiup.core.impl.factory.FactoryWithWirable"/>
 		</factory>
 	</bean-factory>
 	<model-factory class="org.wikiup.core.impl.mf.NamespaceFactory">

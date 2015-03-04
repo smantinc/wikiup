@@ -22,7 +22,7 @@ public class FactoryWithTranslator<T> extends WrapperImpl<Factory<T>> implements
         return translator.translate(wrapped.build(doc));
     }
 
-    public static final class DECORATOR<T, P> implements Decorator<Factory<T>> {
+    public static final class DECORATOR<T> implements Decorator<Factory<T>> {
         @Override
         public Factory<T> decorate(Factory<T> factory, Document desc) {
             String className = Documents.ensureAttributeValue(desc, Constants.Attributes.TRANSLATOR);

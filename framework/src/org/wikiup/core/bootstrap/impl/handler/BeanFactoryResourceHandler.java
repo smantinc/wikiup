@@ -54,7 +54,7 @@ public class BeanFactoryResourceHandler extends DirectoryDocumentResourceHandler
                 if(style != null) {
                     try {
                         Document styles = StyleDocument.parse(style);
-                        Decorator<Factory<Object>> decorator = new FactoryWithTranslator.DECORATOR<Object, Document>();
+                        Decorator<Factory<Object>> decorator = new FactoryWithTranslator.DECORATOR<Object>();
                         factory = decorator.decorate(factory, styles);
                     } catch(Exception e) {
                         Assert.fail(e);

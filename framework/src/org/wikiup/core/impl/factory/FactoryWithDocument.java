@@ -6,10 +6,10 @@ import org.wikiup.core.inf.Decorator;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;
 
-public class FactoryByMergedDocument<T> extends WrapperImpl<Factory<T>> implements Factory<T> {
+public class FactoryWithDocument<T> extends WrapperImpl<Factory<T>> implements Factory<T> {
     private Document merging;
     
-    public FactoryByMergedDocument(Factory<T> wrapped, Document merging) {
+    public FactoryWithDocument(Factory<T> wrapped, Document merging) {
         super(wrapped);
         this.merging = merging;
     }
@@ -22,7 +22,7 @@ public class FactoryByMergedDocument<T> extends WrapperImpl<Factory<T>> implemen
     public static final class DECORATOR<T> implements Decorator<Factory<T>> {
         @Override
         public Factory<T> decorate(Factory<T> obj, Document desc) {
-            return new FactoryByMergedDocument<T>(obj, desc);
+            return new FactoryWithDocument<T>(obj, desc);
         }
     }
 }
