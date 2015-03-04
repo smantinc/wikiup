@@ -1,11 +1,7 @@
 package org.wikiup.core.util;
 
-import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupBeanFactory;
 import org.wikiup.core.bean.WikiupConfigure;
-import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.ext.ModelFactory;
 
 public class ClassIdentity {
     private String namespace;

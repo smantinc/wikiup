@@ -12,9 +12,9 @@ import org.wikiup.core.util.Interfaces;
 
 public class BeanFactory implements Factory<Factory<Object, Object>, String> {
     private Map<Object, Factory<Object, Object>> factories = new HashMap<Object, Factory<Object, Object>>();
-    private Factory<Object, String> defaultFactory;
+    private FactoryImpl defaultFactory;
 
-    public BeanFactory(Factory<Object, String> defaultFactory) {
+    public BeanFactory(FactoryImpl defaultFactory) {
         this.defaultFactory = defaultFactory;
     }
 
@@ -33,12 +33,12 @@ public class BeanFactory implements Factory<Factory<Object, Object>, String> {
     }
 
     public <T> T build(Class<T> clazz, String name, Document document) {
-        Object bean = build(clazz, name);
+        Object bean = buildByNamespace(clazz, document);
         Wirable.ByDocument<T> wirable = Interfaces.cast(Wirable.ByDocument.class, bean);
         return wirable != null ? wirable.wire(document) : Interfaces.cast(clazz, bean);
     }
 
-    public Object build(Object namespace, String name) {
+    public Object buildByNamespace(Object namespace, Document name) {
         Factory<Object, Object> factory = factories.get(namespace);
         return factory != null ? factory.build(name) : defaultFactory.build(name);
     }

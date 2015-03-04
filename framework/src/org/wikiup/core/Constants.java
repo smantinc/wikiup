@@ -1,7 +1,7 @@
 package org.wikiup.core;
 
 import org.wikiup.core.impl.cl.ClassDictionaryImpl;
-import org.wikiup.core.impl.factory.FactoryByName;
+import org.wikiup.core.impl.factory.FactoryImpl;
 
 public class Constants {
     public static class Attributes {
@@ -29,7 +29,7 @@ public class Constants {
     }
 
     public static class Factories {
-        public static final FactoryByName<Object> BY_CLASS_NAME = new FactoryByName<Object>(new ClassDictionaryImpl());
+        public static final FactoryImpl<Object> BY_CLASS_NAME = new FactoryImpl<Object>(new ClassDictionaryImpl());
     }
     
     public static class Configure {

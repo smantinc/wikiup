@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <bootstrap>
 	<bean-factory>
-		<factory name="factory" class="org.wikiup.core.impl.factory.FactoryByName$WIRABLE">
-			<item name="by-class" class="org.wikiup.core.impl.factory.FactoryByName$WIRABLE"/>
+		<factory name="factory" class="org.wikiup.core.impl.factory.FactoryImpl$WIRABLE">
 			<item name="by-document" class="org.wikiup.core.impl.factory.FactoryByDocument"/>
 		</factory>
 	</bean-factory>

@@ -6,18 +6,16 @@ import org.wikiup.core.Constants;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupBeanFactory;
 import org.wikiup.core.impl.document.StyleDocument;
-import org.wikiup.core.impl.factory.FactoryByName;
+import org.wikiup.core.impl.factory.FactoryImpl;
 import org.wikiup.core.impl.factory.FactoryWithBackup;
 import org.wikiup.core.impl.factory.FactoryWithTranslator;
 import org.wikiup.core.inf.Decorator;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;
-import org.wikiup.core.inf.Translator;
 import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.inf.ext.Wirable;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
-import org.wikiup.core.util.Interfaces;
 
 public class BeanFactoryResourceHandler extends DirectoryDocumentResourceHandler {
     private WikiupBeanFactory beanFactory = Wikiup.getModel(WikiupBeanFactory.class);
@@ -42,12 +40,12 @@ public class BeanFactoryResourceHandler extends DirectoryDocumentResourceHandler
         }
         
         private static class Node implements Wirable.ByDocument<Factory<?, ?>> {
-            private FactoryByName.WIRABLE<Object> wirable;
-            private Factory<Object, String> factory;
+            private FactoryImpl.WIRABLE<Object> wirable;
+            private Factory<Object, Document> factory;
 
             public Node(Document desc) {
-                wirable = new FactoryByName.WIRABLE<Object>();
-                factory = new FactoryWithBackup<Object, String>(wirable.wire(desc), Constants.Factories.BY_CLASS_NAME);
+                wirable = new FactoryImpl.WIRABLE<Object>();
+                factory = new FactoryWithBackup<Object, Document>(wirable.wire(desc), Constants.Factories.BY_CLASS_NAME);
             }
 
             @Override
@@ -56,7 +54,7 @@ public class BeanFactoryResourceHandler extends DirectoryDocumentResourceHandler
                 if(style != null) {
                     try {
                         Document styles = StyleDocument.parse(style);
-                        Decorator<Factory<Object, String>> decorator = new FactoryWithTranslator.DECORATOR<Object, String>();
+                        Decorator<Factory<Object, Document>> decorator = new FactoryWithTranslator.DECORATOR<Object, Document>();
                         factory = decorator.decorate(factory, styles);
                     } catch(Exception e) {
                         Assert.fail(e);
