@@ -8,7 +8,7 @@ import org.wikiup.core.inf.ext.Wirable;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 
-public class FactoryByDocument<T> implements Factory.ByDocument<T> {
+public class FactoryByDocument<T> implements Factory<T> {
     private final FactoryImpl<?> factory;
 
     public FactoryByDocument() {

@@ -116,7 +116,7 @@ public class Null implements Context, Iterator, Document, BeanContainer, Iterabl
     }
 
     @Override
-    public Object build(Object params) {
+    public Object build(Document doc) {
         return null;
     }
 }

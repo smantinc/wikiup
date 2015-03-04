@@ -12,10 +12,9 @@ import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.ClassIdentity;
-import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 
-public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory> implements Context<Factory<?, ?>, Factory<?, ?>>, Iterable<Object> {
+public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory> implements Context<Factory<?>, Factory<?>>, Iterable<Object> {
     private BeanFactory beanFactory;
 
     public void firstBuilt() {
@@ -24,17 +23,17 @@ public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory>
     }
 
     @Override
-    public Factory<?, ?> get(String name) {
-        return beanFactory.build(name);
+    public Factory<?> get(String name) {
+        return beanFactory.get(name);
     }
 
     @Override
-    public void set(String name, Factory<?, ?> factory) {
+    public void set(String name, Factory<?> factory) {
         addFactory(name, factory);
     }
 
     public <E> E build(Class<E> clazz, Document desc) {
-        return beanFactory.build(clazz, Documents.getAttributeValue(desc, Constants.Attributes.CLASS, null), desc);
+        return beanFactory.build(clazz, desc);
     }
 
     @Deprecated
@@ -42,11 +41,7 @@ public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory>
         return Interfaces.cast(clazz, beanFactory.buildByNamespace(namespace, new IdentityDocument(Null.getInstance(), name)));
     }
 
-    public <E> E build(Class<E> clazz, String name, Document desc) {
-        return beanFactory.build(clazz, name, desc);
-    }
-    
-    private void addFactory(String name, Factory<?, ?> factory) {
+    private void addFactory(String name, Factory<?> factory) {
         beanFactory.add(name, factory);
     }
 
@@ -54,11 +49,11 @@ public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory>
         return beanFactory.getFactories().keySet().iterator();
     }
 
-    public void loadBeans(Document desc, Factory.ByDocument<Factory<?, ?>> builder) {
+    public void loadBeans(Document desc, Factory<Factory<?>> builder) {
         beanFactory.loadFactories(desc, builder);
     }
 
-    private static class DefaultObjectClass implements Factory<Object, Document> {
+    private static class DefaultObjectClass implements Factory<Object> {
         private BeanFactory beanFactory;
         
         public DefaultObjectClass(BeanFactory beanFactory) {

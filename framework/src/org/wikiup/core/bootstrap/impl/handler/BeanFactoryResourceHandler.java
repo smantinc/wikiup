@@ -26,11 +26,11 @@ public class BeanFactoryResourceHandler extends DirectoryDocumentResourceHandler
         beanFactory.loadBeans(doc, builder);
     }
 
-    public static class Builder implements Factory.ByDocument<Factory<?, ?>> {
+    public static class Builder implements Factory<Factory<?>> {
         private HashMap<String, Node> factories = new HashMap<String, Node>();
 
         @Override
-        public Factory<?, ?> build(Document desc) {
+        public Factory<?> build(Document desc) {
             String name = Documents.ensureAttributeValue(desc, Constants.Attributes.NAME);
             Node node = factories.get(name);
             if(node == null)
@@ -39,22 +39,22 @@ public class BeanFactoryResourceHandler extends DirectoryDocumentResourceHandler
             return node.factory;
         }
         
-        private static class Node implements Wirable.ByDocument<Factory<?, ?>> {
+        private static class Node implements Wirable.ByDocument<Factory<?>> {
             private FactoryImpl.WIRABLE<Object> wirable;
-            private Factory<Object, Document> factory;
+            private Factory<Object> factory;
 
             public Node(Document desc) {
                 wirable = new FactoryImpl.WIRABLE<Object>();
-                factory = new FactoryWithBackup<Object, Document>(wirable.wire(desc), Constants.Factories.BY_CLASS_NAME);
+                factory = new FactoryWithBackup<Object>(wirable.wire(desc), Constants.Factories.BY_CLASS_NAME);
             }
 
             @Override
-            public Factory<?, ?> wire(Document desc) {
+            public Factory<?> wire(Document desc) {
                 String style = Documents.getAttributeValue(desc, Constants.Attributes.STYLE, null);
                 if(style != null) {
                     try {
                         Document styles = StyleDocument.parse(style);
-                        Decorator<Factory<Object, Document>> decorator = new FactoryWithTranslator.DECORATOR<Object, Document>();
+                        Decorator<Factory<Object>> decorator = new FactoryWithTranslator.DECORATOR<Object, Document>();
                         factory = decorator.decorate(factory, styles);
                     } catch(Exception e) {
                         Assert.fail(e);
