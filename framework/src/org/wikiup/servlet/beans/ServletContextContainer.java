@@ -27,7 +27,7 @@ public class ServletContextContainer extends WikiupDynamicSingleton<ServletConte
 
     @Deprecated
     public String getRealPath(String path) {
-        String p = servletContext.getRealPath(path);
+        String p = servletContext.getRealPath(path.startsWith("/") ? path : '/' + path);
         try {
             return URLDecoder.decode(p, WikiupConfigure.CHAR_SET);
         } catch(UnsupportedEncodingException e) {
@@ -42,7 +42,7 @@ public class ServletContextContainer extends WikiupDynamicSingleton<ServletConte
     public Getter<String> getRealPath() {
         return new Getter<String>() {
             public String get(String name) {
-                return servletContext.getRealPath(name);
+                return getRealPath(name);
             }
         };
     }
