@@ -31,22 +31,22 @@ public class Singleton extends WrapperImpl<BeanContainer> implements BeanContain
     public Object put(Object singleton) {
         Class<?> clazz = singleton.getClass();
         Object oldObject = byClasses.get(clazz);
-        setModel(clazz, singleton);
+        addImplements(clazz, singleton);
         return oldObject;
     }
 
-    private void setModel(Class<?> clazz, Object singleton) {
+    private void addImplements(Class<?> clazz, Object singleton) {
         while(!clazz.equals(Object.class)) {
-            putInterfaces(clazz, singleton);
+            addInterfaces(clazz, singleton);
             byClasses.put(clazz, singleton);
             clazz = clazz.getSuperclass();
         }
     }
 
-    private void putInterfaces(Class<?> clazz, Object singleton) {
+    private void addInterfaces(Class<?> clazz, Object singleton) {
         for(Class<?> inf : clazz.getInterfaces()) {
             byClasses.put(inf, singleton);
-            putInterfaces(inf, singleton);
+            addInterfaces(inf, singleton);
         }
     }
 

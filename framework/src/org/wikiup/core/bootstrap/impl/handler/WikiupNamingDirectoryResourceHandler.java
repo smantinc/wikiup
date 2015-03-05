@@ -29,7 +29,7 @@ public class WikiupNamingDirectoryResourceHandler extends DirectoryDocumentResou
     protected void loadDirectoryResource(Resource resource, Document doc, String[] path) {
         Document item = Documents.touchDocument(container, path, path.length);
         Document attr = (Document) getAttribute(item, WK_DESC_NAME);
-        boolean virtual = attr != null ? Documents.getAttributeBooleanValue(attr, "virtual", false) : false;
+        boolean virtual = attr != null && Documents.getAttributeBooleanValue(attr, "virtual", false);
         Documents.setAttributeValue(item, WK_DESC_NAME, attr != null ? (virtual ? new MergedDocument(doc, attr) : new MergedDocument(attr, doc)) : doc);
         Documents.setAttributeValue(item, WK_PATH_NAME, path);
         Documents.setAttributeValue(item, WK_RESOURCE_NAME, resource);

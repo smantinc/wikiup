@@ -3,7 +3,7 @@
 	<bean name="configure" class="org.wikiup.core.bean.WikiupConfigure"/>
 	<bean name="bean-factory" class="org.wikiup.core.bean.WikiupBeanFactory"/>
 	<bean name="bean-container" class="org.wikiup.core.bean.WikiupBeanContainer">
-		<bean name="singletons" class="org.wikiup.core.bean.WikiupDynamicSingletons"/>
+		<bean name="singletons" class="org.wikiup.core.bean.WikiupDynamicSingletons$WIRABLE"/>
 	</bean>
 	<bean name="filters" class="org.wikiup.core.impl.translator.TypeCastFilter">
 		<filter name="string" from-class="java.lang.String">
