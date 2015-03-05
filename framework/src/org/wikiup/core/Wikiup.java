@@ -18,7 +18,6 @@ package org.wikiup.core;
 
 import org.wikiup.core.bean.WikiupBeanContainer;
 import org.wikiup.core.bean.WikiupBeanFactory;
-import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.bean.WikiupNamingDirectory;
 import org.wikiup.core.impl.mp.InstanceModelProvider;
 import org.wikiup.core.inf.BeanContainer;
@@ -99,7 +98,7 @@ public class Wikiup implements Context<Object, Object>, Releasable {
 
     @Deprecated
     static public String getCsidAttribute(Document doc, String def) {
-        return Documents.getAttributeValue(doc, WikiupConfigure.DEFAULT_FACTORY_ATTRIBUTE, def);
+        return Documents.getAttributeValue(doc, Constants.Attributes.CLASS, def);
     }
 
     public void release() {

@@ -22,8 +22,6 @@ public class WikiupConfigure extends WikiupDynamicSingleton<WikiupConfigure> imp
 
     static public Set<Character> NAMESPACE_SPLITTER = new HashSet<Character>();
 
-    static public String DEFAULT_FACTORY_ATTRIBUTE = "class";
-
     static public String CHAR_SET;
 
     static public String TRIM_CHAR_SET = " \t\r\n";
@@ -69,8 +67,6 @@ public class WikiupConfigure extends WikiupDynamicSingleton<WikiupConfigure> imp
         String nsSplitter = getDefaultProperty(p, "wikiup.variable.namespace-splitter", ":./\\");
         for(char c : nsSplitter.toCharArray())
             NAMESPACE_SPLITTER.add(c);
-
-        DEFAULT_FACTORY_ATTRIBUTE = getDefaultProperty(p, "wikiup.factory.attribute-name", DEFAULT_FACTORY_ATTRIBUTE);
 
         CHAR_SET = getDefaultProperty(p, "wikiup.charset", "utf-8");
 

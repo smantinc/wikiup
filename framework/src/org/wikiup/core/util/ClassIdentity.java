@@ -1,6 +1,6 @@
 package org.wikiup.core.util;
 
-import org.wikiup.core.bean.WikiupConfigure;
+import org.wikiup.core.Constants;
 import org.wikiup.core.inf.Document;
 
 public class ClassIdentity {
@@ -38,6 +38,6 @@ public class ClassIdentity {
     }
 
     public static ClassIdentity obtain(Document desc) {
-        return obtain(Documents.getAttributeValue(desc, WikiupConfigure.DEFAULT_FACTORY_ATTRIBUTE, null));
+        return obtain(Documents.getAttributeValue(desc, Constants.Attributes.CLASS, null));
     }
 }

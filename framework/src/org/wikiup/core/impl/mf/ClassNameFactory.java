@@ -1,19 +1,19 @@
 package org.wikiup.core.impl.mf;
 
-import org.wikiup.core.bean.WikiupConfigure;
-import org.wikiup.core.impl.document.MergedDocument;
-import org.wikiup.core.impl.element.ElementImpl;
-import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Element;
-import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.inf.ext.ModelFactory;
-import org.wikiup.core.util.Documents;
-import org.wikiup.core.util.Interfaces;
-
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
+
+import org.wikiup.core.Constants;
+import org.wikiup.core.impl.document.MergedDocument;
+import org.wikiup.core.impl.element.ElementImpl;
+import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Document;
+import org.wikiup.core.inf.DocumentAware;
+import org.wikiup.core.inf.Element;
+import org.wikiup.core.inf.ext.ModelFactory;
+import org.wikiup.core.util.Documents;
+import org.wikiup.core.util.Interfaces;
 
 @Deprecated
 public class ClassNameFactory implements ModelFactory, DocumentAware, Iterable<String> {
@@ -46,7 +46,7 @@ public class ClassNameFactory implements ModelFactory, DocumentAware, Iterable<S
         for(Document doc : desc.getChildren()) {
             String name = Documents.getId(doc);
             if(!classNameMap.containsKey(name) || Documents.getAttributeBooleanValue(desc, "override", false)) {
-                classNameMap.put(name, Documents.getAttributeValue(doc, WikiupConfigure.DEFAULT_FACTORY_ATTRIBUTE, null));
+                classNameMap.put(name, Documents.getAttributeValue(doc, Constants.Attributes.CLASS, null));
                 if(attributeCount(doc) > 2)
                     classDocumentMap.put(name, doc);
             }
