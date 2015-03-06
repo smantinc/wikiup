@@ -1,7 +1,7 @@
 package org.wikiup.core.impl.wndi;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.impl.getter.dl.ByAttributeNameSelector;
+import org.wikiup.core.impl.dictionary.dl.ByAttributeNameSelector;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.ext.Context;

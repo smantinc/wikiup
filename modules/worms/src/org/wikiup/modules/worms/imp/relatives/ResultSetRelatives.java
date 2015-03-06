@@ -3,7 +3,7 @@ package org.wikiup.modules.worms.imp.relatives;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.attribute.AttributeImpl;
 import org.wikiup.core.impl.context.XPathContext;
-import org.wikiup.core.impl.getter.dl.ByAttributeNameSelector;
+import org.wikiup.core.impl.dictionary.dl.ByAttributeNameSelector;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Dictionary;

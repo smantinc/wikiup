@@ -1,8 +1,8 @@
 package org.wikiup.modules.jython.context;
 
 import org.python.util.PythonInterpreter;
-import org.wikiup.core.impl.getter.ModelContainerDictionary;
-import org.wikiup.core.impl.getter.StackDictionary;
+import org.wikiup.core.impl.dictionary.ModelContainerDictionary;
+import org.wikiup.core.impl.dictionary.StackDictionary;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Dictionary;

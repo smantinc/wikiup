@@ -1,6 +1,6 @@
 package org.wikiup.plugins.wmdk.context;
 
-import org.wikiup.core.impl.getter.BeanPropertyDictionary;
+import org.wikiup.core.impl.dictionary.BeanPropertyDictionary;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Assert;

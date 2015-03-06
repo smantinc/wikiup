@@ -1,6 +1,6 @@
 package org.wikiup.servlet.impl.context.env;
 
-import org.wikiup.core.impl.getter.BeanPropertyDictionary;
+import org.wikiup.core.impl.dictionary.BeanPropertyDictionary;
 import org.wikiup.core.impl.iterable.BeanPropertyNames;
 import org.wikiup.core.util.FileUtil;
 import org.wikiup.servlet.ServletProcessorContext;

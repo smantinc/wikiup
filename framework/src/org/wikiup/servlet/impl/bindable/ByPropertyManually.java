@@ -1,6 +1,6 @@
 package org.wikiup.servlet.impl.bindable;
 
-import org.wikiup.core.impl.getter.DictionaryWrapper;
+import org.wikiup.core.impl.dictionary.DictionaryWrapper;
 import org.wikiup.core.impl.setter.BeanPropertySetter;
 import org.wikiup.core.inf.Bindable;
 import org.wikiup.core.inf.Document;

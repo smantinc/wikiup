@@ -1,4 +1,4 @@
-package org.wikiup.core.impl.getter;
+package org.wikiup.core.impl.dictionary;
 
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;

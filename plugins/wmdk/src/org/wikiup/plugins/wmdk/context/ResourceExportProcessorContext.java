@@ -1,7 +1,7 @@
 package org.wikiup.plugins.wmdk.context;
 
 import org.wikiup.core.impl.Null;
-import org.wikiup.core.impl.getter.dl.ByAttributeNameSelector;
+import org.wikiup.core.impl.dictionary.dl.ByAttributeNameSelector;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Documents;

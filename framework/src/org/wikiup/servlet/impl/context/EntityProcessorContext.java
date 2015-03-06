@@ -1,6 +1,6 @@
 package org.wikiup.servlet.impl.context;
 
-import org.wikiup.core.impl.getter.StackDictionary;
+import org.wikiup.core.impl.dictionary.StackDictionary;
 import org.wikiup.core.impl.mp.DocumentModelProvider;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;

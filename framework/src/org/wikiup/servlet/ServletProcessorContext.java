@@ -18,7 +18,7 @@ import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.beancontainer.Singleton;
 import org.wikiup.core.impl.context.ContextWrapper;
 import org.wikiup.core.impl.context.MapContext;
-import org.wikiup.core.impl.getter.StackDictionary;
+import org.wikiup.core.impl.dictionary.StackDictionary;
 import org.wikiup.core.impl.mp.CollectionModelProvider;
 import org.wikiup.core.impl.releasable.TrashTin;
 import org.wikiup.core.impl.setter.StackSetter;

@@ -3,7 +3,7 @@ package org.wikiup.plugins.wmdk.action;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.bean.WikiupPluginManager;
-import org.wikiup.core.impl.getter.BeanPropertyDictionary;
+import org.wikiup.core.impl.dictionary.BeanPropertyDictionary;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;

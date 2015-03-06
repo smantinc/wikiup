@@ -1,4 +1,4 @@
-package org.wikiup.core.impl.getter;
+package org.wikiup.core.impl.dictionary;
 
 import org.wikiup.core.exception.NamespaceException;
 import org.wikiup.core.inf.Dictionary;

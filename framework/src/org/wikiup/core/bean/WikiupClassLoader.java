@@ -1,7 +1,7 @@
 package org.wikiup.core.bean;
 
 import org.wikiup.core.impl.cl.ClassDictionaryImpl;
-import org.wikiup.core.impl.getter.DictionaryCollection;
+import org.wikiup.core.impl.dictionary.DictionaryCollection;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.ClassDictionary;

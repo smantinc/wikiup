@@ -1,7 +1,7 @@
 package org.wikiup.modules.jython.action;
 
-import org.wikiup.core.impl.getter.ModelContainerDictionary;
-import org.wikiup.core.impl.getter.StackDictionary;
+import org.wikiup.core.impl.dictionary.ModelContainerDictionary;
+import org.wikiup.core.impl.dictionary.StackDictionary;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.modules.jython.util.JythonUtil;

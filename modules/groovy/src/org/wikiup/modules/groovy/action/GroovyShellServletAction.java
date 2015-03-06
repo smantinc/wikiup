@@ -1,8 +1,8 @@
 package org.wikiup.modules.groovy.action;
 
 import groovy.lang.GroovyShell;
-import org.wikiup.core.impl.getter.ModelContainerDictionary;
-import org.wikiup.core.impl.getter.StackDictionary;
+import org.wikiup.core.impl.dictionary.ModelContainerDictionary;
+import org.wikiup.core.impl.dictionary.StackDictionary;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Assert;
