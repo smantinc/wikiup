@@ -11,14 +11,14 @@ import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 
 public class TypeCastTranslator extends WikiupDynamicSingleton<TypeCastTranslator> implements Translator<Object, Object> {
-    private Map<Class<?>, Map<Class<?>, Translator<Object, Object>>> typeFilters;
+    private Map<Class<?>, Map<Class<?>, Translator<Object, Object>>> typeTranslators;
 
     public Object translate(Object object) {
         return cast(Object.class, object);
     }
 
     public <F, T> T cast(Class<T> toClass, F from) {
-        Map<Class<?>, Translator<Object, Object>> toFilter = typeFilters.get(Interfaces.box(from.getClass()));
+        Map<Class<?>, Translator<Object, Object>> toFilter = typeTranslators.get(Interfaces.box(from.getClass()));
         if(toFilter != null) {
             toClass = (Class<T>) Interfaces.box(toClass);
             Translator<Object, Object> translator = toFilter.get(Interfaces.box(toClass));
@@ -31,11 +31,11 @@ public class TypeCastTranslator extends WikiupDynamicSingleton<TypeCastTranslato
     public void aware(Document desc) {
         for(Document node : desc.getChildren()) {
             Class<?> clazz = Interfaces.getClass(Documents.getDocumentValue(node, "from-class", null));
-            typeFilters.put(clazz, loadFilters(node));
+            typeTranslators.put(clazz, loadTranslators(node));
         }
     }
 
-    private Map<Class<?>, Translator<Object, Object>> loadFilters(Document node) {
+    private Map<Class<?>, Translator<Object, Object>> loadTranslators(Document node) {
         Map<Class<?>, Translator<Object, Object>> filters = new HashMap<Class<?>, Translator<Object, Object>>();
         for(Document item : node.getChildren()) {
             Class<?> clazz = Interfaces.getClass(Documents.getDocumentValue(item, "to-class", null));
@@ -45,6 +45,6 @@ public class TypeCastTranslator extends WikiupDynamicSingleton<TypeCastTranslato
     }
 
     public void firstBuilt() {
-        typeFilters = new HashMap<Class<?>, Map<Class<?>, Translator<Object, Object>>>();
+        typeTranslators = new HashMap<Class<?>, Map<Class<?>, Translator<Object, Object>>>();
     }
 }
