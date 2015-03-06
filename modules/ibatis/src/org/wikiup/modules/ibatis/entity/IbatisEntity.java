@@ -1,7 +1,7 @@
 package org.wikiup.modules.ibatis.entity;
 
 import org.wikiup.core.inf.Attribute;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Interfaces;
@@ -57,7 +57,7 @@ public class IbatisEntity implements EntityModel, BeanContainer {
         return name;
     }
 
-    public EntityRelatives getRelatives(String name, Getter<?> getter) {
+    public EntityRelatives getRelatives(String name, Dictionary<?> dictionary) {
         try {
             String id = StringUtil.connect(this.name, name, '.');
             List<Object> relatives = entityManager.queryForList(id, getParameterObject(id));

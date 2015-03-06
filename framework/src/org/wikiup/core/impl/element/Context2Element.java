@@ -3,22 +3,21 @@ package org.wikiup.core.impl.element;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Element;
-import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.Setter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.ValueUtil;
 
 import java.util.Iterator;
 
 public class Context2Element implements Element {
-    private Getter<?> getter;
-    private Setter<?> setter;
+    private Dictionary<?> dictionary;
+    private Dictionary.Mutable<?> mutable;
     private Iterable<String> iterable;
     private String name = "root";
 
-    public Context2Element(Getter<?> getter, Setter<?> setter, Iterable<String> iterable) {
-        this.getter = getter;
-        this.setter = setter;
+    public Context2Element(Dictionary<?> dictionary, Dictionary.Mutable<?> mutable, Iterable<String> iterable) {
+        this.dictionary = dictionary;
+        this.mutable = mutable;
         this.iterable = iterable;
     }
 
@@ -26,12 +25,12 @@ public class Context2Element implements Element {
         this(context, context, iterable);
     }
 
-    public Context2Element(Setter<?> setter, Iterable<String> iterable) {
-        this(null, setter, iterable);
+    public Context2Element(Dictionary.Mutable<?> mutable, Iterable<String> iterable) {
+        this(null, mutable, iterable);
     }
 
-    public Context2Element(Getter<?> getter, Iterable<String> iterable) {
-        this(getter, null, iterable);
+    public Context2Element(Dictionary<?> dictionary, Iterable<String> iterable) {
+        this(dictionary, null, iterable);
     }
 
     public Attribute getAttribute(String name) {
@@ -104,12 +103,12 @@ public class Context2Element implements Element {
         }
 
         public Object getObject() {
-            return getter != null ? getter.get(name) : null;
+            return dictionary != null ? dictionary.get(name) : null;
         }
 
         public void setObject(Object obj) {
-            if(setter != null)
-                ((Setter) setter).set(name, obj);
+            if(mutable != null)
+                ((Dictionary.Mutable) mutable).set(name, obj);
         }
 
         @Override

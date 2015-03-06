@@ -4,7 +4,7 @@ import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.iterator.BufferedIterator;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.ValueUtil;
@@ -158,7 +158,7 @@ public class WormsEntity extends Component implements EntityModel, Iterable<Worm
         }
     }
 
-    public org.wikiup.database.orm.EntityRelatives getRelatives(String name, Getter<?> props) {
+    public org.wikiup.database.orm.EntityRelatives getRelatives(String name, Dictionary<?> props) {
         Document node = WormsEntityManager.getInstance().getEntityRelativeDescription(getName(), name);
         return node != null ? WormsEntityRelativesFactory.getInstance().buildEntityRelatives(node, this, props == null ? this : props) : null;
     }

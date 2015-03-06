@@ -2,13 +2,12 @@ package org.wikiup.modules.ruby.context;
 
 import org.jruby.embed.LocalVariableBehavior;
 import org.jruby.embed.ScriptingContainer;
-import org.wikiup.core.impl.getter.ModelContainerGetter;
-import org.wikiup.core.impl.getter.StackGetter;
+import org.wikiup.core.impl.getter.ModelContainerDictionary;
+import org.wikiup.core.impl.getter.StackDictionary;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.inf.Setter;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.modules.ruby.util.RubyUtil;
@@ -26,7 +25,7 @@ public class RubyProcessorContext implements ProcessorContext, DocumentAware, Se
         return RubyUtil.toJava(scriptingContainer.get(name));
     }
 
-    public BeanContainer getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
         return Interfaces.getModelContainer(get(name));
     }
 
@@ -34,12 +33,12 @@ public class RubyProcessorContext implements ProcessorContext, DocumentAware, Se
         File script = context.getAssociatedFile("rb");
         scriptingContainer.clear();
         if(script.exists()) {
-            Getter<Object> getter = new StackGetter<Object>().append(context, new ModelContainerGetter(context.getModelContainer()));
-            ContextUtil.setProperties(desc, new Setter<Object>() {
+            Dictionary<Object> dictionary = new StackDictionary<Object>().append(context, new ModelContainerDictionary(context.getModelContainer()));
+            ContextUtil.setProperties(desc, new Mutable<Object>() {
                 public void set(String name, Object obj) {
                     scriptingContainer.put(name, obj);
                 }
-            }, getter);
+            }, dictionary);
             RubyUtil.runScriptlet(scriptingContainer, script.getAbsolutePath());
         }
     }

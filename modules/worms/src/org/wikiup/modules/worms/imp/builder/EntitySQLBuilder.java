@@ -1,7 +1,7 @@
 package org.wikiup.modules.worms.imp.builder;
 
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Assert;
 import org.wikiup.database.exception.InsufficientPrimaryKeys;
 import org.wikiup.database.orm.util.SQLStatement;
@@ -10,7 +10,7 @@ import org.wikiup.modules.worms.imp.FieldProperty;
 import org.wikiup.modules.worms.imp.component.Property;
 
 public class EntitySQLBuilder extends BaseSQLBuilder {
-    public EntitySQLBuilder(Document desc, WormsEntity origin, Getter<?> accessor) {
+    public EntitySQLBuilder(Document desc, WormsEntity origin, Dictionary<?> accessor) {
         super(desc, origin, accessor);
     }
 

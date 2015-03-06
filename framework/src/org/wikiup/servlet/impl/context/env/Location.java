@@ -1,6 +1,6 @@
 package org.wikiup.servlet.impl.context.env;
 
-import org.wikiup.core.impl.getter.BeanPropertyGetter;
+import org.wikiup.core.impl.getter.BeanPropertyDictionary;
 import org.wikiup.core.impl.iterable.BeanPropertyNames;
 import org.wikiup.core.util.FileUtil;
 import org.wikiup.servlet.ServletProcessorContext;
@@ -8,7 +8,7 @@ import org.wikiup.servlet.inf.ServletProcessorContextAware;
 
 import java.util.Iterator;
 
-public class Location extends BeanPropertyGetter implements Iterable<String>, ServletProcessorContextAware {
+public class Location extends BeanPropertyDictionary implements Iterable<String>, ServletProcessorContextAware {
     protected ServletProcessorContext context;
 
     public void setServletProcessorContext(ServletProcessorContext context) {

@@ -1,44 +1,43 @@
 package org.wikiup.modules.authorization.imp.principal;
 
-import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.Setter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.modules.authorization.inf.Principal;
 
-public class PasswordSecuredPrincipal implements Principal, Setter<Object> {
+public class PasswordSecuredPrincipal implements Principal, Dictionary.Mutable<Object> {
     private String id;
-    private Getter<?> nameGetter;
-    private Getter<?> passwordGetter;
+    private Dictionary<?> nameDictionary;
+    private Dictionary<?> passwordDictionary;
     private boolean validated;
 
     public PasswordSecuredPrincipal() {
     }
 
-    public PasswordSecuredPrincipal(Getter<?> nameGetter, Getter<?> passwordGetter) {
-        this.nameGetter = nameGetter;
-        this.passwordGetter = passwordGetter;
+    public PasswordSecuredPrincipal(Dictionary<?> nameDictionary, Dictionary<?> passwordDictionary) {
+        this.nameDictionary = nameDictionary;
+        this.passwordDictionary = passwordDictionary;
     }
 
-    public Getter<?> getNameGetter() {
-        return nameGetter;
+    public Dictionary<?> getNameGetter() {
+        return nameDictionary;
     }
 
-    public void setNameGetter(Getter<?> nameGetter) {
-        this.nameGetter = nameGetter;
+    public void setNameGetter(Dictionary<?> nameDictionary) {
+        this.nameDictionary = nameDictionary;
     }
 
     public String getPassword() {
-        return ValueUtil.toString(passwordGetter.get(id));
+        return ValueUtil.toString(passwordDictionary.get(id));
     }
 
-    public Getter<?> getPasswordGetter() {
-        return passwordGetter;
+    public Dictionary<?> getPasswordGetter() {
+        return passwordDictionary;
     }
 
-    public void setPasswordGetter(Getter<?> passwordGetter) {
-        this.passwordGetter = passwordGetter;
+    public void setPasswordGetter(Dictionary<?> passwordDictionary) {
+        this.passwordDictionary = passwordDictionary;
     }
 
     public String getId() {
@@ -62,11 +61,11 @@ public class PasswordSecuredPrincipal implements Principal, Setter<Object> {
     }
 
     public String getName() {
-        return ValueUtil.toString(nameGetter.get(id));
+        return ValueUtil.toString(nameDictionary.get(id));
     }
 
     public void setPassword(String password) {
-        validated = StringUtil.compare(password, ValueUtil.toString(passwordGetter.get(id)));
+        validated = StringUtil.compare(password, ValueUtil.toString(passwordDictionary.get(id)));
     }
 
     public Object get(String name) {

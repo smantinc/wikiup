@@ -4,7 +4,7 @@ import org.python.util.PythonInterpreter;
 import org.wikiup.core.impl.mp.InstanceModelProvider;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.modules.jython.util.JythonUtil;
 import org.wikiup.servlet.ServletProcessorContext;
@@ -15,7 +15,7 @@ public class PythonProcessorContext implements ProcessorContext, ServletProcesso
     private ServletProcessorContext context;
     private PythonInterpreter interpreter;
 
-    public BeanContainer getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
         return new InstanceModelProvider(get(name));
     }
 

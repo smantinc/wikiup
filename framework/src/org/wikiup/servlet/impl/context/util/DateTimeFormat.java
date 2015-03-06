@@ -1,7 +1,7 @@
 package org.wikiup.servlet.impl.context.util;
 
 import org.wikiup.core.bean.WikiupConfigure;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
 
@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
-public class DateTimeFormat implements Getter<Object> {
+public class DateTimeFormat implements Dictionary<Object> {
     private Locale locale;
 
     public DateTimeFormat() {

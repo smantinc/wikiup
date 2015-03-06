@@ -3,19 +3,19 @@ package org.wikiup.servlet.impl.bindable;
 import org.wikiup.core.inf.Bindable;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 
 import java.util.HashSet;
 import java.util.Set;
 
 public class ByPropertyAutomatically implements Bindable, DocumentAware {
-    private Getter<?> getter;
+    private Dictionary<?> dictionary;
     private BeanContainer modelProvider;
     private Document configure;
 
-    public ByPropertyAutomatically(Getter<Object> getter, BeanContainer modelProvider) {
-        this.getter = getter;
+    public ByPropertyAutomatically(Dictionary<Object> dictionary, BeanContainer modelProvider) {
+        this.dictionary = dictionary;
         this.modelProvider = modelProvider;
     }
 
@@ -34,14 +34,14 @@ public class ByPropertyAutomatically implements Bindable, DocumentAware {
         configure = desc;
     }
 
-    private class Once implements Getter<Object>, BeanContainer {
+    private class Once implements Dictionary<Object>, BeanContainer {
         private Set<String> setNames = new HashSet<String>();
         private Set<Class<?>> setClasses = new HashSet<Class<?>>();
 
         public Object get(String name) {
             boolean in = setNames.contains(name);
             setNames.add(name);
-            Object obj = in ? null : getter.get(name);
+            Object obj = in ? null : dictionary.get(name);
             if(obj != null)
                 setClasses.add(obj.getClass());
             return obj;

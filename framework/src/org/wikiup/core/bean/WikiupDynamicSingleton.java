@@ -5,9 +5,9 @@ import java.lang.reflect.Modifier;
 
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.wrapper.WrapperImpl;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Setter;
 import org.wikiup.core.util.Interfaces;
 
 public abstract class WikiupDynamicSingleton<E extends WikiupDynamicSingleton> implements DocumentAware {
@@ -34,9 +34,9 @@ public abstract class WikiupDynamicSingleton<E extends WikiupDynamicSingleton> i
     }
 
     public void aware(Document desc) {
-        Setter<Object> setter = Interfaces.cast(Setter.class, this);
-        if(setter != null)
-            Wikiup.getInstance().loadBeans(Object.class, setter, desc);
+        Dictionary.Mutable<Object> mutable = Interfaces.cast(Dictionary.Mutable.class, this);
+        if(mutable != null)
+            Wikiup.getInstance().loadBeans(Object.class, mutable, desc);
     }
 
     @Deprecated

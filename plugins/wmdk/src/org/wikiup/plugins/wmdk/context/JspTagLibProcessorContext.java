@@ -2,7 +2,7 @@ package org.wikiup.plugins.wmdk.context;
 
 import org.wikiup.core.impl.mp.DocumentModelProvider;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
@@ -20,7 +20,7 @@ public class JspTagLibProcessorContext implements ProcessorContext, ServletProce
         return null;
     }
 
-    public BeanContainer getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
         String uri = name;
         File path = new File(context.getRealPath(uri));
         Document doc = Documents.create("taglibs");

@@ -4,7 +4,7 @@ import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupNamingDirectory;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Translator;
 import org.wikiup.core.util.Assert;
@@ -19,17 +19,17 @@ import org.wikiup.servlet.inf.ServletProcessorContextAware;
 
 public class WikiupNamingDirectoryProcessorContext implements ProcessorContext, DocumentAware, ServletProcessorContextAware, BeanContainer {
     private ServletProcessorContext context;
-    private Getter<?> directory;
+    private Dictionary<?> directory;
     private String uri;
 
     public WikiupNamingDirectoryProcessorContext() {
     }
 
     public WikiupNamingDirectoryProcessorContext(String[] path) {
-        directory = Wikiup.getInstance().get(Getter.class, path);
+        directory = Wikiup.getInstance().get(Dictionary.class, path);
     }
 
-    public BeanContainer getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
         String[] path = StringUtil.splitNamespaces(name);
         if(path.length < 2)
             return Interfaces.getModelContainer(get(name));
@@ -55,8 +55,8 @@ public class WikiupNamingDirectoryProcessorContext implements ProcessorContext, 
         return ContextUtil.getProperty(getDirectory(), path);
     }
 
-    private Getter<?> getDirectory() {
-        return Assert.notNull(directory != null ? directory : (directory = (Getter<?>) WikiupNamingDirectory.getInstance().get(uri)));
+    private Dictionary<?> getDirectory() {
+        return Assert.notNull(directory != null ? directory : (directory = (Dictionary<?>) WikiupNamingDirectory.getInstance().get(uri)));
     }
 
     public void setServletProcessorContext(ServletProcessorContext context) {
@@ -68,8 +68,8 @@ public class WikiupNamingDirectoryProcessorContext implements ProcessorContext, 
         return mc != null ? mc.query(clazz) : Interfaces.cast(clazz, this);
     }
 
-    private class LookupFilter implements Translator<Getter<?>, Getter<?>> {
-        public Getter<?> translate(Getter<?> object) {
+    private class LookupFilter implements Translator<Dictionary<?>, Dictionary<?>> {
+        public Dictionary<?> translate(Dictionary<?> object) {
             return context.awaredBy(object);
         }
     }

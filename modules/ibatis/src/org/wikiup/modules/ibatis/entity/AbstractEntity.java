@@ -1,7 +1,7 @@
 package org.wikiup.modules.ibatis.entity;
 
 
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.database.orm.EntityRelatives;
 import org.wikiup.database.orm.inf.EntityModel;
 
@@ -18,7 +18,7 @@ public abstract class AbstractEntity implements EntityModel {
     public void delete() {
     }
 
-    public EntityRelatives getRelatives(String name, Getter<?> getter) {
+    public EntityRelatives getRelatives(String name, Dictionary<?> dictionary) {
         return null;
     }
 

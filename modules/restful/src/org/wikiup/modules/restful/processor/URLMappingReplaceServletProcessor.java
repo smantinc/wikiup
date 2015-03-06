@@ -2,7 +2,7 @@ package org.wikiup.modules.restful.processor;
 
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
@@ -33,9 +33,9 @@ public class URLMappingReplaceServletProcessor implements ServletProcessor, Docu
         String replacement = Documents.getDocumentValue(node, "replacement");
         Matcher matcher = pattern.matcher(html);
         StringBuffer buffer = new StringBuffer();
-        Getter<String> getter = new RegexpMatcherGroupGetter(matcher);
+        Dictionary<String> dictionary = new RegexpMatcherGroupDictionary(matcher);
         while(matcher.find()) {
-            String rep = StringUtil.evaluateEL(replacement, getter);
+            String rep = StringUtil.evaluateEL(replacement, dictionary);
             matcher.appendReplacement(buffer, rep);
         }
         matcher.appendTail(buffer);
@@ -43,10 +43,10 @@ public class URLMappingReplaceServletProcessor implements ServletProcessor, Docu
 
     }
 
-    private static class RegexpMatcherGroupGetter implements Getter<String> {
+    private static class RegexpMatcherGroupDictionary implements Dictionary<String> {
         private Matcher matcher;
 
-        public RegexpMatcherGroupGetter(Matcher matcher) {
+        public RegexpMatcherGroupDictionary(Matcher matcher) {
             this.matcher = matcher;
         }
 

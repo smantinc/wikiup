@@ -2,7 +2,7 @@ package org.wikiup.core.bean;
 
 import org.wikiup.core.impl.document.DocumentImpl;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
@@ -10,7 +10,7 @@ import org.wikiup.core.util.ValueUtil;
 
 import java.util.Locale;
 
-public class I18nResourceManager extends WikiupDynamicSingleton<I18nResourceManager> implements Getter<Object> {
+public class I18nResourceManager extends WikiupDynamicSingleton<I18nResourceManager> implements Dictionary<Object> {
     private static final String DEFAULT_ACCEPT_LANGUAGE = "en-us";
 
     private Document resource;
@@ -34,7 +34,7 @@ public class I18nResourceManager extends WikiupDynamicSingleton<I18nResourceMana
         return Documents.getDocumentByPath(loc, paths, paths.length);
     }
 
-    public Getter<String> getLanguageBundle(Locale locale) {
+    public Dictionary<String> getLanguageBundle(Locale locale) {
         Document resource = getResource(getAcceptLanguage(locale));
         return new LanguageBundle(resource);
     }
@@ -69,7 +69,7 @@ public class I18nResourceManager extends WikiupDynamicSingleton<I18nResourceMana
             node.attachChild(child);
     }
 
-    private static class LanguageBundle implements Getter<String> {
+    private static class LanguageBundle implements Dictionary<String> {
         private Document resource;
 
         public LanguageBundle(Document resource) {

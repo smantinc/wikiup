@@ -5,7 +5,7 @@ import org.wikiup.core.bean.I18nResourceManager;
 import org.wikiup.core.impl.mp.InstanceModelProvider;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.servlet.ServletProcessorContext;
@@ -16,8 +16,8 @@ public class I18nProcessorContext implements ProcessorContext, ServletProcessorC
     private String locale;
     private ServletProcessorContext context;
 
-    public BeanContainer getModelContainer(String name, Getter<?> params) {
-        return new InstanceModelProvider(new I18nProcessorContextGetter(name));
+    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
+        return new InstanceModelProvider(new I18NProcessorContextDictionary(name));
     }
 
     public Object get(String name) {
@@ -33,10 +33,10 @@ public class I18nProcessorContext implements ProcessorContext, ServletProcessorC
         locale = context.getContextAttribute(desc, "locale", i18n.getAcceptLanguage(context.getServletRequest().getLocale()));
     }
 
-    private class I18nProcessorContextGetter implements Getter<String> {
+    private class I18NProcessorContextDictionary implements Dictionary<String> {
         private String root;
 
-        public I18nProcessorContextGetter(String root) {
+        public I18NProcessorContextDictionary(String root) {
             this.root = root;
         }
 

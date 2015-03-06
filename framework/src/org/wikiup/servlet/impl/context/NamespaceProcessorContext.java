@@ -2,10 +2,9 @@ package org.wikiup.servlet.impl.context;
 
 import org.wikiup.core.Constants;
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.exception.AttributeException;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.Assert;
@@ -33,7 +32,7 @@ public class NamespaceProcessorContext implements ProcessorContext, ServletProce
         contexts.put(name, context);
     }
 
-    public BeanContainer getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
         String path[] = StringUtil.splitNamespaces(name);
         ProcessorContext ctx = getNamespace(path[0]);
         return ctx != null ? (path.length > 1 ? ctx.getModelContainer(name.substring(path[0].length() + 1), params) : Interfaces.getModelContainer(ctx)) : null;

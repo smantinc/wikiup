@@ -3,7 +3,7 @@ package org.wikiup.extensions.wmdk.leprechaun;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupPluginManager;
 import org.wikiup.core.impl.mp.GenericModelProvider;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
@@ -18,7 +18,7 @@ public class PluginSampleDisplayerProcessorContext implements ProcessorContext, 
         return null;
     }
 
-    public BeanContainer getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
         String html;
         WikiupPluginManager.Plugin plugin = Wikiup.getModel(WikiupPluginManager.class).get(name);
         boolean isPlugin = ValueUtil.toBoolean(params.get("plugin"), false);

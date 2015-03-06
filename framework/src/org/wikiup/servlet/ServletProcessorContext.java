@@ -18,7 +18,7 @@ import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.beancontainer.Singleton;
 import org.wikiup.core.impl.context.ContextWrapper;
 import org.wikiup.core.impl.context.MapContext;
-import org.wikiup.core.impl.getter.StackGetter;
+import org.wikiup.core.impl.getter.StackDictionary;
 import org.wikiup.core.impl.mp.CollectionModelProvider;
 import org.wikiup.core.impl.releasable.TrashTin;
 import org.wikiup.core.impl.setter.StackSetter;
@@ -26,9 +26,8 @@ import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.ExceptionHandler;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Releasable;
-import org.wikiup.core.inf.Setter;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.Assert;
@@ -94,7 +93,7 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
 
     public ServletProcessorContext(ServletProcessorContext base, String uri) {
         extraParameter = base.extraParameter;
-        varContext = new ContextWrapper<Object, Object>(new StackGetter<Object>().append(base.varContext, varContext), new StackSetter<Object>(base.varContext, varContext));
+        varContext = new ContextWrapper<Object, Object>(new StackDictionary<Object>().append(base.varContext, varContext), new StackSetter<Object>(base.varContext, varContext));
         headerSetter = null;
         init(base.servletRequest, base.servletResponse, uri);
     }
@@ -265,7 +264,7 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
         return servletContextConf;
     }
 
-    public BeanContainer getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
         BeanContainer provider = globalContext.getModelContainer(name, params);
         provider = provider != null ? provider : servletScope.getModelContainer(name, params);
         provider = provider != null ? provider : requestScope.getModelContainer(name, params);
@@ -344,12 +343,12 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
         return getResponseBuffer().getResponseXML();
     }
 
-    public void setProperties(Document properties, Setter<?> dest) {
+    public void setProperties(Document properties, Mutable<?> dest) {
         ContextUtil.setProperties(properties, dest, this);
     }
 
-    public void setContextProperties(Document properties, Entity entity, Getter<?> getter) {
-        ContextUtil.setProperties(properties, entity, getter);
+    public void setContextProperties(Document properties, Entity entity, Dictionary<?> dictionary) {
+        ContextUtil.setProperties(properties, entity, dictionary);
     }
 
     public void setContextProperties(Document properties, Entity entity) {
@@ -411,16 +410,16 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
     public void parseQueryString(String queryString) {
         if(queryString != null) {
             String lines[] = queryString.split("&");
-            Setter<Object> setter = new MapContext<Object>(extraParameter);
+            Mutable<Object> mutable = new MapContext<Object>(extraParameter);
             for(String line : lines)
-                ContextUtil.parseNameValuePair((Setter) setter, line, '=');
+                ContextUtil.parseNameValuePair((Mutable) mutable, line, '=');
         }
     }
 
-    public EntityPath getEntityPath(Document desc, Getter<?> getter) {
+    public EntityPath getEntityPath(Document desc, Dictionary<?> dictionary) {
         EntityPath ePath = new EntityPath(Documents.getAttributeValue(desc, "entity-path"));
         Entity entity = getEntity(ePath.getEntityName());
-        setContextProperties(desc, entity, getter);
+        setContextProperties(desc, entity, dictionary);
         ePath.setEntity(entity, entity);
         return ePath;
     }
@@ -484,7 +483,7 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
         return beanContainer.query(clazz);
     }
 
-    static private class ResponseHeaderSetter implements Setter<String> {
+    static private class ResponseHeaderSetter implements Mutable<String> {
         private ServletProcessorContext context;
 
         public ResponseHeaderSetter(ServletProcessorContext context) {
@@ -499,7 +498,7 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
         }
     }
 
-    static private class ProcessorContextContainer extends CompositeProcessorContext implements Releasable, Setter<Object> {
+    static private class ProcessorContextContainer extends CompositeProcessorContext implements Releasable, Mutable<Object> {
         private Document configure;
         private NamespaceProcessorContext namespaces = new NamespaceProcessorContext();
 

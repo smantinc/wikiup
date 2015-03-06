@@ -4,13 +4,13 @@ import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Documents;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class MimeTypes extends WikiupDynamicSingleton<MimeTypes> implements Getter<String>, DocumentAware {
+public class MimeTypes extends WikiupDynamicSingleton<MimeTypes> implements Dictionary<String>, DocumentAware {
     private Map<String, String> contentTypes;
 
     public void firstBuilt() {

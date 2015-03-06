@@ -1,11 +1,11 @@
 package org.wikiup.servlet.impl.context.method;
 
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.inf.ext.ContextMethodSupport;
 
 public class Cut extends ContextMethodSupport {
-    public Object invoke(ServletProcessorContext context, Getter<?> params) {
+    public Object invoke(ServletProcessorContext context, Dictionary<?> params) {
         String delimiter = getStringParameter(params, "delimiter", null);
         int maxLen = getIntegerParameter(params, "max-length", 12);
         int offset = getIntegerParameter(params, "from", 0);

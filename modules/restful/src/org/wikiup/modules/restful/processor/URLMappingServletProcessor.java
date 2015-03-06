@@ -4,7 +4,7 @@ import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.getter.dl.ByAttributeNameSelector;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.servlet.ServletProcessorContext;
@@ -12,7 +12,7 @@ import org.wikiup.servlet.inf.ServletProcessor;
 
 public class URLMappingServletProcessor implements ServletProcessor {
     private static Document MAPPING = WikiupConfigure.getInstance().lookup("wk/url-mapping");
-    private static Getter<Document> MAPPING_PATTERNS = MAPPING != null ? new ByAttributeNameSelector(MAPPING, "name", "pattern") : Null.getInstance();
+    private static Dictionary<Document> MAPPING_PATTERNS = MAPPING != null ? new ByAttributeNameSelector(MAPPING, "name", "pattern") : Null.getInstance();
 
     public void process(ServletProcessorContext context) {
         String uri = context.getRequestURI();

@@ -2,7 +2,7 @@ package org.wikiup.core.impl.el;
 
 import org.wikiup.core.exception.IllegalExpressionException;
 import org.wikiup.core.inf.ExpressionLanguage;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
@@ -14,12 +14,12 @@ import java.util.Stack;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class EvalExpressionLanguage implements ExpressionLanguage<Getter<?>, Object> {
+public class EvalExpressionLanguage implements ExpressionLanguage<Dictionary<?>, Object> {
     private static final String OPTS = "+-*/%><!|&=";
     private static final Pattern FUNCTION_PATTERN = Pattern.compile("^([\\w\\d_]+)\\(([^)]+)\\)$");
     private static final Pattern VARIABLE_PATTERN = Pattern.compile("\\-?\\d*\\.?\\d*");
 
-    public Object evaluate(Getter<?> context, String script) {
+    public Object evaluate(Dictionary<?> context, String script) {
         String value = ValueUtil.toString(compile(script).calucate());
         return toObject(value);
     }

@@ -3,7 +3,7 @@ package org.wikiup.core.util;
 import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.bean.WikiupExpressionLanguage;
 import org.wikiup.core.impl.iterable.ArrayIterable;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -131,7 +131,7 @@ public class StringUtil {
         return str != null ? "" : null;
     }
 
-    static public String evaluateEL(String str, Getter<?> context) {
+    static public String evaluateEL(String str, Dictionary<?> context) {
         return str != null ? ValueUtil.toString(WikiupExpressionLanguage.getInstance().evaluate(context, str), "") : null;
     }
 

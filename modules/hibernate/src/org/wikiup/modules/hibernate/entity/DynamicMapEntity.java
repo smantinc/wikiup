@@ -5,7 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.metadata.ClassMetadata;
 import org.wikiup.core.exception.AttributeException;
 import org.wikiup.core.inf.Attribute;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.database.exception.InsufficientPrimaryKeys;
@@ -51,7 +51,7 @@ public class DynamicMapEntity implements EntityModel, Releasable {
         return name;
     }
 
-    public EntityRelatives getRelatives(String name, Getter<?> parameters) {
+    public EntityRelatives getRelatives(String name, Dictionary<?> parameters) {
         Query query = session.createQuery("from " + this.name);
         query.setFirstResult(ValueUtil.toInteger(map.get("offset"), 0));
         query.setMaxResults(ValueUtil.toInteger(map.get("limit"), 20));

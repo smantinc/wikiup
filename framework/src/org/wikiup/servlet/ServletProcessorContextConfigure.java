@@ -3,14 +3,14 @@ package org.wikiup.servlet;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Documents;
 import org.wikiup.servlet.impl.mapping.ServletMapping;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class ServletProcessorContextConfigure extends WikiupDynamicSingleton<ServletProcessorContextConfigure> implements DocumentAware, Getter<Object> {
+public class ServletProcessorContextConfigure extends WikiupDynamicSingleton<ServletProcessorContextConfigure> implements DocumentAware, Dictionary<Object> {
     private Map<String, ServletMapping> mapping;
 
     static public ServletProcessorContextConfigure getInstance() {

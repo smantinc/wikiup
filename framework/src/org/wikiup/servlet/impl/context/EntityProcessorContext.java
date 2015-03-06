@@ -1,10 +1,10 @@
 package org.wikiup.servlet.impl.context;
 
-import org.wikiup.core.impl.getter.StackGetter;
+import org.wikiup.core.impl.getter.StackDictionary;
 import org.wikiup.core.impl.mp.DocumentModelProvider;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ContextUtil;
@@ -31,7 +31,7 @@ public class EntityProcessorContext implements ProcessorContext, ServletProcesso
         this.context = context;
     }
 
-    public BeanContainer getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
         Document doc;
         EntityPath ePath = new EntityPath(name);
         String eName = ePath.getEntityName();
@@ -71,7 +71,7 @@ public class EntityProcessorContext implements ProcessorContext, ServletProcesso
         try {
             context.setAttribute(name, entity);
             entityNames.add(name);
-            ContextUtil.setProperties(node, entity, new StackGetter<Object>().append(this, this.context));
+            ContextUtil.setProperties(node, entity, new StackDictionary<Object>().append(this, this.context));
         } catch(Exception ex) {
             if(ignore)
                 context.setAttribute(name, new NullEntity());

@@ -3,7 +3,7 @@ package org.wikiup.modules.worms.imp.builder;
 import org.wikiup.core.exception.WikiupRuntimeException;
 import org.wikiup.core.impl.document.DocumentWithGetter;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
@@ -20,16 +20,16 @@ public abstract class AbstractSQLBuilder implements SQLBuilderInf {
     protected Document document;
     protected SQLDialect dialect;
 
-    private Getter<?> parameters;
+    private Dictionary<?> parameters;
 
     protected abstract void buildWhereClause(SQLStatement stmt);
 
     protected abstract String getFieldName(Document node);
 
-    public AbstractSQLBuilder(Document document, WormsEntity entity, Getter<?> getter) {
+    public AbstractSQLBuilder(Document document, WormsEntity entity, Dictionary<?> dictionary) {
         this.document = document;
         this.entity = entity;
-        this.parameters = getter;
+        this.parameters = dictionary;
         dialect = entity.getDataSource().getDatabaseDriver().getDialect();
     }
 
@@ -89,11 +89,11 @@ public abstract class AbstractSQLBuilder implements SQLBuilderInf {
         buildWhereClause(sql);
     }
 
-    protected void appendSQLAppendix(SQLStatement stmt, Document node, String name, Getter<?> getter) {
+    protected void appendSQLAppendix(SQLStatement stmt, Document node, String name, Dictionary<?> dictionary) {
         if(node.getAttribute(name) != null) {
             DialectInterpretAction interpretor = dialect.getInterpretor(name);
             Assert.notNull(interpretor, WikiupRuntimeException.class, name);
-            interpretor.doAction(stmt, new DocumentWithGetter(node, getter));
+            interpretor.doAction(stmt, new DocumentWithGetter(node, dictionary));
         }
     }
 
@@ -149,7 +149,7 @@ public abstract class AbstractSQLBuilder implements SQLBuilderInf {
         return stmt;
     }
 
-    protected Getter<?> getParameters() {
+    protected Dictionary<?> getParameters() {
         return parameters;
     }
 }

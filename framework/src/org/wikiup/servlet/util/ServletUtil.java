@@ -1,7 +1,7 @@
 package org.wikiup.servlet.util;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.FileUtil;
 import org.wikiup.core.util.StreamUtil;
 import org.wikiup.core.util.StringUtil;
@@ -18,8 +18,8 @@ import java.io.OutputStream;
 public class ServletUtil {
     static private String[] WNDI_PROCESSOR_TEMPLATE = {"wk", "servlet", "processor", "by-extension"};
 
-    static public Getter<?> getServletProcessorByExtension() {
-        return Wikiup.getInstance().get(Getter.class, WNDI_PROCESSOR_TEMPLATE);
+    static public Dictionary<?> getServletProcessorByExtension() {
+        return Wikiup.getInstance().get(Dictionary.class, WNDI_PROCESSOR_TEMPLATE);
     }
 
     static public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {

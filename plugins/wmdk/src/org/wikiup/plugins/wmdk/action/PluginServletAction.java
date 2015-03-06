@@ -7,7 +7,7 @@ import org.wikiup.core.bean.WikiupPluginManager;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.impl.context.XPathContext;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.FileUtil;
 import org.wikiup.core.util.Interfaces;
@@ -90,7 +90,7 @@ public class PluginServletAction {
     }
 
     public void mount(final ServletProcessorContext context, Document desc) throws IOException {
-        List<Getter<?>> artifacts = new LinkedList<Getter<?>>();
+        List<Dictionary<?>> artifacts = new LinkedList<Dictionary<?>>();
         MapContext<String> mapContext = new MapContext<String>();
 
         for(Object key : context.getServletRequest().getParameterMap().keySet()) {
@@ -122,7 +122,7 @@ public class PluginServletAction {
 
     private void mergeModuleDescriptions(Locale locale, Document desc) {
         WikiupPluginManager mm = Wikiup.getModel(WikiupPluginManager.class);
-        Getter<String> language = Wikiup.getModel(I18nResourceManager.class).getLanguageBundle(locale);
+        Dictionary<String> language = Wikiup.getModel(I18nResourceManager.class).getLanguageBundle(locale);
         for(Document doc : desc.getChildren()) {
             WikiupPluginManager.Plugin plugin = mm.get(Documents.getId(doc));
             Document info = plugin != null ? plugin.getDocument() : null;
@@ -135,14 +135,14 @@ public class PluginServletAction {
     private static class ArtifactDownloader implements Runnable {
         private ServletProcessorContext context;
         private Document desc;
-        private List<Getter<?>> artifacts;
-        private Getter<?> artifact;
+        private List<Dictionary<?>> artifacts;
+        private Dictionary<?> artifact;
 
         private String artifactName;
         private long contentLength;
         private long bytesReceived;
 
-        public ArtifactDownloader(ServletProcessorContext context, Document desc, List<Getter<?>> artifacts, Getter<?> artifact) {
+        public ArtifactDownloader(ServletProcessorContext context, Document desc, List<Dictionary<?>> artifacts, Dictionary<?> artifact) {
             this.context = context;
             this.desc = desc;
             this.artifacts = artifacts;
@@ -151,7 +151,7 @@ public class PluginServletAction {
 
         public void run() {
             try {
-                for(Getter<?> artifact : artifacts)
+                for(Dictionary<?> artifact : artifacts)
                     downloadArtifact(artifact);
 
                 downloadArtifact(artifact);
@@ -161,8 +161,8 @@ public class PluginServletAction {
             }
         }
 
-        private void downloadArtifact(Getter<?> getter) throws IOException {
-            String fileName = StringUtil.evaluateEL(Documents.getDocumentValue(desc, "file-name"), getter);
+        private void downloadArtifact(Dictionary<?> dictionary) throws IOException {
+            String fileName = StringUtil.evaluateEL(Documents.getDocumentValue(desc, "file-name"), dictionary);
             File file = null;
             for(Document node : desc.getChildren("lib")) {
                 String foo = Documents.getAttributeValue(node, "for", null);
@@ -173,7 +173,7 @@ public class PluginServletAction {
                 }
             }
             if(file != null && !file.exists()) {
-                URL url = new URL(StringUtil.evaluateEL(Documents.getDocumentValue(desc, "repository"), getter));
+                URL url = new URL(StringUtil.evaluateEL(Documents.getDocumentValue(desc, "repository"), dictionary));
                 HttpURLConnection conn = Interfaces.cast(HttpURLConnection.class, url.openConnection());
                 contentLength = ValueUtil.toLong(conn.getHeaderField("Content-Length"), 0);
                 bytesReceived = 0;

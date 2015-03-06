@@ -1,7 +1,7 @@
 package org.wikiup.core.impl.iterable;
 
 import org.wikiup.core.impl.attribute.BeanProperty;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class BeanProperties implements Iterable<BeanProperty>, Getter<BeanProperty> {
+public class BeanProperties implements Iterable<BeanProperty>, Dictionary<BeanProperty> {
     private Map<String, BeanProperty> properties = new HashMap<String, BeanProperty>();
 
     public BeanProperties(Class clazz, boolean onlyDeclaredMethod) {

@@ -5,7 +5,7 @@ import org.wikiup.core.bean.WikiupPluginManager;
 import org.wikiup.core.impl.context.XPathContext;
 import org.wikiup.core.impl.getter.dl.ByAttributeNameSelector;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StreamUtil;
 import org.wikiup.core.util.StringUtil;
@@ -29,7 +29,7 @@ public class UpdaterUtil {
             Document list = Documents.loadFromURL(Documents.getDocumentValue(repository.getChild("list"), "url"));
             String downloadPattern = Documents.getDocumentValue(repository, "download");
             String target = Documents.getDocumentValue(repository, "target");
-            Getter<Document> byName = new ByAttributeNameSelector(list, "name");
+            Dictionary<Document> byName = new ByAttributeNameSelector(list, "name");
             for(String name : pluginManager) {
                 WikiupPluginManager.Plugin plugin = pluginManager.get(name);
                 File jarFile = new File(plugin.getJarFile().getName());
@@ -37,9 +37,9 @@ public class UpdaterUtil {
                 if(node != null) {
                     String md5 = md5(jarFile);
                     if(!md5.equalsIgnoreCase(Documents.getDocumentValue(node, "digest"))) {
-                        Getter<?> getter = new XPathContext(node);
-                        String url = StringUtil.evaluateEL(downloadPattern, getter);
-                        String fileName = StringUtil.evaluateEL(target, getter);
+                        Dictionary<?> dictionary = new XPathContext(node);
+                        String url = StringUtil.evaluateEL(downloadPattern, dictionary);
+                        String fileName = StringUtil.evaluateEL(target, dictionary);
                         updateArtifact(jarFile, new File(jarFile.getParentFile(), fileName), url);
                     }
                 }

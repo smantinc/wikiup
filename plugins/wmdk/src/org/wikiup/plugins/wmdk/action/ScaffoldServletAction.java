@@ -3,7 +3,7 @@ package org.wikiup.plugins.wmdk.action;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.bean.WikiupPluginManager;
-import org.wikiup.core.impl.getter.BeanPropertyGetter;
+import org.wikiup.core.impl.getter.BeanPropertyDictionary;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
@@ -116,7 +116,7 @@ public class ScaffoldServletAction {
 
     private void generateEntityConfigure(WikiupEntityManager entityManager, DatabaseEntityMetadata metadata, String manager, Document managerConfigure, Writer writer) throws IOException {
         Document doc = entityManager.getEntityManager(manager).describe(metadata);
-        WMDKUtil.decorateEntityDescription(doc, manager, new BeanPropertyGetter(metadata));
+        WMDKUtil.decorateEntityDescription(doc, manager, new BeanPropertyDictionary(metadata));
         Documents.writeXMLHeader(writer, WikiupConfigure.CHAR_SET);
         String docType = StringUtil.trim(Documents.getChildValue(managerConfigure, "doc-type"));
         writer.write(docType);

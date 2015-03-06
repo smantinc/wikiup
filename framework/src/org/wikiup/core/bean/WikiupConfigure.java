@@ -1,7 +1,7 @@
 package org.wikiup.core.bean;
 
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StreamUtil;
 import org.wikiup.core.util.StringUtil;
@@ -13,7 +13,7 @@ import java.util.HashSet;
 import java.util.Properties;
 import java.util.Set;
 
-public class WikiupConfigure extends WikiupDynamicSingleton<WikiupConfigure> implements Getter<String> {
+public class WikiupConfigure extends WikiupDynamicSingleton<WikiupConfigure> implements Dictionary<String> {
     static public char OPEN_BRACKET;
     static public char CLOSE_BRACKET;
 

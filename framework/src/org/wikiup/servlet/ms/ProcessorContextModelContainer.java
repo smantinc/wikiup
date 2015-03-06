@@ -2,7 +2,7 @@ package org.wikiup.servlet.ms;
 
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
@@ -20,9 +20,9 @@ public class ProcessorContextModelContainer implements ProcessorContext {
 
     public Object get(String name) {
         if(modelProvider != null) {
-            Getter<?> getter = modelProvider.query(Getter.class);
-            if(getter != null)
-                return getter.get(name);
+            Dictionary<?> dictionary = modelProvider.query(Dictionary.class);
+            if(dictionary != null)
+                return dictionary.get(name);
             Document doc = modelProvider.query(Document.class);
             if(doc != null) {
                 Object obj = Documents.getAttributeValue(doc, name, null);
@@ -32,15 +32,15 @@ public class ProcessorContextModelContainer implements ProcessorContext {
         return null;
     }
 
-    public BeanContainer getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
         Document doc = modelProvider != null ? modelProvider.query(Document.class) : null;
         if(doc != null) {
             Document child = doc.getChild(name);
             if(child != null)
                 return Interfaces.getModelContainer(child);
         }
-        Getter<?> getter = modelProvider != null ? modelProvider.query(Getter.class) : null;
-        return getter != null ? Interfaces.getModelContainer(getter.get(name)) : null;
+        Dictionary<?> dictionary = modelProvider != null ? modelProvider.query(Dictionary.class) : null;
+        return dictionary != null ? Interfaces.getModelContainer(dictionary.get(name)) : null;
     }
 
     public BeanContainer getModelContainer() {

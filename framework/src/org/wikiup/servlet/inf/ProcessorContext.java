@@ -1,6 +1,6 @@
 package org.wikiup.servlet.inf;
 
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 
-public interface ProcessorContext extends Getter<Object>, ProcessorModelContainer {
+public interface ProcessorContext extends Dictionary<Object>, ProcessorModelContainer {
 }

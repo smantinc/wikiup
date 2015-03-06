@@ -3,7 +3,7 @@ package org.wikiup.modules.authorization.imp.authorization;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
@@ -61,7 +61,7 @@ public class DigestHttpAuthorization implements AuthorizationInf, DocumentAware,
         this.context = context;
     }
 
-    private Getter<String> parse(String s) {
+    private Dictionary<String> parse(String s) {
         MapContext<String> mc = new MapContext<String>();
         for(String line : s.split(","))
             ContextUtil.parseNameValuePair(mc, line, '=', true);

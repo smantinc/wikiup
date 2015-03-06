@@ -6,11 +6,11 @@ import java.util.Map;
 import org.wikiup.core.Constants;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 
-public class BeanFactory implements Getter<Factory<?>> {
+public class BeanFactory implements Dictionary<Factory<?>> {
     private Map<Object, Factory<?>> factories = new HashMap<Object, Factory<?>>();
     private FactoryImpl defaultFactory;
 

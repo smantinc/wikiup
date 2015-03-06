@@ -1,7 +1,7 @@
 package org.wikiup.modules.jython.orm;
 
 import org.wikiup.core.inf.Attribute;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.database.orm.Entity;
@@ -58,7 +58,7 @@ public class PythonEntity implements PersistentOperation, EntityModel {
         return entity.getRelatives(name, null);
     }
 
-    public EntityRelatives getRelatives(String name, Getter<?> props) {
+    public EntityRelatives getRelatives(String name, Dictionary<?> props) {
         return entity.getRelatives(name, props);
     }
 

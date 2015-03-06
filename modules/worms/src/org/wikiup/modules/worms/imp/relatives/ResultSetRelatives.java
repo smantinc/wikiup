@@ -6,7 +6,7 @@ import org.wikiup.core.impl.context.XPathContext;
 import org.wikiup.core.impl.getter.dl.ByAttributeNameSelector;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.modules.worms.WormsEntity;
@@ -23,7 +23,7 @@ import java.util.Map;
 public abstract class ResultSetRelatives extends EntityRelatives {
     private Map<String, Attribute> fields = new HashMap<String, Attribute>();
     private ResultSet resultSet;
-    private Getter<Document> relatives;
+    private Dictionary<Document> relatives;
 
     public void init(Document data, WormsEntity entity) {
         relatives = new ByAttributeNameSelector(data, "name", "relation");

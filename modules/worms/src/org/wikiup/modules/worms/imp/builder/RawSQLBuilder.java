@@ -1,12 +1,12 @@
 package org.wikiup.modules.worms.imp.builder;
 
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.modules.worms.WormsEntity;
 import org.wikiup.modules.worms.imp.FieldProperty;
 
 public class RawSQLBuilder extends RelativeSQLBuilder {
-    public RawSQLBuilder(Document data, WormsEntity origin, Getter<?> accessor) {
+    public RawSQLBuilder(Document data, WormsEntity origin, Dictionary<?> accessor) {
         super(data, origin, accessor);
     }
 

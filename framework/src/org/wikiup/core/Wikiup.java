@@ -23,7 +23,6 @@ import org.wikiup.core.impl.mp.InstanceModelProvider;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Releasable;
-import org.wikiup.core.inf.Setter;
 import org.wikiup.core.inf.Wrapper;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.Assert;
@@ -75,7 +74,7 @@ public class Wikiup implements Context<Object, Object>, Releasable {
         return new InstanceModelProvider(obj);
     }
 
-    public <E> void loadBeans(Class<E> clazz, Setter<E> directory, Document doc) {
+    public <E> void loadBeans(Class<E> clazz, Mutable<E> directory, Document doc) {
         for(Document node : doc.getChildren(Constants.Attributes.BEAN)) {
             E bean = getBean(clazz, node);
             bean = bean != null ? bean : Wikiup.build(clazz, node, null);

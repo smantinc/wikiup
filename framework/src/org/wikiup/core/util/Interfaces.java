@@ -20,9 +20,8 @@ import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.ExceptionHandler;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Releasable;
-import org.wikiup.core.inf.Setter;
 import org.wikiup.core.inf.ext.Wirable;
 
 public class Interfaces {
@@ -79,8 +78,8 @@ public class Interfaces {
     }
 
     public static <E> E get(Object object, String name) {
-        Getter<E> getter = cast(Getter.class, object);
-        return getter != null ? getter.get(name) : null;
+        Dictionary<E> dictionary = cast(Dictionary.class, object);
+        return dictionary != null ? dictionary.get(name) : null;
     }
 
     public static <T, P> T wire(Class<T> clazz, Object obj, P wire) {
@@ -89,10 +88,10 @@ public class Interfaces {
     }
 
     public static <E> boolean set(Object object, String name, E value) {
-        Setter<E> setter = cast(Setter.class, object);
-        if(setter != null)
-            setter.set(name, value);
-        return setter != null;
+        Dictionary.Mutable<E> mutable = cast(Dictionary.Mutable.class, object);
+        if(mutable != null)
+            mutable.set(name, value);
+        return mutable != null;
     }
 
     public static void release(Object object) {

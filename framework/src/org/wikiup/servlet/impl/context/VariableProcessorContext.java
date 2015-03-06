@@ -12,7 +12,7 @@ import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.ContextUtil;
@@ -38,7 +38,7 @@ public class VariableProcessorContext implements ProcessorContext, ServletProces
         this.context = context;
     }
 
-    public BeanContainer getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
         return Interfaces.cast(BeanContainer.class, variables.get(name));
     }
 

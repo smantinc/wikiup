@@ -11,8 +11,8 @@ import org.springframework.core.io.Resource;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.impl.iterable.IterableCollection;
 import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Setter;
 import org.wikiup.core.inf.ext.ModelFactory;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.modules.spring.mc.BeanFactoryModelProvider;
@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
-public class WikiupSpringDynamicSingleton extends WikiupDynamicSingleton<WikiupSpringDynamicSingleton> implements Setter<ApplicationContext>, ApplicationContext, Iterable<String>, ModelFactory, DocumentAware, BeanContainer {
+public class WikiupSpringDynamicSingleton extends WikiupDynamicSingleton<WikiupSpringDynamicSingleton> implements Dictionary.Mutable<ApplicationContext>, ApplicationContext, Iterable<String>, ModelFactory, DocumentAware, BeanContainer {
     private Map<String, ApplicationContext> contexts;
 
     public void firstBuilt() {

@@ -9,7 +9,7 @@ import org.wikiup.core.impl.document.Context2Document;
 import org.wikiup.core.impl.iterable.BeanPropertyNames;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ClassIdentity;
 import org.wikiup.core.util.ContextUtil;
@@ -41,7 +41,7 @@ public class ServletActionSupport implements ServletAction {
         String handler = entry != null ? ContextUtil.getPropertyName(entry, false) : null;
         if(handler != null)
             try {
-                ByPropertyAutomatically bindable = new ByPropertyAutomatically(new WikiupBeanGetter(), Wikiup.getModel(WikiupBeanContainer.class));
+                ByPropertyAutomatically bindable = new ByPropertyAutomatically(new WikiupBeanDictionary(), Wikiup.getModel(WikiupBeanContainer.class));
                 Interfaces.initialize(bindable, doc);
                 bindable.bind(instance);
 
@@ -115,7 +115,7 @@ public class ServletActionSupport implements ServletAction {
         }
     }
 
-    private static class WikiupBeanGetter implements Getter<Object> {
+    private static class WikiupBeanDictionary implements Dictionary<Object> {
         public Object get(String name) {
             ClassIdentity csid = new ClassIdentity(name);
             try {

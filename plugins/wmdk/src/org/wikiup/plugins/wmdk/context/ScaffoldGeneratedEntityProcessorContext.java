@@ -1,8 +1,8 @@
 package org.wikiup.plugins.wmdk.context;
 
-import org.wikiup.core.impl.getter.BeanPropertyGetter;
+import org.wikiup.core.impl.getter.BeanPropertyDictionary;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.core.util.Documents;
@@ -29,18 +29,18 @@ public class ScaffoldGeneratedEntityProcessorContext extends ProcessorContextSup
         return ContextUtil.getBeanProperty(entityMetadata, name);
     }
 
-    public List<Getter<Object>> getFields() {
-        List<Getter<Object>> list = new ArrayList<Getter<Object>>();
+    public List<Dictionary<Object>> getFields() {
+        List<Dictionary<Object>> list = new ArrayList<Dictionary<Object>>();
         for(FieldMetadata fm : entityMetadata.getProperties())
-            list.add(new BeanPropertyGetter(fm));
+            list.add(new BeanPropertyDictionary(fm));
         return list;
     }
 
-    public List<Getter<Object>> getPrimaryKeys() {
-        List<Getter<Object>> list = new ArrayList<Getter<Object>>();
+    public List<Dictionary<Object>> getPrimaryKeys() {
+        List<Dictionary<Object>> list = new ArrayList<Dictionary<Object>>();
         for(FieldMetadata fm : entityMetadata.getProperties())
             if(fm.isPrimaryKey())
-                list.add(new BeanPropertyGetter(fm));
+                list.add(new BeanPropertyDictionary(fm));
         return list;
     }
 

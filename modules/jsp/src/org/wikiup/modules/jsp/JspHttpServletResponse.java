@@ -1,7 +1,7 @@
 package org.wikiup.modules.jsp;
 
 import org.wikiup.core.inf.ExpressionLanguage;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.servlet.ServletProcessorContext;
 
 import javax.servlet.ServletOutputStream;
@@ -15,9 +15,9 @@ import java.util.Locale;
 public class JspHttpServletResponse implements HttpServletResponse {
     private HttpServletResponse response;
     private ServletProcessorContext context;
-    private ExpressionLanguage<Getter<?>, String> el;
+    private ExpressionLanguage<Dictionary<?>, String> el;
 
-    public JspHttpServletResponse(HttpServletResponse response, ServletProcessorContext context, ExpressionLanguage<Getter<?>, String> el) {
+    public JspHttpServletResponse(HttpServletResponse response, ServletProcessorContext context, ExpressionLanguage<Dictionary<?>, String> el) {
         this.response = response;
         this.context = context;
         this.el = el;

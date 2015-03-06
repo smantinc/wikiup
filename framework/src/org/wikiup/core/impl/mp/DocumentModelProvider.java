@@ -3,7 +3,7 @@ package org.wikiup.core.impl.mp;
 
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
@@ -28,8 +28,8 @@ public class DocumentModelProvider implements BeanContainer {
         Object object = null;
         if(Document.class.isAssignableFrom(clazz))
             object = document;
-        else if(Getter.class.equals(clazz))
-            object = new DocumentModelGetter();
+        else if(Dictionary.class.equals(clazz))
+            object = new DocumentModelDictionary();
         else if(Iterator.class.equals(clazz))
             object = (iterable != null ? iterable : document.getChildren()).iterator();
         return Interfaces.cast(clazz, object);
@@ -40,7 +40,7 @@ public class DocumentModelProvider implements BeanContainer {
         return ValueUtil.toString(document.getObject());
     }
 
-    private class DocumentModelGetter implements Getter<Object> {
+    private class DocumentModelDictionary implements Dictionary<Object> {
         public Object get(String name) {
             Attribute attribute = document.getAttribute(name);
             return attribute != null ? attribute : getChildDocumentModelContainer(name);

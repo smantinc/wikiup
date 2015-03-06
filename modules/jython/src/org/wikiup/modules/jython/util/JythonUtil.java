@@ -3,8 +3,7 @@ package org.wikiup.modules.jython.util;
 import org.python.core.PyObject;
 import org.python.util.PythonInterpreter;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.Setter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
@@ -19,22 +18,22 @@ public class JythonUtil {
         return javaObject != null ? javaObject : obj;
     }
 
-    static public void exec(PythonInterpreter interpreter, Getter<?> context, Document desc) {
+    static public void exec(PythonInterpreter interpreter, Dictionary<?> context, Document desc) {
         prepareScriptContext(interpreter, context, desc);
         execScript(interpreter, context, desc);
         for(Document doc : desc.getChildren("script"))
             execScript(interpreter, context, doc);
     }
 
-    static public void prepareScriptContext(final PythonInterpreter interpreter, Getter<?> context, Document desc) {
-        ContextUtil.setProperties(desc, new Setter<Object>() {
+    static public void prepareScriptContext(final PythonInterpreter interpreter, Dictionary<?> context, Document desc) {
+        ContextUtil.setProperties(desc, new Dictionary.Mutable<Object>() {
             public void set(String name, Object object) {
                 interpreter.set(name, object);
             }
         }, context);
     }
 
-    static public void execScript(PythonInterpreter interpreter, Getter<?> context, Document desc) {
+    static public void execScript(PythonInterpreter interpreter, Dictionary<?> context, Document desc) {
         String src = StringUtil.evaluateEL(Documents.getAttributeValue(desc, "src", null), context);
         if(!StringUtil.isEmpty(src))
             interpreter.execfile(src);

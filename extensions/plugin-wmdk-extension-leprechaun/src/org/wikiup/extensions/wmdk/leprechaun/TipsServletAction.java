@@ -3,7 +3,7 @@ package org.wikiup.extensions.wmdk.leprechaun;
 import org.wikiup.core.bean.I18nResourceManager;
 import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
@@ -19,7 +19,7 @@ public class TipsServletAction {
 
     private void getTip(ServletProcessorContext context, String seq, I18nResourceManager i18n) {
         String s = Documents.getDocumentValue(TIPS_CONFIGURE, "s" + seq);
-        Getter<String> language = i18n.getLanguageBundle(context.getServletRequest().getLocale());
+        Dictionary<String> language = i18n.getLanguageBundle(context.getServletRequest().getLocale());
         String tip = language.get("wmdk.extension.leprechaun.tips.t" + seq);
         Document resp = context.getResponseXML();
         Documents.setChildValue(resp, "tip", tip);

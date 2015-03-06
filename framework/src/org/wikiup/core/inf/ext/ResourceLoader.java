@@ -1,6 +1,6 @@
 package org.wikiup.core.inf.ext;
 
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 
-public interface ResourceLoader extends Getter<Iterable<Resource>> {
+public interface ResourceLoader extends Dictionary<Iterable<Resource>> {
 }

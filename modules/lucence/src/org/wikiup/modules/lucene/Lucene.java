@@ -17,8 +17,7 @@ import org.wikiup.core.bean.WikiupNamingDirectory;
 import org.wikiup.core.impl.setter.BeanPropertySetter;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.Setter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.core.util.Documents;
 import org.wikiup.modules.lucene.util.LuceneDocument;
@@ -33,7 +32,7 @@ public class Lucene extends WikiupDynamicSingleton<Lucene> {
 
     private String repository;
     private Version version;
-    private Getter<Analyzer> analyzers;
+    private Dictionary<Analyzer> analyzers;
 
     @Override
     public void firstBuilt() {
@@ -59,7 +58,7 @@ public class Lucene extends WikiupDynamicSingleton<Lucene> {
         this.version = version;
     }
 
-    public void setAnalyzers(Getter<Analyzer> analyzers) {
+    public void setAnalyzers(Dictionary<Analyzer> analyzers) {
         this.analyzers = analyzers;
     }
 
@@ -67,7 +66,7 @@ public class Lucene extends WikiupDynamicSingleton<Lucene> {
         return analyzers != null ? analyzers.get(name) : null;
     }
 
-    public Getter<Analyzer> getAnalyzers() {
+    public Dictionary<Analyzer> getAnalyzers() {
         return analyzers;
     }
 
@@ -143,8 +142,8 @@ public class Lucene extends WikiupDynamicSingleton<Lucene> {
 
     @Override
     public void aware(Document desc) {
-        Setter<Object> setter = new BeanPropertySetter(this);
+        Dictionary.Mutable<Object> mutable = new BeanPropertySetter(this);
         WikiupNamingDirectory wnd = Wikiup.getModel(WikiupNamingDirectory.class);
-        ContextUtil.setProperties(desc, setter, wnd);
+        ContextUtil.setProperties(desc, mutable, wnd);
     }
 }

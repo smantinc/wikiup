@@ -4,7 +4,7 @@ import org.apache.jasper.servlet.JspServlet;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.impl.iterable.BeanPropertyNames;
 import org.wikiup.core.inf.ExpressionLanguage;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.ContextUtil;
@@ -16,7 +16,7 @@ import java.util.Iterator;
 public class JspServletContainer extends WikiupDynamicSingleton<JspServletContainer> implements Context<Object, Object>, Iterable<String>, Releasable {
     private JspServlet jspServlet;
     private ServletConfig servletConfig;
-    private ExpressionLanguage<Getter<?>, String> el;
+    private ExpressionLanguage<Dictionary<?>, String> el;
 
     public void firstBuilt() {
     }
@@ -50,11 +50,11 @@ public class JspServletContainer extends WikiupDynamicSingleton<JspServletContai
         this.jspServlet.init(servletConfig);
     }
 
-    public ExpressionLanguage<Getter<?>, String> getEl() {
+    public ExpressionLanguage<Dictionary<?>, String> getEl() {
         return el;
     }
 
-    public void setEl(ExpressionLanguage<Getter<?>, String> el) {
+    public void setEl(ExpressionLanguage<Dictionary<?>, String> el) {
         this.el = el;
     }
 

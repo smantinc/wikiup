@@ -1,15 +1,15 @@
 package org.wikiup.modules.worms.imp.builder;
 
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.database.orm.util.SQLStatement;
 import org.wikiup.modules.worms.WormsEntity;
 
 public class RelativeSQLBuilder extends BaseSQLBuilder {
-    public RelativeSQLBuilder(Document data, WormsEntity origin, Getter<?> getter) {
-        super(data, origin, getter);
+    public RelativeSQLBuilder(Document data, WormsEntity origin, Dictionary<?> dictionary) {
+        super(data, origin, dictionary);
     }
 
     protected void buildWhereClause(SQLStatement stmt) {

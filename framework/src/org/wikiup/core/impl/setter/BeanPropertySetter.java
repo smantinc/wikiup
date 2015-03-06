@@ -1,12 +1,12 @@
 package org.wikiup.core.impl.setter;
 
-import org.wikiup.core.inf.Setter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ContextUtil;
 
 import java.lang.reflect.Method;
 
-public class BeanPropertySetter implements Setter<Object> {
+public class BeanPropertySetter implements Dictionary.Mutable<Object> {
 
     private Object bean;
     private Class<?> beanClass;

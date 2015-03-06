@@ -1,6 +1,6 @@
 package org.wikiup.servlet.impl.tp;
 
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
@@ -13,7 +13,7 @@ import java.util.Iterator;
 
 public class ForEachTagProcessor implements TagProcessor {
 
-    public void process(ServletProcessorContext context, TagProcessor parent, String body, Getter<?> parameters, StringWriter writer) {
+    public void process(ServletProcessorContext context, TagProcessor parent, String body, Dictionary<?> parameters, StringWriter writer) {
         BeanContainer modelProvider;
         String in = ValueUtil.toString(parameters.get("in"));
         String var = ValueUtil.toString(parameters.get("var"));

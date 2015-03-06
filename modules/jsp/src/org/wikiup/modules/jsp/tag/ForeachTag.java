@@ -3,7 +3,7 @@ package org.wikiup.modules.jsp.tag;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.ExpressionLanguage;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.modules.jsp.JspServletContainer;
@@ -21,7 +21,7 @@ public class ForeachTag extends BodyTagSupport {
     private ServletProcessorContext context;
     private Iterator<BeanContainer> iterator;
     private String body;
-    private ExpressionLanguage<Getter<?>, String> el = Wikiup.getModel(JspServletContainer.class).getEl();
+    private ExpressionLanguage<Dictionary<?>, String> el = Wikiup.getModel(JspServletContainer.class).getEl();
 
     public void setIn(String in) {
         this.in = in;

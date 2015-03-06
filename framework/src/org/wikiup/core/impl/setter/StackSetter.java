@@ -1,29 +1,29 @@
 package org.wikiup.core.impl.setter;
 
-import org.wikiup.core.inf.Setter;
+import org.wikiup.core.inf.Dictionary;
 
 import java.util.Stack;
 
-public class StackSetter<E> implements Setter<E> {
-    private Stack<Setter<E>> stack = new Stack<Setter<E>>();
+public class StackSetter<E> implements Dictionary.Mutable<E> {
+    private Stack<Dictionary.Mutable<E>> stack = new Stack<Dictionary.Mutable<E>>();
 
     public StackSetter() {
     }
 
-    public StackSetter(Setter<E> setter) {
-        push(setter);
+    public StackSetter(Dictionary.Mutable<E> mutable) {
+        push(mutable);
     }
 
-    public StackSetter(Setter<E> a1, Setter<E> a2) {
+    public StackSetter(Dictionary.Mutable<E> a1, Dictionary.Mutable<E> a2) {
         push(a1);
         push(a2);
     }
 
-    public void push(Setter<E> setter) {
-        stack.add(setter);
+    public void push(Dictionary.Mutable<E> mutable) {
+        stack.add(mutable);
     }
 
-    public Setter<E> pop() {
+    public Dictionary.Mutable<E> pop() {
         return stack.pop();
     }
 

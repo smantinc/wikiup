@@ -2,14 +2,14 @@ package org.wikiup.modules.groovy;
 
 import groovy.lang.GroovyShell;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.util.StringUtil;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class GroovyShellPool extends WikiupDynamicSingleton<GroovyShellPool> implements Getter<GroovyShell> {
+public class GroovyShellPool extends WikiupDynamicSingleton<GroovyShellPool> implements Dictionary<GroovyShell> {
     private static final String THREAD_LOCAL_NAMESPACE = "threadlocal";
 
     private GroovyShellContainer container;
@@ -51,7 +51,7 @@ public class GroovyShellPool extends WikiupDynamicSingleton<GroovyShellPool> imp
         return container != null ? container : (container = new GroovyShellContainer());
     }
 
-    static private class GroovyShellContainer implements Getter<GroovyShell>, Releasable {
+    static private class GroovyShellContainer implements Dictionary<GroovyShell>, Releasable {
         private Map<String, GroovyShell> container;
 
         public GroovyShell get(String name) {

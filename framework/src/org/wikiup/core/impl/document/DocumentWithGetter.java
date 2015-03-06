@@ -6,20 +6,20 @@ import org.wikiup.core.impl.iterator.IteratorWrapper;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Element;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
 
 import java.util.Iterator;
 
 public class DocumentWithGetter extends DocumentWrapper {
-    private Getter<?> getter;
+    private Dictionary<?> dictionary;
     private AttributeWithGetter attributeWithGetter;
     private ElementWithGetter element;
 
-    public DocumentWithGetter(Document doc, Getter<?> getter) {
+    public DocumentWithGetter(Document doc, Dictionary<?> dictionary) {
         super(doc);
-        this.getter = getter;
+        this.dictionary = dictionary;
     }
 
     @Override
@@ -32,7 +32,7 @@ public class DocumentWithGetter extends DocumentWrapper {
     @Override
     public org.wikiup.core.inf.Document getChild(String name) {
         Document child = super.getChild(name);
-        return child != null ? new DocumentWithGetter(child, getter) : null;
+        return child != null ? new DocumentWithGetter(child, dictionary) : null;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class DocumentWithGetter extends DocumentWrapper {
 
     @Override
     public Document getParentNode() {
-        return new DocumentWithGetter(super.getParentNode(), getter);
+        return new DocumentWithGetter(super.getParentNode(), dictionary);
     }
 
     @Override
@@ -87,7 +87,7 @@ public class DocumentWithGetter extends DocumentWrapper {
 
         @Override
         public Document next() {
-            return new DocumentWithGetter(super.next(), getter);
+            return new DocumentWithGetter(super.next(), dictionary);
         }
     }
 
@@ -130,11 +130,11 @@ public class DocumentWithGetter extends DocumentWrapper {
         }
 
         public String getName() {
-            return StringUtil.evaluateEL(super.getName(), getter);
+            return StringUtil.evaluateEL(super.getName(), dictionary);
         }
 
         public Object getObject() {
-            return StringUtil.evaluateEL(ValueUtil.toString(super.getObject()), getter);
+            return StringUtil.evaluateEL(ValueUtil.toString(super.getObject()), dictionary);
         }
     }
 }

@@ -2,7 +2,7 @@ package org.wikiup.modules.worms.imp.builder;
 
 import org.wikiup.core.exception.AttributeException;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
@@ -32,8 +32,8 @@ public class JoinSQLBuilder extends AbstractSQLBuilder {
     private StringBuilder whereClause = new StringBuilder();
     private String fieldConnector;
 
-    public JoinSQLBuilder(Document configure, WormsEntity origin, Getter<?> getter) {
-        super(configure, origin, getter);
+    public JoinSQLBuilder(Document configure, WormsEntity origin, Dictionary<?> dictionary) {
+        super(configure, origin, dictionary);
         this.configure = configure;
         this.fieldConnector = Documents.getAttributeValue(configure, "field-connector", ".");
     }

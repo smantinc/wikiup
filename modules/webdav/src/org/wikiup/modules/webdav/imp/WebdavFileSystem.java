@@ -5,7 +5,7 @@ import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.impl.document.DocumentImpl;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
@@ -19,7 +19,7 @@ import org.wikiup.servlet.beans.MimeTypes;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WebdavFileSystem extends WikiupDynamicSingleton<WebdavFileSystem> implements DocumentAware, Getter<FileSystemInf> {
+public class WebdavFileSystem extends WikiupDynamicSingleton<WebdavFileSystem> implements DocumentAware, Dictionary<FileSystemInf> {
     private DocumentImpl configure;
     private Map<String, FileSystemInf> fileSystems;
 

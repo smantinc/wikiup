@@ -3,9 +3,8 @@ package org.wikiup.servlet.impl.processor.text;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.context.MapContext;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.inf.Setter;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ContextUtil;
@@ -26,15 +25,15 @@ public class TemplateServletProcessor extends ResponseBufferResourceHandler impl
     final private static Pattern WIKIUP_PATTERN = Pattern.compile("<([^\\s:>]+:[^/\\s>]+)\\s*");
     final private static String[] WNDI_TAG_PROCESSORS = {"wk", "servlet", "tag"};
 
-    private Getter<TagProcessor> tags;
+    private Dictionary<TagProcessor> tags;
 
     public void process(ServletProcessorContext context) {
         StringWriter writer = context.getResponseWriter();
-        this.tags = Wikiup.getInstance().get(Getter.class, WNDI_TAG_PROCESSORS);
+        this.tags = Wikiup.getInstance().get(Dictionary.class, WNDI_TAG_PROCESSORS);
         process(context, this, context.getResponseText(), null, writer);
     }
 
-    public void process(ServletProcessorContext context, TagProcessor parent, String text, Getter<?> p, StringWriter writer) {
+    public void process(ServletProcessorContext context, TagProcessor parent, String text, Dictionary<?> p, StringWriter writer) {
         int offset = 0;
         Matcher matcher = WIKIUP_PATTERN.matcher(text);
         while(matcher.find(offset)) {
@@ -43,7 +42,7 @@ public class TemplateServletProcessor extends ResponseBufferResourceHandler impl
             writer.write(StringUtil.evaluateEL(text.substring(offset, matcher.start()), context));
             offset = searchToken(text, matcher.start(), '>');
             boolean closed = text.charAt(offset - 1) == '/';
-            Getter<?> params = getContextParameters(context, text.substring(matcher.end(), closed ? offset - 1 : offset));
+            Dictionary<?> params = getContextParameters(context, text.substring(matcher.end(), closed ? offset - 1 : offset));
             ProcessorContextModelContainer token = context.pushModelContainer();
             try {
                 if(closed) {
@@ -74,26 +73,26 @@ public class TemplateServletProcessor extends ResponseBufferResourceHandler impl
         writer.write(StringUtil.evaluateEL(text.substring(offset), context));
     }
 
-    private boolean doTagProcess(ServletProcessorContext context, String name, String body, Getter<?> params, StringWriter writer) {
+    private boolean doTagProcess(ServletProcessorContext context, String name, String body, Dictionary<?> params, StringWriter writer) {
         TagProcessor tag = tags.get(name);
         if(tag != null)
             tag.process(context, this, body, params, writer);
         return tag != null;
     }
 
-    private String getStringFromModelContainer(ServletProcessorContext context, String name, Getter<?> params) {
+    private String getStringFromModelContainer(ServletProcessorContext context, String name, Dictionary<?> params) {
         BeanContainer modelProvider = context.getModelContainer(name, params);
         Object value = modelProvider != null ? modelProvider.query(String.class) : null;
         return ValueUtil.toString(value, "");
     }
 
-    private Getter<?> getContextParameters(final Context<?, ?> context, String str) {
-        Getter<?> ret = Null.getInstance();
+    private Dictionary<?> getContextParameters(final Context<?, ?> context, String str) {
+        Dictionary<?> ret = Null.getInstance();
         if(!StringUtil.isEmpty(str)) {
             final Context<String, String> param = new MapContext<String>();
             String params[] = StringUtil.separate(str, "[^=\\s]+=(['\"]{1})[^'\"]*\\1");
             for(String line : params)
-                ContextUtil.parseNameValuePair(new Setter<String>() {
+                ContextUtil.parseNameValuePair(new Dictionary.Mutable<String>() {
                     public void set(String name, String value) {
                         param.set(StringUtil.trim(name, " \t"), dequote(value));
                     }
@@ -106,7 +105,7 @@ public class TemplateServletProcessor extends ResponseBufferResourceHandler impl
                         return str;
                     }
                 }, line, '=');
-            ret = new Getter<String>() {
+            ret = new Dictionary<String>() {
                 public String get(String name) {
                     return StringUtil.evaluateEL(param.get(name), context);
                 }

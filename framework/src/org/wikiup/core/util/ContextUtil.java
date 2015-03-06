@@ -7,29 +7,28 @@ import org.wikiup.core.impl.setter.BeanPropertySetter;
 import org.wikiup.core.impl.translator.TypeCastTranslator;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.ExpressionLanguage;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.inf.Setter;
 import org.wikiup.core.inf.Translator;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 public class ContextUtil {
-    static public String getString(Getter<?> getter, String name, String defValue) {
-        Object obj = getter.get(name);
+    static public String getString(Dictionary<?> dictionary, String name, String defValue) {
+        Object obj = dictionary.get(name);
         return obj != null ? obj.toString() : defValue;
     }
 
-    static public <E> E get(Getter<E> getter, String name) {
-        E obj = getter.get(name);
-        Assert.notNull(obj, AttributeException.class, getter, name);
+    static public <E> E get(Dictionary<E> dictionary, String name) {
+        E obj = dictionary.get(name);
+        Assert.notNull(obj, AttributeException.class, dictionary, name);
         return obj;
     }
 
-    static public <E> E get(Getter<E> getter, String name, E defValue) {
+    static public <E> E get(Dictionary<E> dictionary, String name, E defValue) {
         try {
-            E obj = getter.get(name);
+            E obj = dictionary.get(name);
             return obj != null ? obj : defValue;
         } catch(Exception ex) {
             return defValue;
@@ -45,68 +44,68 @@ public class ContextUtil {
         if(paths.length == 1)
             Interfaces.set(obj, paths[0], value);
         else {
-            Getter<Object> getter = Interfaces.cast(Getter.class, obj);
-            if(getter != null)
-                Interfaces.set(getProperty(getter, paths, paths.length - 1), paths[paths.length - 1], value);
+            Dictionary<Object> dictionary = Interfaces.cast(Dictionary.class, obj);
+            if(dictionary != null)
+                Interfaces.set(getProperty(dictionary, paths, paths.length - 1), paths[paths.length - 1], value);
         }
     }
 
-    static public Object getProperty(Getter<?> container, String path[]) {
+    static public Object getProperty(Dictionary<?> container, String path[]) {
         return getProperty(container, path, path.length, 0, null);
     }
 
-    static public Object getProperty(Getter<?> container, String path[], int depth) {
+    static public Object getProperty(Dictionary<?> container, String path[], int depth) {
         return getProperty(container, path, depth, 0, null);
     }
 
-    static public Object getProperty(Getter<?> container, String path[], int depth, int offset) {
+    static public Object getProperty(Dictionary<?> container, String path[], int depth, int offset) {
         return getProperty(container, path, depth, offset, null);
     }
 
-    static public Object getProperty(Getter<?> container, String path[], int depth, int offset, Translator<Getter<?>, Getter<?>> translator) {
+    static public Object getProperty(Dictionary<?> container, String path[], int depth, int offset, Translator<Dictionary<?>, Dictionary<?>> translator) {
         int i;
         Object obj = container;
         for(i = offset; i < depth; i++)
             if(!StringUtil.isEmpty(path[i])) {
                 obj = (translator != null ? translator.translate(container) : container).get(path[i]);
-                if(obj instanceof Getter)
-                    container = (Getter<?>) obj;
+                if(obj instanceof Dictionary)
+                    container = (Dictionary<?>) obj;
                 else if(i != depth - 1)
                     return null;
             }
         return obj;
     }
 
-    static public void setProperties(Document properties, Object obj, Getter<?> src) {
+    static public void setProperties(Document properties, Object obj, Dictionary<?> src) {
         BeanContainer mc = Interfaces.cast(BeanContainer.class, obj);
-        Setter<?> dest = mc != null ? mc.query(Setter.class) : Interfaces.cast(Setter.class, obj);
+        Dictionary.Mutable<?> dest = mc != null ? mc.query(Dictionary.Mutable.class) : Interfaces.cast(Dictionary.Mutable.class, obj);
         setProperties(properties, dest != null ? dest : new BeanPropertySetter(obj), src);
     }
 
-    static public void setProperties(Document properties, Setter<?> dest, Getter<?> src) {
+    static public void setProperties(Document properties, Dictionary.Mutable<?> dest, Dictionary<?> src) {
         if(properties != null)
             setProperties(properties.getChildren("property"), dest, src);
     }
 
-    static public void setProperties(Iterable<Document> iterable, Setter<?> dest, Getter<?> src) {
-        ExpressionLanguage<Getter<?>, Object> el = WikiupExpressionLanguage.getInstance();
+    static public void setProperties(Iterable<Document> iterable, Dictionary.Mutable<?> dest, Dictionary<?> src) {
+        ExpressionLanguage<Dictionary<?>, Object> el = WikiupExpressionLanguage.getInstance();
         for(Document property : iterable) {
             Object value = el.evaluate(src, Documents.getDocumentValue(property));
             if(value != null)
-                ((Setter<Object>) dest).set(Documents.getId(property), value);
+                ((Dictionary.Mutable<Object>) dest).set(Documents.getId(property), value);
         }
     }
 
-    static public boolean parseNameValuePair(Setter<String> setter, String line, char equalChar) {
-        return parseNameValuePair(setter, line, equalChar, false);
+    static public boolean parseNameValuePair(Dictionary.Mutable<String> mutable, String line, char equalChar) {
+        return parseNameValuePair(mutable, line, equalChar, false);
     }
 
-    static public boolean parseNameValuePair(Setter<String> setter, String line, char equalChar, boolean quoted) {
+    static public boolean parseNameValuePair(Dictionary.Mutable<String> mutable, String line, char equalChar, boolean quoted) {
         int pos = line.indexOf(equalChar);
         if(pos != -1) {
             String name = line.substring(0, pos);
             String value = line.substring(pos + 1);
-            setter.set(name.trim(), quoted ? StringUtil.trim(value, "'\"") : value.trim());
+            mutable.set(name.trim(), quoted ? StringUtil.trim(value, "'\"") : value.trim());
         }
         return pos != -1;
     }

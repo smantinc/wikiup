@@ -2,7 +2,7 @@ package org.wikiup.servlet.impl.context;
 
 import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.impl.mp.IterableModelProvider;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.servlet.ServletProcessorContext;
@@ -23,7 +23,7 @@ public class ParameterProcessorContext implements ProcessorContext, ServletProce
         this.context = context;
     }
 
-    public BeanContainer getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
         List<String> names = new ArrayList<String>();
         if("*".equals(name)) {
             String p = ValueUtil.toString(params.get("pattern"));

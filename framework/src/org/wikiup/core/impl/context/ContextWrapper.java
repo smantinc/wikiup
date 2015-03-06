@@ -1,48 +1,47 @@
 package org.wikiup.core.impl.context;
 
 import org.wikiup.core.impl.Null;
-import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.Setter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.ext.Context;
 
 public class ContextWrapper<G, S> implements Context<G, S> {
-    private Getter<G> getter;
-    private Setter<S> setter;
+    private Dictionary<G> dictionary;
+    private Mutable<S> mutable;
 
-    public ContextWrapper(Setter<S> setter) {
-        this(null, setter);
+    public ContextWrapper(Mutable<S> mutable) {
+        this(null, mutable);
     }
 
-    public ContextWrapper(Getter<G> getter) {
-        this(getter, null);
+    public ContextWrapper(Dictionary<G> dictionary) {
+        this(dictionary, null);
     }
 
-    public ContextWrapper(Getter<G> getter, Setter<S> setter) {
-        this.getter = getter != null ? getter : Null.getInstance();
-        this.setter = setter != null ? setter : Null.getInstance();
+    public ContextWrapper(Dictionary<G> dictionary, Mutable<S> mutable) {
+        this.dictionary = dictionary != null ? dictionary : Null.getInstance();
+        this.mutable = mutable != null ? mutable : Null.getInstance();
     }
 
     public G get(String name) {
-        return getter.get(name);
+        return dictionary.get(name);
     }
 
     public void set(String name, S value) {
-        setter.set(name, value);
+        mutable.set(name, value);
     }
 
-    public Getter<G> getGetter() {
-        return getter;
+    public Dictionary<G> getGetter() {
+        return dictionary;
     }
 
-    public Setter<S> getSetter() {
-        return setter;
+    public Mutable<S> getSetter() {
+        return mutable;
     }
 
-    public void setSetter(Setter<S> setter) {
-        this.setter = setter;
+    public void setSetter(Mutable<S> mutable) {
+        this.mutable = mutable;
     }
 
-    public void setGetter(Getter<G> getter) {
-        this.getter = getter;
+    public void setGetter(Dictionary<G> dictionary) {
+        this.dictionary = dictionary;
     }
 }

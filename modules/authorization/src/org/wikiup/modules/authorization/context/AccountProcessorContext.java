@@ -1,6 +1,6 @@
 package org.wikiup.modules.authorization.context;
 
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.core.util.Interfaces;
@@ -17,7 +17,7 @@ public class AccountProcessorContext implements ProcessorContext, ServletProcess
         account = AuthorizationUtil.getCurrentAccount(context);
     }
 
-    public BeanContainer getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
         return Interfaces.getModelContainer(ContextUtil.getBeanProperty(account, name));
     }
 

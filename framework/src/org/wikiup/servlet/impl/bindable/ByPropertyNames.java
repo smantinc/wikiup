@@ -3,19 +3,19 @@ package org.wikiup.servlet.impl.bindable;
 import org.wikiup.core.impl.attribute.BeanProperty;
 import org.wikiup.core.impl.iterable.BeanProperties;
 import org.wikiup.core.inf.Bindable;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 
 public class ByPropertyNames implements Bindable {
-    private Getter<?> getter;
+    private Dictionary<?> dictionary;
 
-    public ByPropertyNames(Getter<?> getter) {
-        this.getter = getter;
+    public ByPropertyNames(Dictionary<?> dictionary) {
+        this.dictionary = dictionary;
     }
 
     public void bind(Object object) {
         BeanProperties properties = new BeanProperties(object);
         for(BeanProperty property : properties) {
-            Object v = property.isSettable() ? getter.get(property.getName()) : null;
+            Object v = property.isSettable() ? dictionary.get(property.getName()) : null;
             if(v != null)
                 property.setObject(v);
         }

@@ -3,11 +3,11 @@ package org.wikiup.core.impl.wirable;
 import org.wikiup.core.impl.setter.BeanPropertySetter;
 import org.wikiup.core.impl.wrapper.WrapperImpl;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.ext.Wirable;
 import org.wikiup.core.util.ContextUtil;
 
-public class WireByConfigure<T> extends WrapperImpl<T> implements Wirable<T, Getter<?>> {
+public class WireByConfigure<T> extends WrapperImpl<T> implements Wirable<T, Dictionary<?>> {
     private Document configure;
     
     public WireByConfigure(T wrapped, Document configure) {
@@ -16,9 +16,9 @@ public class WireByConfigure<T> extends WrapperImpl<T> implements Wirable<T, Get
     }
 
     @Override
-    public T wire(Getter<?> getter) {
+    public T wire(Dictionary<?> dictionary) {
         if(configure != null)
-            ContextUtil.setProperties(configure, new BeanPropertySetter(wrapped), getter);
+            ContextUtil.setProperties(configure, new BeanPropertySetter(wrapped), dictionary);
         return wrapped;
     }
 }

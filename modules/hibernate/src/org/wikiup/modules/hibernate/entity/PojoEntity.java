@@ -4,7 +4,7 @@ import org.hibernate.Session;
 import org.hibernate.metadata.ClassMetadata;
 import org.wikiup.core.impl.attribute.BeanProperty;
 import org.wikiup.core.inf.Attribute;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.util.Assert;
@@ -40,7 +40,7 @@ public class PojoEntity implements EntityModel, BeanContainer, Releasable {
         return name;
     }
 
-    public EntityRelatives getRelatives(String name, Getter<?> getter) {
+    public EntityRelatives getRelatives(String name, Dictionary<?> dictionary) {
         return null;
     }
 

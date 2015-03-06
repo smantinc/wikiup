@@ -2,7 +2,7 @@ package org.wikiup.servlet.impl.context.env;
 
 import org.wikiup.core.impl.iterable.BeanPropertyNames;
 import org.wikiup.core.impl.iterable.IterableCollection;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.inf.ServletProcessorContextAware;
@@ -10,7 +10,7 @@ import org.wikiup.servlet.inf.ServletProcessorContextAware;
 import javax.servlet.http.HttpServletRequest;
 import java.util.Iterator;
 
-public class Request implements Getter<Object>, ServletProcessorContextAware, Iterable<String> {
+public class Request implements Dictionary<Object>, ServletProcessorContextAware, Iterable<String> {
     private ServletProcessorContext context;
 
     public void setServletProcessorContext(ServletProcessorContext context) {
@@ -28,8 +28,8 @@ public class Request implements Getter<Object>, ServletProcessorContextAware, It
         return ci.iterator();
     }
 
-    public Getter<String> getHeaders() {
-        return new Getter<String>() {
+    public Dictionary<String> getHeaders() {
+        return new Dictionary<String>() {
             public String get(String name) {
                 return context.getHeader(name);
             }

@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <beans>
-	<bean name="eval" class="org.wikiup.servlet.impl.context.expr.EvalExpressionGetter"/>
+	<bean name="eval" class="org.wikiup.servlet.impl.context.expr.EvalExpressionDictionary"/>
 </beans>

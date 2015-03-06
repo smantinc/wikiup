@@ -2,9 +2,9 @@ package org.wikiup.servlet.impl.context.env;
 
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupConfigure;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 
-public class Configure implements Getter<String> {
+public class Configure implements Dictionary<String> {
     private WikiupConfigure inst = Wikiup.getModel(WikiupConfigure.class);
 
     public String get(String name) {

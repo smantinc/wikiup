@@ -2,7 +2,7 @@ package org.wikiup.modules.velocity.context;
 
 import org.apache.velocity.context.Context;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.servlet.ServletProcessorContext;
@@ -24,9 +24,9 @@ public class WikiupVelocityContext implements Context {
             Document doc = mc.query(Document.class);
             if(doc != null)
                 return new org.wikiup.modules.velocity.context.WikiupDocumentVelocityContext(doc);
-            Getter<?> getter = mc.query(Getter.class);
-            if(getter != null)
-                return new org.wikiup.modules.velocity.context.WikiupAccessorVelocityContext(context, getter);
+            Dictionary<?> dictionary = mc.query(Dictionary.class);
+            if(dictionary != null)
+                return new org.wikiup.modules.velocity.context.WikiupAccessorVelocityContext(context, dictionary);
         }
         Object obj = context.getAttribute(s);
         return Util.toVelocityObject(s, obj != null ? obj : ContextUtil.get(context, s, null));

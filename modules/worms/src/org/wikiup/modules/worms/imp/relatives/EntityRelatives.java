@@ -3,14 +3,14 @@ package org.wikiup.modules.worms.imp.relatives;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.modules.worms.WormsEntity;
 
 public abstract class EntityRelatives extends org.wikiup.database.orm.EntityRelatives implements Releasable {
     private WormsEntity entity;
 
-    abstract public void init(Document desc, WormsEntity origin, Getter<?> parameters);
+    abstract public void init(Document desc, WormsEntity origin, Dictionary<?> parameters);
 
     public EntityRelatives(WormsEntity node) {
         this.entity = node;

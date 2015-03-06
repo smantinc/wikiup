@@ -11,14 +11,14 @@ import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.impl.iterable.BeanPropertyNames;
 import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.core.util.FileUtil;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
 
-public class ServletContextContainer extends WikiupDynamicSingleton<ServletContextContainer> implements Getter<Object>, Iterable<String> {
+public class ServletContextContainer extends WikiupDynamicSingleton<ServletContextContainer> implements Dictionary<Object>, Iterable<String> {
     private ServletContext servletContext;
 
     static public ServletContextContainer getInstance() {
@@ -39,8 +39,8 @@ public class ServletContextContainer extends WikiupDynamicSingleton<ServletConte
         return new ServletContextResource(StringUtil.connect("", uri, '/'));
     }
 
-    public Getter<String> getRealPath() {
-        return new Getter<String>() {
+    public Dictionary<String> getRealPath() {
+        return new Dictionary<String>() {
             public String get(String name) {
                 return getRealPath(name);
             }

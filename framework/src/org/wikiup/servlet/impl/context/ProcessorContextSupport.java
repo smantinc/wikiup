@@ -1,7 +1,7 @@
 package org.wikiup.servlet.impl.context;
 
 import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Translator;
 import org.wikiup.core.inf.Wrapper;
 import org.wikiup.core.util.ContextUtil;
@@ -23,7 +23,7 @@ public class ProcessorContextSupport implements ProcessorContext, Wrapper<Object
         return ContextUtil.getBeanProperty(instance, name);
     }
 
-    public BeanContainer getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
         return Interfaces.getModelContainer(ContextUtil.getBeanProperty(instance, name));
     }
 

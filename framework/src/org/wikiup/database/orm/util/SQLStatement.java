@@ -1,6 +1,6 @@
 package org.wikiup.database.orm.util;
 
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
@@ -35,14 +35,14 @@ public class SQLStatement extends SQLPhrase {
         variables.put(name, value);
     }
 
-    public String translate(final Getter<?> parameters, String sql) {
-        Getter<String> getter = new Getter<String>() {
+    public String translate(final Dictionary<?> parameters, String sql) {
+        Dictionary<String> dictionary = new Dictionary<String>() {
             public String get(String name) {
                 addParameter(name, ValueUtil.toString(parameters.get(name)));
                 return "?(" + name + ")";
             }
         };
-        return StringUtil.evaluateEL(sql, getter);
+        return StringUtil.evaluateEL(sql, dictionary);
     }
 
     public PreparedStatement getPreparedStatement(Connection conn) {
@@ -94,7 +94,7 @@ public class SQLStatement extends SQLPhrase {
 
     public String getEvaluatedSQL() {
         String plainSQL = getPlainSQL();
-        return variables.isEmpty() ? plainSQL : StringUtil.evaluateEL(plainSQL, new SQLParameterGetter(variables));
+        return variables.isEmpty() ? plainSQL : StringUtil.evaluateEL(plainSQL, new SQLParameterDictionary(variables));
     }
 
     public List<SQLPhrase> getPhrases() {
@@ -117,10 +117,10 @@ public class SQLStatement extends SQLPhrase {
         getWrappers().add(new SQLWrapper(prefix, suffix));
     }
 
-    private static class SQLParameterGetter implements Getter<String> {
+    private static class SQLParameterDictionary implements Dictionary<String> {
         private Map<String, ?> parameters;
 
-        public SQLParameterGetter(Map<String, ?> parameter) {
+        public SQLParameterDictionary(Map<String, ?> parameter) {
             parameters = parameter;
         }
 

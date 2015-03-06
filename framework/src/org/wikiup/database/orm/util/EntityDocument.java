@@ -3,10 +3,10 @@ package org.wikiup.database.orm.util;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.database.orm.inf.EntityModel;
 
-public class EntityDocument implements Document, Getter<Attribute> {
+public class EntityDocument implements Document, Dictionary<Attribute> {
     private EntityModel entity;
     private String name = "entity";
 

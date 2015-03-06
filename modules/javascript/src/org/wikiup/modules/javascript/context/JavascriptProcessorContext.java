@@ -10,13 +10,12 @@ import org.mozilla.javascript.UintMap;
 import org.mozilla.javascript.Undefined;
 import org.mozilla.javascript.UniqueTag;
 import org.mozilla.javascript.Wrapper;
-import org.wikiup.core.impl.getter.ModelContainerGetter;
-import org.wikiup.core.impl.getter.StackGetter;
+import org.wikiup.core.impl.getter.ModelContainerDictionary;
+import org.wikiup.core.impl.getter.StackDictionary;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.inf.Setter;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ContextUtil;
 import org.wikiup.core.util.Interfaces;
@@ -43,7 +42,7 @@ public class JavascriptProcessorContext implements ProcessorContext, DocumentAwa
         return jsToJava(obj, ctx);
     }
 
-    public BeanContainer getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
         return Interfaces.getModelContainer(get(name));
     }
 
@@ -52,14 +51,14 @@ public class JavascriptProcessorContext implements ProcessorContext, DocumentAwa
         if(script.exists()) {
             Reader reader = null;
             try {
-                Setter<Object> setter = new Setter<Object>() {
+                Mutable<Object> mutable = new Mutable<Object>() {
                     public void set(String name, Object obj) {
                         Object jsOut = Context.javaToJS(obj, scope);
                         ScriptableObject.putProperty(scope, name, jsOut);
                     }
                 };
 
-                ContextUtil.setProperties(desc, setter, new StackGetter<Object>().append(context, new StackGetter<Object>().append(context, new ModelContainerGetter(context.getModelContainer()))));
+                ContextUtil.setProperties(desc, mutable, new StackDictionary<Object>().append(context, new StackDictionary<Object>().append(context, new ModelContainerDictionary(context.getModelContainer()))));
 
                 reader = new FileReader(script);
                 ctx.evaluateReader(scope, reader, script.getName(), 1, null);

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <beans>
 	<bean name="datetime" class="org.wikiup.servlet.impl.context.util.DateTimeFormat"/>
-	<bean name="random" class="org.wikiup.servlet.impl.context.util.RandomContentGetter"/>
+	<bean name="random" class="org.wikiup.servlet.impl.context.util.RandomContentDictionary"/>
 	<bean name="encode" class="org.wikiup.servlet.impl.context.util.Encode"/>
 	<bean name="decode" class="org.wikiup.servlet.impl.context.util.Decode"/>
 </beans>

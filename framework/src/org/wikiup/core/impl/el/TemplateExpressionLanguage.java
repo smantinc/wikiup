@@ -5,7 +5,7 @@ import org.wikiup.core.exception.MalformedTemplateException;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.ExpressionLanguage;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class TemplateExpressionLanguage implements ExpressionLanguage<Getter<?>, Object>, DocumentAware {
+public class TemplateExpressionLanguage implements ExpressionLanguage<Dictionary<?>, Object>, DocumentAware {
     final static public char[] SELECTORS = {'!', '+', '?', '@'};
 
     private char token;
@@ -35,16 +35,16 @@ public class TemplateExpressionLanguage implements ExpressionLanguage<Getter<?>,
         variablePattern = getVariableNamePattern();
     }
 
-    public Object evaluate(Getter<?> context, String script) {
+    public Object evaluate(Dictionary<?> context, String script) {
         return isVariableToken(script) ? getVariable(replaceValue(trimVariableName(script, true), context), context) : replaceValue(script, context);
     }
 
-    private Object getVariable(String str, Getter<?> getter) {
+    private Object getVariable(String str, Dictionary<?> dictionary) {
         TokenTemplate token = new TokenTemplate(str, 0);
-        return token.selector != 0 ? getTokenObject(token, getter) : getter.get(str);
+        return token.selector != 0 ? getTokenObject(token, dictionary) : dictionary.get(str);
     }
 
-    private String replaceValue(String str, Getter<?> getter) {
+    private String replaceValue(String str, Dictionary<?> dictionary) {
         if(str != null) {
             StringBuilder buf = new StringBuilder();
             int headPos = 0, tailPos = 0;
@@ -59,7 +59,7 @@ public class TemplateExpressionLanguage implements ExpressionLanguage<Getter<?>,
                         TokenTemplate token = new TokenTemplate(str, headPos + 1);
                         buf.append(str.substring(tailPos, headPos));
                         headPos = tailPos = headPos + token.length + 1;
-                        buf.append(ValueUtil.toString(getTokenObject(token, getter), ""));
+                        buf.append(ValueUtil.toString(getTokenObject(token, dictionary), ""));
                     }
                 }
             }
@@ -69,43 +69,43 @@ public class TemplateExpressionLanguage implements ExpressionLanguage<Getter<?>,
         return null;
     }
 
-    private Object getTokenObject(TokenTemplate token, Getter<?> getter) {
+    private Object getTokenObject(TokenTemplate token, Dictionary<?> dictionary) {
         switch(token.selector) {
             case 0:
-                return getter.get(replaceValue(token.getToken(0), getter));
+                return dictionary.get(replaceValue(token.getToken(0), dictionary));
             case '!':
                 try {
-                    return getter.get(replaceValue(token.getToken(0), getter));
+                    return dictionary.get(replaceValue(token.getToken(0), dictionary));
                 } catch(Exception ex) {
                 }
-                return replaceValue(token.getToken(1, null), getter);
+                return replaceValue(token.getToken(1, null), dictionary);
             case '+':
                 try {
-                    Object obj = getter.get(replaceValue(token.getToken(0), getter));
+                    Object obj = dictionary.get(replaceValue(token.getToken(0), dictionary));
                     if(obj != null && StringUtil.isNotEmpty(obj.toString()))
                         return obj;
                 } catch(Exception ex1) {
                 }
-                return replaceValue(token.getToken(1, null), getter);
+                return replaceValue(token.getToken(1, null), dictionary);
             case '?':
                 try {
-                    String str = ValueUtil.toString(getter.get(replaceValue(token.getToken(0), getter)), null);
+                    String str = ValueUtil.toString(dictionary.get(replaceValue(token.getToken(0), dictionary)), null);
                     if(StringUtil.isNotEmpty(str) && ValueUtil.toBoolean(str, true) && ValueUtil.toInteger(str, -1) != 0)
-                        return replaceValue(token.getToken(1), getter);
+                        return replaceValue(token.getToken(1), dictionary);
                 } catch(Exception ex1) {
                 }
-                return replaceValue(token.getToken(2, null), getter);
+                return replaceValue(token.getToken(2, null), dictionary);
             case '@':
                 try {
-                    Object obj = getter.get(replaceValue(token.getToken(0), getter));
+                    Object obj = dictionary.get(replaceValue(token.getToken(0), dictionary));
                     int i;
                     if(obj != null)
                         for(i = 1; i < token.tokens.length; i += 2)
-                            if(obj.toString().equals(replaceValue(token.getToken(i), getter)))
-                                return replaceValue(token.getToken(i + 1), getter);
+                            if(obj.toString().equals(replaceValue(token.getToken(i), dictionary)))
+                                return replaceValue(token.getToken(i + 1), dictionary);
                 } catch(Exception ex1) {
                 }
-                return replaceValue(token.getToken(token.tokens.length - 1), getter);
+                return replaceValue(token.getToken(token.tokens.length - 1), dictionary);
         }
         return null;
     }

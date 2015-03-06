@@ -1,14 +1,14 @@
 package org.wikiup.core.impl.element;
 
 import org.wikiup.core.impl.Null;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class DomContainer<E> implements Getter<E> {
+public class DomContainer<E> implements Dictionary<E> {
     private Map<String, List<E>> groups = new HashMap<String, List<E>>();
     private List<E> objects = new ArrayList<E>();
 

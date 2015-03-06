@@ -2,7 +2,7 @@ package org.wikiup.servlet.ms;
 
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.XPath;
@@ -14,11 +14,11 @@ import java.util.Stack;
 public class ProcessorContextModelContainerStack implements ProcessorContext {
     private Stack<ProcessorContextModelContainer> contextStack = new Stack<ProcessorContextModelContainer>();
 
-    public BeanContainer getModelContainer(String name, Getter<?> params) {
+    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
         return getModelContainerFromStack(name, params);
     }
 
-    public BeanContainer getModelContainerFromStack(String name, Getter<?> params) {
+    public BeanContainer getModelContainerFromStack(String name, Dictionary<?> params) {
         int i;
         for(i = contextStack.size() - 1; i >= 0; i--) {
             ProcessorContextModelContainer container = contextStack.get(i);
@@ -29,7 +29,7 @@ public class ProcessorContextModelContainerStack implements ProcessorContext {
         return null;
     }
 
-    public Object getValueFromContextStack(String name, Getter<?> params) {
+    public Object getValueFromContextStack(String name, Dictionary<?> params) {
         int i = contextStack.size();
         Object value = getValueByXPath(name, params);
         while(value == null && i > 0)
@@ -37,7 +37,7 @@ public class ProcessorContextModelContainerStack implements ProcessorContext {
         return value;
     }
 
-    private Object getValueByXPath(String xpath, Getter<?> params) {
+    private Object getValueByXPath(String xpath, Dictionary<?> params) {
         XPath xp = new XPath(xpath);
         String cond = xp.getCondition();
         if(xp.isXPath() && cond != null) {

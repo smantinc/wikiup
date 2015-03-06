@@ -1,8 +1,8 @@
 package org.wikiup.servlet.impl.context.env;
 
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 
-public class URI extends ContextPath implements Getter<String> {
+public class URI extends ContextPath implements Dictionary<String> {
     @Override
     public String toString() {
         return context.getServletRequest().getRequestURI();

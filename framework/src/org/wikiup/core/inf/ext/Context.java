@@ -1,7 +1,6 @@
 package org.wikiup.core.inf.ext;
 
-import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.Setter;
+import org.wikiup.core.inf.Dictionary;
 
-public interface Context<G, S> extends Getter<G>, Setter<S> {
+public interface Context<G, S> extends Dictionary<G>, Dictionary.Mutable<S> {
 }

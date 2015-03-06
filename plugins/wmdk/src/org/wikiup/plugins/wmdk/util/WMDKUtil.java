@@ -6,7 +6,7 @@ import org.wikiup.core.bean.WikiupPluginManager;
 import org.wikiup.core.bootstrap.Bootstrap;
 import org.wikiup.core.impl.document.DocumentWithGetter;
 import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Getter;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.FileUtil;
 import org.wikiup.core.util.StringUtil;
@@ -78,7 +78,7 @@ public class WMDKUtil {
         return doc;
     }
 
-    public static void decorateEntityDescription(Document target, String manager, Getter<?> parameters) {
+    public static void decorateEntityDescription(Document target, String manager, Dictionary<?> parameters) {
         Document node = Documents.findMatchesChild(ENTITY_MANAGER_DECORATIONS, "manager", manager);
         if(node != null) {
             boolean mergeConfigure = Documents.getAttributeBooleanValue(node, "merge-configure", true);
