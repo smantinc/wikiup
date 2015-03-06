@@ -23,5 +23,6 @@
 	<translator name="document" from-class="org.wikiup.core.inf.Document">
 		<item class="to-string" to-class="java.lang.String"/>
 		<item class="org.wikiup.core.impl.dictionary.DictionaryByDocument$TRANSLATOR" to-class="org.wikiup.core.inf.Dictionary"/>
+		<item class="org.wikiup.core.impl.iterable.IterableByDocument$TRANSLATOR" to-class="java.lang.Iterable"/>
 	</translator>
 </beans>
