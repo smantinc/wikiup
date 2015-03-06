@@ -20,11 +20,22 @@ public class TypeCastTranslator extends WikiupDynamicSingleton<TypeCastTranslato
     public <F, T> T cast(Class<T> toClass, F from) {
         Map<Class<?>, Translator<Object, Object>> toFilter = typeTranslators.get(Interfaces.box(toClass));
         if(toFilter != null) {
-            Class<?> fromClass = Interfaces.box(from.getClass());
-            Translator<Object, Object> translator = toFilter.get(Interfaces.box(fromClass));
+            Translator<Object, Object> translator = lookupTranslator(Interfaces.box(from.getClass()), toFilter);
             return translator != null ? Interfaces.cast(toClass, translator.translate(from)) : null;
         }
         return null;
+    }
+
+    private Translator<Object, Object> lookupTranslator(Class<?> fromClass, Map<Class<?>, Translator<Object, Object>> toFilter) {
+        Translator<Object, Object> translator = toFilter.get(fromClass);
+        if(translator != null)
+            return translator;
+        for(Class<?> inf : fromClass.getInterfaces()) {
+            translator = toFilter.get(inf);
+            if(translator != null)
+                return translator;
+        }
+        return Object.class.equals(fromClass) ? null : lookupTranslator(fromClass.getSuperclass(), toFilter);
     }
 
     @Override
@@ -42,7 +53,7 @@ public class TypeCastTranslator extends WikiupDynamicSingleton<TypeCastTranslato
             addTranslator(fromClass, toClass, translator);
         }
     }
-    
+
     private void addTranslator(Class<?> fromClass, Class<?> toClass, Translator<Object, Object> translator) {
         Map<Class<?>, Translator<Object, Object>> translators = typeTranslators.get(toClass);
         if(translators == null)

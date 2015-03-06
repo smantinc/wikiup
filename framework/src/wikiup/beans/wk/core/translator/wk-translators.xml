@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans class="org.wikiup.core.impl.translator.TypeCastTranslator">
 	<translator name="string" from-class="java.lang.String">
-		<item class="filter:value-of" to-class="java.lang.Integer"/>
-		<item class="filter:value-of" to-class="java.lang.Long"/>
-		<item class="filter:value-of" to-class="java.lang.Double"/>
-		<item class="filter:value-of" to-class="java.lang.Boolean"/>
-		<item class="filter:value-of" to-class="java.sql.Date"/>
-		<item class="filter:value-of" to-class="java.sql.Timestamp"/>
+		<item class="value-of" to-class="java.lang.Integer"/>
+		<item class="value-of" to-class="java.lang.Long"/>
+		<item class="value-of" to-class="java.lang.Double"/>
+		<item class="value-of" to-class="java.lang.Boolean"/>
+		<item class="value-of" to-class="java.sql.Date"/>
+		<item class="value-of" to-class="java.sql.Timestamp"/>
 	</translator>
 	<translator name="integer" from-class="java.lang.Integer">
-		<item class="filter:to-string" to-class="java.lang.String"/>
+		<item class="to-string" to-class="java.lang.String"/>
 	</translator>
 	<translator name="long" from-class="java.lang.Long">
-		<item class="filter:to-string" to-class="java.lang.String"/>
+		<item class="to-string" to-class="java.lang.String"/>
 	</translator>
 	<translator name="double" from-class="java.lang.Double">
-		<item class="filter:to-string" to-class="java.lang.String"/>
+		<item class="to-string" to-class="java.lang.String"/>
 	</translator>
 	<translator name="boolean" from-class="java.lang.Boolean">
-		<item class="filter:to-string" to-class="java.lang.String"/>
+		<item class="to-string" to-class="java.lang.String"/>
 	</translator>
 	<translator name="document" from-class="org.wikiup.core.inf.Document">
-		<item class="filter:to-string" to-class="java.lang.String"/>
+		<item class="to-string" to-class="java.lang.String"/>
 		<item class="org.wikiup.core.impl.dictionary.DictionaryByDocument$TRANSLATOR" to-class="org.wikiup.core.inf.Dictionary"/>
 	</translator>
 </beans>
