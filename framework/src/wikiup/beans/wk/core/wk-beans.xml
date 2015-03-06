@@ -5,26 +5,4 @@
 	<bean name="bean-container" class="org.wikiup.core.bean.WikiupBeanContainer">
 		<bean name="singletons" class="org.wikiup.core.bean.WikiupDynamicSingletons$WIRABLE"/>
 	</bean>
-	<bean name="filters" class="org.wikiup.core.impl.translator.TypeCastTranslator">
-		<filter name="string" from-class="java.lang.String">
-			<filter class="filter:value-of" to-class="java.lang.Integer"/>
-			<filter class="filter:value-of" to-class="java.lang.Long"/>
-			<filter class="filter:value-of" to-class="java.lang.Double"/>
-			<filter class="filter:value-of" to-class="java.lang.Boolean"/>
-			<filter class="filter:value-of" to-class="java.sql.Date"/>
-			<filter class="filter:value-of" to-class="java.sql.Timestamp"/>
-		</filter>
-		<filter name="integer" from-class="java.lang.Integer">
-			<filter class="filter:to-string" to-class="java.lang.String"/>
-		</filter>
-		<filter name="long" from-class="java.lang.Long">
-			<filter class="filter:to-string" to-class="java.lang.String"/>
-		</filter>
-		<filter name="double" from-class="java.lang.Double">
-			<filter class="filter:to-string" to-class="java.lang.String"/>
-		</filter>
-		<filter name="boolean" from-class="java.lang.Boolean">
-			<filter class="filter:to-string" to-class="java.lang.String"/>
-		</filter>
-	</bean>
 </beans>
