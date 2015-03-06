@@ -1,10 +1,14 @@
 package org.wikiup.servlet.impl.processor.text;
 
+import java.io.StringWriter;
+import java.util.HashMap;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.Null;
-import org.wikiup.core.impl.context.MapContext;
-import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ContextUtil;
@@ -16,10 +20,6 @@ import org.wikiup.servlet.impl.rl.ResponseBufferResourceHandler;
 import org.wikiup.servlet.inf.TagProcessor;
 import org.wikiup.servlet.inf.ext.ResourceHandler;
 import org.wikiup.servlet.ms.ProcessorContextModelContainer;
-
-import java.io.StringWriter;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class TemplateServletProcessor extends ResponseBufferResourceHandler implements ResourceHandler, TagProcessor {
     final private static Pattern WIKIUP_PATTERN = Pattern.compile("<([^\\s:>]+:[^/\\s>]+)\\s*");
@@ -89,12 +89,12 @@ public class TemplateServletProcessor extends ResponseBufferResourceHandler impl
     private Dictionary<?> getContextParameters(final Context<?, ?> context, String str) {
         Dictionary<?> ret = Null.getInstance();
         if(!StringUtil.isEmpty(str)) {
-            final Context<String, String> param = new MapContext<String>();
+            final HashMap<String, String> param = new HashMap<String, String>();
             String params[] = StringUtil.separate(str, "[^=\\s]+=(['\"]{1})[^'\"]*\\1");
             for(String line : params)
                 ContextUtil.parseNameValuePair(new Dictionary.Mutable<String>() {
                     public void set(String name, String value) {
-                        param.set(StringUtil.trim(name, " \t"), dequote(value));
+                        param.put(StringUtil.trim(name, " \t"), dequote(value));
                     }
 
                     private String dequote(String str) {
@@ -128,8 +128,7 @@ public class TemplateServletProcessor extends ResponseBufferResourceHandler impl
         return pos < len ? pos : -1;
     }
 
-    private int searchMarkupClosePosition(String text, int offset, String name) {
-        String markup = name;
+    private int searchMarkupClosePosition(String text, int offset, String markup) {
         int pos = 0, depth = 1;
         final int len = markup.length();
         while(depth > 0) {

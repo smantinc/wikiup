@@ -17,10 +17,10 @@ import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.mp.GenericModelProvider;
 import org.wikiup.core.impl.translator.TypeCastTranslator;
 import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.ExceptionHandler;
-import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.Wirable;
 
@@ -115,6 +115,7 @@ public class Interfaces {
         return eh != null ? eh.handle(ex) : false;
     }
 
+    @Deprecated
     public static BeanContainer getModelContainer(Object obj) {
         return obj != null ? new GenericModelProvider(obj) : null;
     }

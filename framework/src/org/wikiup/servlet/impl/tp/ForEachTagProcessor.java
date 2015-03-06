@@ -12,7 +12,6 @@ import java.io.StringWriter;
 import java.util.Iterator;
 
 public class ForEachTagProcessor implements TagProcessor {
-
     public void process(ServletProcessorContext context, TagProcessor parent, String body, Dictionary<?> parameters, StringWriter writer) {
         BeanContainer modelProvider;
         String in = ValueUtil.toString(parameters.get("in"));
