@@ -1,8 +1,9 @@
 package org.wikiup.core.impl.mp;
 
-import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Document;
 
+@Deprecated
 public class GenericModelProvider implements BeanContainer {
     private BeanContainer modelProvider;
 

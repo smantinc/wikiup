@@ -10,6 +10,7 @@ import org.wikiup.servlet.inf.ProcessorContext;
 import org.wikiup.servlet.inf.ServletProcessorContextAware;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Iterator;
 import java.util.List;
@@ -36,8 +37,7 @@ public class ParameterProcessorContext implements ProcessorContext, ServletProce
         } else {
             String[] values = context.getServletRequest().getParameterValues(name);
             if(values != null)
-                for(String value : values)
-                    names.add(value);
+                Collections.addAll(names, values);
         }
         return names.size() > 0 ? new IterableModelProvider(names) : null;
     }

@@ -7,7 +7,6 @@ import org.wikiup.core.Constants;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;
 import org.wikiup.core.inf.Getter;
-import org.wikiup.core.inf.ext.Wirable;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 
@@ -30,13 +29,12 @@ public class BeanFactory implements Getter<Factory<?>> {
 
     public <T> T build(Class<T> clazz, Document document) {
         Object bean = buildByNamespace(clazz, document);
-        Wirable.ByDocument<T> wirable = Interfaces.cast(Wirable.ByDocument.class, bean);
-        return wirable != null ? wirable.wire(document) : Interfaces.cast(clazz, bean);
+        return Interfaces.wire(clazz, bean, document);
     }
 
-    public Object buildByNamespace(Object namespace, Document name) {
+    public Object buildByNamespace(Object namespace, Document doc) {
         Factory<?> factory = factories.get(namespace);
-        return factory != null ? factory.build(name) : defaultFactory.build(name);
+        return factory != null ? factory.build(doc) : defaultFactory.build(doc);
     }
 
     public void loadFactories(Document desc, Factory<Factory<?>> builder) {

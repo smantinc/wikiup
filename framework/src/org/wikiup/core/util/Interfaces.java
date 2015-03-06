@@ -15,16 +15,14 @@ import org.wikiup.core.bean.WikiupClassLoader;
 import org.wikiup.core.exception.WikiupRuntimeException;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.mp.GenericModelProvider;
-import org.wikiup.core.impl.translator.TypeCastFilter;
+import org.wikiup.core.impl.translator.TypeCastTranslator;
 import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.inf.Decorator;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.ExceptionHandler;
 import org.wikiup.core.inf.Getter;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.Setter;
-import org.wikiup.core.inf.Translator;
 import org.wikiup.core.inf.ext.Wirable;
 
 public class Interfaces {
@@ -85,14 +83,9 @@ public class Interfaces {
         return getter != null ? getter.get(name) : null;
     }
 
-    public static <T> T wire(Class<T> clazz, Object obj, Document doc) {
-        Wirable.ByDocument<T> wirable = cast(Wirable.ByDocument.class, obj);
-        return wirable != null ? wirable.wire(doc) : Interfaces.cast(clazz, obj);
-    }
-
-    public static <T> T decorate(T obj, Object decorator, Document doc) {
-        Decorator<T> decoratorImpl = cast(Decorator.class, decorator);
-        return decoratorImpl != null ? decoratorImpl.decorate(obj, doc) : obj;
+    public static <T, P> T wire(Class<T> clazz, Object obj, P wire) {
+        Wirable<T, P> wirable = cast(Wirable.class, obj);
+        return wirable != null ? wirable.wire(wire) : Interfaces.cast(clazz, obj);
     }
 
     public static <E> boolean set(Object object, String name, E value) {
@@ -106,12 +99,6 @@ public class Interfaces {
         Releasable releasable = cast(Releasable.class, object);
         if(releasable != null)
             releasable.release();
-    }
-
-    public static <E, R> R filter(Object obj, E from, R def) {
-        if(obj instanceof Translator)
-            return ((Translator<E, R>) obj).translate(from);
-        return def;
     }
 
     public static void releaseAll(Iterable<?> iterable) {
@@ -241,7 +228,7 @@ public class Interfaces {
     }
 
     public static Object[] typeCast(Class<?>[] paramTypes, Object[] args) {
-        TypeCastFilter typeCast = Wikiup.getModel(TypeCastFilter.class);
+        TypeCastTranslator typeCast = Wikiup.getModel(TypeCastTranslator.class);
         Object[] params = new Object[args.length];
         int i;
         for(i = 0; i < args.length; i++)

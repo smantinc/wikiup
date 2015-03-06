@@ -3,7 +3,7 @@ package org.wikiup.modules.ibatis.entity;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.attribute.BeanProperty;
 import org.wikiup.core.impl.iterable.BeanProperties;
-import org.wikiup.core.impl.translator.TypeCastFilter;
+import org.wikiup.core.impl.translator.TypeCastTranslator;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Interfaces;
@@ -57,7 +57,7 @@ public class PojoEntity extends AbstractEntity implements BeanContainer {
         public void setObject(Object obj) {
             Class<?> propertyClass = property.getPropertyClass();
             if(obj != null && !propertyClass.equals(obj.getClass()))
-                obj = Wikiup.getModel(TypeCastFilter.class).cast(propertyClass, obj);
+                obj = Wikiup.getModel(TypeCastTranslator.class).cast(propertyClass, obj);
             property.setObject(obj);
         }
 
