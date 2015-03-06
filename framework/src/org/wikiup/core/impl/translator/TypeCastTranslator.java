@@ -18,10 +18,10 @@ public class TypeCastTranslator extends WikiupDynamicSingleton<TypeCastTranslato
     }
 
     public <F, T> T cast(Class<T> toClass, F from) {
-        Map<Class<?>, Translator<Object, Object>> toFilter = typeTranslators.get(Interfaces.box(from.getClass()));
+        Map<Class<?>, Translator<Object, Object>> toFilter = typeTranslators.get(Interfaces.box(toClass));
         if(toFilter != null) {
-            toClass = (Class<T>) Interfaces.box(toClass);
-            Translator<Object, Object> translator = toFilter.get(Interfaces.box(toClass));
+            Class<?> fromClass = Interfaces.box(from.getClass());
+            Translator<Object, Object> translator = toFilter.get(Interfaces.box(fromClass));
             return translator != null ? Interfaces.cast(toClass, translator.translate(from)) : null;
         }
         return null;
@@ -30,18 +30,24 @@ public class TypeCastTranslator extends WikiupDynamicSingleton<TypeCastTranslato
     @Override
     public void aware(Document desc) {
         for(Document node : desc.getChildren()) {
-            Class<?> clazz = Interfaces.getClass(Documents.getDocumentValue(node, "from-class", null));
-            typeTranslators.put(clazz, loadTranslators(node));
+            Class<?> fromClass = Interfaces.getClass(Documents.getDocumentValue(node, "from-class", null));
+            loadTranslators(fromClass, node);
         }
     }
 
-    private Map<Class<?>, Translator<Object, Object>> loadTranslators(Document node) {
-        Map<Class<?>, Translator<Object, Object>> filters = new HashMap<Class<?>, Translator<Object, Object>>();
+    private void loadTranslators(Class<?> fromClass, Document node) {
         for(Document item : node.getChildren()) {
-            Class<?> clazz = Interfaces.getClass(Documents.getDocumentValue(item, "to-class", null));
-            filters.put(clazz, Wikiup.getInstance().getBean(Translator.class, item));
+            Class<?> toClass = Interfaces.getClass(Documents.getDocumentValue(item, "to-class", null));
+            Translator<Object, Object> translator = Wikiup.getInstance().getBean(Translator.class, item);
+            addTranslator(fromClass, toClass, translator);
         }
-        return filters;
+    }
+    
+    private void addTranslator(Class<?> fromClass, Class<?> toClass, Translator<Object, Object> translator) {
+        Map<Class<?>, Translator<Object, Object>> translators = typeTranslators.get(toClass);
+        if(translators == null)
+            typeTranslators.put(toClass, translators = new HashMap<Class<?>, Translator<Object, Object>>());
+        translators.put(fromClass, translator);
     }
 
     public void firstBuilt() {
