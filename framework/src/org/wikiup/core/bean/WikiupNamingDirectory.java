@@ -7,7 +7,7 @@ import org.wikiup.core.impl.wndi.DefaultWikiupNamingDirectory;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.Assert;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
 
@@ -25,11 +25,11 @@ public class WikiupNamingDirectory extends WikiupDynamicSingleton<WikiupNamingDi
     }
 
     public Object get(String[] path) {
-        return Interfaces.get(ContextUtil.getProperty(entries, path, path.length));
+        return Interfaces.get(Dictionaries.getProperty(entries, path, path.length));
     }
 
     public Object get(String[] path, int depth) {
-        return Interfaces.get(ContextUtil.getProperty(entries, path, depth));
+        return Interfaces.get(Dictionaries.getProperty(entries, path, depth));
     }
 
     public void set(String name, Object obj) {

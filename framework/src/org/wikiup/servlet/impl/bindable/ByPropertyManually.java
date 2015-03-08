@@ -6,7 +6,7 @@ import org.wikiup.core.inf.Bindable;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Dictionary;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 
 public class ByPropertyManually extends DictionaryWrapper<Object> implements Bindable, DocumentAware {
     private Document properties;
@@ -17,7 +17,7 @@ public class ByPropertyManually extends DictionaryWrapper<Object> implements Bin
 
     public void bind(Object object) {
         if(properties != null)
-            ContextUtil.setProperties(properties, new BeanPropertySetter(object), this);
+            Dictionaries.setProperties(properties, new BeanPropertySetter(object), this);
     }
 
     public void aware(Document desc) {

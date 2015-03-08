@@ -15,7 +15,7 @@ import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.Assert;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 
@@ -36,7 +36,7 @@ public class QuartzScheduleHandler implements ResourceHandler {
             Iterator<Document> properties = jobNode.getChildren(Constants.Attributes.PROPERTY).iterator();
             JobDataMap map = new JobDataMap();
             if(properties.hasNext()) {
-                ContextUtil.setProperties(jobNode, new MapContext<Object>(map), Null.getInstance());
+                Dictionaries.setProperties(jobNode, new MapContext<Object>(map), Null.getInstance());
                 jobDetail.setJobDataMap(map);
             }
             try {

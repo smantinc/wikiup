@@ -1,7 +1,7 @@
 package org.wikiup.modules.authorization.imp.principal;
 
 import org.wikiup.core.inf.Dictionary;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.modules.authorization.inf.Principal;
@@ -69,10 +69,10 @@ public class PasswordSecuredPrincipal implements Principal, Dictionary.Mutable<O
     }
 
     public Object get(String name) {
-        return ContextUtil.getBeanProperty(this, name);
+        return Dictionaries.getBeanProperty(this, name);
     }
 
     public void set(String name, Object obj) {
-        ContextUtil.setBeanProperty(this, name, obj);
+        Dictionaries.setBeanProperty(this, name, obj);
     }
 }

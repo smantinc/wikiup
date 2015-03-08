@@ -11,7 +11,7 @@ import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.Assert;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.servlet.ServletProcessorContext;
@@ -92,7 +92,7 @@ public class TemplateServletProcessor extends ResponseBufferResourceHandler impl
             final HashMap<String, String> param = new HashMap<String, String>();
             String params[] = StringUtil.separate(str, "[^=\\s]+=(['\"]{1})[^'\"]*\\1");
             for(String line : params)
-                ContextUtil.parseNameValuePair(new Dictionary.Mutable<String>() {
+                Dictionaries.parseNameValuePair(new Dictionary.Mutable<String>() {
                     public void set(String name, String value) {
                         param.put(StringUtil.trim(name, " \t"), dequote(value));
                     }

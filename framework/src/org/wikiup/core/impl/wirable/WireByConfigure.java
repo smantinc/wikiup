@@ -5,7 +5,7 @@ import org.wikiup.core.impl.wrapper.WrapperImpl;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.ext.Wirable;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 
 public class WireByConfigure<T> extends WrapperImpl<T> implements Wirable<T, Dictionary<?>> {
     private Document configure;
@@ -18,7 +18,7 @@ public class WireByConfigure<T> extends WrapperImpl<T> implements Wirable<T, Dic
     @Override
     public T wire(Dictionary<?> dictionary) {
         if(configure != null)
-            ContextUtil.setProperties(configure, new BeanPropertySetter(wrapped), dictionary);
+            Dictionaries.setProperties(configure, new BeanPropertySetter(wrapped), dictionary);
         return wrapped;
     }
 }

@@ -8,7 +8,7 @@ import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.modules.ruby.util.RubyUtil;
 import org.wikiup.servlet.ServletProcessorContext;
@@ -34,7 +34,7 @@ public class RubyProcessorContext implements ProcessorContext, DocumentAware, Se
         scriptingContainer.clear();
         if(script.exists()) {
             Dictionary<Object> dictionary = new StackDictionary<Object>().append(context, new ModelContainerDictionary(context.getModelContainer()));
-            ContextUtil.setProperties(desc, new Mutable<Object>() {
+            Dictionaries.setProperties(desc, new Mutable<Object>() {
                 public void set(String name, Object obj) {
                     scriptingContainer.put(name, obj);
                 }

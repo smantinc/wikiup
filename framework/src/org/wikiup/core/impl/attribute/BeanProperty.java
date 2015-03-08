@@ -1,7 +1,7 @@
 package org.wikiup.core.impl.attribute;
 
 import org.wikiup.core.inf.Attribute;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 
 public class BeanProperty implements Attribute {
     private Object instance;
@@ -28,19 +28,19 @@ public class BeanProperty implements Attribute {
     }
 
     public Object getObject() {
-        return ContextUtil.getBeanProperty(instance, name);
+        return Dictionaries.getBeanProperty(instance, name);
     }
 
     public void setObject(Object obj) {
-        ContextUtil.setBeanProperty(instance, name, obj);
+        Dictionaries.setBeanProperty(instance, name, obj);
     }
 
     public boolean isGettable() {
-        return ContextUtil.getBeanPropertyGetMethod(instance.getClass(), name) != null;
+        return Dictionaries.getBeanPropertyGetMethod(instance.getClass(), name) != null;
     }
 
     public boolean isSettable() {
-        return ContextUtil.getBeanPropertySetMethod(instance.getClass(), name, null) != null;
+        return Dictionaries.getBeanPropertySetMethod(instance.getClass(), name, null) != null;
     }
 
     public Class<?> getPropertyClass() {

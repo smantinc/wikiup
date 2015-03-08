@@ -4,7 +4,7 @@ import org.apache.velocity.context.Context;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.servlet.ServletProcessorContext;
 
 public class WikiupVelocityContext implements Context {
@@ -29,7 +29,7 @@ public class WikiupVelocityContext implements Context {
                 return new org.wikiup.modules.velocity.context.WikiupAccessorVelocityContext(context, dictionary);
         }
         Object obj = context.getAttribute(s);
-        return Util.toVelocityObject(s, obj != null ? obj : ContextUtil.get(context, s, null));
+        return Util.toVelocityObject(s, obj != null ? obj : Dictionaries.get(context, s, null));
     }
 
     public Object[] getKeys() {

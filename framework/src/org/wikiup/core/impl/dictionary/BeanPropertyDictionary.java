@@ -1,7 +1,7 @@
 package org.wikiup.core.impl.dictionary;
 
 import org.wikiup.core.inf.Dictionary;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 
 public class BeanPropertyDictionary implements Dictionary<Object> {
     private Object bean;
@@ -15,6 +15,6 @@ public class BeanPropertyDictionary implements Dictionary<Object> {
     }
 
     public Object get(String name) {
-        return ContextUtil.getBeanProperty(bean, name);
+        return Dictionaries.getBeanProperty(bean, name);
     }
 }

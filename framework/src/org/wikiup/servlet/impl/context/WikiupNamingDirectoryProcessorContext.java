@@ -8,7 +8,7 @@ import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Translator;
 import org.wikiup.core.util.Assert;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
@@ -33,7 +33,7 @@ public class WikiupNamingDirectoryProcessorContext implements ProcessorContext, 
         String[] path = StringUtil.splitNamespaces(name);
         if(path.length < 2)
             return Interfaces.getModelContainer(get(name));
-        ProcessorModelContainer mc = Interfaces.cast(ProcessorModelContainer.class, ContextUtil.getProperty(getDirectory(), path, path.length - 1));
+        ProcessorModelContainer mc = Interfaces.cast(ProcessorModelContainer.class, Dictionaries.getProperty(getDirectory(), path, path.length - 1));
         if(mc != null)
             return mc.getModelContainer(path[path.length - 1], params);
         Object object = getContextAwaredObject(path);
@@ -51,8 +51,8 @@ public class WikiupNamingDirectoryProcessorContext implements ProcessorContext, 
 
     private Object getContextAwaredObject(String[] path) {
         if(context != null)
-            return context.awaredBy(ContextUtil.getProperty(getDirectory(), path, path.length, 0, new LookupFilter()));
-        return ContextUtil.getProperty(getDirectory(), path);
+            return context.awaredBy(Dictionaries.getProperty(getDirectory(), path, path.length, 0, new LookupFilter()));
+        return Dictionaries.getProperty(getDirectory(), path);
     }
 
     private Dictionary<?> getDirectory() {

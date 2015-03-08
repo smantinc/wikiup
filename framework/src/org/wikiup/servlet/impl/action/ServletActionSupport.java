@@ -12,7 +12,7 @@ import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ClassIdentity;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.impl.bindable.ByPropertyAutomatically;
@@ -38,7 +38,7 @@ public class ServletActionSupport implements ServletAction {
 
     public void doAction(ServletProcessorContext context, Document doc) {
         String entry = context.getContextAttribute(doc, "entry", context.getHandlerParameter('!'));
-        String handler = entry != null ? ContextUtil.getPropertyName(entry, false) : null;
+        String handler = entry != null ? Dictionaries.getPropertyName(entry, false) : null;
         if(handler != null)
             try {
                 ByPropertyAutomatically bindable = new ByPropertyAutomatically(new WikiupBeanDictionary(), Wikiup.getModel(WikiupBeanContainer.class));
@@ -81,7 +81,7 @@ public class ServletActionSupport implements ServletAction {
     private SupportedHandler getSupportedHandler(String handler, ServletProcessorContext context, Document desc) {
         BeanContainer mc = context.getModelContainer();
         for(Method m : instance.getClass().getMethods()) {
-            if(m.getName().equals(handler) || m.getName().equals(ContextUtil.getPropertyName("do-" + handler, false))) {
+            if(m.getName().equals(handler) || m.getName().equals(Dictionaries.getPropertyName("do-" + handler, false))) {
                 List<Object> parameters = new ArrayList<Object>();
                 for(Class<?> argClass : m.getParameterTypes()) {
                     Object param;

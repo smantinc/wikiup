@@ -2,7 +2,7 @@ package org.wikiup.servlet.inf.ext;
 
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.servlet.ServletProcessorContext;
@@ -33,10 +33,10 @@ public abstract class ContextMethodSupport implements ProcessorModelContainer, S
     }
 
     protected int getIntegerParameter(Dictionary<?> params, String name, int def) {
-        return ValueUtil.toInteger(ContextUtil.getString(params, name, null), def);
+        return ValueUtil.toInteger(Dictionaries.getString(params, name, null), def);
     }
 
     protected boolean getBooleanParameter(Dictionary<?> params, String name, boolean def) {
-        return ValueUtil.toBoolean(ContextUtil.getString(params, name, null), def);
+        return ValueUtil.toBoolean(Dictionaries.getString(params, name, null), def);
     }
 }

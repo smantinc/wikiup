@@ -3,6 +3,7 @@ package org.wikiup.core.impl.dictionary;
 import org.wikiup.core.inf.Dictionary;
 
 import java.util.Collection;
+import java.util.Collections;
 
 public class DictionaryCollection<E> implements Dictionary<E> {
     private Collection<Dictionary<E>> collection;
@@ -18,8 +19,7 @@ public class DictionaryCollection<E> implements Dictionary<E> {
     }
 
     public DictionaryCollection<E> append(Dictionary<E>... dictionaries) {
-        for(Dictionary<E> g : dictionaries)
-            collection.add(g);
+        Collections.addAll(collection, dictionaries);
         return this;
     }
 

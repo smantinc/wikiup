@@ -7,7 +7,7 @@ import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Assert;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.database.orm.Entity;
@@ -71,7 +71,7 @@ public class EntityProcessorContext implements ProcessorContext, ServletProcesso
         try {
             context.setAttribute(name, entity);
             entityNames.add(name);
-            ContextUtil.setProperties(node, entity, new StackDictionary<Object>().append(this, this.context));
+            Dictionaries.setProperties(node, entity, new StackDictionary<Object>().append(this, this.context));
         } catch(Exception ex) {
             if(ignore)
                 context.setAttribute(name, new NullEntity());

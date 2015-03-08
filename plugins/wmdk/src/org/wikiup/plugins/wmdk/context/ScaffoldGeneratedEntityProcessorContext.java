@@ -4,7 +4,7 @@ import org.wikiup.core.impl.dictionary.BeanPropertyDictionary;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Assert;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.FileUtil;
 import org.wikiup.core.util.StringUtil;
@@ -26,7 +26,7 @@ public class ScaffoldGeneratedEntityProcessorContext extends ProcessorContextSup
 
     @Override
     public Object get(String name) {
-        return ContextUtil.getBeanProperty(entityMetadata, name);
+        return Dictionaries.getBeanProperty(entityMetadata, name);
     }
 
     public List<Dictionary<Object>> getFields() {

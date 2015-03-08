@@ -4,7 +4,7 @@ import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.util.Base64Coder;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.modules.authorization.inf.AuthorizationInf;
@@ -30,7 +30,7 @@ public class BasicHttpAuthorization implements AuthorizationInf, DocumentAware, 
                 map.put("name", authorization.substring(0, pos));
                 map.put("domain", domain);
                 map.put("password", authorization.substring(pos + 1));
-                ContextUtil.setProperties(configure, principal, new MapContext<String>(map));
+                Dictionaries.setProperties(configure, principal, new MapContext<String>(map));
             }
         }
         return principal.validate();

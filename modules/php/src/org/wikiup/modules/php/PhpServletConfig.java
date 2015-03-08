@@ -5,7 +5,7 @@ import org.wikiup.core.bean.WikiupNamingDirectory;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.servlet.beans.ServletContextContainer;
 
 import javax.servlet.ServletConfig;
@@ -31,6 +31,6 @@ public class PhpServletConfig extends MapContext<String> implements ServletConfi
     }
 
     public void aware(Document desc) {
-        ContextUtil.setProperties(desc, this, WikiupNamingDirectory.getInstance());
+        Dictionaries.setProperties(desc, this, WikiupNamingDirectory.getInstance());
     }
 }

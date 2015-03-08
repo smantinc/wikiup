@@ -8,7 +8,7 @@ import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.Assert;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
@@ -42,7 +42,7 @@ public class NamespaceProcessorContext implements ProcessorContext, ServletProce
     public Object get(String name) {
         String path[] = StringUtil.splitNamespaces(name);
         ProcessorContext ctx = getNamespace(path[0]);
-        return ctx != null ? ContextUtil.getProperty(ctx, path, path.length, 1) : ctx;
+        return ctx != null ? Dictionaries.getProperty(ctx, path, path.length, 1) : ctx;
     }
 
     public void set(String name, Object value) {

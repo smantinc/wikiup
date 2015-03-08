@@ -2,7 +2,7 @@ package org.wikiup.core.impl.setter;
 
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Assert;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 
 import java.lang.reflect.Method;
 
@@ -21,7 +21,7 @@ public class BeanPropertySetter implements Dictionary.Mutable<Object> {
     }
 
     public void set(String name, Object obj) {
-        Method method = ContextUtil.getBeanPropertySetMethod(beanClass, name, obj);
+        Method method = Dictionaries.getBeanPropertySetMethod(beanClass, name, obj);
         try {
             if(method != null)
                 method.invoke(bean, obj);

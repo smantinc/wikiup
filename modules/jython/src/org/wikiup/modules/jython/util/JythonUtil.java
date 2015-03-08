@@ -4,7 +4,7 @@ import org.python.core.PyObject;
 import org.python.util.PythonInterpreter;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Dictionary;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
@@ -26,7 +26,7 @@ public class JythonUtil {
     }
 
     static public void prepareScriptContext(final PythonInterpreter interpreter, Dictionary<?> context, Document desc) {
-        ContextUtil.setProperties(desc, new Dictionary.Mutable<Object>() {
+        Dictionaries.setProperties(desc, new Dictionary.Mutable<Object>() {
             public void set(String name, Object object) {
                 interpreter.set(name, object);
             }

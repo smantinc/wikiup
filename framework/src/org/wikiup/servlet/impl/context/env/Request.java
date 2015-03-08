@@ -3,7 +3,7 @@ package org.wikiup.servlet.impl.context.env;
 import org.wikiup.core.impl.iterable.BeanPropertyNames;
 import org.wikiup.core.impl.iterable.IterableCollection;
 import org.wikiup.core.inf.Dictionary;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.inf.ServletProcessorContextAware;
 
@@ -18,8 +18,8 @@ public class Request implements Dictionary<Object>, ServletProcessorContextAware
     }
 
     public Object get(String name) {
-        Object obj = ContextUtil.getBeanProperty(this, name);
-        return obj != null ? obj : ContextUtil.getBeanProperty(context.getServletRequest(), name);
+        Object obj = Dictionaries.getBeanProperty(this, name);
+        return obj != null ? obj : Dictionaries.getBeanProperty(context.getServletRequest(), name);
     }
 
     public Iterator<String> iterator() {

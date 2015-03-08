@@ -17,7 +17,7 @@ import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Assert;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StreamUtil;
 import org.wikiup.servlet.ServletProcessorContext;
@@ -58,7 +58,7 @@ public class JavascriptProcessorContext implements ProcessorContext, DocumentAwa
                     }
                 };
 
-                ContextUtil.setProperties(desc, mutable, new StackDictionary<Object>().append(context, new StackDictionary<Object>().append(context, new ModelContainerDictionary(context.getModelContainer()))));
+                Dictionaries.setProperties(desc, mutable, new StackDictionary<Object>().append(context, new StackDictionary<Object>().append(context, new ModelContainerDictionary(context.getModelContainer()))));
 
                 reader = new FileReader(script);
                 ctx.evaluateReader(scope, reader, script.getName(), 1, null);

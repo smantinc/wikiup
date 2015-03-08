@@ -31,7 +31,7 @@ import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.Assert;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.FileUtil;
 import org.wikiup.core.util.Interfaces;
@@ -106,11 +106,11 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
     }
 
     public void setAttribute(String name, Object obj) {
-        ContextUtil.setProperty(varContext, StringUtil.splitNamespaces(name), obj);
+        Dictionaries.setProperty(varContext, StringUtil.splitNamespaces(name), obj);
     }
 
     public Object getAttribute(String name) {
-        return ContextUtil.getProperty(varContext, StringUtil.splitNamespaces(name));
+        return Dictionaries.getProperty(varContext, StringUtil.splitNamespaces(name));
     }
 
     public void setRequestURI(String uri) {
@@ -202,7 +202,7 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
 
     private void doSetHeader(Document headers) {
         if(headers != null && headerSetter != null)
-            ContextUtil.setProperties(headers, headerSetter, this);
+            Dictionaries.setProperties(headers, headerSetter, this);
     }
 
     public void setContentType(String value) {
@@ -284,9 +284,9 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
         if(path.length == 1)
             setAttribute(name, value);
         else {
-            ContextUtil.setProperty(globalContext, path, value);
-            ContextUtil.setProperty(servletScope, path, value);
-            ContextUtil.setProperty(requestScope, path, value);
+            Dictionaries.setProperty(globalContext, path, value);
+            Dictionaries.setProperty(servletScope, path, value);
+            Dictionaries.setProperty(requestScope, path, value);
         }
     }
 
@@ -344,11 +344,11 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
     }
 
     public void setProperties(Document properties, Mutable<?> dest) {
-        ContextUtil.setProperties(properties, dest, this);
+        Dictionaries.setProperties(properties, dest, this);
     }
 
     public void setContextProperties(Document properties, Entity entity, Dictionary<?> dictionary) {
-        ContextUtil.setProperties(properties, entity, dictionary);
+        Dictionaries.setProperties(properties, entity, dictionary);
     }
 
     public void setContextProperties(Document properties, Entity entity) {
@@ -359,7 +359,7 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
         Context<String, String> attributes = new MapContext<String>();
         for(Attribute attr : node.getAttributes())
             attributes.set(attr.getName(), StringUtil.evaluateEL(ValueUtil.toString(attr), this));
-        ContextUtil.setProperties(node, attributes, this);
+        Dictionaries.setProperties(node, attributes, this);
         return attributes;
     }
 
@@ -412,7 +412,7 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
             String lines[] = queryString.split("&");
             Mutable<Object> mutable = new MapContext<Object>(extraParameter);
             for(String line : lines)
-                ContextUtil.parseNameValuePair((Mutable) mutable, line, '=');
+                Dictionaries.parseNameValuePair((Mutable) mutable, line, '=');
         }
     }
 

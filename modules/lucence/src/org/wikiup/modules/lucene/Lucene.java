@@ -18,7 +18,7 @@ import org.wikiup.core.impl.setter.BeanPropertySetter;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Dictionary;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Documents;
 import org.wikiup.modules.lucene.util.LuceneDocument;
 
@@ -144,6 +144,6 @@ public class Lucene extends WikiupDynamicSingleton<Lucene> {
     public void aware(Document desc) {
         Dictionary.Mutable<Object> mutable = new BeanPropertySetter(this);
         WikiupNamingDirectory wnd = Wikiup.getModel(WikiupNamingDirectory.class);
-        ContextUtil.setProperties(desc, mutable, wnd);
+        Dictionaries.setProperties(desc, mutable, wnd);
     }
 }

@@ -15,7 +15,7 @@ import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.Context;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.servlet.ServletProcessorContext;
@@ -83,7 +83,7 @@ public class VariableProcessorContext implements ProcessorContext, ServletProces
 
         public Object get(String name) {
             Object attr = session != null ? session.getAttribute(name) : null;
-            return attr != null ? attr : ContextUtil.getBeanProperty(session, name);
+            return attr != null ? attr : Dictionaries.getBeanProperty(session, name);
         }
 
         public void set(String name, Object obj) {

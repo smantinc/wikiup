@@ -13,7 +13,7 @@ import org.wikiup.core.impl.iterable.BeanPropertyNames;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.ext.Resource;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.FileUtil;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
@@ -59,7 +59,7 @@ public class ServletContextContainer extends WikiupDynamicSingleton<ServletConte
     }
 
     public Object get(String name) {
-        return ContextUtil.getBeanProperty(this, name);
+        return Dictionaries.getBeanProperty(this, name);
     }
 
     public Iterator<String> iterator() {

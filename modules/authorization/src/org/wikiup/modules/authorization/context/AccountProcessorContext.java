@@ -2,7 +2,7 @@ package org.wikiup.modules.authorization.context;
 
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.modules.authorization.AuthorizationUtil;
 import org.wikiup.modules.authorization.inf.Principal;
@@ -18,7 +18,7 @@ public class AccountProcessorContext implements ProcessorContext, ServletProcess
     }
 
     public BeanContainer getModelContainer(String name, Dictionary<?> params) {
-        return Interfaces.getModelContainer(ContextUtil.getBeanProperty(account, name));
+        return Interfaces.getModelContainer(Dictionaries.getBeanProperty(account, name));
     }
 
     public Object get(String name) {

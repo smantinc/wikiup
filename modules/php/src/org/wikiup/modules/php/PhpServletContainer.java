@@ -5,7 +5,7 @@ import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.impl.iterable.BeanPropertyNames;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.Context;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -20,11 +20,11 @@ public class PhpServletContainer extends WikiupDynamicSingleton<PhpServletContai
     }
 
     public Object get(String name) {
-        return ContextUtil.getBeanProperty(this, name);
+        return Dictionaries.getBeanProperty(this, name);
     }
 
     public void set(String name, Object obj) {
-        ContextUtil.setBeanProperty(this, name, obj);
+        Dictionaries.setBeanProperty(this, name, obj);
     }
 
     public Iterator<String> iterator() {

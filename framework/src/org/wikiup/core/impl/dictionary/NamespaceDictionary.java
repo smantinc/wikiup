@@ -3,7 +3,7 @@ package org.wikiup.core.impl.dictionary;
 import org.wikiup.core.exception.NamespaceException;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Assert;
-import org.wikiup.core.util.ContextUtil;
+import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.StringUtil;
 
 import java.util.HashMap;
@@ -42,7 +42,7 @@ public class NamespaceDictionary implements Dictionary<Object>, Iterable<String>
         String[] path = StringUtil.splitNamespaces(name);
         Dictionary<?> dictionary = getNamespace(path[0]);
         Assert.isTrue(dictionary != null || mute, NamespaceException.class, name);
-        return dictionary != null ? ContextUtil.getProperty(dictionary, path, path.length, 1) : null;
+        return dictionary != null ? Dictionaries.getProperty(dictionary, path, path.length, 1) : null;
     }
 
     public Iterator<String> iterator() {
