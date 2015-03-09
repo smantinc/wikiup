@@ -1,16 +1,17 @@
 package org.wikiup.servlet.ms;
 
+import java.util.Iterator;
+import java.util.Stack;
+
 import org.wikiup.core.impl.Null;
-import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Dictionary;
+import org.wikiup.core.inf.Document;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.XPath;
 import org.wikiup.servlet.inf.ProcessorContext;
 
-import java.util.Iterator;
-import java.util.Stack;
-
+@Deprecated
 public class ProcessorContextModelContainerStack implements ProcessorContext {
     private Stack<ProcessorContextModelContainer> contextStack = new Stack<ProcessorContextModelContainer>();
 
