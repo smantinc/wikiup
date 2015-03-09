@@ -38,6 +38,7 @@ public class ActionUtil {
     }
 
     private static void doActionList(ServletProcessorContext context, Document node) {
+/*
         if(node.getName().equals("foreach")) {
             BeanContainer mc = context.getModelContainer(Documents.getAttributeValue(node, "in"), context.loadContextAttributes(node));
             String key = Documents.getAttributeValue(node, "key", null);
@@ -48,7 +49,8 @@ public class ActionUtil {
                 doActionNode(context, node, null);
             }
         } else
-            doActionNode(context, node, getAction(node));
+*/
+        doActionNode(context, node, getAction(node));
     }
 
     private static void doActionNode(ServletProcessorContext context, Document node, ServletAction action) {
