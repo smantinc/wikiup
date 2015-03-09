@@ -1,7 +1,7 @@
 package org.wikiup.modules.ibatis.entity;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.impl.translator.TypeCastTranslator;
+import org.wikiup.core.bean.WikiupTypeTranslator;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.util.ValueUtil;
 
@@ -48,7 +48,7 @@ public class MapEntity extends AbstractEntity {
 
         public void setObject(Object obj) {
             Object org = map.get(name);
-            map.put(name, (org != null && obj != null && !org.getClass().equals(obj.getClass())) ? Wikiup.getModel(TypeCastTranslator.class).cast(org.getClass(), obj) : obj);
+            map.put(name, (org != null && obj != null && !org.getClass().equals(obj.getClass())) ? Wikiup.getModel(WikiupTypeTranslator.class).cast(org.getClass(), obj) : obj);
         }
 
         @Override

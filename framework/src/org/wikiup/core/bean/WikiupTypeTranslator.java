@@ -1,16 +1,15 @@
-package org.wikiup.core.impl.translator;
+package org.wikiup.core.bean;
 
 import java.util.HashMap;
 import java.util.Map;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Translator;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 
-public class TypeCastTranslator extends WikiupDynamicSingleton<TypeCastTranslator> implements Translator<Object, Object> {
+public class WikiupTypeTranslator extends WikiupDynamicSingleton<WikiupTypeTranslator> implements Translator<Object, Object> {
     private Map<Class<?>, Map<Class<?>, Translator<Object, Object>>> typeTranslators;
 
     public Object translate(Object object) {

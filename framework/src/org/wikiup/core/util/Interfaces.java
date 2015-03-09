@@ -15,7 +15,7 @@ import org.wikiup.core.bean.WikiupClassLoader;
 import org.wikiup.core.exception.WikiupRuntimeException;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.mp.GenericModelProvider;
-import org.wikiup.core.impl.translator.TypeCastTranslator;
+import org.wikiup.core.bean.WikiupTypeTranslator;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Document;
@@ -228,7 +228,7 @@ public class Interfaces {
     }
 
     public static Object[] typeCast(Class<?>[] paramTypes, Object[] args) {
-        TypeCastTranslator typeCast = Wikiup.getModel(TypeCastTranslator.class);
+        WikiupTypeTranslator typeCast = Wikiup.getModel(WikiupTypeTranslator.class);
         Object[] params = new Object[args.length];
         int i;
         for(i = 0; i < args.length; i++)

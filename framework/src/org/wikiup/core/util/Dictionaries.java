@@ -4,7 +4,7 @@ import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupExpressionLanguage;
 import org.wikiup.core.exception.AttributeException;
 import org.wikiup.core.impl.setter.BeanPropertySetter;
-import org.wikiup.core.impl.translator.TypeCastTranslator;
+import org.wikiup.core.bean.WikiupTypeTranslator;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.ExpressionLanguage;
 import org.wikiup.core.inf.Dictionary;
@@ -128,7 +128,7 @@ public class Dictionaries {
             if(method != null) {
                 Class<?> toClass = method.getParameterTypes()[0];
                 if(value != null && !toClass.isAssignableFrom(value.getClass()))
-                    value = Wikiup.getModel(TypeCastTranslator.class).cast(toClass, value);
+                    value = Wikiup.getModel(WikiupTypeTranslator.class).cast(toClass, value);
                 method.invoke(instance, value);
             }
         } catch(Exception ex) {
