@@ -38,18 +38,6 @@ public class ActionUtil {
     }
 
     private static void doActionList(ServletProcessorContext context, Document node) {
-/*
-        if(node.getName().equals("foreach")) {
-            BeanContainer mc = context.getModelContainer(Documents.getAttributeValue(node, "in"), context.loadContextAttributes(node));
-            String key = Documents.getAttributeValue(node, "key", null);
-            Iterable<?> iterable = mc != null ? mc.query(Iterable.class) : Null.getInstance();
-            for(Object v : iterable) {
-                if(key != null)
-                    context.set(key, v);
-                doActionNode(context, node, null);
-            }
-        } else
-*/
         doActionNode(context, node, getAction(node));
     }
 
