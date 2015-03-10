@@ -66,7 +66,7 @@
 		<item name="default" class="org.wikiup.servlet.impl.processor.DefaultServletProcessor"/>
 	</factory>
 	<factory style="translator:org.wikiup.servlet.impl.context.ProcessorContextSupport$TRANSLATOR" name="processor-context" interface="org.wikiup.servlet.inf.ProcessorContext">
-		<item name="namespace" class="org.wikiup.servlet.impl.context.NamespaceProcessorContext"/>
+		<item name="namespace" class="org.wikiup.servlet.impl.context.NamespaceProcessorContext$WIRABLE"/>
 		<item name="entity" class="org.wikiup.servlet.impl.context.EntityProcessorContext"/>
 		<item name="cookie" class="org.wikiup.servlet.impl.context.VariableProcessorContext$ByCookie"/>
 		<item name="parameter" class="org.wikiup.servlet.impl.context.ParameterProcessorContext"/>

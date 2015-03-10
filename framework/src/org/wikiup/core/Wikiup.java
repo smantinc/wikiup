@@ -66,6 +66,10 @@ public class Wikiup implements Context<Object, Object>, Releasable {
         return beanFactory.build(clazz, doc);
     }
 
+    public <T, P> T getBean(Class<T> clazz, Document doc, P wire) {
+        return beanFactory.build(clazz, doc, wire);
+    }
+    
     @Deprecated
     public BeanContainer getModelProvider(Class<?> inf, Document doc) {
         Object obj = getBean(inf, doc);

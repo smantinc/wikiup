@@ -4,12 +4,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.wikiup.core.Constants;
-import org.wikiup.core.Wikiup;
-import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.ext.Context;
+import org.wikiup.core.inf.ext.Wirable;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Documents;
@@ -23,6 +22,13 @@ import org.wikiup.servlet.util.ProcessorContexts;
 public class NamespaceProcessorContext implements ProcessorContext, ProcessorContext.ByParameters, ServletProcessorContextAware, Context<Object, Object>, DocumentAware {
     private Map<String, ProcessorContext> contexts = new HashMap<String, ProcessorContext>();
     private ServletProcessorContext context;
+
+    public NamespaceProcessorContext() {
+    }
+
+    public NamespaceProcessorContext(ServletProcessorContext context) {
+        this.context = context;
+    }
 
     public void setServletProcessorContext(ServletProcessorContext context) {
         this.context = context;
@@ -63,20 +69,19 @@ public class NamespaceProcessorContext implements ProcessorContext, ProcessorCon
         for(Document node : desc.getChildren()) {
             String name = Documents.ensureAttributeValue(node, Constants.Attributes.NAME);
             ProcessorContext obj;
-            BeanContainer mc = null;
-            if(context != null) {
-                mc = context.buildProcessorContextModelContainer(node);
-                obj = mc.query(ProcessorContext.class);
-                Assert.notNull(obj, IllegalArgumentException.class, name);
-            } else
-                obj = Wikiup.getInstance().getBean(ProcessorContext.class, node);
+            Assert.notNull(context, IllegalStateException.class);
+            obj = context.buildProcessorContext(node);
+            Assert.notNull(obj, IllegalArgumentException.class, name);
             append(name, obj);
-            if(context != null)
-                context.awaredBy(obj);
-            if(mc != null)
-                Interfaces.initialize(mc, node);
-            else
-                Interfaces.initialize(obj, node);
+            context.awaredBy(obj);
+            Interfaces.initialize(obj, node);
+        }
+    }
+
+    public static final class WIRABLE implements Wirable<NamespaceProcessorContext, ServletProcessorContext> {
+        @Override
+        public NamespaceProcessorContext wire(ServletProcessorContext context) {
+            return new NamespaceProcessorContext(context);
         }
     }
 }

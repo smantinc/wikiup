@@ -4,7 +4,6 @@ import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.document.MergedDocument;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.modules.authorization.inf.Principal;
@@ -87,10 +86,12 @@ public class MergeFileSystem implements FileSystemInf, DocumentAware, ServletPro
     }
 
     private FileSystemInf getFileSystem(Document node) {
-        BeanContainer mc = node != null ? Wikiup.getInstance().getModelProvider(FileSystemInf.class, node) : null;
-        context.awaredBy(mc);
-        Interfaces.initialize(mc, node);
-        return mc != null ? mc.query(FileSystemInf.class) : null;
+        FileSystemInf bean = node != null ? Wikiup.getInstance().getBean(FileSystemInf.class, node) : null;
+        if(bean != null) {
+            context.awaredBy(bean);
+            Interfaces.initialize(bean, node);
+        }
+        return bean;
     }
 
     public void setServletProcessorContext(ServletProcessorContext context) {

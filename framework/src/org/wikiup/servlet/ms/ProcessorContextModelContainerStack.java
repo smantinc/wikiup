@@ -58,10 +58,6 @@ public class ProcessorContextModelContainerStack implements ProcessorContext {
         return get(name, null);
     }
 
-    public Iterator<BeanContainer> getIterator(String name) {
-        return contextStack.empty() ? Null.getInstance() : contextStack.peek().getIterator(name);
-    }
-
     public ProcessorContextModelContainer push(ProcessorContextModelContainer token) {
         return contextStack.push(token);
     }

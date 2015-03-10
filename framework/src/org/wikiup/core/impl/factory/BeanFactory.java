@@ -32,6 +32,11 @@ public class BeanFactory implements Dictionary<Factory<?>> {
         return Interfaces.wire(clazz, bean, document);
     }
 
+    public <T, P> T build(Class<T> clazz, Document document, P wire) {
+        Object bean = buildByNamespace(clazz, document);
+        return Interfaces.wire(clazz, bean, wire);
+    }
+    
     public Object buildByNamespace(Object namespace, Document doc) {
         Factory<?> factory = factories.get(namespace);
         return factory != null ? factory.build(doc) : defaultFactory.build(doc);

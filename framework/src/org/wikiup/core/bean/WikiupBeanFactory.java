@@ -36,6 +36,10 @@ public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory>
         return beanFactory.build(clazz, desc);
     }
 
+    public <T, P> T build(Class<T> clazz, Document desc, P wire) {
+        return beanFactory.build(clazz, desc, wire);
+    }
+
     @Deprecated
     public <E> E build(Class<E> clazz, String namespace, String name) {
         return Interfaces.cast(clazz, beanFactory.buildByNamespace(namespace, new IdentityDocument(Null.getInstance(), name)));
@@ -55,21 +59,21 @@ public class WikiupBeanFactory extends WikiupDynamicSingleton<WikiupBeanFactory>
 
     private static class DefaultObjectClass implements Factory<Object> {
         private BeanFactory beanFactory;
-        
+
         public DefaultObjectClass(BeanFactory beanFactory) {
             this.beanFactory = beanFactory;
         }
-        
+
         @Override
         public Object build(Document desc) {
             ClassIdentity classIdentity = ClassIdentity.obtain(desc);
             return beanFactory.buildByNamespace(classIdentity.getNamespace(), new IdentityDocument(desc, classIdentity.getName()));
         }
     }
-    
+
     private static class IdentityDocument extends DocumentWrapper {
         private String className;
-        
+
         public IdentityDocument(Document doc, String className) {
             super(doc);
             this.className = className;

@@ -24,9 +24,9 @@ import org.wikiup.core.impl.releasable.TrashTin;
 import org.wikiup.core.impl.setter.StackSetter;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.ExceptionHandler;
-import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.inf.ext.Resource;
@@ -46,7 +46,6 @@ import org.wikiup.servlet.exception.ServiceNotImplementException;
 import org.wikiup.servlet.impl.NullProcessor;
 import org.wikiup.servlet.impl.context.CompositeProcessorContext;
 import org.wikiup.servlet.impl.context.NamespaceProcessorContext;
-import org.wikiup.servlet.impl.context.ProcessorContextSupport;
 import org.wikiup.servlet.impl.context.WikiupNamingDirectoryProcessorContext;
 import org.wikiup.servlet.impl.eh.ServletExceptionHandler;
 import org.wikiup.servlet.inf.ProcessorContext;
@@ -230,10 +229,11 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
         requestScope.init(this, getRequestContextConf());
     }
 
-    public BeanContainer buildProcessorContextModelContainer(Document desc) {
+    public ProcessorContext buildProcessorContext(Document desc) {
         if(desc != null) {
-            BeanContainer mc = Wikiup.getInstance().getModelProvider(ProcessorContext.class, desc);
-            return new ProcessorContextSupportedModelProvider(mc);
+            ProcessorContext ctx = Wikiup.getInstance().getBean(ProcessorContext.class, desc, this);
+            putToTrashTin(ctx);
+            return ctx;
         }
         return null;
     }
@@ -513,15 +513,14 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
             this.configure = configure;
             for(Document node : configure.getChildren(Constants.Elements.CONTEXT)) {
                 String name = Documents.getId(node);
-                BeanContainer mc = context.buildProcessorContextModelContainer(node);
-                ProcessorContext ctx = mc != null ? mc.query(ProcessorContext.class) : null;
+                ProcessorContext ctx = context.buildProcessorContext(node);
                 Assert.notNull(ctx);
                 context.awaredBy(ctx);
                 if(name != null)
                     namespaces.append(name, ctx);
                 else
                     append(ctx);
-                Interfaces.initialize(mc, node);
+                Interfaces.initialize(ctx, node);
             }
         }
 
@@ -550,25 +549,6 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
 
         public void set(String name, Object obj) {
             namespaces.set(name, obj);
-        }
-    }
-
-    private class ProcessorContextSupportedModelProvider implements BeanContainer {
-        private BeanContainer modelProvider;
-
-        public ProcessorContextSupportedModelProvider(BeanContainer modelProvider) {
-            this.modelProvider = modelProvider;
-        }
-
-        public <E> E query(Class<E> clazz) {
-            if(clazz.equals(ProcessorContext.class)) {
-                Object obj = modelProvider.query(Object.class);
-                putToTrashTin(obj);
-                if(clazz.isInstance(obj))
-                    return clazz.cast(obj);
-                return clazz.cast(new ProcessorContextSupport(obj));
-            }
-            return modelProvider.query(clazz);
         }
     }
 

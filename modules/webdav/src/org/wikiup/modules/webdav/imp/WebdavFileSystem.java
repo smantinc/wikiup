@@ -1,12 +1,14 @@
 package org.wikiup.modules.webdav.imp;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.impl.document.DocumentImpl;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Dictionary;
-import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.modules.authorization.AuthorizationManager;
@@ -15,9 +17,6 @@ import org.wikiup.modules.webdav.inf.FileInf;
 import org.wikiup.modules.webdav.inf.FileSystemInf;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.beans.MimeTypes;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class WebdavFileSystem extends WikiupDynamicSingleton<WebdavFileSystem> implements DocumentAware, Dictionary<FileSystemInf> {
     private DocumentImpl configure;
@@ -64,10 +63,12 @@ public class WebdavFileSystem extends WikiupDynamicSingleton<WebdavFileSystem> i
     }
 
     public FileSystemInf getFileSystem(ServletProcessorContext context, Document node) {
-        BeanContainer provider = node != null ? Wikiup.getInstance().getModelProvider(FileSystemInf.class, node) : null;
-        context.awaredBy(provider);
-        Interfaces.initialize(provider, node);
-        return provider != null ? provider.query(FileSystemInf.class) : null;
+        FileSystemInf provider = node != null ? Wikiup.getInstance().getBean(FileSystemInf.class, node) : null;
+        if(provider != null) {
+            context.awaredBy(provider);
+            Interfaces.initialize(provider, node);
+        }
+        return provider;
     }
 
     public Document getFileSystemConfigure(String path) {
