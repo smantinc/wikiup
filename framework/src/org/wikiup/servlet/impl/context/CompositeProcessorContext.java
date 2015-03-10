@@ -1,18 +1,21 @@
 package org.wikiup.servlet.impl.context;
 
-import org.wikiup.core.inf.Dictionary;
+import java.util.LinkedList;
+
+import org.wikiup.core.impl.wrapper.WrapperImpl;
 import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Dictionary;
+import org.wikiup.core.util.Interfaces;
+import org.wikiup.core.util.Wrappers;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.inf.ProcessorContext;
 import org.wikiup.servlet.inf.ServletProcessorContextAware;
 
-import java.util.LinkedList;
-
-public class CompositeProcessorContext implements ProcessorContext, ServletProcessorContextAware, Dictionary<Object> {
-    private LinkedList<ProcessorContext> contexts = new LinkedList<ProcessorContext>();
+public class CompositeProcessorContext implements ProcessorContext, ServletProcessorContextAware {
+    private LinkedList<Node> contexts = new LinkedList<Node>();
 
     public Object get(String name) {
-        for(ProcessorContext ctx : contexts) {
+        for(Node ctx : contexts) {
             Object obj = ctx.get(name);
             if(obj != null)
                 return obj;
@@ -22,7 +25,7 @@ public class CompositeProcessorContext implements ProcessorContext, ServletProce
 
     public void append(ProcessorContext... args) {
         for(ProcessorContext arg : args)
-            contexts.add(0, arg);
+            contexts.add(0, new Node(arg));
     }
 
     public void setServletProcessorContext(ServletProcessorContext context) {
@@ -38,11 +41,31 @@ public class CompositeProcessorContext implements ProcessorContext, ServletProce
         return null;
     }
 
-    public LinkedList<ProcessorContext> getContexts() {
+    public LinkedList<Node> getContexts() {
         return contexts;
     }
 
-    public void setContexts(LinkedList<ProcessorContext> contexts) {
-        this.contexts = contexts;
+    private static class Node extends WrapperImpl<ProcessorContext> implements ProcessorContext, ProcessorContext.ByParameters {
+        private ProcessorContext.ByParameters contextByParameters;
+        
+        public Node(ProcessorContext context) {
+            super(context);
+            this.contextByParameters = Wrappers.unwrap(ProcessorContext.ByParameters.class, context);
+        }
+        
+        @Override
+        public Object get(String name, Dictionary<?> params) {
+            return contextByParameters != null ? contextByParameters.get(name, params) : null;
+        }
+
+        @Override
+        public Object get(String name) {
+            return wrapped.get(name);
+        }
+
+        @Override
+        public BeanContainer getModelContainer(String name, Dictionary<?> params) {
+            return wrapped.getModelContainer(name, params);
+        }
     }
 }

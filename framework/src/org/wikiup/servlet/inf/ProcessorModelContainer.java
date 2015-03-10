@@ -5,5 +5,6 @@ import org.wikiup.core.inf.Dictionary;
 
 @Deprecated
 public interface ProcessorModelContainer {
+    @Deprecated
     public BeanContainer getModelContainer(String name, Dictionary<?> params);
 }
