@@ -2,7 +2,6 @@ package org.wikiup.servlet.impl.context;
 
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.I18nResourceManager;
-import org.wikiup.core.impl.document.DocumentWrapper;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.util.ValueUtil;
@@ -29,16 +28,5 @@ public class I18nProcessorContext implements ProcessorContext, ServletProcessorC
         I18nResourceManager i18n = Wikiup.getModel(I18nResourceManager.class);
         locale = context.getContextAttribute(desc, "locale", i18n.getAcceptLanguage(context.getServletRequest().getLocale()));
         manager = Wikiup.getModel(I18nResourceManager.class);
-    }
-    
-    private static class I18nDocument extends DocumentWrapper {
-        public I18nDocument(Document doc) {
-            super(doc);
-        }
-
-        @Override
-        public String toString() {
-            return ValueUtil.toString(getDocument());
-        }
     }
 }
