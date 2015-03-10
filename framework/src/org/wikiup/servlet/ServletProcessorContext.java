@@ -37,7 +37,6 @@ import org.wikiup.core.util.FileUtil;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
-import org.wikiup.core.util.Wrappers;
 import org.wikiup.database.orm.Entity;
 import org.wikiup.database.orm.WikiupEntityManager;
 import org.wikiup.database.util.EntityPath;
@@ -175,7 +174,7 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
     }
 
     public <E> E awaredBy(E obj) {
-        ServletProcessorContextAware aware = Wrappers.unwrap(ServletProcessorContextAware.class, obj);
+        ServletProcessorContextAware aware = Interfaces.unwrap(ServletProcessorContextAware.class, obj);
         if(aware != null)
             aware.setServletProcessorContext(this);
         return obj;

@@ -3,7 +3,6 @@ package org.wikiup.core.impl.wrapper;
 import org.wikiup.core.inf.Wrapper;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Interfaces;
-import org.wikiup.core.util.Wrappers;
 
 public class WrapperImpl<T> implements Wrapper<T> {
     protected T wrapped;
@@ -22,11 +21,11 @@ public class WrapperImpl<T> implements Wrapper<T> {
     }
 
     public T unwrap() {
-        return Wrappers.unwrap(wrapped);
+        return Interfaces.unwrap(wrapped);
     }
 
     public void link(WrapperImpl<T> wrapper) {
-        if(Wrappers.unwrap(wrapped, wrapper) == null) {
+        if(Interfaces.unwrap(wrapped, wrapper) == null) {
             try {
                 T w = (T) wrapper;
                 wrapper.wrap(wrapped);
@@ -50,6 +49,6 @@ public class WrapperImpl<T> implements Wrapper<T> {
     }
 
     public <E extends T> E unwrap(Class<E> clazz) {
-        return Wrappers.unwrap(clazz, wrapped);
+        return Interfaces.unwrap(clazz, wrapped);
     }
 }

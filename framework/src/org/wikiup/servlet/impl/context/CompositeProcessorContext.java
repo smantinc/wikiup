@@ -6,7 +6,6 @@ import org.wikiup.core.impl.wrapper.WrapperImpl;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Interfaces;
-import org.wikiup.core.util.Wrappers;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.inf.ProcessorContext;
 import org.wikiup.servlet.inf.ServletProcessorContextAware;
@@ -50,7 +49,7 @@ public class CompositeProcessorContext implements ProcessorContext, ServletProce
         
         public Node(ProcessorContext context) {
             super(context);
-            this.contextByParameters = Wrappers.unwrap(ProcessorContext.ByParameters.class, context);
+            this.contextByParameters = Interfaces.unwrap(ProcessorContext.ByParameters.class, context);
         }
         
         @Override
