@@ -25,10 +25,6 @@ public class RubyProcessorContext implements ProcessorContext, DocumentAware, Se
         return RubyUtil.toJava(scriptingContainer.get(name));
     }
 
-    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
-        return Interfaces.getModelContainer(get(name));
-    }
-
     public void aware(Document desc) {
         File script = context.getAssociatedFile("rb");
         scriptingContainer.clear();

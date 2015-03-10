@@ -1,15 +1,16 @@
 package org.wikiup.servlet.impl.tp;
 
-import org.wikiup.core.inf.Dictionary;
+import java.io.StringWriter;
+import java.util.Iterator;
+
 import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.inf.TagProcessor;
 import org.wikiup.servlet.ms.ProcessorContextModelContainer;
-
-import java.io.StringWriter;
-import java.util.Iterator;
+import org.wikiup.servlet.util.ProcessorContexts;
 
 public class ForEachTagProcessor implements TagProcessor {
     public void process(ServletProcessorContext context, TagProcessor parent, String body, Dictionary<?> parameters, StringWriter writer) {
@@ -18,7 +19,7 @@ public class ForEachTagProcessor implements TagProcessor {
         String var = ValueUtil.toString(parameters.get("var"));
         ProcessorContextModelContainer container = context.pushModelContainer();
         if(in != null) {
-            modelProvider = context.getModelContainer(StringUtil.evaluateEL(in, context), parameters);
+            modelProvider = ProcessorContexts.getBeanContainer(context, StringUtil.evaluateEL(in, context), parameters);
             container.setModelContainer(modelProvider);
         }
         Iterator<BeanContainer> iterator = context.getModelContainerStack().getIteratorFromContextStack(null);

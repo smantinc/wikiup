@@ -1,5 +1,8 @@
 package org.wikiup.database.util;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Element;
@@ -9,9 +12,6 @@ import org.wikiup.core.util.ValueUtil;
 import org.wikiup.database.orm.EntityRelatives;
 import org.wikiup.database.orm.inf.EntityModel;
 import org.wikiup.database.orm.util.EntityDocument;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class EntityPath {
     final static private Pattern PATH_PATTERN = Pattern.compile("([\\w\\d:._]+)(?:\\-([\\w_\\d]+))?([\\w\\/]+)?(?:\\[@([^\\]]+)\\])?");
@@ -34,7 +34,7 @@ public class EntityPath {
         parsePath(path);
     }
 
-    public String get() {
+    public Object get() {
         Attribute attribute = null;
         if(propertyName != null) {
             EntityRelatives relatives = getRelatives();
@@ -44,7 +44,7 @@ public class EntityPath {
             } else
                 attribute = entityObject.get(propertyName);
         }
-        return ValueUtil.toString(attribute);
+        return attribute != null ? ValueUtil.toString(attribute) : getDocument();
     }
 
     public EntityRelatives getRelatives() {
@@ -53,6 +53,7 @@ public class EntityPath {
         return relatives;
     }
 
+    @Deprecated
     public Document getDocument() {
         EntityRelatives relatives = getRelatives();
         return relatives != null ? relatives : relativeName != null ? null : new EntityDocument(entityObject);

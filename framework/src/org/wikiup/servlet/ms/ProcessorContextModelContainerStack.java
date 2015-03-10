@@ -30,7 +30,7 @@ public class ProcessorContextModelContainerStack implements ProcessorContext {
         return null;
     }
 
-    public Object getValueFromContextStack(String name, Dictionary<?> params) {
+    public Object get(String name, Dictionary<?> params) {
         int i = contextStack.size();
         Object value = getValueByXPath(name, params);
         while(value == null && i > 0)
@@ -55,7 +55,7 @@ public class ProcessorContextModelContainerStack implements ProcessorContext {
     }
 
     public Object get(String name) {
-        return getValueFromContextStack(name, null);
+        return get(name, null);
     }
 
     public Iterator<BeanContainer> getIterator(String name) {

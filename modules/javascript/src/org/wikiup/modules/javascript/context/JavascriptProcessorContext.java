@@ -42,12 +42,8 @@ public class JavascriptProcessorContext implements ProcessorContext, DocumentAwa
         return jsToJava(obj, ctx);
     }
 
-    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
-        return Interfaces.getModelContainer(get(name));
-    }
-
     public void aware(Document desc) {
-        File script = context.getAssociatedFile("ssjs");
+        File script = context.getAssociatedFile("js");
         if(script.exists()) {
             Reader reader = null;
             try {

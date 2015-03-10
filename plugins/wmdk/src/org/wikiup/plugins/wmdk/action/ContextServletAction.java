@@ -1,18 +1,19 @@
 package org.wikiup.plugins.wmdk.action;
 
+import java.util.Iterator;
+
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.Attribute;
-import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Document;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.exception.ServiceNotImplementException;
-
-import java.util.Iterator;
+import org.wikiup.servlet.util.ProcessorContexts;
 
 public class ContextServletAction {
     public void get(ServletProcessorContext context) {
@@ -97,7 +98,7 @@ public class ContextServletAction {
 
     private Iterator<Object> getIterator(ServletProcessorContext ctx, String path) {
         try {
-            BeanContainer mc = ctx.getModelContainer(path, Null.getInstance());
+            BeanContainer mc = ProcessorContexts.getBeanContainer(ctx, path, Null.getInstance());
             return mc != null ? mc.query(Iterator.class) : null;
         } catch(Exception e) {
             return null;

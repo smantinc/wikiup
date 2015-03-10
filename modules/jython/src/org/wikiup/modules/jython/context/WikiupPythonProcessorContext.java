@@ -23,10 +23,6 @@ public class WikiupPythonProcessorContext implements ProcessorContext, DocumentA
         return interpreter != null ? JythonUtil.toJava(interpreter.get(name)) : null;
     }
 
-    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
-        return Interfaces.getModelContainer(get(name));
-    }
-
     public void aware(Document desc) {
         File script = context.getAssociatedFile("py");
         if(script.exists()) {

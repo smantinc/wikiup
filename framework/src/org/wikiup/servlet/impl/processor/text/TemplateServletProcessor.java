@@ -20,6 +20,7 @@ import org.wikiup.servlet.impl.rl.ResponseBufferResourceHandler;
 import org.wikiup.servlet.inf.TagProcessor;
 import org.wikiup.servlet.inf.ext.ResourceHandler;
 import org.wikiup.servlet.ms.ProcessorContextModelContainer;
+import org.wikiup.servlet.util.ProcessorContexts;
 
 public class TemplateServletProcessor extends ResponseBufferResourceHandler implements ResourceHandler, TagProcessor {
     final private static Pattern WIKIUP_PATTERN = Pattern.compile("<([^\\s:>]+:[^/\\s>]+)\\s*");
@@ -56,7 +57,7 @@ public class TemplateServletProcessor extends ResponseBufferResourceHandler impl
                     BeanContainer modelProvider;
                     offset = text.indexOf('>', end) + 1;
                     if(!doTagProcess(context, name, body, params, writer)) {
-                        modelProvider = context.getModelContainer(StringUtil.evaluateEL(name, context), params);
+                        modelProvider = ProcessorContexts.getBeanContainer(context, StringUtil.evaluateEL(name, context), params);
                         if(modelProvider != null && ValueUtil.toBoolean(modelProvider.query(Boolean.class), true)) {
                             String html = modelProvider.query(String.class);
                             token.setModelContainer(modelProvider);
@@ -81,7 +82,7 @@ public class TemplateServletProcessor extends ResponseBufferResourceHandler impl
     }
 
     private String getStringFromModelContainer(ServletProcessorContext context, String name, Dictionary<?> params) {
-        BeanContainer modelProvider = context.getModelContainer(name, params);
+        BeanContainer modelProvider = ProcessorContexts.getBeanContainer(context, name, params);
         Object value = modelProvider != null ? modelProvider.query(String.class) : null;
         return ValueUtil.toString(value, "");
     }

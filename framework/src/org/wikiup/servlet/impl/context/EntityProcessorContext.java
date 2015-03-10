@@ -1,11 +1,13 @@
 package org.wikiup.servlet.impl.context;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.wikiup.core.impl.dictionary.StackDictionary;
-import org.wikiup.core.impl.mp.DocumentModelProvider;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Dictionary;
-import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Documents;
@@ -19,28 +21,12 @@ import org.wikiup.servlet.impl.document.InterceptableDocument;
 import org.wikiup.servlet.inf.ProcessorContext;
 import org.wikiup.servlet.inf.ServletProcessorContextAware;
 
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.List;
-
 public class EntityProcessorContext implements ProcessorContext, ServletProcessorContextAware, DocumentAware, Iterable<String> {
     private ServletProcessorContext context;
     private List<String> entityNames = new ArrayList<String>();
 
     public void setServletProcessorContext(ServletProcessorContext context) {
         this.context = context;
-    }
-
-    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
-        Document doc;
-        EntityPath ePath = new EntityPath(name);
-        String eName = ePath.getEntityName();
-        Entity entity = getEntity(context, eName);
-        Assert.notNull(entity, ContextObjectNotExistException.class, name);
-        ePath.setEntity(entity);
-        doc = ePath.getDocument();
-        Assert.notNull(doc, ContextObjectNotExistException.class, name);
-        return new DocumentModelProvider(doc);
     }
 
     private Entity getEntity(ServletProcessorContext context, String name) {
@@ -54,6 +40,7 @@ public class EntityProcessorContext implements ProcessorContext, ServletProcesso
         return entity == null ? context.getEntity(name) : entity;
     }
 
+    @Override
     public Object get(String name) {
         EntityPath ePath = new EntityPath(name);
         String eName = ePath.getEntityName();

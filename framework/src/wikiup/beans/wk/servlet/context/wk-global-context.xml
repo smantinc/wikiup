@@ -1,4 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
-	<bean name="sc" class="processor-context:wikiup-naming" uri="sc"/>
+	<bean name="sc" class="wikiup-naming" uri="sc"/>
 </root>

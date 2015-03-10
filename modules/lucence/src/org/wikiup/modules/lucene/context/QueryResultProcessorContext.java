@@ -1,5 +1,9 @@
 package org.wikiup.modules.lucene.context;
 
+import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
+
 import org.apache.lucene.analysis.Analyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.queryParser.MultiFieldQueryParser;
@@ -7,21 +11,14 @@ import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.search.BooleanClause;
 import org.apache.lucene.search.Query;
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.impl.mp.IterableModelProvider;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Dictionary;
-import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.modules.lucene.Lucene;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.inf.ProcessorContext;
 import org.wikiup.servlet.inf.ServletProcessorContextAware;
-
-import java.io.IOException;
-import java.util.LinkedList;
-import java.util.List;
 
 public class QueryResultProcessorContext implements ServletProcessorContextAware, ProcessorContext, DocumentAware {
     private ServletProcessorContext context;
@@ -49,14 +46,11 @@ public class QueryResultProcessorContext implements ServletProcessorContextAware
         return new StandardAnalyzer(lucene.getVersion());
     }
 
+    @Override
     public Object get(String name) {
-        return null;
-    }
-
-    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
         Lucene lucene = Wikiup.getModel(Lucene.class);
         try {
-            return new IterableModelProvider(lucene.search(name, query, pageSize));
+            return lucene.search(name, query, pageSize);
         } catch(IOException e) {
             Assert.fail(e);
         }

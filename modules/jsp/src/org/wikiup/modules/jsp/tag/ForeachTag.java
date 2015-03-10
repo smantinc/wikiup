@@ -10,6 +10,7 @@ import org.wikiup.modules.jsp.JspServletContainer;
 import org.wikiup.modules.jsp.JspServletContext;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.ms.ProcessorContextModelContainer;
+import org.wikiup.servlet.util.ProcessorContexts;
 
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
@@ -39,7 +40,7 @@ public class ForeachTag extends BodyTagSupport {
         context = JspServletContext.get().context;
         ProcessorContextModelContainer container = context.pushModelContainer();
         if(in != null) {
-            modelProvider = context.getModelContainer(StringUtil.evaluateEL(in, context), Null.getInstance());
+            modelProvider = ProcessorContexts.getBeanContainer(context, StringUtil.evaluateEL(in, context), Null.getInstance());
             container.setModelContainer(modelProvider);
         }
         iterator = context.getModelContainerStack().getIteratorFromContextStack(null);

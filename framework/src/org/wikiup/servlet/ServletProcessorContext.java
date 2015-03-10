@@ -58,7 +58,7 @@ import org.wikiup.servlet.ms.ProcessorContextModelContainerStack;
 import org.wikiup.servlet.util.ActionUtil;
 
 
-public class ServletProcessorContext implements ProcessorContext, BeanContainer, ExceptionHandler, Context<Object, Object> {
+public class ServletProcessorContext implements ProcessorContext, ProcessorContext.ByParameters, BeanContainer, ExceptionHandler, Context<Object, Object> {
     private ProcessorContextContainer servletScope;
     private ProcessorContextContainer requestScope;
 
@@ -263,13 +263,16 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
         return servletContextConf;
     }
 
-    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
-        BeanContainer provider = globalContext.getModelContainer(name, params);
-        provider = provider != null ? provider : servletScope.getModelContainer(name, params);
-        provider = provider != null ? provider : requestScope.getModelContainer(name, params);
-        return provider != null ? provider : modelContainerStack.getModelContainer(name, params);
+    @Override
+    public Object get(String name, Dictionary<?> params) {
+//TODO: retrive object from global context        
+//        Object obj = globalContext.getModelContainer(name, params);
+        Object obj = servletScope.get(name, params);
+        obj = obj != null ? obj : requestScope.get(name, params);
+        return obj != null ? obj : modelContainerStack.get(name, params);
     }
 
+    @Override
     public Object get(String name) {
         Object value = getAttribute(name);
         value = value != null ? value : globalContext.get(name);
@@ -278,6 +281,7 @@ public class ServletProcessorContext implements ProcessorContext, BeanContainer,
         return value != null ? value : modelContainerStack.get(name);
     }
 
+    @Override
     public void set(String name, Object value) {
         String[] path = StringUtil.splitNamespaces(name);
         if(path.length == 1)

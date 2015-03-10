@@ -9,15 +9,12 @@ import javax.servlet.http.HttpSession;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.context.MapContext;
-import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Documents;
-import org.wikiup.core.util.Interfaces;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.inf.ProcessorContext;
 import org.wikiup.servlet.inf.ServletProcessorContextAware;
@@ -33,23 +30,23 @@ public class VariableProcessorContext implements ProcessorContext, ServletProces
     public VariableProcessorContext(String scope) {
         this.scope = scope;
     }
-
+    
+    @Override
     public void setServletProcessorContext(ServletProcessorContext context) {
         this.context = context;
     }
 
-    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
-        return Interfaces.cast(BeanContainer.class, variables.get(name));
-    }
-
+    @Override
     public Object get(String name) {
         return variables.get(name);
     }
 
+    @Override
     public void set(String name, Object value) {
         variables.set(name, value);
     }
 
+    @Override
     public void aware(Document desc) {
         String scope = Documents.getDocumentValue(desc, "scope", this.scope);
         if(scope == null)

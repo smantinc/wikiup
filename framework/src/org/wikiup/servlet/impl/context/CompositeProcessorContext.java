@@ -3,7 +3,6 @@ package org.wikiup.servlet.impl.context;
 import java.util.LinkedList;
 
 import org.wikiup.core.impl.wrapper.WrapperImpl;
-import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.servlet.ServletProcessorContext;
@@ -31,11 +30,11 @@ public class CompositeProcessorContext implements ProcessorContext, ServletProce
         context.awaredBy(contexts.descendingIterator());
     }
 
-    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
-        for(ProcessorContext ctx : contexts) {
-            BeanContainer mc = ctx.getModelContainer(name, params);
-            if(mc != null)
-                return mc;
+    public Object get(String name, Dictionary<?> params) {
+        for(Node ctx : contexts) {
+            Object obj = ctx.get(name, params);
+            if(obj != null)
+                return obj;
         }
         return null;
     }
@@ -60,11 +59,6 @@ public class CompositeProcessorContext implements ProcessorContext, ServletProce
         @Override
         public Object get(String name) {
             return wrapped.get(name);
-        }
-
-        @Override
-        public BeanContainer getModelContainer(String name, Dictionary<?> params) {
-            return wrapped.getModelContainer(name, params);
         }
     }
 }

@@ -16,14 +16,16 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.regex.Pattern;
 
-public class ParameterProcessorContext implements ProcessorContext, ServletProcessorContextAware, Iterable<String> {
+public class ParameterProcessorContext implements ProcessorContext, ProcessorContext.ByParameters, ServletProcessorContextAware, Iterable<String> {
     private ServletProcessorContext context;
 
+    @Override
     public void setServletProcessorContext(ServletProcessorContext context) {
         this.context = context;
     }
 
-    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
+    @Override
+    public Object get(String name, Dictionary<?> params) {
         List<String> names = new ArrayList<String>();
         if("*".equals(name)) {
             String p = ValueUtil.toString(params.get("pattern"));
@@ -39,9 +41,10 @@ public class ParameterProcessorContext implements ProcessorContext, ServletProce
             if(values != null)
                 Collections.addAll(names, values);
         }
-        return names.size() > 0 ? new IterableModelProvider(names) : null;
+        return names.size() > 0 ? names : null;
     }
 
+    @Override
     public Object get(String name) {
         if(name.length() == 1) {
             for(char d : WikiupConfigure.HANDLER_DELIMETERS)
@@ -51,6 +54,7 @@ public class ParameterProcessorContext implements ProcessorContext, ServletProce
         return context.getParameter(name);
     }
 
+    @Override
     public Iterator<String> iterator() {
         return context.getServletRequest().getParameterMap().keySet().iterator();
     }

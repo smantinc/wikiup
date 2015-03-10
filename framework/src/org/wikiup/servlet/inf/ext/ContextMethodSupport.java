@@ -1,20 +1,19 @@
 package org.wikiup.servlet.inf.ext;
 
 import org.wikiup.core.inf.Dictionary;
-import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Dictionaries;
-import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.servlet.ServletProcessorContext;
-import org.wikiup.servlet.inf.ProcessorModelContainer;
+import org.wikiup.servlet.inf.ProcessorContext;
 import org.wikiup.servlet.inf.ServletProcessorContextAware;
 
 
-public abstract class ContextMethodSupport implements ProcessorModelContainer, ServletProcessorContextAware {
+public abstract class ContextMethodSupport implements ProcessorContext.ByParameters, ServletProcessorContextAware {
     private ServletProcessorContext context;
 
-    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
-        return Interfaces.getModelContainer(invoke(context, params));
+    @Override
+    public Object get(String name, Dictionary<?> params) {
+        return invoke(context, params);
     }
 
     public void setServletProcessorContext(ServletProcessorContext context) {

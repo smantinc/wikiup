@@ -1,13 +1,12 @@
 package org.wikiup.modules.fileupload.context;
 
+import java.util.List;
+
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.impl.mp.InstanceModelProvider;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.Dictionary;
-import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.FileUtil;
 import org.wikiup.core.util.StringUtil;
@@ -17,8 +16,6 @@ import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.inf.ProcessorContext;
 import org.wikiup.servlet.inf.ServletProcessorContextAware;
 import org.wikiup.servlet.util.ActionUtil;
-
-import java.util.List;
 
 public class UploadProcessorContext implements ProcessorContext, ServletProcessorContextAware, DocumentAware {
 
@@ -30,10 +27,6 @@ public class UploadProcessorContext implements ProcessorContext, ServletProcesso
 
     public void setServletProcessorContext(ServletProcessorContext context) {
         this.context = context;
-    }
-
-    public BeanContainer getModelContainer(String name, Dictionary<?> params) {
-        return new InstanceModelProvider(name != null ? configure.getChild(name) : configure);
     }
 
     public Object get(String name) {
