@@ -58,11 +58,6 @@ public class I18nResourceManager extends WikiupDynamicSingleton<I18nResourceMana
         return Documents.getDocumentValueByXPath(resource, name);
     }
 
-    public String get(String locate, String path) {
-        Document doc = getResource(locate, path);
-        return ValueUtil.toString(doc);
-    }
-
     public void mergeConfigure(String path[], Document doc) {
         DocumentImpl node = (DocumentImpl) Documents.touchDocument(resource, path, path.length);
         for(Document child : doc.getChildren())
