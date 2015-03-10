@@ -13,6 +13,7 @@ import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.Context;
+import org.wikiup.core.inf.ext.Wirable;
 import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Documents;
 import org.wikiup.servlet.ServletProcessorContext;
@@ -27,7 +28,8 @@ public class VariableProcessorContext implements ProcessorContext, ServletProces
     public VariableProcessorContext() {
     }
 
-    public VariableProcessorContext(String scope) {
+    public VariableProcessorContext(ServletProcessorContext context, String scope) {
+        this.context = context;
         this.scope = scope;
     }
     
@@ -159,15 +161,17 @@ public class VariableProcessorContext implements ProcessorContext, ServletProces
         }
     }
 
-    public static final class BySession extends VariableProcessorContext {
-        public BySession() {
-            super("session");
+    public static final class BySession implements Wirable<VariableProcessorContext, ServletProcessorContext> {
+        @Override
+        public VariableProcessorContext wire(ServletProcessorContext param) {
+            return new VariableProcessorContext(param, "session");
         }
     }
 
-    public static final class ByCookie extends VariableProcessorContext {
-        public ByCookie() {
-            super("cookie");
+    public static final class ByCookie implements Wirable<VariableProcessorContext, ServletProcessorContext> {
+        @Override
+        public VariableProcessorContext wire(ServletProcessorContext param) {
+            return new VariableProcessorContext(param, "cookie");
         }
     }
 }

@@ -5,9 +5,9 @@ import java.util.Iterator;
 import java.util.List;
 
 import org.wikiup.core.impl.dictionary.StackDictionary;
-import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
+import org.wikiup.core.inf.ext.Wirable;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Documents;
@@ -19,16 +19,15 @@ import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.exception.ContextObjectNotExistException;
 import org.wikiup.servlet.impl.document.InterceptableDocument;
 import org.wikiup.servlet.inf.ProcessorContext;
-import org.wikiup.servlet.inf.ServletProcessorContextAware;
 
-public class EntityProcessorContext implements ProcessorContext, ServletProcessorContextAware, DocumentAware, Iterable<String> {
+public class EntityProcessorContext implements ProcessorContext, DocumentAware, Iterable<String> {
     private ServletProcessorContext context;
     private List<String> entityNames = new ArrayList<String>();
 
-    public void setServletProcessorContext(ServletProcessorContext context) {
+    private EntityProcessorContext(ServletProcessorContext context) {
         this.context = context;
     }
-
+    
     private Entity getEntity(ServletProcessorContext context, String name) {
         Entity entity = Interfaces.cast(Entity.class, context.getAttribute(name));
         try {
@@ -75,5 +74,12 @@ public class EntityProcessorContext implements ProcessorContext, ServletProcesso
 
     public Iterator<String> iterator() {
         return entityNames.iterator();
+    }
+    
+    public static final class WIRABLE implements Wirable<EntityProcessorContext, ServletProcessorContext> {
+        @Override
+        public EntityProcessorContext wire(ServletProcessorContext context) {
+            return new EntityProcessorContext(context);
+        }
     }
 }

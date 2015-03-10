@@ -46,6 +46,7 @@ import org.wikiup.servlet.exception.ServiceNotImplementException;
 import org.wikiup.servlet.impl.NullProcessor;
 import org.wikiup.servlet.impl.context.CompositeProcessorContext;
 import org.wikiup.servlet.impl.context.NamespaceProcessorContext;
+import org.wikiup.servlet.impl.context.ProcessorContextSupport;
 import org.wikiup.servlet.impl.context.WikiupNamingDirectoryProcessorContext;
 import org.wikiup.servlet.impl.eh.ServletExceptionHandler;
 import org.wikiup.servlet.inf.ProcessorContext;
