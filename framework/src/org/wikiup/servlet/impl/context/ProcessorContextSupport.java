@@ -1,7 +1,5 @@
 package org.wikiup.servlet.impl.context;
 
-import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Translator;
 import org.wikiup.core.inf.Wrapper;
 import org.wikiup.core.inf.ext.Wirable;
@@ -33,7 +31,11 @@ public class ProcessorContextSupport implements ProcessorContext, Wrapper<Object
         @Override
         public Object translate(Object obj) {
             ProcessorContext processorContext = Interfaces.cast(ProcessorContext.class, obj);
-            return processorContext != null ? processorContext : obj instanceof Wirable ? obj : new ProcessorContextSupport(obj);
+            if(processorContext != null)
+                return processorContext;
+            if(obj instanceof Wirable)
+                return obj;
+            return obj != null ? new ProcessorContextSupport(obj) : null;
         }
     }
 }
