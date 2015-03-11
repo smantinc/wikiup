@@ -1,0 +1,4 @@
+name: wikiup-module-kyotocabinet
+title: ${modules.kyotocabinet.title}
+brief: ${modules.kyotocabinet.brief}
+description: ${modules.kyotocabinet.description}

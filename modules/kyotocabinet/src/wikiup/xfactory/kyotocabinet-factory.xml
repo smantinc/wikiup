@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bean>
+	<factory name="processor-context">
+		<item name="kc-database" class="org.wikiup.modules.kyotocabinet.context.KCDatabaseProcessorContext"/>
+		<item name="kc-session" class="org.wikiup.modules.kyotocabinet.context.KCSessionProcessorContext$WIRABLE"/>
+	</factory>
+</bean>

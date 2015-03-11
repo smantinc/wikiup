@@ -1,0 +1,13 @@
+# -*- coding: utf-8 -*-
+en-us:
+  modules:
+    kyotocabinet:
+      title: Kyoto Cabinet is a library of routines for managing a database
+      brief: The database is a simple data file containing records, each is a pair of a key and a value. Every key and value is serial bytes with variable length. Both binary data and character string can be used as a key and a value. Each key must be unique within a database.
+      description:
+zh-cn:
+  modules:
+    kyotocabinet:
+      title: 京都内阁（Kyoto Cabinet)是一种键值对数据库
+      brief: 这种数据库是基于键值对的简单表结构，键和值都都有特定的长度，键值在数据库中必须是唯一的
+      description: 

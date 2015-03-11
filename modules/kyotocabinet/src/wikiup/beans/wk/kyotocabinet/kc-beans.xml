@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<bean class="org.wikiup.modules.kyotocabinet.KCDatabaseManager$WIRABLE">
+	<database name="main" file-path="${sc:real-path:/WEB-INF/kyotocabinet/main.kch}"/>
+</bean>
