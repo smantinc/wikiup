@@ -32,7 +32,7 @@ public class KCSessionProcessorContext implements ProcessorContext, Dictionary.M
     @Override
     public void aware(Document doc) {
         String dbname = context.getContextAttribute(doc, "database-name");
-        sessionId = context.getContextAttribute(doc, "database-name", "/");
+        sessionId = context.getContextAttribute(doc, "session-id", "/");
         database = Wikiup.getModel(KCDatabaseManager.class).get(dbname);
         Assert.notNull(database, AttributeException.class, "kyotocabinet", dbname);
     }
