@@ -99,6 +99,7 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
     private void init(HttpServletRequest request, HttpServletResponse response, String uri) {
         servletRequest = request;
         servletResponse = response;
+        awaredBy(globalContext);
         setRequestURI(uri);
     }
 
@@ -163,12 +164,6 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
     public void awaredBy(Iterator<?> iterator) {
         while(iterator.hasNext())
             awaredBy(iterator.next());
-    }
-
-    public void awaredBy(BeanContainer mc) {
-        ServletProcessorContextAware aware = mc.query(ServletProcessorContextAware.class);
-        if(aware != null)
-            aware.setServletProcessorContext(this);
     }
 
     public <E> E awaredBy(E obj) {
