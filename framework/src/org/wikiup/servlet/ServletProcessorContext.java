@@ -46,7 +46,6 @@ import org.wikiup.servlet.exception.ServiceNotImplementException;
 import org.wikiup.servlet.impl.NullProcessor;
 import org.wikiup.servlet.impl.context.CompositeProcessorContext;
 import org.wikiup.servlet.impl.context.NamespaceProcessorContext;
-import org.wikiup.servlet.impl.context.ProcessorContextSupport;
 import org.wikiup.servlet.impl.context.WikiupNamingDirectoryProcessorContext;
 import org.wikiup.servlet.impl.eh.ServletExceptionHandler;
 import org.wikiup.servlet.inf.ProcessorContext;
@@ -64,7 +63,7 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
 
     static final private String[] WNDI_GLOBAL_CONTEXT = {"wk", "servlet", "context"};
 
-    final private ProcessorContext globalContext = new WikiupNamingDirectoryProcessorContext(WNDI_GLOBAL_CONTEXT);
+    final private WikiupNamingDirectoryProcessorContext globalContext = new WikiupNamingDirectoryProcessorContext(WNDI_GLOBAL_CONTEXT);
 
     private HttpServletRequest servletRequest;
     private HttpServletResponse servletResponse;
@@ -266,9 +265,8 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
 
     @Override
     public Object get(String name, Dictionary<?> params) {
-//TODO: retrive object from global context        
-//        Object obj = globalContext.getModelContainer(name, params);
-        Object obj = servletScope.get(name, params);
+        Object obj = globalContext.get(name, params);
+        obj = obj != null ? obj : servletScope.get(name, params);
         obj = obj != null ? obj : requestScope.get(name, params);
         return obj != null ? obj : modelContainerStack.get(name, params);
     }
@@ -276,10 +274,7 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
     @Override
     public Object get(String name) {
         Object value = getAttribute(name);
-        value = value != null ? value : globalContext.get(name);
-        value = value != null ? value : servletScope.get(name);
-        value = value != null ? value : requestScope.get(name);
-        return value != null ? value : modelContainerStack.get(name);
+        return value != null ? value : Dictionaries.get(name, globalContext, servletScope, requestScope, modelContainerStack);
     }
 
     @Override
