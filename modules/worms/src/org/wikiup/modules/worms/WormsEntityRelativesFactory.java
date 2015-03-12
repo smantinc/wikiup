@@ -28,7 +28,7 @@ public class WormsEntityRelativesFactory extends WikiupDynamicSingleton<WormsEnt
             Document desc, WormsEntity origin, Dictionary<?> dictionary) {
         String type = Documents.getAttributeValue(desc, Constants.Attributes.TYPE, null);
         EntityRelatives relatives = factory.build(type);
-        Assert.notNull(relatives, AttributeException.class, relatives != null ? null : "Entity " + origin.getName() + "'s " + Documents.getId(desc) + " relation has no type \"" + type + "\"");
+        Assert.notNull(relatives, AttributeException.class, relatives != null ? null : "Entity " + origin.getName() + "'s " + Documents.getId(desc), type);
         relatives.init(desc, origin, dictionary);
         return relatives;
     }

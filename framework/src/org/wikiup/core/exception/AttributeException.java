@@ -11,7 +11,7 @@ public class AttributeException extends WikiupRuntimeException {
         super(message);
     }
 
-    public AttributeException(Object... args) {
-        super("{0} has no attribute '{1}'", args);
+    public AttributeException(Object obj, Object attrname) {
+        super("{0} has no attribute '{1}'", obj, attrname);
     }
 }

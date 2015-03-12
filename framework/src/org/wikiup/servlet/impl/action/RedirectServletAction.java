@@ -14,7 +14,7 @@ public class RedirectServletAction implements ServletAction {
         HttpServletResponse response = context.getServletResponse();
         String url = context.getContextAttribute(node, "url", null);
         String uri = context.getContextAttribute(node, "uri", null);
-        Assert.isTrue(url != null || uri != null, AttributeException.class, "@url @uri");
+        Assert.isTrue(url != null || uri != null, AttributeException.class, node, "(url, uri)");
         if(url != null) {
             try {
                 response.sendRedirect(response.encodeRedirectURL(url.startsWith("/") ? context.getContextURI(url) : url));
