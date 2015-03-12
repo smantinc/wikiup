@@ -42,7 +42,7 @@ public class KCSessionProcessorContext implements ProcessorContext, Dictionary.M
         database.set(sessionId + name, value);
     }
 
-    private static final class WIRABLE implements Wirable<KCSessionProcessorContext, ServletProcessorContext> {
+    public static final class WIRABLE implements Wirable<KCSessionProcessorContext, ServletProcessorContext> {
         @Override
         public KCSessionProcessorContext wire(ServletProcessorContext context) {
             return new KCSessionProcessorContext(context);
