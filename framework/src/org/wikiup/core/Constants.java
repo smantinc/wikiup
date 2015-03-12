@@ -16,6 +16,7 @@ public class Constants {
         public static final String PROPERTY = "property";
         public static final String TRANSLATOR = "translator";
         public static final String STYLE = "style";
+        public static final String ENTITY_PATH = "entity-path";
     }
     
     public static class Elements {

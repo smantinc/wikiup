@@ -11,6 +11,7 @@ import org.wikiup.servlet.inf.ProcessorContext;
 
 import java.util.Iterator;
 
+@Deprecated
 public class ProcessorContextModelContainer implements ProcessorContext {
     private BeanContainer modelProvider;
 

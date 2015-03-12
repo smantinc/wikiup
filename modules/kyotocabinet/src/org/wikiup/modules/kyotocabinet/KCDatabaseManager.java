@@ -10,11 +10,12 @@ import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.bean.WikiupNamingDirectory;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Document;
+import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.Wirable;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
 
-public class KCDatabaseManager extends WikiupDynamicSingleton<KCDatabaseManager> implements Dictionary<DB> {
+public class KCDatabaseManager extends WikiupDynamicSingleton<KCDatabaseManager> implements Dictionary<DB>, Releasable {
     private HashMap<String, DB> databases;
 
     @Override
@@ -36,6 +37,13 @@ public class KCDatabaseManager extends WikiupDynamicSingleton<KCDatabaseManager>
         DB db = new DB();
         databases.put(name, db);
         db.open(filepath, DB.OWRITER | DB.OCREATE);
+    }
+
+    @Override
+    public void release() {
+        for(DB db : databases.values())
+            db.close();
+        databases.clear();
     }
 
     public static final class WIRABLE implements Wirable.ByDocument<KCDatabaseManager> {

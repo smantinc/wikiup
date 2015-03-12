@@ -11,6 +11,7 @@ import org.wikiup.core.util.ValueUtil;
 
 import java.util.Iterator;
 
+@Deprecated
 public class DocumentModelProvider implements BeanContainer {
     private Document document;
     private Iterable<Document> iterable;

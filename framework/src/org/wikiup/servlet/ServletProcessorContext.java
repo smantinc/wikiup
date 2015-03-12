@@ -99,7 +99,6 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
     private void init(HttpServletRequest request, HttpServletResponse response, String uri) {
         servletRequest = request;
         servletResponse = response;
-        awaredBy(globalContext);
         setRequestURI(uri);
     }
 
@@ -240,7 +239,7 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
 
     public boolean handle(Exception exp) {
         awaredBy(exceptionHandler);
-        return exceptionHandler != null ? exceptionHandler.handle(exp) : false;
+        return exceptionHandler != null && exceptionHandler.handle(exp);
     }
 
     public HttpServletResponse getServletResponse() {
@@ -354,14 +353,6 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
         setContextProperties(properties, entity, this);
     }
 
-    public Context<String, String> loadContextAttributes(Document node) {
-        Context<String, String> attributes = new MapContext<String>();
-        for(Attribute attr : node.getAttributes())
-            attributes.set(attr.getName(), StringUtil.evaluateEL(ValueUtil.toString(attr), this));
-        Dictionaries.setProperties(node, attributes, this);
-        return attributes;
-    }
-
     public String getContextAttribute(Document node, String name, String defValue) {
         try {
             String value = StringUtil.evaluateEL(Documents.getDocumentValue(node, name, defValue), this);
@@ -416,7 +407,7 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
     }
 
     public EntityPath getEntityPath(Document desc, Dictionary<?> dictionary) {
-        EntityPath ePath = new EntityPath(Documents.getAttributeValue(desc, "entity-path"));
+        EntityPath ePath = new EntityPath(Documents.getAttributeValue(desc, Constants.Attributes.ENTITY_PATH));
         Entity entity = getEntity(ePath.getEntityName());
         setContextProperties(desc, entity, dictionary);
         ePath.setEntity(entity, entity);
@@ -449,7 +440,7 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
     }
 
     public BeanContainer getModelContainer() {
-        return new ServletProcessorContextModelProvider(this);
+        return new BeanContainerImpl(this);
     }
 
     public String getRequestPath(boolean stripHandler) {
@@ -482,7 +473,7 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
         return beanContainer.query(clazz);
     }
 
-    static private class ResponseHeaderSetter implements Mutable<String> {
+    private static class ResponseHeaderSetter implements Mutable<String> {
         private ServletProcessorContext context;
 
         public ResponseHeaderSetter(ServletProcessorContext context) {
@@ -497,7 +488,7 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
         }
     }
 
-    static private class ProcessorContextContainer extends CompositeProcessorContext implements Releasable, Mutable<Object> {
+    private static class ProcessorContextContainer extends CompositeProcessorContext implements Releasable, Mutable<Object> {
         private Document configure;
         private NamespaceProcessorContext namespaces = new NamespaceProcessorContext();
 
@@ -548,10 +539,10 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
         }
     }
 
-    private static class ServletProcessorContextModelProvider implements BeanContainer {
+    private static class BeanContainerImpl implements BeanContainer {
         private CollectionModelProvider modelContainer = new CollectionModelProvider();
 
-        public ServletProcessorContextModelProvider(ServletProcessorContext context) {
+        public BeanContainerImpl(ServletProcessorContext context) {
             modelContainer.append(context.getServletRequest(), context.getServletResponse(), context.getResponseWriter(), context.getResponseOutputStream(), context);
         }
 

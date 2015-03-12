@@ -5,6 +5,7 @@ import org.wikiup.core.util.Interfaces;
 
 import java.util.Iterator;
 
+@Deprecated
 public class IterableModelProvider implements BeanContainer {
 
     private Iterable<?> iterable;

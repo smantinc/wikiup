@@ -4,6 +4,7 @@ import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Interfaces;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedList;
 
 public class CollectionModelProvider implements BeanContainer {
@@ -19,7 +20,6 @@ public class CollectionModelProvider implements BeanContainer {
     }
 
     public void append(Object... args) {
-        for(Object arg : args)
-            containers.add(arg);
+        Collections.addAll(containers, args);
     }
 }
