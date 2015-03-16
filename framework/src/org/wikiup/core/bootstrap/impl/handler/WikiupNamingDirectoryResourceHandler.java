@@ -96,10 +96,10 @@ public class WikiupNamingDirectoryResourceHandler extends DirectoryDocumentResou
             for(Directory directory : directories) {
                 if(doc == null)
                     doc = directory.document;
-                else if(isVirtual(doc))
-                    doc = directory.document;
-                else if(!isVirtual(directory.document))
+                else if(isVirtual(doc) || !isVirtual(directory.document))
                     doc = new MergedDocument(directory.document, doc);
+                else
+                    doc = new MergedDocument(doc, directory.document);
             }
             return doc;
         }
