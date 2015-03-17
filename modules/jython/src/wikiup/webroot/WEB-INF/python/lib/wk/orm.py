@@ -6,11 +6,11 @@ from org.wikiup.modules.jython.orm import PythonEntity
 
 
 def getEntity(name, ctx=None, **selection):
-    return PythonEntity(_getEntity(name, selection, ctx))
+    return PythonEntity(_getEntity(name, ctx, selection))
 
 
 def query(name, relation, ctx=None, **selection):
-    entity = _getEntity(name, selection, ctx, autoselect=False)
+    entity = _getEntity(name, ctx, selection, False)
     relatives = entity.getRelatives(relation, None)
     props = [str(i.getName()) for i in relatives.getAttributes()]
     r = [dict([(j, str(i.getAttribute(j))) for j in props]) for i in relatives.getChildren()]
@@ -20,7 +20,7 @@ def query(name, relation, ctx=None, **selection):
     return r
 
 
-def _getEntity(name, selection=None, ctx=None, autoselect=True):
+def _getEntity(name, ctx=None, selection=None, autoselect=True):
     entity = None
     if ctx is not None:
         entity = ctx.get(name)
