@@ -265,7 +265,8 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
         Object obj = globalContext.get(name, params);
         obj = obj != null ? obj : servletScope.get(name, params);
         obj = obj != null ? obj : requestScope.get(name, params);
-        return obj != null ? obj : beanStack.get(name, params);
+        obj = obj != null ? obj : beanStack.get(name, params);
+        return obj != null ? obj : get(name);
     }
 
     @Override
