@@ -4,7 +4,7 @@ import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.database.orm.Entity;
-import org.wikiup.database.orm.EntityRelatives;
+import org.wikiup.database.orm.inf.Relatives;
 
 public class NullEntity extends Entity {
     public NullEntity() {
@@ -21,7 +21,7 @@ public class NullEntity extends Entity {
     }
 
     @Override
-    public EntityRelatives getRelatives(String name, Dictionary<?> props) {
+    public Relatives getRelatives(String name, Dictionary<?> props) {
         return new org.wikiup.database.orm.imp.entity.NullEntityRelatives();
     }
 

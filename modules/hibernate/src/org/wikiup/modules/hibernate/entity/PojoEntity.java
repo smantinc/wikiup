@@ -4,16 +4,16 @@ import org.hibernate.Session;
 import org.hibernate.metadata.ClassMetadata;
 import org.wikiup.core.impl.attribute.BeanProperty;
 import org.wikiup.core.inf.Attribute;
-import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.database.exception.InsufficientPrimaryKeys;
 import org.wikiup.database.exception.RecordNotFoundException;
-import org.wikiup.database.orm.EntityRelatives;
 import org.wikiup.database.orm.inf.EntityModel;
+import org.wikiup.database.orm.inf.Relatives;
 import org.wikiup.modules.hibernate.HibernateEntityManager;
 
 public class PojoEntity implements EntityModel, BeanContainer, Releasable {
@@ -40,7 +40,7 @@ public class PojoEntity implements EntityModel, BeanContainer, Releasable {
         return name;
     }
 
-    public EntityRelatives getRelatives(String name, Dictionary<?> dictionary) {
+    public Relatives getRelatives(String name, Dictionary<?> dictionary) {
         return null;
     }
 

@@ -2,6 +2,7 @@ package org.wikiup.modules.velocity.context;
 
 import org.apache.velocity.context.Context;
 import org.wikiup.core.exception.AttributeException;
+import org.wikiup.database.orm.imp.document.DocumentByRelatives;
 import org.wikiup.database.orm.inf.EntityModel;
 
 public class WikiupEntityVelocityContext implements Context {
@@ -23,7 +24,7 @@ public class WikiupEntityVelocityContext implements Context {
         try {
             return entity.get(s);
         } catch(AttributeException ex) {
-            return new DocumentContextCollection(entity.getRelatives(s, null));
+            return new DocumentContextCollection(new DocumentByRelatives(entity.getRelatives(s, null)));
         }
     }
 

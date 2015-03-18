@@ -6,6 +6,7 @@ import org.wikiup.core.inf.ext.Context;
 import org.wikiup.database.exception.InsufficientPrimaryKeys;
 import org.wikiup.database.exception.RecordNotFoundException;
 import org.wikiup.database.orm.inf.EntityModel;
+import org.wikiup.database.orm.inf.Relatives;
 
 public class Entity implements EntityModel, Context<Attribute, Object> {
     private EntityModel entity;
@@ -26,11 +27,11 @@ public class Entity implements EntityModel, Context<Attribute, Object> {
     }
 
     @Override
-    public EntityRelatives getRelatives(String name, Dictionary<?> props) {
+    public Relatives getRelatives(String name, Dictionary<?> props) {
         return entity.getRelatives(name, props);
     }
 
-    public EntityRelatives getRelatives(String name) {
+    public Relatives getRelatives(String name) {
         return entity.getRelatives(name, null);
     }
 

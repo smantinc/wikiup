@@ -4,6 +4,7 @@ import org.wikiup.core.impl.document.DocumentImpl;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
+import org.wikiup.database.orm.imp.document.DocumentByRelatives;
 import org.wikiup.database.util.EntityPath;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.inf.ServletAction;
@@ -12,7 +13,7 @@ public class EntityServletAction implements ServletAction {
 
     public void doAction(ServletProcessorContext context, Document node) {
         EntityPath ePath = context.getEntityPath(node, context);
-        Document doc = ePath.getDocument();
+        Document doc = new DocumentByRelatives(ePath.getRelatives());
         Assert.notNull(doc);
 
         Document buf = new DocumentImpl("root");

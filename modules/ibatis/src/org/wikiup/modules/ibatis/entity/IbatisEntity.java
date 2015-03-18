@@ -1,23 +1,23 @@
 package org.wikiup.modules.ibatis.entity;
 
-import org.wikiup.core.inf.Attribute;
-import org.wikiup.core.inf.Dictionary;
-import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.util.Assert;
-import org.wikiup.core.util.Interfaces;
-import org.wikiup.core.util.StringUtil;
-import org.wikiup.core.util.ValueUtil;
-import org.wikiup.database.orm.EntityRelatives;
-import org.wikiup.database.orm.imp.entity.NullEntity;
-import org.wikiup.database.orm.inf.EntityModel;
-import org.wikiup.modules.ibatis.IbatisEntityManager;
-import org.wikiup.modules.ibatis.bindable.DataStore;
-import org.wikiup.modules.ibatis.er.IbatisEntityRelatives;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import org.wikiup.core.inf.Attribute;
+import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Dictionary;
+import org.wikiup.core.util.Assert;
+import org.wikiup.core.util.Interfaces;
+import org.wikiup.core.util.StringUtil;
+import org.wikiup.core.util.ValueUtil;
+import org.wikiup.database.orm.imp.entity.NullEntity;
+import org.wikiup.database.orm.inf.EntityModel;
+import org.wikiup.database.orm.inf.Relatives;
+import org.wikiup.modules.ibatis.IbatisEntityManager;
+import org.wikiup.modules.ibatis.bindable.DataStore;
+import org.wikiup.modules.ibatis.er.IbatisEntityRelatives;
 
 public class IbatisEntity implements EntityModel, BeanContainer {
     private IbatisEntityManager entityManager;
@@ -57,7 +57,7 @@ public class IbatisEntity implements EntityModel, BeanContainer {
         return name;
     }
 
-    public EntityRelatives getRelatives(String name, Dictionary<?> dictionary) {
+    public Relatives getRelatives(String name, Dictionary<?> dictionary) {
         try {
             String id = StringUtil.connect(this.name, name, '.');
             List<Object> relatives = entityManager.queryForList(id, getParameterObject(id));

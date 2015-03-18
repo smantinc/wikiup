@@ -1,16 +1,24 @@
 package org.wikiup.modules.worms;
 
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.iterator.BufferedIterator;
 import org.wikiup.core.inf.Attribute;
-import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Dictionary;
+import org.wikiup.core.inf.Document;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.database.exception.RecordNotFoundException;
 import org.wikiup.database.inf.DataSource;
 import org.wikiup.database.orm.inf.EntityModel;
+import org.wikiup.database.orm.inf.Relatives;
 import org.wikiup.database.orm.util.SQLUtil;
 import org.wikiup.modules.worms.imp.FieldProperty;
 import org.wikiup.modules.worms.imp.builder.EntitySQLBuilder;
@@ -18,13 +26,6 @@ import org.wikiup.modules.worms.imp.component.Component;
 import org.wikiup.modules.worms.imp.component.Property;
 import org.wikiup.modules.worms.imp.relatives.NonePropertyAttributeIterable;
 import org.wikiup.modules.worms.inf.SQLBuilderInf;
-
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 
 public class WormsEntity extends Component implements EntityModel, Iterable<WormsEntity> {
     private Connection connection;
@@ -158,7 +159,7 @@ public class WormsEntity extends Component implements EntityModel, Iterable<Worm
         }
     }
 
-    public org.wikiup.database.orm.EntityRelatives getRelatives(String name, Dictionary<?> props) {
+    public Relatives getRelatives(String name, Dictionary<?> props) {
         Document node = WormsEntityManager.getInstance().getEntityRelativeDescription(getName(), name);
         return node != null ? WormsEntityRelativesFactory.getInstance().buildEntityRelatives(node, this, props == null ? this : props) : null;
     }

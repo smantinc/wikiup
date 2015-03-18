@@ -2,12 +2,13 @@ package org.wikiup.modules.worms.imp.relatives;
 
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.Attribute;
-import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Dictionary;
+import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Releasable;
+import org.wikiup.database.orm.inf.Relatives;
 import org.wikiup.modules.worms.WormsEntity;
 
-public abstract class EntityRelatives extends org.wikiup.database.orm.EntityRelatives implements Releasable {
+public abstract class EntityRelatives implements Relatives, Releasable {
     private WormsEntity entity;
 
     abstract public void init(Document desc, WormsEntity origin, Dictionary<?> parameters);
@@ -33,10 +34,6 @@ public abstract class EntityRelatives extends org.wikiup.database.orm.EntityRela
 
     public Iterable<Attribute> getAttributes() {
         return entity.getResultSet(false) != null ? new NonePropertyAttributeIterable<Attribute>(entity.getProperties()) : Null.getInstance();
-    }
-
-    public Document getChild(String name) {
-        return entity.getRelatives(name, null);
     }
 
     public Iterable<Document> getChildren(String name) {

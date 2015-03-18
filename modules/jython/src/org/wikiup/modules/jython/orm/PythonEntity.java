@@ -5,9 +5,9 @@ import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.database.orm.Entity;
-import org.wikiup.database.orm.EntityRelatives;
 import org.wikiup.database.orm.inf.EntityModel;
 import org.wikiup.database.orm.inf.PersistentOperation;
+import org.wikiup.database.orm.inf.Relatives;
 
 public class PythonEntity implements PersistentOperation, EntityModel {
     private Entity entity;
@@ -54,11 +54,11 @@ public class PythonEntity implements PersistentOperation, EntityModel {
         return entity.getName();
     }
 
-    public EntityRelatives getRelatives(String name) {
+    public Relatives getRelatives(String name) {
         return entity.getRelatives(name, null);
     }
 
-    public EntityRelatives getRelatives(String name, Dictionary<?> props) {
+    public Relatives getRelatives(String name, Dictionary<?> props) {
         return entity.getRelatives(name, props);
     }
 

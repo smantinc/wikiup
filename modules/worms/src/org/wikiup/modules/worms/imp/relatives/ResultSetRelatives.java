@@ -1,24 +1,18 @@
 package org.wikiup.modules.worms.imp.relatives;
 
-import org.wikiup.core.impl.Null;
-import org.wikiup.core.impl.attribute.AttributeImpl;
-import org.wikiup.core.impl.context.XPathContext;
-import org.wikiup.core.impl.dictionary.dl.ByAttributeNameSelector;
-import org.wikiup.core.inf.Attribute;
-import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Dictionary;
-import org.wikiup.core.util.Assert;
-import org.wikiup.core.util.ValueUtil;
-import org.wikiup.modules.worms.WormsEntity;
-import org.wikiup.modules.worms.WormsEntityRelativesFactory;
-import org.wikiup.modules.worms.imp.iterator.ResultSetIterator;
-
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
+
+import org.wikiup.core.impl.dictionary.dl.ByAttributeNameSelector;
+import org.wikiup.core.inf.Attribute;
+import org.wikiup.core.inf.Dictionary;
+import org.wikiup.core.inf.Document;
+import org.wikiup.core.util.Assert;
+import org.wikiup.core.util.ValueUtil;
+import org.wikiup.modules.worms.WormsEntity;
 
 public abstract class ResultSetRelatives extends EntityRelatives {
     private Map<String, Attribute> fields = new HashMap<String, Attribute>();
@@ -58,23 +52,6 @@ public abstract class ResultSetRelatives extends EntityRelatives {
     @Override
     public Iterable<Document> getChildren(String name) {
         return getChildren();
-    }
-
-    @Override
-    public Iterable<Document> getChildren() {
-        return new Iterable<Document>() {
-            public Iterator<Document> iterator() {
-                return resultSet != null ? new ResultSetIterator<Document>(resultSet, new ResultSetRelativesChild(ResultSetRelatives.this)) : Null.getInstance();
-            }
-        };
-    }
-
-    @Override
-    public Document getChild(String name) {
-        Document desc = relatives.get(name);
-        if(desc != null)
-            return WormsEntityRelativesFactory.getInstance().buildEntityRelatives(desc, getEntity(), new XPathContext(this));
-        return null;
     }
 
     public void release() {
@@ -117,54 +94,13 @@ public abstract class ResultSetRelatives extends EntityRelatives {
         }
     }
 
-    private static class ResultSetRelativesChild extends AttributeImpl implements Document {
-        private ResultSetRelatives relatives;
+    @Override
+    public Iterable<Attribute> getProperties() {
+        return fields.values();
+    }
 
-        public ResultSetRelativesChild(ResultSetRelatives relatives) {
-            this.relatives = relatives;
-        }
-
-        public Document getChild(String name) {
-            return null;
-        }
-
-        public Iterable<Document> getChildren(String name) {
-            return Null.getInstance().iter();
-        }
-
-        public Iterable<Document> getChildren() {
-            return Null.getInstance().iter();
-        }
-
-        public Document addChild(String name) {
-            return Null.getInstance();
-        }
-
-        public void removeNode(Document child) {
-        }
-
-        public Document getParentNode() {
-            return null;
-        }
-
-        public Attribute getAttribute(String name) {
-            return relatives.getAttribute(name);
-        }
-
-        public Iterable<Attribute> getAttributes() {
-            return new NonePropertyAttributeIterable<Attribute>(relatives.getAttributes());
-        }
-
-        public Attribute addAttribute(String name) {
-            return Null.getInstance();
-        }
-
-        public void removeAttribute(Attribute attrValue) {
-        }
-
-        @Override
-        public String getName() {
-            return relatives.getName();
-        }
+    @Override
+    public Attribute get(String name) {
+        return fields.get(name);
     }
 }

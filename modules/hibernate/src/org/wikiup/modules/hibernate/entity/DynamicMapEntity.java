@@ -1,5 +1,13 @@
 package org.wikiup.modules.hibernate.entity;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.metadata.ClassMetadata;
@@ -10,18 +18,10 @@ import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.database.exception.InsufficientPrimaryKeys;
 import org.wikiup.database.exception.RecordNotFoundException;
-import org.wikiup.database.orm.EntityRelatives;
 import org.wikiup.database.orm.inf.EntityModel;
+import org.wikiup.database.orm.inf.Relatives;
 import org.wikiup.modules.hibernate.HibernateEntityManager;
 import org.wikiup.modules.hibernate.er.CollectionEntityRelatives;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class DynamicMapEntity implements EntityModel, Releasable {
     private Map<String, Object> map = new HashMap<String, Object>();
@@ -51,7 +51,7 @@ public class DynamicMapEntity implements EntityModel, Releasable {
         return name;
     }
 
-    public EntityRelatives getRelatives(String name, Dictionary<?> parameters) {
+    public Relatives getRelatives(String name, Dictionary<?> parameters) {
         Query query = session.createQuery("from " + this.name);
         query.setFirstResult(ValueUtil.toInteger(map.get("offset"), 0));
         query.setMaxResults(ValueUtil.toInteger(map.get("limit"), 20));

@@ -4,14 +4,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.wikiup.core.inf.Attribute;
-import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.Element;
 import org.wikiup.core.inf.ext.Context;
-import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.ValueUtil;
-import org.wikiup.database.orm.EntityRelatives;
 import org.wikiup.database.orm.inf.EntityModel;
-import org.wikiup.database.orm.util.EntityDocument;
+import org.wikiup.database.orm.inf.Relatives;
 
 public class EntityPath {
     final static private Pattern PATH_PATTERN = Pattern.compile("([\\w\\d:._]+)(?:\\-([\\w_\\d]+))?([\\w\\/]+)?(?:\\[@([^\\]]+)\\])?");
@@ -21,7 +17,7 @@ public class EntityPath {
     private String pathName;
     private String propertyName;
     private EntityModel entityObject;
-    private EntityRelatives relatives = null;
+    private Relatives relatives = null;
     private Context<String, String> parameters = null;
 
     public EntityPath(EntityModel entity, String path, Context<String, String> accessor) {
@@ -37,26 +33,19 @@ public class EntityPath {
     public Object get() {
         Attribute attribute = null;
         if(propertyName != null) {
-            EntityRelatives relatives = getRelatives();
-            if(relatives != null) {
-                Element node = pathName != null ? Documents.getDocumentByXPath(relatives, pathName) : relatives;
-                attribute = node != null ? node.getAttribute(propertyName) : null;
-            } else
+            Relatives relatives = getRelatives();
+            if(relatives != null)
+                attribute = relatives.get(propertyName);
+            else
                 attribute = entityObject.get(propertyName);
         }
-        return attribute != null ? ValueUtil.toString(attribute) : getDocument();
+        return attribute != null ? ValueUtil.toString(attribute) : getRelatives();
     }
 
-    public EntityRelatives getRelatives() {
+    public Relatives getRelatives() {
         if(relatives == null)
             relatives = relativeName != null ? entityObject.getRelatives(relativeName, parameters) : null;
         return relatives;
-    }
-
-    @Deprecated
-    public Document getDocument() {
-        EntityRelatives relatives = getRelatives();
-        return relatives != null ? relatives : relativeName != null ? null : new EntityDocument(entityObject);
     }
 
     public EntityModel getEntity() {
