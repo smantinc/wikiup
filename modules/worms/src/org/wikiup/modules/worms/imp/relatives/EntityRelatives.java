@@ -28,31 +28,12 @@ public abstract class EntityRelatives implements Relatives, Releasable {
         return entity;
     }
 
-    public Attribute getAttribute(String name) {
+    public Attribute get(String name) {
         return entity.getPropertyObject(name);
     }
 
     public Iterable<Attribute> getAttributes() {
         return entity.getResultSet(false) != null ? new NonePropertyAttributeIterable<Attribute>(entity.getProperties()) : Null.getInstance();
-    }
-
-    public Iterable<Document> getChildren(String name) {
-        return Null.getInstance();
-    }
-
-    public Iterable<Document> getChildren() {
-        return Null.getInstance();
-    }
-
-    public Document addChild(String name) {
-        return Null.getInstance();
-    }
-
-    public void removeNode(Document child) {
-    }
-
-    public Document getParentNode() {
-        return null;
     }
 
     public void release() {

@@ -34,11 +34,6 @@ public class OneToManyRelatives extends EntityRelatives implements Relatives.One
     }
 
     @Override
-    public Attribute get(String name) {
-        return getAttribute(name);
-    }
-
-    @Override
     public Iterator<Relatives> iterator() {
         WormsEntity entity = getEntity();
         return new IteratorImpl(entity.iterator());

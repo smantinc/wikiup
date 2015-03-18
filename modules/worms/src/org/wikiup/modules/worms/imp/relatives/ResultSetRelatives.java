@@ -6,9 +6,7 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.wikiup.core.impl.dictionary.dl.ByAttributeNameSelector;
 import org.wikiup.core.inf.Attribute;
-import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ValueUtil;
@@ -17,10 +15,8 @@ import org.wikiup.modules.worms.WormsEntity;
 public abstract class ResultSetRelatives extends EntityRelatives {
     private Map<String, Attribute> fields = new HashMap<String, Attribute>();
     private ResultSet resultSet;
-    private Dictionary<Document> relatives;
 
     public void init(Document data, WormsEntity entity) {
-        relatives = new ByAttributeNameSelector(data, "name", "relation");
         setEntity(entity);
     }
 
@@ -40,18 +36,8 @@ public abstract class ResultSetRelatives extends EntityRelatives {
     }
 
     @Override
-    public Attribute getAttribute(String name) {
-        return fields.get(name);
-    }
-
-    @Override
     public Iterable<Attribute> getAttributes() {
         return fields.values();
-    }
-
-    @Override
-    public Iterable<Document> getChildren(String name) {
-        return getChildren();
     }
 
     public void release() {

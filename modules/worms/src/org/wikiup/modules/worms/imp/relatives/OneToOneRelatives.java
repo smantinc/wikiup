@@ -27,9 +27,4 @@ public class OneToOneRelatives extends EntityRelatives implements Relatives.OneT
     public Iterable<Attribute> getProperties() {
         return getAttributes();
     }
-
-    @Override
-    public Attribute get(String name) {
-        return getAttribute(name);
-    }
 }
