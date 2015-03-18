@@ -33,7 +33,7 @@ public class CollectionEntityRelatives implements Relatives.OneToMany {
         return Null.getInstance();
     }
 
-    private Entity getContext2Document(Object object) {
+    private Entity toEntity(Object object) {
         return new Entity(object instanceof Map ? new DynamicMapEntity(session, name, (Map) object) : new PojoEntity(session, name, object));
     }
 
@@ -55,7 +55,7 @@ public class CollectionEntityRelatives implements Relatives.OneToMany {
 
         public Relatives next() {
             Object object = iterator.next();
-            return new RelativesByEntity(getContext2Document(object));
+            return new RelativesByEntity(toEntity(object));
         }
 
         public void remove() {
