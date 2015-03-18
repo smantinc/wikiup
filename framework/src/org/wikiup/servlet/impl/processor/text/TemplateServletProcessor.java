@@ -19,7 +19,6 @@ import org.wikiup.servlet.exception.CloseMarkupNotFoundException;
 import org.wikiup.servlet.impl.rl.ResponseBufferResourceHandler;
 import org.wikiup.servlet.inf.TagProcessor;
 import org.wikiup.servlet.inf.ext.ResourceHandler;
-import org.wikiup.servlet.ms.ProcessorContextModelContainer;
 import org.wikiup.servlet.util.ProcessorContexts;
 
 public class TemplateServletProcessor extends ResponseBufferResourceHandler implements ResourceHandler, TagProcessor {
