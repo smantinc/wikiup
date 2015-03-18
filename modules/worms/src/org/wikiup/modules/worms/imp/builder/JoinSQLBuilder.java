@@ -191,7 +191,7 @@ public class JoinSQLBuilder extends AbstractSQLBuilder {
         for(Document node : desc.getChildren("field")) {
             String name = Documents.getAttributeValue(node, Constants.Attributes.NAME);
             String entityName = getReference(Documents.getAttributeValue(node, Constants.Attributes.ENTITY_NAME, null));
-            String propertyName = Documents.getAttributeValue(node, "property-name");
+            String propertyName = Documents.getAttributeValue(node, Constants.Attributes.PROPERTY_NAME);
             if(propertyName.equals("*"))
                 aliasNames.put(name, entityName);
             updateJoinEntity(entityName, Documents.getAttributeValue(node, "join-type", null));
@@ -208,7 +208,7 @@ public class JoinSQLBuilder extends AbstractSQLBuilder {
     private void buildSelectPhrase(StringBuilder clause, Document desc) {
         String name = Documents.getAttributeValue(desc, Constants.Attributes.NAME);
         String entityName = getReference(Documents.getAttributeValue(desc, Constants.Attributes.ENTITY_NAME, null));
-        String propertyName = Documents.getAttributeValue(desc, "property-name");
+        String propertyName = Documents.getAttributeValue(desc, Constants.Attributes.PROPERTY_NAME);
         if(propertyName.equals("*")) {
             aliasNames.put(name, entityName);
             WormsEntity entity = getEntity(name, false);

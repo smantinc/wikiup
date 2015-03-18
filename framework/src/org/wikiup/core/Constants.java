@@ -18,6 +18,7 @@ public class Constants {
         public static final String STYLE = "style";
         public static final String ENTITY_PATH = "entity-path";
         public static final String ENTITY_NAME = "entity-name";
+        public static final String PROPERTY_NAME = "property-name";
     }
     
     public static class Elements {
