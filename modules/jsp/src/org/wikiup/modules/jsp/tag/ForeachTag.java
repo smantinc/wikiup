@@ -1,26 +1,24 @@
 package org.wikiup.modules.jsp.tag;
 
+import java.io.IOException;
+import java.util.Iterator;
+import javax.servlet.jsp.JspException;
+import javax.servlet.jsp.tagext.BodyTagSupport;
+
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.Null;
-import org.wikiup.core.inf.ExpressionLanguage;
 import org.wikiup.core.inf.Dictionary;
-import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.ExpressionLanguage;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.modules.jsp.JspServletContainer;
 import org.wikiup.modules.jsp.JspServletContext;
 import org.wikiup.servlet.ServletProcessorContext;
-import org.wikiup.servlet.ms.ProcessorContextModelContainer;
 import org.wikiup.servlet.util.ProcessorContexts;
-
-import javax.servlet.jsp.JspException;
-import javax.servlet.jsp.tagext.BodyTagSupport;
-import java.io.IOException;
-import java.util.Iterator;
 
 public class ForeachTag extends BodyTagSupport {
     private String in;
     private ServletProcessorContext context;
-    private Iterator<BeanContainer> iterator;
+    private Iterator<?> iterator;
     private String body;
     private ExpressionLanguage<Dictionary<?>, String> el = Wikiup.getModel(JspServletContainer.class).getEl();
 
@@ -30,40 +28,45 @@ public class ForeachTag extends BodyTagSupport {
 
     @Override
     public int doEndTag() throws JspException {
-        context.popModelContainer();
+        context.getBeanStack().pop();
         return EVAL_PAGE;
     }
 
     @Override
     public int doStartTag() throws JspException {
-        BeanContainer modelProvider;
+        int result = SKIP_BODY;
+        Object ctx;
         context = JspServletContext.get().context;
-        ProcessorContextModelContainer container = context.pushModelContainer();
+        ServletProcessorContext.BeanStack beanStack = context.getBeanStack();
         if(in != null) {
-            modelProvider = ProcessorContexts.getBeanContainer(context, StringUtil.evaluateEL(in, context), Null.getInstance());
-            container.setModelContainer(modelProvider);
+            ctx = ProcessorContexts.get(context, StringUtil.evaluateEL(in, context), Null.getInstance());
+            beanStack.push(ctx);
         }
-        iterator = context.getModelContainerStack().getIteratorFromContextStack(null);
-        if(iterator.hasNext() && (modelProvider = iterator.next()) != null) {
-            context.pushModelContainer(modelProvider);
+        Iterable<?> iterable = beanStack.peek(Iterable.class); 
+        iterator = iterable != null ? iterable.iterator() : Null.getInstance();
+        if(iterator.hasNext() && (ctx = iterator.next()) != null) {
+            beanStack.push(ctx);
             body = null;
-            return EVAL_BODY_BUFFERED;
+            result = EVAL_BODY_BUFFERED;
         }
-        return SKIP_BODY;
+        if(in != null)
+            beanStack.pop();
+        return result;
     }
 
     @Override
     public int doAfterBody() throws JspException {
-        context.popModelContainer();
-        BeanContainer modelProvider;
+        ServletProcessorContext.BeanStack beanStack = context.getBeanStack();
+        beanStack.pop();
+        Object ctx;
         if(body == null)
             body = bodyContent.getString();
         try {
             bodyContent.getEnclosingWriter().print(el.evaluate(context, body));
         } catch(IOException e) {
         }
-        if(iterator.hasNext() && (modelProvider = iterator.next()) != null) {
-            context.pushModelContainer(modelProvider);
+        if(iterator.hasNext() && (ctx = iterator.next()) != null) {
+            beanStack.push(ctx);
             return EVAL_BODY_AGAIN;
         }
         return 0;

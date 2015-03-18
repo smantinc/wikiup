@@ -44,7 +44,6 @@ public class TemplateServletProcessor extends ResponseBufferResourceHandler impl
             offset = searchToken(text, matcher.start(), '>');
             boolean closed = text.charAt(offset - 1) == '/';
             Dictionary<?> params = getContextParameters(context, text.substring(matcher.end(), closed ? offset - 1 : offset));
-            ProcessorContextModelContainer token = context.pushModelContainer();
             try {
                 if(closed) {
                     offset++;
@@ -54,14 +53,17 @@ public class TemplateServletProcessor extends ResponseBufferResourceHandler impl
                     int end = searchMarkupClosePosition(text, matcher.end(), markupName);
                     Assert.isTrue(end != -1, CloseMarkupNotFoundException.class, name);
                     String body = text.substring(offset + 1, end);
-                    BeanContainer modelProvider;
                     offset = text.indexOf('>', end) + 1;
                     if(!doTagProcess(context, name, body, params, writer)) {
-                        modelProvider = ProcessorContexts.getBeanContainer(context, StringUtil.evaluateEL(name, context), params);
-                        if(modelProvider != null && ValueUtil.toBoolean(modelProvider.query(Boolean.class), true)) {
-                            String html = modelProvider.query(String.class);
-                            token.setModelContainer(modelProvider);
-                            process(context, parent, html != null ? html : body, params, writer);
+                        ServletProcessorContext.BeanStack beanStack = context.getBeanStack();
+                        Object ctx = ProcessorContexts.get(context, StringUtil.evaluateEL(name, context), params);
+                        if(ctx != null) {
+                            beanStack.push(ctx);
+                            if(ValueUtil.toBoolean(beanStack.peek(Boolean.class), true)) {
+                                String html = beanStack.peek(String.class);
+                                process(context, parent, html != null ? html : body, params, writer);
+                            }
+                            beanStack.pop();
                         }
                     }
                 }
@@ -69,7 +71,6 @@ public class TemplateServletProcessor extends ResponseBufferResourceHandler impl
                 if(!context.handle(ex))
                     Assert.fail(ex);
             }
-            context.popModelContainer();
         }
         writer.write(StringUtil.evaluateEL(text.substring(offset), context));
     }

@@ -2,6 +2,7 @@ package org.wikiup.modules.hibernate.er;
 
 import org.hibernate.Session;
 import org.wikiup.core.impl.Null;
+import org.wikiup.core.impl.attribute.AttributeImpl;
 import org.wikiup.core.impl.document.Context2Document;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
@@ -30,7 +31,7 @@ public class CollectionEntityRelatives extends EntityRelatives {
     }
 
     public Attribute getAttribute(String name) {
-        return null;
+        return "size".equals(name) ? new AttributeImpl(name, relatives.size()) : null;
     }
 
     public Iterable<Attribute> getAttributes() {

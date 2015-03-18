@@ -5,7 +5,9 @@ import java.io.File;
 import java.io.StringWriter;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.ListIterator;
 import java.util.Map;
+import java.util.Stack;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -13,8 +15,10 @@ import javax.servlet.http.HttpSession;
 import org.wikiup.core.Constants;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupConfigure;
+import org.wikiup.core.bean.WikiupTypeTranslator;
 import org.wikiup.core.exception.AttributeException;
 import org.wikiup.core.impl.Null;
+import org.wikiup.core.impl.beancontainer.BeanContainerByTranslator;
 import org.wikiup.core.impl.beancontainer.Singleton;
 import org.wikiup.core.impl.context.ContextWrapper;
 import org.wikiup.core.impl.context.MapContext;
@@ -22,7 +26,6 @@ import org.wikiup.core.impl.dictionary.StackDictionary;
 import org.wikiup.core.impl.mp.CollectionModelProvider;
 import org.wikiup.core.impl.releasable.TrashTin;
 import org.wikiup.core.impl.setter.StackSetter;
-import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Document;
@@ -78,7 +81,7 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
     private TrashTin tin = new TrashTin();
     private ResponseHeaderSetter headerSetter = new ResponseHeaderSetter(this);
 
-    private ProcessorContextModelContainerStack modelContainerStack = new ProcessorContextModelContainerStack();
+    private BeanStack beanStack = new BeanStack();
     private BeanContainer beanContainer = new Singleton();
 
     public ServletProcessorContext(HttpServletRequest request, HttpServletResponse response) {
@@ -262,13 +265,13 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
         Object obj = globalContext.get(name, params);
         obj = obj != null ? obj : servletScope.get(name, params);
         obj = obj != null ? obj : requestScope.get(name, params);
-        return obj != null ? obj : modelContainerStack.get(name, params);
+        return obj != null ? obj : beanStack.get(name, params);
     }
 
     @Override
     public Object get(String name) {
         Object value = getAttribute(name);
-        return value != null ? value : Dictionaries.get(name, globalContext, servletScope, requestScope, modelContainerStack);
+        return value != null ? value : Dictionaries.get(name, globalContext, servletScope, requestScope, beanStack);
     }
 
     @Override
@@ -417,23 +420,10 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
         servletResponse.setHeader(name, value);
     }
 
-    public ProcessorContextModelContainerStack getModelContainerStack() {
-        return modelContainerStack;
+    public BeanStack getBeanStack() {
+        return beanStack;
     }
-
-    public ProcessorContextModelContainer pushModelContainer(BeanContainer mc) {
-        return modelContainerStack.push(new ProcessorContextModelContainer(mc));
-    }
-
-    public ProcessorContextModelContainer pushModelContainer() {
-        ProcessorContextModelContainer modelContainer = modelContainerStack.peek();
-        return modelContainerStack.push(new ProcessorContextModelContainer(modelContainer != null ? modelContainer.getModelContainer() : null));
-    }
-
-    public ProcessorContextModelContainer popModelContainer() {
-        return modelContainerStack.pop();
-    }
-
+    
     public BeanContainer getModelContainer() {
         return new BeanContainerImpl(this);
     }
@@ -544,6 +534,51 @@ public class ServletProcessorContext implements ProcessorContext, ProcessorConte
         public <E> E query(Class<E> clazz) {
             E e = modelContainer.query(clazz);
             return e != null ? e : Wikiup.getModel(clazz);
+        }
+    }
+    
+    public static class BeanStack implements BeanContainer, Dictionary<Object>, ProcessorContext.ByParameters {
+        private Stack<BeanContainer> stack = new Stack<BeanContainer>();
+        private WikiupTypeTranslator translator = Wikiup.getModel(WikiupTypeTranslator.class);
+        
+        public void push(Object obj) {
+            BeanContainer beanContainer = Interfaces.cast(BeanContainer.class, obj);
+            if(beanContainer == null)
+                beanContainer = new BeanContainerByTranslator(obj, translator);
+            stack.push(beanContainer);
+        }
+        
+        public BeanContainer pop() {
+            return stack.pop();
+        }
+        
+        public <T> T peek(Class<T> clazz) {
+            BeanContainer beanContainer = stack.peek();
+            return beanContainer != null ? beanContainer.query(clazz) : null;
+        }
+
+        @Override
+        public Object get(String name, Dictionary<?> params) {
+            ProcessorContext.ByParameters byParameters = query(ProcessorContext.ByParameters.class);
+            return byParameters != null ? byParameters.get(name, params) : null;
+        }
+
+        @Override
+        public Object get(String name) {
+            Dictionary<?> dictionary = query(Dictionary.class);
+            return dictionary != null ? dictionary.get(name) : null;
+        }
+
+        @Override
+        public <T> T query(Class<T> clazz) {
+            ListIterator<BeanContainer> iterator = stack.listIterator(stack.size());
+            while(iterator.hasPrevious()) {
+                BeanContainer beanContainer = iterator.previous();
+                T inst = beanContainer.query(clazz);
+                if(inst != null)
+                    return inst;
+            }
+            return null;
         }
     }
 }
