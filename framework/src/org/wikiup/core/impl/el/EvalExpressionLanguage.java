@@ -123,6 +123,7 @@ public class EvalExpressionLanguage implements ExpressionLanguage<Dictionary<?>,
                 lastPos = endPos;
             }
         }
+        Assert.isTrue(lastPos > 0, IllegalExpressionException.class, expr);
         appendExpression(exprs, expr.substring(lastPos));
     }
 
