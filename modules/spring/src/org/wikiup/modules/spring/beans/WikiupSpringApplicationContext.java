@@ -4,7 +4,7 @@ import org.springframework.context.support.AbstractXmlApplicationContext;
 import org.wikiup.core.bootstrap.Bootstrap;
 import org.wikiup.core.bootstrap.inf.ResourceHandler;
 import org.wikiup.core.impl.Null;
-import org.wikiup.core.impl.iterable.ArrayIterable;
+import org.wikiup.core.impl.iterable.ArrayItems;
 import org.wikiup.core.impl.mp.InstanceModelProvider;
 import org.wikiup.core.impl.translator.lf.RegexpMatchLogicalTranslator;
 import org.wikiup.core.inf.Document;
@@ -22,7 +22,7 @@ import java.util.List;
 
 public class WikiupSpringApplicationContext extends AbstractXmlApplicationContext implements ModelFactory, Iterable<String>, ResourceHandler, DocumentAware {
     private List<SpringResource> resources = new ArrayList<SpringResource>();
-    private ArrayIterable<String> definitionNames;
+    private ArrayItems<String> definitionNames;
 
     public void handle(Resource resource) {
         resources.add(new SpringResource(resource));
@@ -30,7 +30,7 @@ public class WikiupSpringApplicationContext extends AbstractXmlApplicationContex
 
     public void finish() {
         refresh();
-        definitionNames = new ArrayIterable<String>(getBeanDefinitionNames());
+        definitionNames = new ArrayItems<String>(getBeanDefinitionNames());
     }
 
     public BeanContainer get(String name) {

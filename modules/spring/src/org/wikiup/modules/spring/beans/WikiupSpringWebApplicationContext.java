@@ -11,7 +11,7 @@ import org.springframework.core.io.Resource;
 import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.Null;
-import org.wikiup.core.impl.iterable.ArrayIterable;
+import org.wikiup.core.impl.iterable.ArrayItems;
 import org.wikiup.core.impl.mp.InstanceModelProvider;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.ext.ModelFactory;
@@ -36,7 +36,7 @@ public class WikiupSpringWebApplicationContext implements ModelFactory, Iterable
 
     public Iterator<String> iterator() {
         if(applicationContext != null) {
-            Iterable<String> iterable = new ArrayIterable<String>(applicationContext.getBeanDefinitionNames());
+            Iterable<String> iterable = new ArrayItems<String>(applicationContext.getBeanDefinitionNames());
             return iterable.iterator();
         }
         return Null.getInstance();

@@ -2,7 +2,7 @@ package org.wikiup.core.util;
 
 import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.bean.WikiupExpressionLanguage;
-import org.wikiup.core.impl.iterable.ArrayIterable;
+import org.wikiup.core.impl.iterable.ArrayItems;
 import org.wikiup.core.inf.Dictionary;
 
 import java.security.MessageDigest;
@@ -58,7 +58,7 @@ public class StringUtil {
     }
 
     static public String join(Object[] objects, String connector) {
-        return join(new ArrayIterable<Object>(objects), connector);
+        return join(new ArrayItems<Object>(objects), connector);
     }
 
     static public String join(Iterable<?> iterable, String connector) {

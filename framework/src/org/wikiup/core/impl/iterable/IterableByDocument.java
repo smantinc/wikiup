@@ -14,13 +14,13 @@ public class IterableByDocument extends WrapperImpl<Document> implements Iterabl
 
     @Override
     public Iterator<Object> iterator() {
-        return new DocumentAttributeIterator(wrapped.getAttributes().iterator());
+        return new ChildIterator(wrapped.getChildren().iterator());
     }
     
-    private static class DocumentAttributeIterator implements Iterator<Object> {
-        private Iterator<Attribute> iterator;
+    private static class ChildIterator implements Iterator<Object> {
+        private Iterator<Document> iterator;
         
-        public DocumentAttributeIterator(Iterator<Attribute> iterator) {
+        public ChildIterator(Iterator<Document> iterator) {
             this.iterator = iterator;
         }
         

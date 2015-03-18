@@ -2,7 +2,7 @@ package org.wikiup.servlet.impl.processor.text;
 
 import javax.servlet.http.HttpServletResponse;
 
-import org.wikiup.core.impl.iterable.ArrayIterable;
+import org.wikiup.core.impl.iterable.ArrayItems;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Dictionary;
@@ -42,7 +42,7 @@ public class ResourceServletProcessor implements ServletProcessor, DocumentAware
         Resource resource;
         String name = StringUtil.connect(pathName, ext, '.');
         if(!(resource = context.getResource(name)).exists()) {
-            Iterable<String> iterable = suffixs != null ? new ArrayIterable<String>(suffixs) : Interfaces.<String>foreach(processors);
+            Iterable<String> iterable = suffixs != null ? new ArrayItems<String>(suffixs) : Interfaces.<String>foreach(processors);
             for(String suffix : iterable) {
                 name = StringUtil.connect(pathName, suffix, '.');
                 if((resource = context.getResource(name)) != null)

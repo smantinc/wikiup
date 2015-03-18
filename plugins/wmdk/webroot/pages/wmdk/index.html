@@ -98,6 +98,6 @@ var contextPath = '${env:uri:/}';
     <li><a id="wmdk-mailbox" href="#" style="margin-right: 15px"></a></li>
   </ul>
 </div>
-<wk:foreach in="ui-extension:index"> $html </wk:foreach>
+<wk:foreach var="i" in="ui-extension:index"> $i </wk:foreach>
 </body>
 </html>
