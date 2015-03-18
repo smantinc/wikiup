@@ -3,6 +3,7 @@ package org.wikiup.modules.worms.imp.relatives;
 import java.sql.Connection;
 import java.util.Iterator;
 
+import org.wikiup.core.Constants;
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Dictionary;
@@ -22,7 +23,7 @@ public class OneToManyRelatives extends EntityRelatives implements Relatives.One
     public void init(Document desc, WormsEntity origin, Dictionary<?> parameters) {
         Connection conn = origin.getConnection();
         DataSource ds = Wikiup.getModel(DataSource.class);
-        WormsEntity entity = (WormsEntity) WormsEntityManager.getInstance().getEntityInterface(StringUtil.evaluateEL(Documents.getAttributeValue(desc, "entity-name", origin.getName()), parameters), ds, conn);
+        WormsEntity entity = (WormsEntity) WormsEntityManager.getInstance().getEntityInterface(StringUtil.evaluateEL(Documents.getAttributeValue(desc, Constants.Attributes.ENTITY_NAME, origin.getName()), parameters), ds, conn);
         RelativeSQLBuilder builder = new RelativeSQLBuilder(desc, entity, parameters);
         entity.setResultSet(SQLUtil.sqlQuery(conn, builder.buildSelectSQL()), true, false);
         setEntity(entity);

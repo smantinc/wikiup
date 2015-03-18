@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+import org.wikiup.core.Constants;
 import org.wikiup.core.impl.dictionary.StackDictionary;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
@@ -51,7 +52,7 @@ public class EntityProcessorContext implements ProcessorContext, DocumentAware, 
     }
 
     private void initContextEntity(ServletProcessorContext context, Document node) {
-        Entity entity = this.context.getEntity(context.getContextAttribute(node, "entity-name"));
+        Entity entity = this.context.getEntity(context.getContextAttribute(node, Constants.Attributes.ENTITY_NAME));
         String name = Documents.getId(node);
         boolean ignore = Documents.getAttributeBooleanValue(node, "ignore-exceptions", false);
         try {

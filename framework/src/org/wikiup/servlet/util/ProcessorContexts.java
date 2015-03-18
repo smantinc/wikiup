@@ -20,10 +20,6 @@ public class ProcessorContexts {
         return toBeanContainer(get(context, name, params));
     }
 
-    public static BeanContainer getBeanContainer(ProcessorContext context, String name) {
-        return toBeanContainer(context.get(name));
-    }
-    
     public static BeanContainer toBeanContainer(Object obj) {
         if(obj == null)
             return null;

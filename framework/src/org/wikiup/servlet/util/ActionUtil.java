@@ -17,7 +17,7 @@ import org.wikiup.servlet.inf.ServletAction;
 
 public class ActionUtil {
     public static Entity getEntity(ServletProcessorContext context, Document node) {
-        Entity entity = getEntity(context, node, context.getContextAttribute(node, "entity-name", null));
+        Entity entity = getEntity(context, node, context.getContextAttribute(node, Constants.Attributes.ENTITY_NAME, null));
         Assert.notNull(entity, "Entity not specified or not found by the 'entity-name' attribute.");
         return entity;
     }

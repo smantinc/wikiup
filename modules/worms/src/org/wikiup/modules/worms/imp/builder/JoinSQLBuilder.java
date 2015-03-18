@@ -1,5 +1,6 @@
 package org.wikiup.modules.worms.imp.builder;
 
+import org.wikiup.core.Constants;
 import org.wikiup.core.exception.AttributeException;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Dictionary;
@@ -188,8 +189,8 @@ public class JoinSQLBuilder extends AbstractSQLBuilder {
 
     private void prepareEntityObjectNames(Document desc) {
         for(Document node : desc.getChildren("field")) {
-            String name = Documents.getAttributeValue(node, "name");
-            String entityName = getReference(Documents.getAttributeValue(node, "entity-name", null));
+            String name = Documents.getAttributeValue(node, Constants.Attributes.NAME);
+            String entityName = getReference(Documents.getAttributeValue(node, Constants.Attributes.ENTITY_NAME, null));
             String propertyName = Documents.getAttributeValue(node, "property-name");
             if(propertyName.equals("*"))
                 aliasNames.put(name, entityName);
@@ -205,8 +206,8 @@ public class JoinSQLBuilder extends AbstractSQLBuilder {
     }
 
     private void buildSelectPhrase(StringBuilder clause, Document desc) {
-        String name = Documents.getAttributeValue(desc, "name");
-        String entityName = getReference(Documents.getAttributeValue(desc, "entity-name", null));
+        String name = Documents.getAttributeValue(desc, Constants.Attributes.NAME);
+        String entityName = getReference(Documents.getAttributeValue(desc, Constants.Attributes.ENTITY_NAME, null));
         String propertyName = Documents.getAttributeValue(desc, "property-name");
         if(propertyName.equals("*")) {
             aliasNames.put(name, entityName);

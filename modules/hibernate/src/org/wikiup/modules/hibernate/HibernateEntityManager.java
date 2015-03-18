@@ -4,6 +4,7 @@ import org.hibernate.EntityMode;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
+import org.wikiup.core.Constants;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
@@ -74,7 +75,7 @@ public class HibernateEntityManager extends WikiupDynamicSingleton<HibernateEnti
         if(StringUtil.isNotEmpty(schema))
             Documents.setAttributeValue(root, "schema", schema);
         Documents.setAttributeValue(entity, "table", metadata.getTable());
-        Documents.setAttributeValue(entity, "entity-name", metadata.getName());
+        Documents.setAttributeValue(entity, Constants.Attributes.ENTITY_NAME, metadata.getName());
         for(FieldMetadata fm : metadata.getProperties())
             if(fm.isPrimaryKey())
                 appendEntityProperty(entity, fm);
