@@ -2,31 +2,36 @@ package org.wikiup.core.impl.iterable;
 
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
-public class ReversedIterable<E> implements Iterable<E> {
-    private List<E> iterable;
+public class ReversedIterable<T> implements Iterable<T> {
+    private List<T> list;
 
-    public ReversedIterable(List<E> iterable) {
-        this.iterable = iterable;
+    public ReversedIterable(List<T> list) {
+        this.list = list;
     }
 
-    public Iterator<E> iterator() {
-        return new ReversedIterator();
+    public Iterator<T> iterator() {
+        return new ReversedIterator<T>(list.listIterator(list.size()));
     }
 
-    private class ReversedIterator implements Iterator<E> {
-        private int index = iterable.size();
+    private static class ReversedIterator<T> implements Iterator<T> {
+        private ListIterator<T> listIterator;
 
+        public ReversedIterator(ListIterator<T> listIterator) {
+            this.listIterator = listIterator;
+        }
+        
         public boolean hasNext() {
-            return index > 0;
+            return listIterator.hasPrevious();
         }
 
-        public E next() {
-            return iterable.get(--index);
+        public T next() {
+            return listIterator.previous();
         }
 
         public void remove() {
-            iterable.remove(--index);
+            listIterator.remove();
         }
     }
 }
