@@ -26,20 +26,25 @@ public class KCSessionProcessorContext implements ProcessorContext, Dictionary.M
 
     @Override
     public Object get(String name) {
-        return database.get(sessionId + name);
+        return database.get(getKey(name));
     }
 
     @Override
     public void aware(Document doc) {
         String dbname = context.getContextAttribute(doc, "database-name");
-        sessionId = context.getContextAttribute(doc, "session-id", "/");
+        sessionId = context.getContextAttribute(doc, "session-id", null);
         database = Wikiup.getModel(KCDatabaseManager.class).get(dbname);
         Assert.notNull(database, AttributeException.class, "kyotocabinet", dbname);
     }
 
     @Override
     public void set(String name, String value) {
-        database.set(sessionId + name, value);
+        String attrname = getKey(name);
+        database.set(attrname, value);
+    }
+
+    private String getKey(String name) {
+        return sessionId != null ? sessionId + "/" + name : name;
     }
 
     public static final class WIRABLE implements Wirable<KCSessionProcessorContext, ServletProcessorContext> {
