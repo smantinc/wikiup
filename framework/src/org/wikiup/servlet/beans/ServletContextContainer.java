@@ -49,6 +49,10 @@ public class ServletContextContainer extends WikiupDynamicSingleton<ServletConte
 
     public void firstBuilt() {
     }
+    
+    public void log(String category, Throwable ex) {
+        servletContext.log(category, ex);
+    }
 
     public ServletContext getServletContext() {
         return servletContext;

@@ -8,6 +8,7 @@ import org.wikiup.core.impl.resource.JarFileResource;
 import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Interfaces;
+import org.wikiup.servlet.beans.ServletContextContainer;
 
 public class BootstrapResourceHandler implements ResourceHandler {
     public void handle(Resource resource) {
@@ -16,6 +17,8 @@ public class BootstrapResourceHandler implements ResourceHandler {
         } catch(Throwable ex) {
             JarFileResource jarFile = Interfaces.cast(JarFileResource.class, resource);
             if(jarFile != null) {
+                ServletContextContainer contextContainer = Wikiup.getModel(ServletContextContainer.class);
+                contextContainer.log(BootstrapResourceHandler.class.getName(), ex);
                 WikiupPluginManager.Plugin plugin = Wikiup.getModel(WikiupPluginManager.class).getPluginByJar(jarFile.getJar());
                 if(plugin != null) {
                     plugin.setStatus(WikiupPluginManager.Plugin.Status.incompatible);
