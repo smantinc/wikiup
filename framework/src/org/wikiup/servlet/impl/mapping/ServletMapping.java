@@ -1,18 +1,17 @@
 package org.wikiup.servlet.impl.mapping;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Map;
+import java.util.Vector;
+
 import org.wikiup.core.Wikiup;
 import org.wikiup.core.bootstrap.inf.ExtendableDocumentResource;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.inf.ServletConfigureMapping;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Vector;
 
 public class ServletMapping implements ServletConfigureMapping, DocumentAware, ExtendableDocumentResource<ServletMappingEntry> {
     private Collection<ServletConfigureMapping> mappers = new Vector<ServletConfigureMapping>();
@@ -39,9 +38,7 @@ public class ServletMapping implements ServletConfigureMapping, DocumentAware, E
 
     public void appendEntry(String uriPattern, ServletMappingEntry node) {
         if(!node.isAbstract()) {
-            Iterator<ServletConfigureMapping> iterator = mappers.iterator();
-            while(iterator.hasNext()) {
-                ServletConfigureMapping mapper = iterator.next();
+            for(ServletConfigureMapping mapper : mappers) {
                 if(appendMatchedNode(uriPattern, node, mapper))
                     break;
             }

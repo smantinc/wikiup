@@ -1,18 +1,15 @@
 package org.wikiup.servlet.impl.mapping;
 
+import java.util.Collection;
+
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.servlet.ServletProcessorContext;
 
-import java.util.Collection;
-import java.util.Iterator;
-
 class Util {
     static public Document getFilteredDocument(ServletProcessorContext context, Collection<ServletMappingEntry> set) {
         if(set != null) {
-            Iterator<ServletMappingEntry> iterator = set.iterator();
-            while(iterator.hasNext()) {
-                ServletMappingEntry node = iterator.next();
+            for(ServletMappingEntry node : set) {
                 if(!node.isAbstract() && node.translate(context))
                     return node.getDocument();
             }
