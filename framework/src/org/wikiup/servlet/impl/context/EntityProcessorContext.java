@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.wikiup.core.Constants;
 import org.wikiup.core.impl.dictionary.StackDictionary;
+import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.ext.Wirable;
@@ -28,8 +29,13 @@ public class EntityProcessorContext implements ProcessorContext, DocumentAware, 
     private EntityProcessorContext(ServletProcessorContext context) {
         this.context = context;
     }
-    
-    private Entity getEntity(ServletProcessorContext context, String name) {
+
+    private static Entity getEntity(ServletProcessorContext context, String name) {
+        Entity entity = getEntityFromContext(context, name);
+        return entity == null ? context.getEntity(name) : entity;
+    }
+
+    private static Entity getEntityFromContext(ServletProcessorContext context, String name) {
         Entity entity = Interfaces.cast(Entity.class, context.getAttribute(name));
         try {
             if(entity != null && entity.isDirty())
@@ -37,7 +43,7 @@ public class EntityProcessorContext implements ProcessorContext, DocumentAware, 
         } catch(Exception ex) {
             Assert.fail(ex);
         }
-        return entity == null ? context.getEntity(name) : entity;
+        return entity;
     }
 
     @Override
@@ -52,13 +58,13 @@ public class EntityProcessorContext implements ProcessorContext, DocumentAware, 
     }
 
     private void initContextEntity(ServletProcessorContext context, Document node) {
-        Entity entity = this.context.getEntity(context.getContextAttribute(node, Constants.Attributes.ENTITY_NAME));
+        Entity entity = context.getEntity(context.getContextAttribute(node, Constants.Attributes.ENTITY_NAME));
         String name = Documents.getId(node);
         boolean ignore = Documents.getAttributeBooleanValue(node, "ignore-exceptions", false);
         try {
             context.setAttribute(name, entity);
             entityNames.add(name);
-            Dictionaries.setProperties(node, entity, new StackDictionary<Object>().append(this, this.context));
+            Dictionaries.setProperties(node, entity, new StackDictionary<Object>().append(new DictionaryImpl(context), context));
         } catch(Exception ex) {
             if(ignore)
                 context.setAttribute(name, new NullEntity());
@@ -76,7 +82,26 @@ public class EntityProcessorContext implements ProcessorContext, DocumentAware, 
     public Iterator<String> iterator() {
         return entityNames.iterator();
     }
-    
+
+    private static class DictionaryImpl implements Dictionary<Object> {
+        private ServletProcessorContext context;
+        
+        private DictionaryImpl(ServletProcessorContext context) {
+            this.context = context;
+        }
+        
+        @Override
+        public Object get(String name) {
+            EntityPath ePath = new EntityPath(name);
+            String eName = ePath.getEntityName();
+            Entity entity = getEntityFromContext(context, eName);
+            if(entity == null)
+                return null;
+            ePath.setEntity(entity);
+            return name.equals(eName) ? entity : ePath.get();
+        }
+    }
+
     public static final class WIRABLE implements Wirable<EntityProcessorContext, ServletProcessorContext> {
         @Override
         public EntityProcessorContext wire(ServletProcessorContext context) {

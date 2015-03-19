@@ -11,9 +11,7 @@ public class ParameterServletInterceptor implements ServletInterceptor, Document
     private String contains;
 
     public boolean intercept(ServletProcessorContext context) {
-        if(contains != null)
-            return !StringUtil.isEmpty(context.getParameter(contains, null));
-        return false;
+        return contains != null && !StringUtil.isEmpty(context.getParameter(contains, null));
     }
 
     public void aware(Document desc) {
