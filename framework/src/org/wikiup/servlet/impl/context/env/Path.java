@@ -15,7 +15,7 @@ public class Path implements ServletProcessorContextAware, Dictionary<String> {
 
     @Override
     public String toString() {
-        return ServletContextContainer.getInstance().getRealPath(context.getRequestURI());
+        return ServletContextContainer.getInstance().getRealPath(context.getContextPath(context.getRequestURI()));
     }
 
     public String get(String name) {
