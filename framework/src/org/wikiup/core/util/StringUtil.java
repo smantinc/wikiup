@@ -1,7 +1,7 @@
 package org.wikiup.core.util;
 
-import org.wikiup.core.bean.WikiupConfigure;
-import org.wikiup.core.bean.WikiupExpressionLanguage;
+import org.wikiup.framework.bean.WikiupConfigure;
+import org.wikiup.framework.bean.WikiupExpressionLanguage;
 import org.wikiup.core.impl.iterable.ArrayItems;
 import org.wikiup.core.inf.Dictionary;
 

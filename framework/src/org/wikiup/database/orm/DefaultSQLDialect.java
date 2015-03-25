@@ -1,7 +1,7 @@
 package org.wikiup.database.orm;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupDynamicSingleton;
+import org.wikiup.framework.bean.WikiupDynamicSingleton;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Translator;

@@ -1,7 +1,7 @@
 package org.wikiup.modules.jsp;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupNamingDirectory;
+import org.wikiup.framework.bean.WikiupNamingDirectory;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;

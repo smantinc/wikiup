@@ -1,7 +1,7 @@
 package org.wikiup.core.impl.mf;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupNamingDirectory;
+import org.wikiup.framework.bean.WikiupNamingDirectory;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.ext.ModelFactory;
 import org.wikiup.core.util.Interfaces;

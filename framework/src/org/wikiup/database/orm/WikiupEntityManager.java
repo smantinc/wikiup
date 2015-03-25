@@ -1,6 +1,6 @@
 package org.wikiup.database.orm;
 
-import org.wikiup.core.bean.WikiupDynamicSingleton;
+import org.wikiup.framework.bean.WikiupDynamicSingleton;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.Assert;

@@ -1,8 +1,8 @@
 package org.wikiup.modules.spring.beans;
 
 import org.springframework.context.support.AbstractXmlApplicationContext;
-import org.wikiup.core.bootstrap.Bootstrap;
-import org.wikiup.core.bootstrap.inf.ResourceHandler;
+import org.wikiup.framework.bootstrap.Bootstrap;
+import org.wikiup.framework.bootstrap.inf.ResourceHandler;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.iterable.ArrayItems;
 import org.wikiup.core.impl.mp.InstanceModelProvider;

@@ -14,8 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import org.wikiup.core.Constants;
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupConfigure;
-import org.wikiup.core.bean.WikiupTypeTranslator;
+import org.wikiup.framework.bean.WikiupConfigure;
+import org.wikiup.framework.bean.WikiupTypeTranslator;
 import org.wikiup.core.exception.AttributeException;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.beancontainer.BeanContainerByTranslator;

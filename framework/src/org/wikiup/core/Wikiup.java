@@ -16,9 +16,9 @@
 
 package org.wikiup.core;
 
-import org.wikiup.core.bean.WikiupBeanContainer;
-import org.wikiup.core.bean.WikiupBeanFactory;
-import org.wikiup.core.bean.WikiupNamingDirectory;
+import org.wikiup.framework.bean.WikiupBeanContainer;
+import org.wikiup.framework.bean.WikiupBeanFactory;
+import org.wikiup.framework.bean.WikiupNamingDirectory;
 import org.wikiup.core.impl.mp.InstanceModelProvider;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Document;

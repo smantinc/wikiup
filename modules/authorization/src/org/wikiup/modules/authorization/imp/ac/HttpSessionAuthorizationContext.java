@@ -1,6 +1,6 @@
 package org.wikiup.modules.authorization.imp.ac;
 
-import org.wikiup.core.bean.WikiupConfigure;
+import org.wikiup.framework.bean.WikiupConfigure;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.modules.authorization.inf.AuthorizationContextInf;
 import org.wikiup.modules.authorization.inf.Principal;

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <beans>
-	<bean name="configure" class="org.wikiup.core.bean.WikiupConfigure"/>
-	<bean name="bean-factory" class="org.wikiup.core.bean.WikiupBeanFactory"/>
-	<bean name="bean-container" class="org.wikiup.core.bean.WikiupBeanContainer">
-		<bean name="singletons" class="org.wikiup.core.bean.WikiupDynamicSingletons$WIRABLE"/>
+	<bean name="configure" class="org.wikiup.framework.bean.WikiupConfigure"/>
+	<bean name="bean-factory" class="org.wikiup.framework.bean.WikiupBeanFactory"/>
+	<bean name="bean-container" class="org.wikiup.framework.bean.WikiupBeanContainer">
+		<bean name="singletons" class="org.wikiup.framework.bean.WikiupDynamicSingletons$WIRABLE"/>
 	</bean>
 </beans>

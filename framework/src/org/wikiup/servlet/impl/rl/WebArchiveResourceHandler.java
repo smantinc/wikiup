@@ -1,7 +1,7 @@
 package org.wikiup.servlet.impl.rl;
 
-import org.wikiup.core.bean.WikiupNamingDirectory;
-import org.wikiup.core.bootstrap.inf.ResourceHandler;
+import org.wikiup.framework.bean.WikiupNamingDirectory;
+import org.wikiup.framework.bootstrap.inf.ResourceHandler;
 import org.wikiup.core.impl.resource.JarFileResource;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.Vector;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bootstrap.inf.ExtendableDocumentResource;
+import org.wikiup.framework.bootstrap.inf.ExtendableDocumentResource;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.servlet.ServletProcessorContext;

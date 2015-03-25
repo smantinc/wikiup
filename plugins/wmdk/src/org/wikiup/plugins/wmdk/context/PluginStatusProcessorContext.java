@@ -1,7 +1,7 @@
 package org.wikiup.plugins.wmdk.context;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupPluginManager;
+import org.wikiup.framework.bean.WikiupPluginManager;
 import org.wikiup.servlet.inf.ProcessorContext;
 
 public class PluginStatusProcessorContext implements ProcessorContext {

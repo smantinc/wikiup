@@ -6,7 +6,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.wikiup.core.bean.WikiupDynamicSingleton;
+import org.wikiup.framework.bean.WikiupDynamicSingleton;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.inf.Document;

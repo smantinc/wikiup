@@ -1,7 +1,7 @@
 package org.wikiup.modules.worms;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupDynamicSingleton;
+import org.wikiup.framework.bean.WikiupDynamicSingleton;
 import org.wikiup.core.impl.iterable.GenericCastIterable;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;

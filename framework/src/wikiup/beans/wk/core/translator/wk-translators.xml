@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans class="org.wikiup.core.bean.WikiupTypeTranslator">
+<beans class="org.wikiup.framework.bean.WikiupTypeTranslator">
 	<translator name="string" from-class="java.lang.String">
 		<item class="value-of" to-class="java.lang.Integer"/>
 		<item class="value-of" to-class="java.lang.Long"/>

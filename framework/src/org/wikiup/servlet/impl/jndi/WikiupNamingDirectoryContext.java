@@ -1,7 +1,7 @@
 package org.wikiup.servlet.impl.jndi;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupNamingDirectory;
+import org.wikiup.framework.bean.WikiupNamingDirectory;
 import org.wikiup.core.util.StringUtil;
 
 import javax.naming.Binding;

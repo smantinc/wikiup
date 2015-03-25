@@ -10,30 +10,30 @@
 		<factory name="wndi" class="org.wikiup.core.impl.mf.WndiFactory"/>
 		<factory name="resource-loader" class="org.wikiup.core.impl.mf.ClassNameFactory">
 			<item name="extendable-document"
-				  class="org.wikiup.core.bootstrap.impl.handler.ExtendableDocumentResourceHandler"/>
+				  class="org.wikiup.framework.bootstrap.impl.handler.ExtendableDocumentResourceHandler"/>
 		</factory>
 		<factory name="filter" class="org.wikiup.core.impl.mf.ClassNameFactory">
 			<item name="regexp" class="org.wikiup.core.impl.translator.lf.RegexpMatchLogicalTranslator"/>
 			<item name="equal" class="org.wikiup.core.impl.translator.lf.EqualMatchLogicalTranslator"/>
 		</factory>
 		<factory name="action" class="org.wikiup.core.impl.mf.ClassNameFactory">
-			<item name="resource-handler" class="org.wikiup.core.bootstrap.impl.action.ResourceHandlerBootstrapAction"/>
-			<item name="resource-loader" class="org.wikiup.core.bootstrap.impl.action.ResourceLoaderBootstrapAction"/>
+			<item name="resource-handler" class="org.wikiup.framework.bootstrap.impl.action.ResourceHandlerBootstrapAction"/>
+			<item name="resource-loader" class="org.wikiup.framework.bootstrap.impl.action.ResourceLoaderBootstrapAction"/>
 		</factory>
 	</model-factory>
 	<beans>
-		<bean name="wk/core/el" class="org.wikiup.core.bean.WikiupExpressionLanguage">
+		<bean name="wk/core/el" class="org.wikiup.framework.bean.WikiupExpressionLanguage">
 			<default-el>template</default-el>
 			<bean class="org.wikiup.core.impl.el.TemplateExpressionLanguage"/>
 			<bean class="org.wikiup.core.impl.el.EvalExpressionLanguage"/>
 		</bean>
 		<bean name="sc" class="org.wikiup.servlet.beans.ServletContextContainer"/>
-		<bean name="wk/core/class-loader" class="org.wikiup.core.bean.WikiupClassLoader">
+		<bean name="wk/core/class-loader" class="org.wikiup.framework.bean.WikiupClassLoader">
 			<bean name="wk-lib" class="org.wikiup.core.impl.cl.JarArchiveClassLoader">
 				<path>${sc:real-path:WEB-INF/lib}</path>
 			</bean>
 		</bean>
-		<bean name="wk/core/resource-loader" class="org.wikiup.core.bean.WikiupResourceLoader">
+		<bean name="wk/core/resource-loader" class="org.wikiup.framework.bean.WikiupResourceLoader">
 			<bean name="cp" class="org.wikiup.core.impl.rl.ClassPathResourceLoader"
 				  base="${sc:real-path:WEB-INF/classes}"/>
 			<bean name="wk-lib" class="org.wikiup.core.impl.rl.JarArchiveResourceLoader">
@@ -51,7 +51,7 @@
 		<resource-path>wikiup</resource-path>
 	</action>
 	<action class="action:resource-handler">
-		<handler class="org.wikiup.core.bootstrap.impl.handler.BootstrapResourceHandler"/>
+		<handler class="org.wikiup.framework.bootstrap.impl.handler.BootstrapResourceHandler"/>
 		<filter class="filter:equal" value="/wikiup/pre-bootstrap.xml"/>
 		<filter class="filter:equal" value="/wikiup/core-bootstrap.xml"/>
 		<filter class="filter:equal" value="/wikiup/bootstrap.xml"/>

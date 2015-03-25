@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupClassLoader;
+import org.wikiup.framework.bean.WikiupClassLoader;
 import org.wikiup.core.exception.WikiupRuntimeException;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.mp.GenericModelProvider;
-import org.wikiup.core.bean.WikiupTypeTranslator;
+import org.wikiup.framework.bean.WikiupTypeTranslator;
 import org.wikiup.core.impl.wrapper.WrapperImpl;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Dictionary;

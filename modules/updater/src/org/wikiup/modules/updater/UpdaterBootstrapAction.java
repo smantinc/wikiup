@@ -1,7 +1,7 @@
 package org.wikiup.modules.updater;
 
-import org.wikiup.core.bootstrap.Bootstrap;
-import org.wikiup.core.bootstrap.inf.ext.BootstrapAction;
+import org.wikiup.framework.bootstrap.Bootstrap;
+import org.wikiup.framework.bootstrap.inf.ext.BootstrapAction;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.util.Documents;
 

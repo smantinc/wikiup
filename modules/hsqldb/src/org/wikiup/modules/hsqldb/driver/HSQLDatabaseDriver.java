@@ -1,6 +1,6 @@
 package org.wikiup.modules.hsqldb.driver;
 
-import org.wikiup.core.bean.WikiupNamingDirectory;
+import org.wikiup.framework.bean.WikiupNamingDirectory;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.util.Documents;

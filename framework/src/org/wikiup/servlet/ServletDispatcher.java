@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bootstrap.Bootstrap;
+import org.wikiup.framework.bootstrap.Bootstrap;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.servlet.beans.ServletContextContainer;
 import org.wikiup.servlet.exception.ServiceNotImplementException;

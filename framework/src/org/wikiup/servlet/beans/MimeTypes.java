@@ -1,7 +1,7 @@
 package org.wikiup.servlet.beans;
 
-import org.wikiup.core.bean.WikiupConfigure;
-import org.wikiup.core.bean.WikiupDynamicSingleton;
+import org.wikiup.framework.bean.WikiupConfigure;
+import org.wikiup.framework.bean.WikiupDynamicSingleton;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Dictionary;

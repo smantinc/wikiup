@@ -1,6 +1,6 @@
 package org.wikiup.plugins.wmdk.context;
 
-import org.wikiup.core.bean.WikiupConfigure;
+import org.wikiup.framework.bean.WikiupConfigure;
 import org.wikiup.core.impl.document.DocumentWithGetter;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.util.StringUtil;

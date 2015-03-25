@@ -1,9 +1,9 @@
 package org.wikiup.plugins.wmdk.action;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.I18nResourceManager;
-import org.wikiup.core.bean.WikiupConfigure;
-import org.wikiup.core.bean.WikiupPluginManager;
+import org.wikiup.framework.bean.I18nResourceManager;
+import org.wikiup.framework.bean.WikiupConfigure;
+import org.wikiup.framework.bean.WikiupPluginManager;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.impl.context.XPathContext;
 import org.wikiup.core.inf.Document;

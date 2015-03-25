@@ -1,7 +1,7 @@
 package org.wikiup.modules.php;
 
 import com.caucho.quercus.servlet.QuercusServlet;
-import org.wikiup.core.bean.WikiupDynamicSingleton;
+import org.wikiup.framework.bean.WikiupDynamicSingleton;
 import org.wikiup.core.impl.iterable.BeanPropertyNames;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.Context;

@@ -1,6 +1,6 @@
 package org.wikiup.modules.worms;
 
-import org.wikiup.core.bootstrap.inf.ResourceHandler;
+import org.wikiup.framework.bootstrap.inf.ResourceHandler;
 import org.wikiup.core.inf.ext.Resource;
 
 import java.util.HashSet;

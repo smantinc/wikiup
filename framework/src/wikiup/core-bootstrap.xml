@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
 	<resources>
-		<handler class="org.wikiup.core.bean.WikiupPluginManager">
+		<handler class="org.wikiup.framework.bean.WikiupPluginManager">
 			<filter class="filter:regexp" regexp="/wikiup/(core|module|plugin|extension)-meta\.(xml|yaml)"/>
 		</handler>
-		<handler class="org.wikiup.core.bootstrap.impl.handler.WikiupConfigureResourceHandler" base="wikiup/configure/">
+		<handler class="org.wikiup.framework.bootstrap.impl.handler.WikiupConfigureResourceHandler" base="wikiup/configure/">
 			<filter class="filter:regexp" regexp="/wikiup/configure/.*"/>
 		</handler>
-		<handler class="org.wikiup.core.bootstrap.impl.handler.BeanFactoryResourceHandler" base="wikiup/xfactory/">
+		<handler class="org.wikiup.framework.bootstrap.impl.handler.BeanFactoryResourceHandler" base="wikiup/xfactory/">
 			<filter class="filter:regexp" regexp="/wikiup/xfactory/.*"/>
 		</handler>
-		<handler class="org.wikiup.core.bootstrap.impl.handler.WikiupNamingDirectoryResourceHandler"
+		<handler class="org.wikiup.framework.bootstrap.impl.handler.WikiupNamingDirectoryResourceHandler"
 				 base="wikiup/beans/">
 			<filter class="filter:regexp" regexp="/wikiup/beans/.*"/>
 		</handler>

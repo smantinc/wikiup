@@ -3,7 +3,7 @@ package org.wikiup.modules.quartz;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.quartz.impl.StdSchedulerFactory;
-import org.wikiup.core.bean.WikiupDynamicSingleton;
+import org.wikiup.framework.bean.WikiupDynamicSingleton;
 import org.wikiup.core.inf.Releasable;
 
 public class ScheduleManager extends WikiupDynamicSingleton<ScheduleManager> implements Releasable {

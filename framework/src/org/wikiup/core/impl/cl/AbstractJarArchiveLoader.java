@@ -1,7 +1,7 @@
 package org.wikiup.core.impl.cl;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupNamingDirectory;
+import org.wikiup.framework.bean.WikiupNamingDirectory;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.inf.Releasable;

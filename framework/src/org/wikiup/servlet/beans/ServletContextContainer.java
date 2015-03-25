@@ -7,8 +7,8 @@ import java.net.URLDecoder;
 import java.util.Iterator;
 import javax.servlet.ServletContext;
 
-import org.wikiup.core.bean.WikiupConfigure;
-import org.wikiup.core.bean.WikiupDynamicSingleton;
+import org.wikiup.framework.bean.WikiupConfigure;
+import org.wikiup.framework.bean.WikiupDynamicSingleton;
 import org.wikiup.core.impl.iterable.BeanPropertyNames;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Dictionary;

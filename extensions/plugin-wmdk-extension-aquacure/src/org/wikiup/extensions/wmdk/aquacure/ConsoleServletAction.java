@@ -1,7 +1,7 @@
 package org.wikiup.extensions.wmdk.aquacure;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupNamingDirectory;
+import org.wikiup.framework.bean.WikiupNamingDirectory;
 import org.wikiup.core.impl.wndi.DefaultWikiupNamingDirectory;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Dictionary;

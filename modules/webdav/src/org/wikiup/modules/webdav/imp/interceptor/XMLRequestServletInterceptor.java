@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Reader;
 
-import org.wikiup.core.bean.WikiupConfigure;
+import org.wikiup.framework.bean.WikiupConfigure;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StreamUtil;
 import org.wikiup.core.util.StringUtil;

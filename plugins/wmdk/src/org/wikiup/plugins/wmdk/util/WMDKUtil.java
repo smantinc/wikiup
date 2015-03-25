@@ -1,9 +1,9 @@
 package org.wikiup.plugins.wmdk.util;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupConfigure;
-import org.wikiup.core.bean.WikiupPluginManager;
-import org.wikiup.core.bootstrap.Bootstrap;
+import org.wikiup.framework.bean.WikiupConfigure;
+import org.wikiup.framework.bean.WikiupPluginManager;
+import org.wikiup.framework.bootstrap.Bootstrap;
 import org.wikiup.core.impl.document.DocumentWithGetter;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Dictionary;

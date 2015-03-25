@@ -1,6 +1,6 @@
 package org.wikiup.core.util;
 
-import org.wikiup.core.bean.WikiupConfigure;
+import org.wikiup.framework.bean.WikiupConfigure;
 import org.wikiup.core.inf.Attribute;
 
 import java.text.ParseException;

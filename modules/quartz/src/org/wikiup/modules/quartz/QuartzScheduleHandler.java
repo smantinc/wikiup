@@ -9,7 +9,7 @@ import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
 import org.wikiup.core.Constants;
-import org.wikiup.core.bootstrap.inf.ResourceHandler;
+import org.wikiup.framework.bootstrap.inf.ResourceHandler;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.inf.Document;

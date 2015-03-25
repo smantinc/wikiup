@@ -1,7 +1,7 @@
 package org.wikiup.modules.worms;
 
 import org.wikiup.core.Constants;
-import org.wikiup.core.bean.WikiupDynamicSingleton;
+import org.wikiup.framework.bean.WikiupDynamicSingleton;
 import org.wikiup.core.exception.AttributeException;
 import org.wikiup.core.impl.factory.FactoryImpl;
 import org.wikiup.core.inf.Dictionary;

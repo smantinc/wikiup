@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <root>
 	<resources>
-		<handler class="org.wikiup.core.bootstrap.impl.handler.I18nResourceHandler" base="wikiup/i18n/">
+		<handler class="org.wikiup.framework.bootstrap.impl.handler.I18nResourceHandler" base="wikiup/i18n/">
 			<filter class="filter:regexp" regexp="/wikiup/i18n/.*"/>
 		</handler>
 	</resources>

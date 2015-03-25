@@ -1,7 +1,7 @@
 package org.wikiup.servlet.impl.context;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupNamingDirectory;
+import org.wikiup.framework.bean.WikiupNamingDirectory;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Document;

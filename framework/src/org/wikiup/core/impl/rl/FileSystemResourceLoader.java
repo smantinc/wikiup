@@ -1,7 +1,7 @@
 package org.wikiup.core.impl.rl;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupNamingDirectory;
+import org.wikiup.framework.bean.WikiupNamingDirectory;
 import org.wikiup.core.impl.iterable.IterableCollection;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;

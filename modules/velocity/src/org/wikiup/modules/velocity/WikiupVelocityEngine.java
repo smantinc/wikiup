@@ -1,7 +1,7 @@
 package org.wikiup.modules.velocity;
 
 import org.apache.velocity.app.VelocityEngine;
-import org.wikiup.core.bean.WikiupDynamicSingleton;
+import org.wikiup.framework.bean.WikiupDynamicSingleton;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
 import org.wikiup.core.util.Assert;

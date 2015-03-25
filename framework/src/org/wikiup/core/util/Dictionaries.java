@@ -1,10 +1,10 @@
 package org.wikiup.core.util;
 
 import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupExpressionLanguage;
+import org.wikiup.framework.bean.WikiupExpressionLanguage;
 import org.wikiup.core.exception.AttributeException;
 import org.wikiup.core.impl.setter.BeanPropertySetter;
-import org.wikiup.core.bean.WikiupTypeTranslator;
+import org.wikiup.framework.bean.WikiupTypeTranslator;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.ExpressionLanguage;
 import org.wikiup.core.inf.Dictionary;

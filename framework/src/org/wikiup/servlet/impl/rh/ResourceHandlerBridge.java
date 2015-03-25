@@ -1,6 +1,6 @@
 package org.wikiup.servlet.impl.rh;
 
-import org.wikiup.core.bootstrap.inf.ResourceHandler;
+import org.wikiup.framework.bootstrap.inf.ResourceHandler;
 import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.servlet.ServletProcessorContext;
