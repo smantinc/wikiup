@@ -1,7 +1,7 @@
 package org.wikiup.modules.jython;
 
 import org.python.util.PythonInterpreter;
-import org.wikiup.framework.bean.WikiupDynamicSingleton;
+import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.inf.ext.Context;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;

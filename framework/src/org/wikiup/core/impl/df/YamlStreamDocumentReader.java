@@ -1,6 +1,6 @@
 package org.wikiup.core.impl.df;
 
-import org.wikiup.framework.bean.WikiupConfigure;
+import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.impl.document.DocumentImpl;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.ext.DocumentReader;

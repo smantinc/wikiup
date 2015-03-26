@@ -1,7 +1,7 @@
 package org.wikiup.modules.jsp;
 
 import org.apache.jasper.servlet.JspServlet;
-import org.wikiup.framework.bean.WikiupDynamicSingleton;
+import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.impl.iterable.BeanPropertyNames;
 import org.wikiup.core.inf.ExpressionLanguage;
 import org.wikiup.core.inf.Dictionary;

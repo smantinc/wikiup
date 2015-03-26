@@ -1,4 +1,4 @@
-package org.wikiup.framework.bean;
+package org.wikiup.core.bean;
 
 import java.util.Iterator;
 

@@ -1,6 +1,6 @@
 package org.wikiup.servlet.impl.context;
 
-import org.wikiup.framework.bean.WikiupConfigure;
+import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.servlet.ServletProcessorContext;

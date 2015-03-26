@@ -7,7 +7,7 @@
 	</bean-factory>
 	<model-factory class="org.wikiup.core.impl.mf.NamespaceFactory">
 		<factory class="org.wikiup.core.impl.mf.ClassFactory"/>
-		<factory name="wndi" class="org.wikiup.core.impl.mf.WndiFactory"/>
+		<factory name="wndi" class="org.wikiup.framework.impl.mf.WndiFactory"/>
 		<factory name="resource-loader" class="org.wikiup.core.impl.mf.ClassNameFactory">
 			<item name="extendable-document"
 				  class="org.wikiup.framework.bootstrap.impl.handler.ExtendableDocumentResourceHandler"/>
@@ -22,27 +22,27 @@
 		</factory>
 	</model-factory>
 	<beans>
-		<bean name="wk/core/el" class="org.wikiup.framework.bean.WikiupExpressionLanguage">
+		<bean name="wk/core/el" class="org.wikiup.core.bean.WikiupExpressionLanguage">
 			<default-el>template</default-el>
 			<bean class="org.wikiup.core.impl.el.TemplateExpressionLanguage"/>
 			<bean class="org.wikiup.core.impl.el.EvalExpressionLanguage"/>
 		</bean>
 		<bean name="sc" class="org.wikiup.servlet.beans.ServletContextContainer"/>
-		<bean name="wk/core/class-loader" class="org.wikiup.framework.bean.WikiupClassLoader">
-			<bean name="wk-lib" class="org.wikiup.core.impl.cl.JarArchiveClassLoader">
+		<bean name="wk/core/class-loader" class="org.wikiup.core.bean.WikiupClassLoader">
+			<bean name="wk-lib" class="org.wikiup.framework.impl.cl.JarArchiveClassLoader">
 				<path>${sc:real-path:WEB-INF/lib}</path>
 			</bean>
 		</bean>
 		<bean name="wk/core/resource-loader" class="org.wikiup.framework.bean.WikiupResourceLoader">
-			<bean name="cp" class="org.wikiup.core.impl.rl.ClassPathResourceLoader"
+			<bean name="cp" class="org.wikiup.framework.impl.rl.ClassPathResourceLoader"
 				  base="${sc:real-path:WEB-INF/classes}"/>
-			<bean name="wk-lib" class="org.wikiup.core.impl.rl.JarArchiveResourceLoader">
+			<bean name="wk-lib" class="org.wikiup.framework.impl.rl.JarArchiveResourceLoader">
 				<path>${sc:real-path:WEB-INF/lib}</path>
 			</bean>
-			<bean name="web-inf" class="org.wikiup.core.impl.rl.FileSystemResourceLoader" override="true">
+			<bean name="web-inf" class="org.wikiup.framework.impl.rl.FileSystemResourceLoader" override="true">
 				<path>${sc:real-path:WEB-INF}</path>
 			</bean>
-			<bean name="meta-inf" class="org.wikiup.core.impl.rl.FileSystemResourceLoader" override="true">
+			<bean name="meta-inf" class="org.wikiup.framework.impl.rl.FileSystemResourceLoader" override="true">
 				<path>${sc:real-path:META-INF}</path>
 			</bean>
 		</bean>

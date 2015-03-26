@@ -1,6 +1,6 @@
 package org.wikiup.modules.crypt.util;
 
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.ValueUtil;
 

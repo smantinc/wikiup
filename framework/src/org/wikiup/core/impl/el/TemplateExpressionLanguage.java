@@ -1,6 +1,6 @@
 package org.wikiup.core.impl.el;
 
-import org.wikiup.framework.bean.WikiupConfigure;
+import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.exception.MalformedTemplateException;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;

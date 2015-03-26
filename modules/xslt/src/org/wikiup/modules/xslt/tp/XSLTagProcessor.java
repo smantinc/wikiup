@@ -1,6 +1,6 @@
 package org.wikiup.modules.xslt.tp;
 
-import org.wikiup.framework.bean.WikiupConfigure;
+import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;

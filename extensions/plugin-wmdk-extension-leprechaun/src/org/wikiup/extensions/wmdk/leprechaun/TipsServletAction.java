@@ -1,7 +1,7 @@
 package org.wikiup.extensions.wmdk.leprechaun;
 
-import org.wikiup.framework.bean.I18nResourceManager;
-import org.wikiup.framework.bean.WikiupConfigure;
+import org.wikiup.core.bean.I18nResourceManager;
+import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.Documents;

@@ -1,4 +1,4 @@
-package org.wikiup.framework.bean;
+package org.wikiup.core.bean;
 
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Releasable;

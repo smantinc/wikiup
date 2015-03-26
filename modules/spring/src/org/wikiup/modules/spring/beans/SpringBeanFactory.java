@@ -3,7 +3,7 @@ package org.wikiup.modules.spring.beans;
 import java.util.Iterator;
 
 import org.wikiup.core.Constants;
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Factory;

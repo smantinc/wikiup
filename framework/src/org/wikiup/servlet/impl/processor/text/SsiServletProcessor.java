@@ -1,6 +1,6 @@
 package org.wikiup.servlet.impl.processor.text;
 
-import org.wikiup.framework.bean.WikiupConfigure;
+import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.FileUtil;

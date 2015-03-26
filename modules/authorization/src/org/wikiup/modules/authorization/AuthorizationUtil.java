@@ -1,6 +1,6 @@
 package org.wikiup.modules.authorization;
 
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
 import org.wikiup.modules.authorization.imp.principal.Anonymous;
 import org.wikiup.modules.authorization.inf.AuthorizationContextInf;
 import org.wikiup.modules.authorization.inf.Principal;

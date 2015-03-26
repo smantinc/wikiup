@@ -1,6 +1,6 @@
 package org.wikiup.database.beans;
 
-import org.wikiup.framework.bean.WikiupDynamicSingleton;
+import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.Context;

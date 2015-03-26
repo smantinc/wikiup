@@ -1,4 +1,4 @@
-package org.wikiup.framework.bean;
+package org.wikiup.core.bean;
 
 import org.wikiup.core.impl.document.DocumentImpl;
 import org.wikiup.core.inf.Document;

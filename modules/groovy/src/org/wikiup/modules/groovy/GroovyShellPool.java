@@ -1,7 +1,7 @@
 package org.wikiup.modules.groovy;
 
 import groovy.lang.GroovyShell;
-import org.wikiup.framework.bean.WikiupDynamicSingleton;
+import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.util.StringUtil;

@@ -1,8 +1,9 @@
 package org.wikiup.framework.bean;
 
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
+import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.framework.bootstrap.BootstrapResource;
-import org.wikiup.core.impl.rl.ClassPathResourceLoader;
+import org.wikiup.framework.impl.rl.ClassPathResourceLoader;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Releasable;
 import org.wikiup.core.inf.ext.Resource;

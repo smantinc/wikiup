@@ -2,7 +2,7 @@ package org.wikiup.core.impl.beancontainer;
 
 import java.util.HashMap;
 
-import org.wikiup.framework.bean.WikiupTypeTranslator;
+import org.wikiup.core.bean.WikiupTypeTranslator;
 import org.wikiup.core.impl.wrapper.WrapperImpl;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.util.Interfaces;

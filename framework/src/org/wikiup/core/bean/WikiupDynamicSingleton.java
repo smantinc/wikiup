@@ -1,9 +1,9 @@
-package org.wikiup.framework.bean;
+package org.wikiup.core.bean;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
 import org.wikiup.core.impl.wrapper.WrapperImpl;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Document;

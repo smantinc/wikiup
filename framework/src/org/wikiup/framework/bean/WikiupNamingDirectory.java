@@ -1,6 +1,7 @@
 package org.wikiup.framework.bean;
 
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
+import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.framework.bootstrap.Bootstrap;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.impl.wndi.DefaultWikiupNamingDirectory;

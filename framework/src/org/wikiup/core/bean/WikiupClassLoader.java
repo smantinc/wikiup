@@ -1,4 +1,4 @@
-package org.wikiup.framework.bean;
+package org.wikiup.core.bean;
 
 import org.wikiup.core.impl.cl.ClassDictionaryImpl;
 import org.wikiup.core.impl.dictionary.DictionaryCollection;

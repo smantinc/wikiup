@@ -3,8 +3,8 @@ package org.wikiup.framework.bootstrap.impl.handler;
 import java.util.HashMap;
 
 import org.wikiup.core.Constants;
-import org.wikiup.core.Wikiup;
-import org.wikiup.framework.bean.WikiupBeanFactory;
+import org.wikiup.Wikiup;
+import org.wikiup.core.bean.WikiupBeanFactory;
 import org.wikiup.core.impl.document.StyleDocument;
 import org.wikiup.core.impl.factory.FactoryImpl;
 import org.wikiup.core.impl.factory.FactoryWithBackup;

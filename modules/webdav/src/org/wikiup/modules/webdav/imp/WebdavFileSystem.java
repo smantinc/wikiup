@@ -3,8 +3,8 @@ package org.wikiup.modules.webdav.imp;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.wikiup.core.Wikiup;
-import org.wikiup.framework.bean.WikiupDynamicSingleton;
+import org.wikiup.Wikiup;
+import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.impl.document.DocumentImpl;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Document;
