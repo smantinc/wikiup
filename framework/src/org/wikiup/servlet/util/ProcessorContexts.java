@@ -1,6 +1,6 @@
 package org.wikiup.servlet.util;
 
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupTypeTranslator;
 import org.wikiup.core.impl.beancontainer.BeanContainerByTranslator;
 import org.wikiup.core.inf.BeanContainer;

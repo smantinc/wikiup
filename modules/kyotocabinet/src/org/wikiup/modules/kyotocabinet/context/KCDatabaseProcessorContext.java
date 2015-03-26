@@ -1,7 +1,7 @@
 package org.wikiup.modules.kyotocabinet.context;
 
 import kyotocabinet.DB;
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.exception.AttributeException;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Document;

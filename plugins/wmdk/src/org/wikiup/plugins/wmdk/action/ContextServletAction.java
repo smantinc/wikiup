@@ -2,7 +2,7 @@ package org.wikiup.plugins.wmdk.action;
 
 import java.util.Iterator;
 
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.BeanContainer;

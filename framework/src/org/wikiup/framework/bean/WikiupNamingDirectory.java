@@ -2,7 +2,7 @@ package org.wikiup.framework.bean;
 
 import java.util.Iterator;
 
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.impl.wndi.DefaultWikiupNamingDirectory;

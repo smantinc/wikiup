@@ -14,9 +14,8 @@
  *  limitations under the License.
  */
 
-package org.wikiup;
+package org.wikiup.core;
 
-import org.wikiup.core.Constants;
 import org.wikiup.core.bean.WikiupBeanContainer;
 import org.wikiup.core.bean.WikiupBeanFactory;
 import org.wikiup.core.impl.Null;

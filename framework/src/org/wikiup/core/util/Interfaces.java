@@ -10,7 +10,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupClassLoader;
 import org.wikiup.core.exception.WikiupRuntimeException;
 import org.wikiup.core.impl.Null;

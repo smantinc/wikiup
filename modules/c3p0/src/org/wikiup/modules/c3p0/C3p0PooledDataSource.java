@@ -1,7 +1,7 @@
 package org.wikiup.modules.c3p0;
 
 import com.mchange.v2.c3p0.DataSources;
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.database.impl.datasource.DataSourceWrapper;

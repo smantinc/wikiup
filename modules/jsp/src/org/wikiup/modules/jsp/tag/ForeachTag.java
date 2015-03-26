@@ -5,7 +5,7 @@ import java.util.Iterator;
 import javax.servlet.jsp.JspException;
 import javax.servlet.jsp.tagext.BodyTagSupport;
 
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.ExpressionLanguage;

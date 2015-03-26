@@ -4,7 +4,7 @@ import java.sql.Connection;
 import java.util.Iterator;
 
 import org.wikiup.core.Constants;
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Document;

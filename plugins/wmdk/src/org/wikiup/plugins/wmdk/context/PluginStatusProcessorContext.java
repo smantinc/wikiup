@@ -1,6 +1,6 @@
 package org.wikiup.plugins.wmdk.context;
 
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.framework.bean.WikiupPluginManager;
 import org.wikiup.servlet.inf.ProcessorContext;
 

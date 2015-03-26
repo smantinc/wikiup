@@ -1,6 +1,6 @@
 package org.wikiup.core.impl.wndi;
 
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.impl.context.ThreadLocalContext;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;

@@ -1,6 +1,6 @@
 package org.wikiup.core.util;
 
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupExpressionLanguage;
 import org.wikiup.core.exception.AttributeException;
 import org.wikiup.core.impl.setter.BeanPropertySetter;

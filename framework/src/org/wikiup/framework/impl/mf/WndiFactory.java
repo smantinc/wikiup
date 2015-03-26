@@ -1,6 +1,6 @@
 package org.wikiup.framework.impl.mf;
 
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.framework.bean.WikiupNamingDirectory;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.ext.ModelFactory;

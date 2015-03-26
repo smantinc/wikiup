@@ -1,6 +1,6 @@
 package org.wikiup.modules.jython.util;
 
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupClassLoader;
 
 public class PythonClassLoader extends ClassLoader {

@@ -1,6 +1,6 @@
 package org.wikiup.framework.bean;
 
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.framework.bootstrap.Bootstrap;

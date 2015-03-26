@@ -1,6 +1,6 @@
 package org.wikiup.modules.updater;
 
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.framework.bean.WikiupPluginManager;
 import org.wikiup.core.impl.context.XPathContext;
 import org.wikiup.core.impl.dictionary.dl.ByAttributeNameSelector;

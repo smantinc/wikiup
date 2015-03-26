@@ -1,6 +1,6 @@
 package org.wikiup.servlet.impl.action;
 
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupBeanContainer;
 import org.wikiup.core.bean.WikiupBeanFactory;
 import org.wikiup.core.impl.context.BeanPropertyContext;

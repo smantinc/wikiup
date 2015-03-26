@@ -1,6 +1,6 @@
 package org.wikiup.framework.bootstrap.impl.action;
 
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.framework.bean.WikiupResourceLoader;
 import org.wikiup.framework.bootstrap.Bootstrap;
 import org.wikiup.framework.bootstrap.BootstrapResource;

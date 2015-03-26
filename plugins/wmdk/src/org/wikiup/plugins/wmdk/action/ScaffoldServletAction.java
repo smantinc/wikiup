@@ -1,6 +1,6 @@
 package org.wikiup.plugins.wmdk.action;
 
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.framework.bean.WikiupPluginManager;
 import org.wikiup.core.impl.dictionary.BeanPropertyDictionary;
