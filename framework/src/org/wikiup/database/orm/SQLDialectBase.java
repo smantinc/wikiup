@@ -1,6 +1,6 @@
 package org.wikiup.database.orm;
 
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.inf.Translator;
 import org.wikiup.database.orm.inf.DialectInterpretAction;
 import org.wikiup.database.orm.inf.SQLDialect;

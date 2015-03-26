@@ -1,8 +1,9 @@
 package org.wikiup.framework.bean;
 
-import org.wikiup.Wikiup;
+import java.util.Iterator;
+
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
-import org.wikiup.framework.bootstrap.Bootstrap;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.impl.wndi.DefaultWikiupNamingDirectory;
 import org.wikiup.core.inf.Document;
@@ -11,8 +12,7 @@ import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
-
-import java.util.Iterator;
+import org.wikiup.framework.bootstrap.Bootstrap;
 
 public class WikiupNamingDirectory extends WikiupDynamicSingleton<WikiupNamingDirectory> implements Context<Object, Object>, Iterable<String> {
     private MapContext<Object> entries;
@@ -23,6 +23,10 @@ public class WikiupNamingDirectory extends WikiupDynamicSingleton<WikiupNamingDi
 
     public Object get(String name) {
         return name != null ? get(StringUtil.splitNamespaces(name)) : null;
+    }
+
+    public <E> E get(Class<E> clazz, String[] path) {
+        return clazz.cast(get(path, path.length));
     }
 
     public Object get(String[] path) {

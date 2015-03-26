@@ -1,6 +1,6 @@
 package org.wikiup.modules.php;
 
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.util.Assert;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.inf.ServletProcessor;

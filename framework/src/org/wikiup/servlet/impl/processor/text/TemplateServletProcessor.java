@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.wikiup.Wikiup;
 import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Dictionary;
@@ -14,6 +13,7 @@ import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
+import org.wikiup.framework.bean.WikiupNamingDirectory;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.exception.CloseMarkupNotFoundException;
 import org.wikiup.servlet.impl.rl.ResponseBufferResourceHandler;
@@ -29,7 +29,7 @@ public class TemplateServletProcessor extends ResponseBufferResourceHandler impl
 
     public void process(ServletProcessorContext context) {
         StringWriter writer = context.getResponseWriter();
-        this.tags = Wikiup.getInstance().get(Dictionary.class, WNDI_TAG_PROCESSORS);
+        this.tags = WikiupNamingDirectory.getInstance().get(Dictionary.class, WNDI_TAG_PROCESSORS);
         process(context, this, context.getResponseText(), null, writer);
     }
 

@@ -5,7 +5,7 @@ import org.apache.commons.dbcp.DataSourceConnectionFactory;
 import org.apache.commons.dbcp.PoolableConnectionFactory;
 import org.apache.commons.dbcp.PoolingDataSource;
 import org.apache.commons.pool.impl.GenericObjectPool;
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.database.impl.datasource.DataSourceWrapper;
 import org.wikiup.database.inf.DataSource;

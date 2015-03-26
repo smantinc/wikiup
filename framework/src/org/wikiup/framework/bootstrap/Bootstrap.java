@@ -1,7 +1,7 @@
 package org.wikiup.framework.bootstrap;
 
 import org.wikiup.core.Constants;
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.framework.bean.WikiupNamingDirectory;
 import org.wikiup.framework.bootstrap.inf.ResourceHandler;

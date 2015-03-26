@@ -14,9 +14,8 @@
  *  limitations under the License.
  */
 
-package org.wikiup;
+package org.wikiup.core;
 
-import org.wikiup.core.Constants;
 import org.wikiup.core.bean.WikiupBeanContainer;
 import org.wikiup.core.bean.WikiupBeanFactory;
 import org.wikiup.framework.bean.WikiupNamingDirectory;
@@ -48,10 +47,6 @@ public class Wikiup implements Context<Object, Object>, Releasable {
 
     public Object get(String name) {
         return wndi.get(name);
-    }
-
-    public <E> E get(Class<E> clazz, String[] path) {
-        return clazz.cast(WikiupNamingDirectory.getInstance().get(path, path.length));
     }
 
     public <E> E get(Class<E> clazz, String name) {

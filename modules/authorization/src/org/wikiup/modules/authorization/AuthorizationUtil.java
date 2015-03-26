@@ -1,6 +1,6 @@
 package org.wikiup.modules.authorization;
 
-import org.wikiup.Wikiup;
+import org.wikiup.framework.bean.WikiupNamingDirectory;
 import org.wikiup.modules.authorization.imp.principal.Anonymous;
 import org.wikiup.modules.authorization.inf.AuthorizationContextInf;
 import org.wikiup.modules.authorization.inf.Principal;
@@ -19,7 +19,7 @@ public class AuthorizationUtil {
     }
 
     static public AuthorizationContextInf getAuthorizationContext(ServletProcessorContext context) {
-        AuthorizationContextInf ac = Wikiup.getInstance().get(AuthorizationContextInf.class, WND_AUTHORIZATION_CONTEXT);
+        AuthorizationContextInf ac = WikiupNamingDirectory.getInstance().get(AuthorizationContextInf.class, WND_AUTHORIZATION_CONTEXT);
         context.awaredBy(ac);
         return ac;
     }

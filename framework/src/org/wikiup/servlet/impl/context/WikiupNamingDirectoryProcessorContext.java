@@ -1,7 +1,5 @@
 package org.wikiup.servlet.impl.context;
 
-import org.wikiup.Wikiup;
-import org.wikiup.framework.bean.WikiupNamingDirectory;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.inf.Document;
@@ -12,6 +10,7 @@ import org.wikiup.core.util.Dictionaries;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 import org.wikiup.core.util.StringUtil;
+import org.wikiup.framework.bean.WikiupNamingDirectory;
 import org.wikiup.servlet.ServletProcessorContext;
 import org.wikiup.servlet.inf.ProcessorContext;
 import org.wikiup.servlet.inf.ServletProcessorContextAware;
@@ -25,7 +24,7 @@ public class WikiupNamingDirectoryProcessorContext implements ProcessorContext, 
     }
 
     public WikiupNamingDirectoryProcessorContext(String[] path) {
-        directory = Wikiup.getInstance().get(Dictionary.class, path);
+        directory = WikiupNamingDirectory.getInstance().get(Dictionary.class, path);
     }
 
     public Object get(String name, Dictionary<?> params) {

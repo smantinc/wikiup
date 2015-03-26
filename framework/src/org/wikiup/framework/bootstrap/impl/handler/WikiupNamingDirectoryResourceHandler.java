@@ -5,7 +5,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.framework.bean.WikiupNamingDirectory;
 import org.wikiup.framework.bean.WikiupPluginManager;
 import org.wikiup.core.impl.document.MergedDocument;

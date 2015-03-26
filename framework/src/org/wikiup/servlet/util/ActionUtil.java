@@ -1,7 +1,7 @@
 package org.wikiup.servlet.util;
 
 import org.wikiup.core.Constants;
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;

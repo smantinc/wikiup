@@ -1,6 +1,6 @@
 package org.wikiup.modules.spring.beans;
 
-import org.wikiup.Wikiup;
+import org.wikiup.core.Wikiup;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.modules.spring.WikiupSpringDynamicSingleton;
 

@@ -1,25 +1,26 @@
 package org.wikiup.servlet.util;
 
-import org.wikiup.Wikiup;
-import org.wikiup.core.inf.Dictionary;
-import org.wikiup.core.util.FileUtil;
-import org.wikiup.core.util.StreamUtil;
-import org.wikiup.core.util.StringUtil;
-import org.wikiup.servlet.beans.MimeTypes;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.wikiup.core.Wikiup;
+import org.wikiup.core.inf.Dictionary;
+import org.wikiup.core.util.FileUtil;
+import org.wikiup.core.util.StreamUtil;
+import org.wikiup.core.util.StringUtil;
+import org.wikiup.framework.bean.WikiupNamingDirectory;
+import org.wikiup.servlet.beans.MimeTypes;
 
 public class ServletUtil {
     static private String[] WNDI_PROCESSOR_TEMPLATE = {"wk", "servlet", "processor", "by-extension"};
 
     static public Dictionary<?> getServletProcessorByExtension() {
-        return Wikiup.getInstance().get(Dictionary.class, WNDI_PROCESSOR_TEMPLATE);
+        return WikiupNamingDirectory.getInstance().get(Dictionary.class, WNDI_PROCESSOR_TEMPLATE);
     }
 
     static public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
