@@ -1,6 +1,6 @@
 package org.wikiup.modules.authorization.context.method;
 
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.modules.authorization.AuthorizationManager;
 import org.wikiup.modules.authorization.inf.AuthorizationInf;

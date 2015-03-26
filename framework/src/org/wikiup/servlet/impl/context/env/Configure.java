@@ -1,6 +1,6 @@
 package org.wikiup.servlet.impl.context.env;
 
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
 import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.inf.Dictionary;
 

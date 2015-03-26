@@ -1,6 +1,6 @@
 package org.wikiup.servlet.impl.context;
 
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
 import org.wikiup.core.bean.I18nResourceManager;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;

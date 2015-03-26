@@ -3,7 +3,7 @@ package org.wikiup.core.bean;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Translator;
 import org.wikiup.core.util.Documents;

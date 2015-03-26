@@ -1,6 +1,6 @@
 package org.wikiup.core.bean;
 
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
 import org.wikiup.core.impl.el.TemplateExpressionLanguage;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;

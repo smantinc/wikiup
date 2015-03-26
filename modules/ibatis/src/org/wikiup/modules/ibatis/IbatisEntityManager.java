@@ -9,7 +9,7 @@ import com.ibatis.sqlmap.client.event.RowHandler;
 import com.ibatis.sqlmap.engine.execution.BatchException;
 import com.ibatis.sqlmap.engine.impl.ExtendedSqlMapClient;
 import com.ibatis.sqlmap.engine.mapping.statement.MappedStatement;
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
 import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.framework.bean.WikiupResourceLoader;

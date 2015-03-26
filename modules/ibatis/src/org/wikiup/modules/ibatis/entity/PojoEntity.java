@@ -1,6 +1,6 @@
 package org.wikiup.modules.ibatis.entity;
 
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
 import org.wikiup.core.impl.attribute.BeanProperty;
 import org.wikiup.core.impl.iterable.BeanProperties;
 import org.wikiup.core.bean.WikiupTypeTranslator;

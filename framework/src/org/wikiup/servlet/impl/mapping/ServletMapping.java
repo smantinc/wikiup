@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Vector;
 
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
 import org.wikiup.framework.bootstrap.inf.ExtendableDocumentResource;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;

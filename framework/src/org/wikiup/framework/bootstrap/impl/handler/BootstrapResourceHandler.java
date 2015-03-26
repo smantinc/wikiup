@@ -1,6 +1,6 @@
 package org.wikiup.framework.bootstrap.impl.handler;
 
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
 import org.wikiup.framework.bean.WikiupPluginManager;
 import org.wikiup.framework.bootstrap.Bootstrap;
 import org.wikiup.framework.bootstrap.inf.ResourceHandler;

@@ -8,7 +8,7 @@ import java.io.OutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
 import org.wikiup.core.inf.Dictionary;
 import org.wikiup.core.util.FileUtil;
 import org.wikiup.core.util.StreamUtil;

@@ -11,7 +11,7 @@ import org.apache.lucene.search.Query;
 import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.Version;
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
 import org.wikiup.core.bean.WikiupDynamicSingleton;
 import org.wikiup.framework.bean.WikiupNamingDirectory;
 import org.wikiup.core.impl.setter.BeanPropertySetter;

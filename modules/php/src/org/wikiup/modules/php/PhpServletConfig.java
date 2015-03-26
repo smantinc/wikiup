@@ -1,6 +1,6 @@
 package org.wikiup.modules.php;
 
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
 import org.wikiup.framework.bean.WikiupNamingDirectory;
 import org.wikiup.core.impl.context.MapContext;
 import org.wikiup.core.inf.Document;

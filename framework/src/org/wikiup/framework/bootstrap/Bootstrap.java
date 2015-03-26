@@ -1,22 +1,22 @@
 package org.wikiup.framework.bootstrap;
 
+import org.wikiup.Wikiup;
 import org.wikiup.core.Constants;
-import org.wikiup.core.Wikiup;
 import org.wikiup.core.bean.WikiupConfigure;
-import org.wikiup.framework.bean.WikiupNamingDirectory;
-import org.wikiup.framework.bootstrap.inf.ResourceHandler;
-import org.wikiup.framework.bootstrap.inf.ext.BootstrapAction;
 import org.wikiup.core.exception.AttributeException;
 import org.wikiup.core.exception.BeanException;
 import org.wikiup.core.impl.mf.NamespaceFactory;
+import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.DocumentAware;
-import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.inf.ext.LogicalTranslator;
+import org.wikiup.core.inf.ext.Resource;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
+import org.wikiup.framework.bean.WikiupNamingDirectory;
+import org.wikiup.framework.bootstrap.inf.ResourceHandler;
+import org.wikiup.framework.bootstrap.inf.ext.BootstrapAction;
 
 public class Bootstrap implements DocumentAware, ResourceHandler {
     static private Bootstrap instance = null;
@@ -79,6 +79,7 @@ public class Bootstrap implements DocumentAware, ResourceHandler {
 
     public void aware(Document desc) {
         Document node;
+        Wikiup.setInstanceWrapper(new Wikiup.WikiupInstanceWrapper(WikiupNamingDirectory.getInstance()));
         Interfaces.initialize(factory, desc.getChild("model-factory"));
 
         if((node = desc.getChild("beans")) != null) {

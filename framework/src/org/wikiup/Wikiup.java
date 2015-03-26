@@ -14,11 +14,12 @@
  *  limitations under the License.
  */
 
-package org.wikiup.core;
+package org.wikiup;
 
+import org.wikiup.core.Constants;
 import org.wikiup.core.bean.WikiupBeanContainer;
 import org.wikiup.core.bean.WikiupBeanFactory;
-import org.wikiup.framework.bean.WikiupNamingDirectory;
+import org.wikiup.core.impl.Null;
 import org.wikiup.core.impl.mp.InstanceModelProvider;
 import org.wikiup.core.inf.BeanContainer;
 import org.wikiup.core.inf.Document;
@@ -31,14 +32,22 @@ import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
 
 public class Wikiup implements Context<Object, Object>, Releasable {
-    private static Wrapper<Wikiup> instanceProvider = new DefaultWikiupInstanceWrapper();
+    private static Wrapper<Wikiup> INSTANCE_WRAPPER = new WikiupInstanceWrapper(Null.getInstance());
 
     private BeanContainer beanContainer = new WikiupBeanContainer();
     private WikiupBeanFactory beanFactory = new WikiupBeanFactory();
-    private Context<Object, Object> wndi = WikiupNamingDirectory.getInstance();
+    private Context<Object, Object> wndi;
 
-    static public Wikiup getInstance() {
-        return instanceProvider.wrapped();
+    public Wikiup(Context<Object, Object> wndi) {
+        this.wndi = wndi;
+    }
+
+    public static void setInstanceWrapper(Wrapper<Wikiup> instanceWrapper) {
+        INSTANCE_WRAPPER = instanceWrapper;
+    }
+    
+    public static Wikiup getInstance() {
+        return INSTANCE_WRAPPER.wrapped();
     }
 
     public void set(String name, Object container) {
@@ -103,15 +112,20 @@ public class Wikiup implements Context<Object, Object>, Releasable {
     public void release() {
         Interfaces.release(beanContainer);
         Interfaces.release(wndi);
-        instanceProvider = new DefaultWikiupInstanceWrapper();
+        INSTANCE_WRAPPER = new WikiupInstanceWrapper(Null.getInstance());
     }
 
-    static private class DefaultWikiupInstanceWrapper implements Wrapper<Wikiup> {
+    public static class WikiupInstanceWrapper implements Wrapper<Wikiup> {
         private Wikiup instance;
+        private Context<Object, Object> wndi;
 
+        public WikiupInstanceWrapper(Context<Object, Object> wndi) {
+            this.wndi = wndi;
+        }
+        
         @Override
         public synchronized Wikiup wrapped() {
-            return instance == null ? (instance = new Wikiup()) : instance;
+            return instance == null ? (instance = new Wikiup(wndi)) : instance;
         }
     }
 }

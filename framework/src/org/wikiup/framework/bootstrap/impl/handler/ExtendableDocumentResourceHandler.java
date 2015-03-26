@@ -1,6 +1,6 @@
 package org.wikiup.framework.bootstrap.impl.handler;
 
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
 import org.wikiup.framework.bootstrap.inf.ExtendableDocumentResource;
 import org.wikiup.framework.bootstrap.inf.ResourceHandler;
 import org.wikiup.core.inf.Document;

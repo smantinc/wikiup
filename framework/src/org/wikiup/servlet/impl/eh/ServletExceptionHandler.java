@@ -1,6 +1,6 @@
 package org.wikiup.servlet.impl.eh;
 
-import org.wikiup.core.Wikiup;
+import org.wikiup.Wikiup;
 import org.wikiup.core.bean.WikiupConfigure;
 import org.wikiup.core.exception.WikiupRuntimeException;
 import org.wikiup.core.inf.Document;
