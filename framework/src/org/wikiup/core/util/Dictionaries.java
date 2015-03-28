@@ -1,18 +1,19 @@
 package org.wikiup.core.util;
 
-import org.wikiup.core.Wikiup;
-import org.wikiup.core.bean.WikiupExpressionLanguage;
-import org.wikiup.core.exception.AttributeException;
-import org.wikiup.core.impl.setter.BeanPropertySetter;
-import org.wikiup.core.bean.WikiupTypeTranslator;
-import org.wikiup.core.inf.Document;
-import org.wikiup.core.inf.ExpressionLanguage;
-import org.wikiup.core.inf.Dictionary;
-import org.wikiup.core.inf.BeanContainer;
-import org.wikiup.core.inf.Translator;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+
+import org.wikiup.core.Constants;
+import org.wikiup.core.Wikiup;
+import org.wikiup.core.bean.WikiupExpressionLanguage;
+import org.wikiup.core.bean.WikiupTypeTranslator;
+import org.wikiup.core.exception.AttributeException;
+import org.wikiup.core.impl.setter.BeanPropertySetter;
+import org.wikiup.core.inf.BeanContainer;
+import org.wikiup.core.inf.Dictionary;
+import org.wikiup.core.inf.Document;
+import org.wikiup.core.inf.ExpressionLanguage;
+import org.wikiup.core.inf.Translator;
 
 public class Dictionaries {
     public static Object get(String name, Dictionary<?> ... dictionaries) {
@@ -101,7 +102,7 @@ public class Dictionaries {
         for(Document property : iterable) {
             Object value = el.evaluate(src, Documents.getDocumentValue(property));
             if(value != null)
-                ((Dictionary.Mutable<Object>) dest).set(Documents.getId(property), value);
+                ((Dictionary.Mutable<Object>) dest).set(Documents.ensureAttributeValue(property, Constants.Attributes.NAME), value);
         }
     }
 
