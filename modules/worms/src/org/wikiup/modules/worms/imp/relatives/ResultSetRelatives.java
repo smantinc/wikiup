@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.wikiup.core.impl.Null;
 import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Document;
 import org.wikiup.core.util.Assert;
@@ -41,7 +42,10 @@ public abstract class ResultSetRelatives extends EntityRelatives implements Rela
     @Override
     public Iterator<Relatives> iterator() {
         try {
-            resultSet.beforeFirst();
+            if(resultSet != null)
+                resultSet.beforeFirst();
+            else
+                return Null.getInstance();
         }
         catch(SQLException e) {
             Assert.fail(e);

@@ -12,13 +12,20 @@ import org.wikiup.database.orm.inf.Relatives;
 public class DocumentByRelatives extends DocumentWrapper {
     private String name;
     private Relatives relatives;
+    private Iterable<Relatives> iterable;
     
     public DocumentByRelatives(Relatives relatives) {
         this("relative", relatives);
     }
 
     public DocumentByRelatives(String name, Relatives relatives) {
+        this(name, relatives, Interfaces.cast(Iterable.class, relatives));
+    }
+
+    private DocumentByRelatives(String name, Relatives relatives, Iterable<Relatives> iterable) {
+        this.name = name;
         this.relatives = relatives;
+        this.iterable = iterable;
     }
 
     @Override
@@ -37,7 +44,6 @@ public class DocumentByRelatives extends DocumentWrapper {
     }
     
     public Iterable<Document> getChildren() {
-        final Iterable<Relatives> iterable = Interfaces.cast(Iterable.class, relatives);
         if(iterable == null)
             return Null.getInstance();
         return new Iterable<Document>() {
@@ -63,7 +69,7 @@ public class DocumentByRelatives extends DocumentWrapper {
         @Override
         public Document next() {
             Relatives relatives = iterator.next();
-            return new DocumentByRelatives(relatives);
+            return new DocumentByRelatives("record", relatives, null);
         }
 
         @Override
