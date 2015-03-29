@@ -4,4 +4,5 @@
 	<item name="one-to-one" class="org.wikiup.modules.worms.imp.relatives.OneToOneRelatives"/>
 	<item name="join" class="org.wikiup.modules.worms.imp.relatives.JoinRelatives"/>
 	<item name="raw" class="org.wikiup.modules.worms.imp.relatives.RawRelatives"/>
+	<item name="sub-query" class="org.wikiup.modules.worms.imp.relatives.SubQueryRelatives"/>
 </root>

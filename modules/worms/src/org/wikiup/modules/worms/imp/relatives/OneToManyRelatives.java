@@ -18,6 +18,7 @@ import org.wikiup.modules.worms.WormsEntity;
 import org.wikiup.modules.worms.WormsEntityManager;
 import org.wikiup.modules.worms.imp.builder.RelativeSQLBuilder;
 
+@Deprecated
 public class OneToManyRelatives extends EntityRelatives implements Relatives.OneToMany {
 
     public void init(Document desc, WormsEntity origin, Dictionary<?> parameters) {

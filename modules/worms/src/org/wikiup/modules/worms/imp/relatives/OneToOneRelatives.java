@@ -1,9 +1,11 @@
 package org.wikiup.modules.worms.imp.relatives;
 
+import java.sql.Connection;
+
 import org.wikiup.core.Constants;
 import org.wikiup.core.inf.Attribute;
-import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Dictionary;
+import org.wikiup.core.inf.Document;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.database.orm.inf.Relatives;
@@ -12,8 +14,7 @@ import org.wikiup.modules.worms.WormsEntity;
 import org.wikiup.modules.worms.WormsEntityManager;
 import org.wikiup.modules.worms.imp.builder.RelativeSQLBuilder;
 
-import java.sql.Connection;
-
+@Deprecated
 public class OneToOneRelatives extends EntityRelatives implements Relatives.OneToOne {
 
     public void init(Document desc, WormsEntity origin, Dictionary<?> parameters) {
