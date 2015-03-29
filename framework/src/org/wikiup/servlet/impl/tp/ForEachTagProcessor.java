@@ -3,6 +3,7 @@ package org.wikiup.servlet.impl.tp;
 import java.io.StringWriter;
 
 import org.wikiup.core.inf.Dictionary;
+import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.StringUtil;
 import org.wikiup.core.util.ValueUtil;
 import org.wikiup.servlet.ServletProcessorContext;
@@ -20,6 +21,7 @@ public class ForEachTagProcessor implements TagProcessor {
             beanStack.push(ctx);
         }
         Iterable<?> iterable = beanStack.peek(Iterable.class);
+        Assert.notNull(iterable, IllegalStateException.class);
         for(Object obj : iterable)
             if(obj != null) {
                 if(var != null)

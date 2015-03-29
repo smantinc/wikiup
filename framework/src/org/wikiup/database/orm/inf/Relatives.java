@@ -4,11 +4,11 @@ import org.wikiup.core.inf.Attribute;
 import org.wikiup.core.inf.Dictionary;
 
 public interface Relatives extends Dictionary<Attribute> {
-    public Iterable<Attribute> getProperties();
+    Iterable<Attribute> getProperties();
     
-    public interface OneToOne extends Relatives {
+    interface OneToOne extends Relatives {
     }
     
-    public interface OneToMany extends Relatives, Iterable<Relatives> {
+    interface OneToMany extends Relatives, Iterable<Relatives> {
     }
 }

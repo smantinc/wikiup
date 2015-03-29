@@ -1,9 +1,18 @@
 package org.wikiup.modules.worms.imp.builder;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.wikiup.core.Constants;
 import org.wikiup.core.exception.AttributeException;
-import org.wikiup.core.inf.Document;
 import org.wikiup.core.inf.Dictionary;
+import org.wikiup.core.inf.Document;
 import org.wikiup.core.util.Assert;
 import org.wikiup.core.util.Documents;
 import org.wikiup.core.util.Interfaces;
@@ -14,15 +23,6 @@ import org.wikiup.modules.worms.WormsEntity;
 import org.wikiup.modules.worms.WormsEntityManager;
 import org.wikiup.modules.worms.imp.FieldProperty;
 import org.wikiup.modules.worms.imp.component.Property;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 public class JoinSQLBuilder extends AbstractSQLBuilder {
     private Document configure;
@@ -257,7 +257,7 @@ public class JoinSQLBuilder extends AbstractSQLBuilder {
         String name = getEntityName(entityNameOrAlias);
         if(joinedEntities.containsKey(name))
             joinedEntities.get(name).update(isEntityName(entityNameOrAlias) ? null : entityNameOrAlias, joinType);
-        else
+        else if(name != null)
             joinedEntities.put(name, new SQLJoinEntity(entityNameOrAlias, joinType));
     }
 
