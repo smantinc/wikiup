@@ -38,7 +38,8 @@ public class WebArchiveResourceHandler implements ResourceHandler, DocumentAware
         String relativePath = getRelativeDirectoryPath(resource.getURI());
         File file = FileUtil.getFile(FileUtil.joinPath(repository, relativePath));
         String ext = FileUtil.getFileExt(resource.getURI());
-        file.mkdirs();
+        if(!file.isDirectory())
+            Assert.isTrue(file.mkdirs(), IOException.class);
         if(StringUtil.compareIgnoreCase(ext, "war"))
             extractArchiveToDirectory(resource, file);
         else
