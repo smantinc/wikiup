@@ -10,7 +10,7 @@ def getEntity(name, ctx=None, **selection):
 
 
 def query(name, relation, ctx=None, **selection):
-    entity = _getEntity(name, ctx, selection, False)
+    entity = _getEntity(name, ctx, selection)
     relatives = entity.getRelatives(relation, None)
     props = [str(i.getName()) for i in relatives.getProperties()]
     r = [dict([(j, str(i.get(j))) for j in props]) for i in relatives]
@@ -20,7 +20,7 @@ def query(name, relation, ctx=None, **selection):
     return r
 
 
-def _getEntity(name, ctx=None, selection=None, autoselect=True):
+def _getEntity(name, ctx=None, selection=None):
     entity = None
     if ctx is not None:
         entity = ctx.get(name)
@@ -29,6 +29,4 @@ def _getEntity(name, ctx=None, selection=None, autoselect=True):
     if selection:
         for k in selection:
             entity.set(k, selection[k])
-        if autoselect:
-            entity.select()
     return entity
